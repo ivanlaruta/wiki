@@ -79,10 +79,8 @@
                     <div class="col-md-4 col-sm-12 col-xs-12">
                       <div class="x_panel">
                         <div class="x_title">
-                          <h2>VENTAS {{$desc_mes}}<small>POR DIA</small></h2>
-                          <ul class="nav navbar-right panel_toolbox">
-                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                        </ul>
+                          <h2>POR DIA <small>{{$desc_mes}}-{{$año_actual}}</small></h2>
+                          
                           <div class="clearfix"></div>
                         </div>
                         
@@ -93,15 +91,15 @@
                               <thead>
                                 <tr>
                                   <th>DIA</th>
-                                  <th style="text-align: right;">N° VENTAS</th>
+                                  <th style="text-align: right;">VENTAS</th>
                                                                    
                                 </tr>
                               </thead>
                                 
                               <tbody>
                                @foreach($por_dia as $dia)
-                                <tr class='clickable-row' data-href="#" >                
-                                  <td> {{ $dia-> FECHA_VENTA }}</td>
+                                <tr class='v_res' data-href="{{route('ventas.detalle_fecha',['f_ini'=>$dia-> FECHA_FACTURA,'f_fin'=>$dia-> FECHA_FACTURA,'title'=>date('d-m-Y',strtotime($dia-> FECHA_FACTURA)),'vista'=>'1','origen'=>'mes'])}}" >                
+                                  <td> {{date('d',strtotime($dia-> FECHA_FACTURA))  }}</td>
                                   <td align="right">{{ $dia-> VENTAS }}</td>
                                                                     
                                 </tr>
@@ -118,10 +116,8 @@
                     <div class="col-md-4 col-sm-12 col-xs-12">
                       <div class="x_panel">
                         <div class="x_title">
-                          <h2>VENTAS {{$desc_mes}}<small>REGIONAL</small></h2>
-                          <ul class="nav navbar-right panel_toolbox">
-                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                        </ul>
+                          <h2>REGIONAL <small>{{$desc_mes}}-{{$año_actual}}</small></h2>
+                          
                           <div class="clearfix"></div>
                         </div>
                         
@@ -132,7 +128,7 @@
                               <thead>
                                 <tr>
                                   <th>REGIONAL</th>
-                                  <th style="text-align: right;">N° VENTAS</th>
+                                  <th style="text-align: right;">VENTAS</th>
                                                                    
                                 </tr>
                               </thead>
@@ -158,10 +154,8 @@
                     <div class="col-md-4 col-sm-12 col-xs-12">
                       <div class="x_panel">
                         <div class="x_title">
-                          <h2>VENTAS {{$desc_mes}}<small>MARCA</small></h2>
-                          <ul class="nav navbar-right panel_toolbox">
-                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                        </ul>
+                          <h2>MARCA<small>{{$desc_mes}}-{{$año_actual}}</small></h2>
+                          
                           <div class="clearfix"></div>
                         </div>
                         
@@ -172,7 +166,7 @@
                               <thead>
                                 <tr>
                                   <th>MARCA</th>
-                                  <th style="text-align: right;">N° VENTAS</th>
+                                  <th style="text-align: right;">VENTAS</th>
                                                                    
                                 </tr>
                               </thead>
@@ -207,6 +201,12 @@
    
 
 <script type="text/javascript">
+
+    $(document).ready(function($) {
+        $(".v_res").click(function() {
+            window.location = $(this).data("href");
+        });
+    });
 
 </script>
 @endsection

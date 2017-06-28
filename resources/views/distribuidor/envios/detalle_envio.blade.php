@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="right_col" role="main">
-  <div class="">
+  <div class=""> 
     <div class="page-title">
       <div class="title_left">
         <h3>ENVIO N° {{$envio->id_envio}} / <small>DERIVADO DE LA SOLICITUD N° {{$envio->id_solicitud}}</small></h3>

@@ -83,11 +83,11 @@
             <div class="content">
 
                 <div class="title m-b-md">
-                   <div id="charging" class="fa"></div>
-                   Stock Regionalizados
+                   {{-- <div id="charging" class="fa"></div> --}}
+                   STOCK Y VENTAS
                 </div>
                 <div class="animated tada " >
-                   <h3>PAGINA DE PRESENTACION EN CONSTRUCCION</h3>
+                   <h3 style=" font-weight: bold;">EN CONSTRUCCION <i class="fa fa-cog fa-spin"></i></h3>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@
             
             <div class="page-title">
               <div class="title_left">
-                <h3>REPORTE DE VENTAS /  <small>CONTRATOS  <i class="fa fa-pencil-square-o"></i></small></h3>
+                <h3>REPORTE DE VENTAS /  <small>(FACTURADOS)  <i class="fa fa-pencil-square-o"></i></small></h3>
               </div>
 
               <div class="title_right"></div>
@@ -57,33 +57,32 @@
                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
                         <span class="count_top"><i class="fa fa-clock-o"></i> Hoy</span>
                         <div class="count red" align="center">{{$dia}}</div>
-                        
-                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="#">{{$hoy->format('d/m/Y')}} </a></span>
+                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$hoy,'f_fin'=>$hoy,'title'=>'Diarias','vista'=>'1','origen'=>'index'])}}">{{$hoy->format('d/m/Y')}} </a></span>
                       </div>
                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
                         <span class="count_top"><i class="fa fa-clock-o"></i> Esta semana</span>
                         <div class="count" align="center">{{$esta_sema}}</div>
-                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="#">Desde el {{$inicio_sem->format('d/m/Y')}} </a></span>
+                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$inicio_sem,'f_fin'=>$hoy,'title'=>'De la semana','vista'=>'1','origen'=>'index'])}}">Desde el {{$inicio_sem->format('d/m/Y')}} </a></span>
                       </div>
                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
                         <span class="count_top"><i class="fa fa-clock-o"></i> Ultimos<i class="red">15 </i>dias</span>
                         <div class="count "  align="center">{{$ult_15d}}</div>
-                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="#">Desde el {{$ult_15->format('d/m/Y')}} </a></span>
+                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$ult_15,'f_fin'=>$hoy,'title'=>'Ultimos 15 dias','vista'=>'1','origen'=>'index'])}}">Desde el {{$ult_15->format('d/m/Y')}} </a></span>
                       </div>
                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
                         <span class="count_top"><i class="fa fa-clock-o"></i> Este mes</span>
                         <div class="count" align="center">{{$este_mes}}</div>
-                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="#">Desde el {{$inicio_mes->format('d/m/Y')}} </a></span>
+                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$inicio_mes,'f_fin'=>$hoy,'title'=>'Del mes','vista'=>'1','origen'=>'index'])}}">Desde el {{$inicio_mes->format('d/m/Y')}} </a></span>
                       </div>
                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
                         <span class="count_top" align="center"><i class="fa fa-clock-o"></i> Mes pasado</span>
                         <div class="count">{{$anterior_mes }}</div>
-                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="#">Del 01 al {{date('d/m/Y',strtotime($fin_mes_ant))}}</a></span>
+                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$inicio_mes_ant,'f_fin'=>$fin_mes_ant,'title'=>'Del mes anterior','vista'=>'1','origen'=>'index'])}}">Del 01 al {{date('d/m/Y',strtotime($fin_mes_ant))}}</a></span>
                       </div>
                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
                         <span class="count_top"><i class="fa fa-clock-o"></i> Este año</span>
                         <div class="count green" align="center">{{$este_año}}</div>
-                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="#">Desde el {{$inicio_año->format('d/m/Y')}} </a></span>
+                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$inicio_año,'f_fin'=>$hoy,'title'=>'Del año','vista'=>'1','origen'=>'index'])}}">Desde el {{$inicio_año->format('d/m/Y')}} </a></span>
                       </div>
                       
                     </div>
@@ -96,10 +95,8 @@
                     <div class="col-md-4 col-sm-12 col-xs-12">
                       <div class="x_panel">
                         <div class="x_title">
-                          <h2>VENTAS {{$año_actual}}<small>MES</small></h2>
-                          <ul class="nav navbar-right panel_toolbox">
-                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                        </ul>
+                          <h2>POR MES<small>{{$año_actual}}</small></h2>
+                         
                           <div class="clearfix"></div>
                         </div>
                         
@@ -109,7 +106,7 @@
                               <thead>
                                 <tr>
                                   <th>MES</th>
-                                  <th style="text-align: right;">N° VENTAS</th>
+                                  <th style="text-align: right;">VENTAS</th>
                                                                    
                                 </tr>
                               </thead>
@@ -148,10 +145,8 @@
                     <div class="col-md-4 col-sm-12 col-xs-12">
                       <div class="x_panel">
                         <div class="x_title">
-                          <h2>VENTAS {{$año_actual}}<small>REGIONAL</small></h2>
-                          <ul class="nav navbar-right panel_toolbox">
-                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                        </ul>
+                          <h2>POR REGIONAL<small>{{$año_actual}}</small></h2>
+                         
                           <div class="clearfix"></div>
                         </div>
                         
@@ -162,7 +157,7 @@
                               <thead>
                                 <tr>
                                   <th>REGIONAL</th>
-                                  <th style="text-align: right;">N° VENTAS</th>
+                                  <th style="text-align: right;">VENTAS</th>
                                                                    
                                 </tr>
                               </thead>
@@ -188,10 +183,8 @@
                     <div class="col-md-4 col-sm-12 col-xs-12">
                       <div class="x_panel">
                         <div class="x_title">
-                          <h2>VENTAS {{$año_actual}}<small>MARCA</small></h2>
-                          <ul class="nav navbar-right panel_toolbox">
-                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                        </ul>
+                          <h2>POR MARCA<small>{{$año_actual}}</small></h2>
+                         
                           <div class="clearfix"></div>
                         </div>
                         
@@ -202,7 +195,7 @@
                               <thead>
                                 <tr>
                                   <th>MARCA</th>
-                                  <th style="text-align: right;">N° VENTAS</th>
+                                  <th style="text-align: right;">VENTAS</th>
                                                                    
                                 </tr>
                               </thead>

@@ -33,49 +33,48 @@ class VentasController extends Controller
 
         $año_actual = Carbon::now('America/La_Paz') -> year; //año actual.
 
-        $dia =Venta::where('FECHA_VENTA',$hoy)->count();
+        $dia =Venta::where('FECHA_FACTURA',$hoy)->count();
 
-        $esta_sema =Venta::whereBetween('FECHA_VENTA',[$inicio_sem,$hoy])->count();
+        $esta_sema =Venta::whereBetween('FECHA_FACTURA',[$inicio_sem,$hoy])->count();
 
-        $ult_15d =Venta::whereBetween('FECHA_VENTA',[$ult_15,$hoy])->count();
+        $ult_15d =Venta::whereBetween('FECHA_FACTURA',[$ult_15,$hoy])->count();
 
-        $este_mes =Venta::whereBetween('FECHA_VENTA',[$inicio_mes,$hoy])->count();
+        $este_mes =Venta::whereBetween('FECHA_FACTURA',[$inicio_mes,$hoy])->count();
 
-        $anterior_mes=Venta::whereBetween('FECHA_VENTA',[$inicio_mes_ant,$fin_mes_ant])->count();
+        $anterior_mes=Venta::whereBetween('FECHA_FACTURA',[$inicio_mes_ant,$fin_mes_ant])->count();
 
-        $este_año =Venta::whereBetween('FECHA_VENTA',[$inicio_año,$hoy])->count();
+        $este_año =Venta::whereBetween('FECHA_FACTURA',[$inicio_año,$hoy])->count();
         
-        
-        // $sema =Venta::whereBetween('FECHA_VENTA',[$ult_sem,$hoy])->count();
+        // $sema =Venta::whereBetween('FECHA_FACTURA',[$ult_sem,$hoy])->count();
 
-        // $mes =Venta::whereBetween('FECHA_VENTA',[$ult_mes,$hoy])->count();
+        // $mes =Venta::whereBetween('FECHA_FACTURA',[$ult_mes,$hoy])->count();
 
-        // $año =Venta::whereBetween('FECHA_VENTA',[$ult_anio,$hoy])->count();
+        // $año =Venta::whereBetween('FECHA_FACTURA',[$ult_anio,$hoy])->count();
 
-        // $menos_año =Venta::where('FECHA_VENTA','<',$ult_anio)->count();
+        // $menos_año =Venta::where('FECHA_FACTURA','<',$ult_anio)->count();
 
         $todos =Venta::all()->count();
 
-        $min_date =Venta::min('FECHA_VENTA');
+        $min_date =Venta::min('FECHA_FACTURA');
 
 
          $por_reg =Venta::select('REGIONAL',DB::raw('COUNT(*) AS VENTAS'))
-         ->where(DB::raw('YEAR(FECHA_VENTA)'),'=',$año_actual)
+         ->where(DB::raw('YEAR(FECHA_FACTURA)'),'=',$año_actual)
          ->groupBy('REGIONAL')
          ->orderBy('VENTAS', 'desc')
          ->get();
 
-          //$por_mes = DB::select( DB::raw("SELECT SUBSTRING(CONVERT(VARCHAR(6),FECHA_VENTA,112),5,2) as MES ,COUNT (*) VENTAS  FROM ventas WHERE CONVERT(VARCHAR(4),FECHA_VENTA,112) >= '".$año_actual."' GROUP BY SUBSTRING(CONVERT(VARCHAR(6),FECHA_VENTA,112),5,2)"));
+          //$por_mes = DB::select( DB::raw("SELECT SUBSTRING(CONVERT(VARCHAR(6),FECHA_FACTURA,112),5,2) as MES ,COUNT (*) VENTAS  FROM ventas WHERE CONVERT(VARCHAR(4),FECHA_FACTURA,112) >= '".$año_actual."' GROUP BY SUBSTRING(CONVERT(VARCHAR(6),FECHA_FACTURA,112),5,2)"));
 
-          $por_mes = Venta::select( DB::raw("month(FECHA_VENTA) as MES , COUNT (*) as VENTAS"))
-          ->where('FECHA_VENTA','>',$inicio_año)
-          ->groupBy(DB::raw('month(FECHA_VENTA)'))
+          $por_mes = Venta::select( DB::raw("month(FECHA_FACTURA) as MES , COUNT (*) as VENTAS"))
+          ->where('FECHA_FACTURA','>',$inicio_año)
+          ->groupBy(DB::raw('month(FECHA_FACTURA)'))
 
           ->get();
 
 
           $por_marca =Venta::select('MARCA',DB::raw('COUNT(*) AS VENTAS'))
-         ->where('FECHA_VENTA','>',$inicio_año)
+         ->where('FECHA_FACTURA','>',$inicio_año)
          ->groupBy('MARCA')
           ->orderBy('VENTAS', 'desc')
          ->get();
@@ -185,10 +184,10 @@ class VentasController extends Controller
 
         //============= CALCULO DE DIFERENCIAS ========
 
-        $ventas_mes =Venta::whereBetween('FECHA_VENTA',[$inicio_mes,$fin_mes])->count();
-        $ventas_mes_anterior =Venta::whereBetween('FECHA_VENTA',[$inicio_mes_anterior,$fin_mes_anterior])->count();
+        $ventas_mes =Venta::whereBetween('FECHA_FACTURA',[$inicio_mes,$fin_mes])->count();
+        $ventas_mes_anterior =Venta::whereBetween('FECHA_FACTURA',[$inicio_mes_anterior,$fin_mes_anterior])->count();
 
-        $prom = DB::select("SELECT avg(VENTAS) AS VENTAS FROM (SELECT  COUNT (*) as VENTAS FROM ventas where FECHA_VENTA >'2017-01-01'Group by month(FECHA_VENTA)) as VENTAS");
+        $prom = DB::select("SELECT avg(VENTAS) AS VENTAS FROM (SELECT  COUNT (*) as VENTAS FROM v_ventas_fac where FECHA_FACTURA >'2017-01-01'Group by month(FECHA_FACTURA)) as VENTAS");
 
         $promedio = $prom[0]->VENTAS;
 
@@ -201,21 +200,21 @@ class VentasController extends Controller
         //============  LISTAS ====================
 
         $por_reg =Venta::select('REGIONAL',DB::raw('COUNT(*) AS VENTAS'))
-         ->whereBetween('FECHA_VENTA',[$inicio_mes,$fin_mes])
+         ->whereBetween('FECHA_FACTURA',[$inicio_mes,$fin_mes])
          ->groupBy('REGIONAL')
          ->orderBy('VENTAS', 'desc')
          ->get();
 
         $por_marca =Venta::select('MARCA',DB::raw('COUNT(*) AS VENTAS'))
-         ->whereBetween('FECHA_VENTA',[$inicio_mes,$fin_mes])
+         ->whereBetween('FECHA_FACTURA',[$inicio_mes,$fin_mes])
          ->groupBy('MARCA')
           ->orderBy('VENTAS', 'desc')
          ->get();
 
-        $por_dia =Venta::select('FECHA_VENTA',DB::raw('COUNT(*) AS VENTAS'))
-         ->whereBetween('FECHA_VENTA',[$inicio_mes,$fin_mes])
-         ->groupBy('FECHA_VENTA')
-          ->orderBy('FECHA_VENTA')
+        $por_dia =Venta::select('FECHA_FACTURA',DB::raw('COUNT(*) AS VENTAS'))
+         ->whereBetween('FECHA_FACTURA',[$inicio_mes,$fin_mes])
+         ->groupBy('FECHA_FACTURA')
+          ->orderBy('FECHA_FACTURA')
          ->get();
 
          //===================================================
@@ -252,11 +251,11 @@ class VentasController extends Controller
         $inicio_año=Carbon::now('America/La_Paz')->startOfYear()->toDateString();    //inicio de año
 
         $total = Venta::where('REGIONAL',$reg)
-        ->where('FECHA_VENTA','>',$inicio_año)
+        ->where('FECHA_FACTURA','>',$inicio_año)
         ->count();
       
         $por_sucursal =Venta::select('SUCURSAL',DB::raw('COUNT(*) AS VENTAS'))
-         ->where('FECHA_VENTA','>',$inicio_año)
+         ->where('FECHA_FACTURA','>',$inicio_año)
          ->where('REGIONAL','=',$reg)
          ->whereNotNull('REGIONAL')
          ->groupBy('SUCURSAL')
@@ -264,18 +263,18 @@ class VentasController extends Controller
          ->get();
 
         $por_marca =Venta::select('MARCA',DB::raw('COUNT(*) AS VENTAS'))
-         ->where('FECHA_VENTA','>',$inicio_año)
+         ->where('FECHA_FACTURA','>',$inicio_año)
          ->where('REGIONAL','=',$reg)
          ->whereNotNull('REGIONAL')
          ->groupBy('MARCA')
           ->orderBy('VENTAS', 'desc')
          ->get();
 
-        $por_mes = Venta::select( DB::raw("month(FECHA_VENTA) as MES , COUNT (*) as VENTAS"))
-          ->where('FECHA_VENTA','>',$inicio_año)
+        $por_mes = Venta::select( DB::raw("month(FECHA_FACTURA) as MES , COUNT (*) as VENTAS"))
+          ->where('FECHA_FACTURA','>',$inicio_año)
           ->where('REGIONAL','=',$reg)
          ->whereNotNull('REGIONAL')
-          ->groupBy(DB::raw('month(FECHA_VENTA)'))
+          ->groupBy(DB::raw('month(FECHA_FACTURA)'))
 
           ->get();
 
@@ -304,27 +303,27 @@ class VentasController extends Controller
         $inicio_año=Carbon::now('America/La_Paz')->startOfYear()->toDateString();    //inicio de año
 
         $total = Venta::where('MARCA',$marca)
-        ->where('FECHA_VENTA','>',$inicio_año)
+        ->where('FECHA_FACTURA','>',$inicio_año)
         ->count();
       
         $por_regional =Venta::select('REGIONAL',DB::raw('COUNT(*) AS VENTAS'))
-         ->where('FECHA_VENTA','>',$inicio_año)
+         ->where('FECHA_FACTURA','>',$inicio_año)
          ->where('MARCA',$marca)
          ->groupBy('REGIONAL')
          ->orderBy('VENTAS', 'desc')
          ->get();
 
         $por_modelo =Venta::select('MODELO',DB::raw('COUNT(*) AS VENTAS'))
-         ->where('FECHA_VENTA','>',$inicio_año)
+         ->where('FECHA_FACTURA','>',$inicio_año)
          ->where('MARCA',$marca)
          ->groupBy('MODELO')
          ->orderBy('VENTAS', 'desc')
          ->get();
 
-        $por_mes = Venta::select( DB::raw("month(FECHA_VENTA) as MES , COUNT (*) as VENTAS"))
-          ->where('FECHA_VENTA','>',$inicio_año)
+        $por_mes = Venta::select( DB::raw("month(FECHA_FACTURA) as MES , COUNT (*) as VENTAS"))
+          ->where('FECHA_FACTURA','>',$inicio_año)
           ->where('MARCA',$marca)
-          ->groupBy(DB::raw('month(FECHA_VENTA)'))
+          ->groupBy(DB::raw('month(FECHA_FACTURA)'))
           ->get();
 
        
@@ -343,6 +342,45 @@ class VentasController extends Controller
          ->with('total',$total)
          ;
         
+    }
+
+    public function detalle_fecha($f_ini,$f_fin,$title,$vista,$origen)
+    {
+        $año_actual = Carbon::now('America/La_Paz') -> year;
+
+        $mes = Carbon::parse($f_ini)->month;
+
+        if ($mes == 1) { $desc_mes='ENERO'; }
+        if ($mes == 2) { $desc_mes='FEBRERO'; }
+        if ($mes == 3) { $desc_mes='MARZO'; }
+        if ($mes == 4) { $desc_mes='ABRIL'; }
+        if ($mes == 5) { $desc_mes='MAYO'; }
+        if ($mes == 6) { $desc_mes='JUNIO'; }
+        if ($mes == 7) { $desc_mes='JULIO'; }
+        if ($mes == 8) { $desc_mes='AGOSTO'; }
+        if ($mes == 9) { $desc_mes='SEPTIEMBRE'; }
+        if ($mes == 10){ $desc_mes=' OCTUBRE'; }
+        if ($mes == 11) { $desc_mes='NOVIEMBRE'; }
+        if ($mes == 12) { $desc_mes='DICIEMBRE'; }
+
+        $inicio=date('Y-m-d',strtotime($f_ini));
+        $final = date('Y-m-d',strtotime($f_fin));
+
+        $detalle=Venta::select(DB::raw('ROW_NUMBER() OVER(ORDER BY FECHA_FACTURA DESC) AS ITEM'),'*')
+          ->whereBetween('FECHA_FACTURA',[$inicio,$final])
+         ->get();
+
+        return view('ventas.detalle')
+         ->with('detalle',$detalle)
+         ->with('f_ini',$f_ini)
+         ->with('f_fin',$f_fin)
+         ->with('vista',$vista)
+         ->with('title',$title)
+         ->with('origen',$origen)
+         ->with('año_actual',$año_actual)
+         ->with('mes',$mes)
+         ->with('desc_mes',$desc_mes)
+         ;
     }
 
     /**

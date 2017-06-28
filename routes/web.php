@@ -204,6 +204,11 @@ Route::group(['prefix'=>'distribuidor','middleware'=>'auth'],function(){
 
 Route::group(['prefix'=>'ventas','middleware'=>'auth'],function(){
 	
+	route::get('ventas/{f_ini}/{f_fin}/{title}/{vista}/{origen}/detalle_fecha',[
+		'uses' =>'VentasController@detalle_fecha',
+		'as'   =>	'ventas.detalle_fecha'
+	]);
+	
 	route::get('ventas/{marca}/por_marca',[
 		'uses' =>'VentasController@por_marca',
 		'as'   =>	'ventas.por_marca'
