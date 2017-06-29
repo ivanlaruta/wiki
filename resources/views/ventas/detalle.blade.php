@@ -88,7 +88,7 @@
                         @if($vista == '0')<td>{{$det->cod_tit}}</td> @endif
                         @if($vista == '0')<td>{{$det->NIT}}</td> @endif
                         <td>{{$det->CLIENTE}}</td> 
-                        @if($vista == '0')<td>{{$det->PRECIO}}</td> @endif
+                        @if($vista == '0')<td>{{$det->PRECIO_VENTA}}</td> @endif
                         @if($vista == '0')<td> @if ($det->MONEDA == 1)BOLIVIANOS @endif @if ($det->MONEDA == 2)DOLARES @endif </td> @endif
                         @if($vista == '0')<td>{{$det->ESTADO}}</td> @endif
                        

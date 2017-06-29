@@ -31,7 +31,7 @@
                        <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
                         <span class="count_top"> Promedio ventas/mes</span>
                         <div class="count "  align="center">{{$promedio}}</div>
-                        <span class="count_bottom"><i class="blue"><i class="fa fa-line-chart"></i> </i> <a href="#">Promedio por mes {{$año_actual}} </a></span>
+                        <span class="count_bottom"><i class="blue"><i class="fa fa-line-chart"></i> </i> <a href="#">Promedio/mes {{$año_actual}} </a></span>
                       </div>
             
                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
@@ -62,7 +62,9 @@
                       </div>
 
                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
-                       
+                        <span class="count_top "><i class="fa fa-money green"></i> Facturado (Bs.) </span>
+                        <div class="count green" align="center">{{$abrv_facturado}}</div>
+                        <span class="count_bottom"><i class="green"><i class="fa fa-dollar"></i> </i> <a href="#">Total {{$desc_mes}} </a></span>
                       </div>
                      
                       

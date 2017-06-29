@@ -45,7 +45,23 @@ class VentasController extends Controller
 
         $este_año =Venta::whereBetween('FECHA_FACTURA',[$inicio_año,$hoy])->count();
 
-        $facturado =Venta::whereBetween('FECHA_FACTURA',[$inicio_año,$hoy])->sum('PRECIO');
+        $fact = DB::select(" select SUM (c.BOLIVIANOS) AS TOTAL FROM (select PRECIO_VENTA * CONVERSION AS BOLIVIANOS from v_ventas_fac where FECHA_FACTURA >'".$inicio_año."' ) as c  ");
+
+        $facturado = $fact[0]->TOTAL;
+
+        if($facturado <1000 ){
+            $abrv_facturado = $facturado;
+        }
+
+        if($facturado >= 1000 && $facturado <1000000){
+            $f = $facturado/1000 ;
+            $abrv_facturado = strval(round($f,1)).' K';
+        }
+
+        if($facturado >= 1000000){
+            $f = $facturado/1000000 ;
+            $abrv_facturado = strval(round($f,1)).' M';
+        }
         
         // $sema =Venta::whereBetween('FECHA_FACTURA',[$ult_sem,$hoy])->count();
 
@@ -103,6 +119,7 @@ class VentasController extends Controller
          ->with('por_marca',$por_marca)
          ->with('año_actual',$año_actual)
          ->with('facturado',$facturado)
+         ->with('abrv_facturado',$abrv_facturado)
 
          ->with('inicio_sem',Carbon::now('America/La_Paz')->startOfWeek())
          ->with('inicio_mes',Carbon::now('America/La_Paz')->startOfMonth())
@@ -175,7 +192,7 @@ class VentasController extends Controller
             $desc_mes_ant='NOVIEMBRE';
         }
 
-
+        $inicio_año=Carbon::now('America/La_Paz')->startOfYear()->toDateString();    //inicio de año
         $año_actual = Carbon::now('America/La_Paz') -> year;
         $fecha = $año_actual.'-'.$mes.'-01';
 
@@ -192,7 +209,7 @@ class VentasController extends Controller
         $ventas_mes =Venta::whereBetween('FECHA_FACTURA',[$inicio_mes,$fin_mes])->count();
         $ventas_mes_anterior =Venta::whereBetween('FECHA_FACTURA',[$inicio_mes_anterior,$fin_mes_anterior])->count();
 
-        $prom = DB::select("SELECT avg(VENTAS) AS VENTAS FROM (SELECT  COUNT (*) as VENTAS FROM v_ventas_fac where FECHA_FACTURA >'2017-01-01'Group by month(FECHA_FACTURA)) as VENTAS");
+        $prom = DB::select("SELECT avg(VENTAS) AS VENTAS FROM (SELECT  COUNT (*) as VENTAS FROM v_ventas_fac where FECHA_FACTURA >'".$inicio_año."'Group by month(FECHA_FACTURA)) as VENTAS");
 
         $promedio = $prom[0]->VENTAS;
 
@@ -201,6 +218,26 @@ class VentasController extends Controller
        
         //==========================================0
 
+        // =========== FACTURADO ===========
+        $fact = DB::select(" select SUM (c.BOLIVIANOS) AS TOTAL FROM (select PRECIO_VENTA * CONVERSION AS BOLIVIANOS from v_ventas_fac where FECHA_FACTURA BETWEEN '".$inicio_mes."' AND '".$fin_mes."') as c  ");
+
+        $facturado = $fact[0]->TOTAL;
+
+        if($facturado <1000 ){
+            $abrv_facturado = $facturado;
+        }
+
+        if($facturado >= 1000 && $facturado <1000000){
+            $f = $facturado/1000 ;
+            $abrv_facturado = strval(round($f,1)).' K';
+        }
+
+        if($facturado >= 1000000){
+            $f = $facturado/1000000 ;
+            $abrv_facturado = strval(round($f,1)).' M';
+        }
+
+         //================================
 
         //============  LISTAS ====================
 
@@ -245,6 +282,8 @@ class VentasController extends Controller
          ->with('promedio',$promedio)
          ->with('dif_mes_anterior',$dif_mes_anterior)
          ->with('dif_prom',$dif_prom)
+         
+         ->with('abrv_facturado',$abrv_facturado)
          
          ;
         
