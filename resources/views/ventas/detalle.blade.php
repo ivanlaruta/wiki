@@ -41,7 +41,7 @@
                 </ul>
               <div class="clearfix"></div>
             </div>
-            <div class="x_content">
+            <div class="x_content animated slideInUp">
               <p class="text-muted font-13 m-b-30"></p>
               <div class="table-responsive">
                 <table class="table table-striped jambo_table bulk_action">
@@ -63,7 +63,8 @@
                      @if($vista == '0')<th>COD TITULAR</th> @endif
                      @if($vista == '0')<th>NIT</th> @endif
                      <th>CLIENTE</th> 
-                     @if($vista == '0')<th>PRECIO</th> @endif
+                     @if($vista == '0')<th>PRECIO Bs</th> @endif
+                     @if($vista == '0')<th>PRECIO Sus</th> @endif
                      @if($vista == '0')<th>MONEDA</th> @endif
                      @if($vista == '0')<th>ESTADO</th> @endif
                      
@@ -82,14 +83,15 @@
                         <td>{{$det->CHASIS}}</td> 
                         @if($vista == '0')<td>{{date('d/m/Y',strtotime($det->FECHA_CONTRATO))}}</td> @endif
                         <td><label class="text-success">{{date('d/m/Y',strtotime($det->FECHA_FACTURA))}}</label></td>
-                        @if($vista == '0')<td> @if (is_null($det->FECHA_ENTREGA)) No entregado @else {{date('d/m/Y',strtotime($det->FECHA_ENTREGA))}} @endif </td> @endif
+                        @if($vista == '0')<td> @if (is_null($det->FECHA_ENTREGA)) No Entregado @else {{date('d/m/Y',strtotime($det->FECHA_ENTREGA))}} @endif </td> @endif
                         <td>{{$det->SUCURSAL}}</td> 
                         @if($vista == '0')<td>{{$det->REGIONAL}}</td> @endif
                         @if($vista == '0')<td>{{$det->cod_tit}}</td> @endif
                         @if($vista == '0')<td>{{$det->NIT}}</td> @endif
                         <td>{{$det->CLIENTE}}</td> 
-                        @if($vista == '0')<td>{{$det->PRECIO_VENTA}}</td> @endif
-                        @if($vista == '0')<td> @if ($det->MONEDA == 1)BOLIVIANOS @endif @if ($det->MONEDA == 2)DOLARES @endif </td> @endif
+                        @if($vista == '0')<td><label class="text-success">{{round($det->BOLIVIANOS,2)}}</label></td> @endif
+                        @if($vista == '0')<td><label class="text-primary">{{round($det->DOLARES,2)}}</label></td> @endif
+                       {{--  @if($vista == '0')<td> @if ($det->MONEDA == 1)BOLIVIANOS @endif @if ($det->MONEDA == 2)DOLARES @endif </td> @endif --}}
                         @if($vista == '0')<td>{{$det->ESTADO}}</td> @endif
                        
                       </tr>

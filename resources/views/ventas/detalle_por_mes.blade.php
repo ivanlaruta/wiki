@@ -16,25 +16,25 @@
                   <div class="row">
                     <div class="row tile_count" align="center">
 
-                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top"> Ventas del mes </span>
                         <div class="count green " align="center">{{$ventas_mes}}</div>
                         <span class="count_bottom"><i class="green"><i class="fa fa-bar-chart"></i> </i> <a href="#">Total {{$desc_mes}}</a></span>
                       </div>
 
-                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top"> Ventas mes anterior </span>
                         <div class="count " align="center">{{$ventas_mes_anterior}}</div>
                         <span class="count_bottom"><i class="red"><i class="fa fa-bar-chart"></i> </i> <a href="#">Total {{$desc_mes_ant}} </a></span>
                       </div>
 
-                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top"> Promedio ventas/mes</span>
                         <div class="count "  align="center">{{$promedio}}</div>
                         <span class="count_bottom"><i class="blue"><i class="fa fa-line-chart"></i> </i> <a href="#">Promedio/mes {{$año_actual}} </a></span>
                       </div>
             
-                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top"> Dif. mes anterior</span>
                         <div 
                           @if($dif_mes_anterior<0) class="count red" 
@@ -48,7 +48,7 @@
                         <a href="#"></a></span>
                       </div>
 
-                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top"> Dif. al promedio</span>
                         <div 
                          @if($dif_prom<0) class="count red"
@@ -61,7 +61,7 @@
                         <a href="#"></a></span>
                       </div>
 
-                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top "><i class="fa fa-money green"></i> Facturado (Bs.) </span>
                         <div class="count green" align="center">{{$abrv_facturado}}</div>
                         <span class="count_bottom"><i class="green"><i class="fa fa-dollar"></i> </i> <a href="#">Total {{$desc_mes}} </a></span>
@@ -78,7 +78,7 @@
                 <div class="col-md-12">
                   <div class="row">                     
 
-                    <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-md-4 col-sm-12 col-xs-12 animated slideInUp">
                       <div class="x_panel">
                         <div class="x_title">
                           <h2>POR DIA <small>{{$desc_mes}}-{{$año_actual}}</small></h2>
@@ -110,12 +110,12 @@
                             </table>
                           </div>                        
                         </div>
-
+                          <a href="#">Ver detalle <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                       </div>
 
 
-                    <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-md-4 col-sm-12 col-xs-12 animated slideInUp">
                       <div class="x_panel">
                         <div class="x_title">
                           <h2>REGIONAL <small>{{$desc_mes}}-{{$año_actual}}</small></h2>
@@ -153,7 +153,7 @@
 
 
 
-                    <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-md-4 col-sm-12 col-xs-12 animated slideInUp">
                       <div class="x_panel">
                         <div class="x_title">
                           <h2>MARCA<small>{{$desc_mes}}-{{$año_actual}}</small></h2>

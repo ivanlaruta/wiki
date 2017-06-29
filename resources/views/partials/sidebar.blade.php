@@ -14,7 +14,7 @@
                  {{--  <li><a  href="{{ route('ventas.index')}}"><i class="fa fa-bar-chart"></i> Ventas</a>                    
                   </li> --}}
                   
-                  <li><a><i class="fa fa-bar-chart"></i> Ventas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-line-chart"></i> Ventas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('ventas.index')}}">Reporte</a></li>
                     </ul>
@@ -58,7 +58,7 @@
                    <li><a><i class="fa fa-car"></i> Stock <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('vehiculos.stock')}}"> Stock Vehiculos</a></li>
-                      <li><a href="#">Stock Productos</a></li>
+                      {{-- <li><a href="#">Stock Productos</a></li> --}}
                       <li><a href="{{ route('vehiculos.index')}}">Unidades</a></li>
                     </ul>
                   </li>
@@ -70,7 +70,7 @@
                     </ul>
                   </li>
                   
-                  <li><a><i class="fa fa-globe"></i> Administracion <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-cogs"></i> Administracion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('stocks.index')}}">Asignacion de Stock a regionales</a></li>
                      

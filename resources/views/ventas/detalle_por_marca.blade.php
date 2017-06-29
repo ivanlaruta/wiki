@@ -16,7 +16,7 @@
                   <div class="row">
                     <div class="row tile_count" align="center">
 
-                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top"> Ventas {{$marca}} </span>
                         <div class="count green " align="center">{{$total}}</div>
                         <span class="count_bottom"><i class="green"><i class="fa fa-bar-chart"></i> </i> <a href="#">Total {{$año_actual}}</a></span>
@@ -31,7 +31,7 @@
                   <div class="row">                     
                     
 
-                                        <div class="col-md-4 col-sm-12 col-xs-12">
+                                        <div class="col-md-4 col-sm-12 col-xs-12 animated slideInUp">
                       <div class="x_panel">
                         <div class="x_title">
                           <h2>VENTAS <small>MES</small></h2>
@@ -84,7 +84,7 @@
                     
 
 
-                    <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-md-4 col-sm-12 col-xs-12 animated slideInUp">
                       <div class="x_panel">
                         <div class="x_title">
                           <h2>VENTAS <small>REGIONAL</small></h2>
@@ -121,7 +121,7 @@
                       </div>
                       
 
-                      <div class="col-md-4 col-sm-12 col-xs-12">
+                      <div class="col-md-4 col-sm-12 col-xs-12 animated slideInUp">
                       <div class="x_panel">
                         <div class="x_title">
                           <h2>VENTAS <small>POR MODELO</small></h2>

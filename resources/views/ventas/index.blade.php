@@ -54,27 +54,27 @@
                 <div class="col-md-12">
                   <div class="row">
                     <div class="row tile_count" align="center">
-                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top"><i class="fa fa-clock-o"></i> Hoy</span>
                         <div class="count red" align="center">{{$dia}}</div>
                         <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$hoy,'f_fin'=>$hoy,'title'=>'Diarias','vista'=>'1','origen'=>'index'])}}">{{$hoy->format('d/m/Y')}} </a></span>
                       </div>
-                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top"><i class="fa fa-clock-o"></i> Esta semana</span>
                         <div class="count" align="center">{{$esta_sema}}</div>
                         <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$inicio_sem,'f_fin'=>$hoy,'title'=>'De la semana','vista'=>'1','origen'=>'index'])}}">Desde el {{$inicio_sem->format('d/m/Y')}} </a></span>
                       </div>
-                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top"><i class="fa fa-clock-o"></i> Ultimos<i class="red">15 </i>dias</span>
                         <div class="count "  align="center">{{$ult_15d}}</div>
                         <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$ult_15,'f_fin'=>$hoy,'title'=>'Ultimos 15 dias','vista'=>'1','origen'=>'index'])}}">Desde el {{$ult_15->format('d/m/Y')}} </a></span>
                       </div>
-                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top"><i class="fa fa-clock-o"></i> Este mes</span>
                         <div class="count" align="center">{{$este_mes}}</div>
                         <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$inicio_mes,'f_fin'=>$hoy,'title'=>'Del mes','vista'=>'1','origen'=>'index'])}}">Desde el {{$inicio_mes->format('d/m/Y')}} </a></span>
                       </div>
-                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top"><i class="fa fa-clock-o"></i> Este año</span>
                         <div class="count blue" align="center">{{$este_año}}</div>
                         <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$inicio_año,'f_fin'=>$hoy,'title'=>'Del año','vista'=>'1','origen'=>'index'])}}">Desde el {{$inicio_año->format('d/m/Y')}} </a></span>
@@ -85,7 +85,7 @@
                         <div class="count">{{$anterior_mes }}</div>
                         <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$inicio_mes_ant,'f_fin'=>$fin_mes_ant,'title'=>'Del mes anterior','vista'=>'1','origen'=>'index'])}}">Del 01 al {{date('d/m/Y',strtotime($fin_mes_ant))}}</a></span>
                       </div> --}}
-                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                      <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top "><i class="fa fa-money green"></i> Facturado (Bs.) </span>
                         <div class="count green" align="center">{{$abrv_facturado}}</div>
                         <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="#">Desde el {{$inicio_año->format('d/m/Y')}} </a></span>
@@ -98,7 +98,7 @@
               
                 <div class="col-md-12">
                   <div class="row">
-                    <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-md-4 col-sm-12 col-xs-12 animated slideInUp ">
                       <div class="x_panel">
                         <div class="x_title">
                           <h2>POR MES<small>{{$año_actual}}</small></h2>
@@ -148,7 +148,7 @@
                       </div>
                       
 
-                    <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-md-4 col-sm-12 col-xs-12 animated slideInUp">
                       <div class="x_panel">
                         <div class="x_title">
                           <h2>POR REGIONAL<small>{{$año_actual}}</small></h2>
@@ -186,7 +186,7 @@
 
 
 
-                    <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-md-4 col-sm-12 col-xs-12 animated slideInUp">
                       <div class="x_panel">
                         <div class="x_title">
                           <h2>POR MARCA<small>{{$año_actual}}</small></h2>
