@@ -44,6 +44,8 @@ class VentasController extends Controller
         $anterior_mes=Venta::whereBetween('FECHA_FACTURA',[$inicio_mes_ant,$fin_mes_ant])->count();
 
         $este_año =Venta::whereBetween('FECHA_FACTURA',[$inicio_año,$hoy])->count();
+
+        $facturado =Venta::whereBetween('FECHA_FACTURA',[$inicio_año,$hoy])->sum('PRECIO');
         
         // $sema =Venta::whereBetween('FECHA_FACTURA',[$ult_sem,$hoy])->count();
 
@@ -69,7 +71,7 @@ class VentasController extends Controller
           $por_mes = Venta::select( DB::raw("month(FECHA_FACTURA) as MES , COUNT (*) as VENTAS"))
           ->where('FECHA_FACTURA','>',$inicio_año)
           ->groupBy(DB::raw('month(FECHA_FACTURA)'))
-
+          ->orderBy(DB::raw('month(FECHA_FACTURA)'))
           ->get();
 
 
@@ -78,6 +80,8 @@ class VentasController extends Controller
          ->groupBy('MARCA')
           ->orderBy('VENTAS', 'desc')
          ->get();
+
+
          
          return view('ventas.index')
          ->with('dia',$dia)
@@ -98,6 +102,7 @@ class VentasController extends Controller
          ->with('por_mes',$por_mes)
          ->with('por_marca',$por_marca)
          ->with('año_actual',$año_actual)
+         ->with('facturado',$facturado)
 
          ->with('inicio_sem',Carbon::now('America/La_Paz')->startOfWeek())
          ->with('inicio_mes',Carbon::now('America/La_Paz')->startOfMonth())

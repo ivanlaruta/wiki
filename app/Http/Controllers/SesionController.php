@@ -13,7 +13,7 @@ class SesionController extends Controller
         
         if (Auth::user()->rol == '1')
         {
-            return redirect()->route('principal.index');
+            return redirect()->route('ventas.index');
         }
          if (Auth::user()->rol == '2')
         {

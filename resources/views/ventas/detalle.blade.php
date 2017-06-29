@@ -49,20 +49,24 @@
                     <tr>
                      <th></th> 
                      <th>MARCA</th> 
-                     <th>MODELO</th> 
+                     @if($vista == '0')<th>COD MODELO</th> @endif
+                     <th>MODELO</th>  
+                     @if($vista == '0')<th>COD MASTER</th> @endif
                      <th>MASTER</th> 
                      <th>AÑO</th> 
                      <th>CHASSIS</th> 
-                      @if($vista == '0')<th>FECHA CONTRATO</th> @endif
+                     @if($vista == '0')<th>FECHA CONTRATO</th> @endif
                      <th>FECHA FACTURA</th> 
-                      @if($vista == '0')<th>FECHA ENTREGA</th> @endif
-                      <th>SUCURSAL</th> 
-                      @if($vista == '0')<th>REGIONAL</th> @endif
-                      @if($vista == '0')<th>COD TITULAR</th> @endif
-                      @if($vista == '0')<th>NIT</th> @endif
+                     @if($vista == '0')<th>FECHA ENTREGA</th> @endif
+                     <th>SUCURSAL</th> 
+                     @if($vista == '0')<th>REGIONAL</th> @endif
+                     @if($vista == '0')<th>COD TITULAR</th> @endif
+                     @if($vista == '0')<th>NIT</th> @endif
                      <th>CLIENTE</th> 
-                      @if($vista == '0')<th>PRECIO</th> @endif
-                      @if($vista == '0')<th>ESTADO</th> @endif
+                     @if($vista == '0')<th>PRECIO</th> @endif
+                     @if($vista == '0')<th>MONEDA</th> @endif
+                     @if($vista == '0')<th>ESTADO</th> @endif
+                     
                     </tr>
                   </thead>
                   <tbody>
@@ -70,20 +74,24 @@
                       <tr class='clickable-row' data-href="#" > 
                         <td>{{$det->ITEM}}</td> 
                         <td>{{$det->MARCA}}</td>
-                        <td>@if($vista == '0'){{$det->cod_modelo}}<label class="text-danger">, </label> @endif{{' '}} {{$det->MODELO}}</td>
-                        <td>@if($vista == '0'){{$det->cod_master}}<label class="text-danger">, </label> @endif{{' '}} {{$det->MASTER}}</td>
+                        @if($vista == '0')<td>{{$det->cod_modelo}}</td>@endif
+                        <td>{{$det->MODELO}}</td>
+                        @if($vista == '0')<td>{{$det->cod_master}}</td>@endif
+                        <td>{{$det->MASTER}}</td>
                         <td>{{$det->ANIO}}</td> 
                         <td>{{$det->CHASIS}}</td> 
                         @if($vista == '0')<td>{{date('d/m/Y',strtotime($det->FECHA_CONTRATO))}}</td> @endif
-                        <td>{{date('d/m/Y',strtotime($det->FECHA_FACTURA))}}</td>
-                        @if($vista == '0')<td>{{date('d/m/Y',strtotime($det->FECHA_ENTREGA))}}</td> @endif
+                        <td><label class="text-success">{{date('d/m/Y',strtotime($det->FECHA_FACTURA))}}</label></td>
+                        @if($vista == '0')<td> @if (is_null($det->FECHA_ENTREGA)) No entregado @else {{date('d/m/Y',strtotime($det->FECHA_ENTREGA))}} @endif </td> @endif
                         <td>{{$det->SUCURSAL}}</td> 
                         @if($vista == '0')<td>{{$det->REGIONAL}}</td> @endif
                         @if($vista == '0')<td>{{$det->cod_tit}}</td> @endif
                         @if($vista == '0')<td>{{$det->NIT}}</td> @endif
                         <td>{{$det->CLIENTE}}</td> 
                         @if($vista == '0')<td>{{$det->PRECIO}}</td> @endif
+                        @if($vista == '0')<td> @if ($det->MONEDA == 1)BOLIVIANOS @endif @if ($det->MONEDA == 2)DOLARES @endif </td> @endif
                         @if($vista == '0')<td>{{$det->ESTADO}}</td> @endif
+                       
                       </tr>
                     @endforeach
                   </tbody>

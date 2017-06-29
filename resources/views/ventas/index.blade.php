@@ -75,14 +75,20 @@
                         <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$inicio_mes,'f_fin'=>$hoy,'title'=>'Del mes','vista'=>'1','origen'=>'index'])}}">Desde el {{$inicio_mes->format('d/m/Y')}} </a></span>
                       </div>
                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
+                        <span class="count_top"><i class="fa fa-clock-o"></i> Este año</span>
+                        <div class="count blue" align="center">{{$este_año}}</div>
+                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$inicio_año,'f_fin'=>$hoy,'title'=>'Del año','vista'=>'1','origen'=>'index'])}}">Desde el {{$inicio_año->format('d/m/Y')}} </a></span>
+                      </div>
+
+                     {{--  <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
                         <span class="count_top" align="center"><i class="fa fa-clock-o"></i> Mes pasado</span>
                         <div class="count">{{$anterior_mes }}</div>
                         <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$inicio_mes_ant,'f_fin'=>$fin_mes_ant,'title'=>'Del mes anterior','vista'=>'1','origen'=>'index'])}}">Del 01 al {{date('d/m/Y',strtotime($fin_mes_ant))}}</a></span>
-                      </div>
+                      </div> --}}
                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count">
-                        <span class="count_top"><i class="fa fa-clock-o"></i> Este año</span>
-                        <div class="count green" align="center">{{$este_año}}</div>
-                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$inicio_año,'f_fin'=>$hoy,'title'=>'Del año','vista'=>'1','origen'=>'index'])}}">Desde el {{$inicio_año->format('d/m/Y')}} </a></span>
+                        <span class="count_top"><i class="fa fa-clock-o"></i> Facturado </span>
+                        <div class="count green" align="center">{{$facturado}}</div>
+                        <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="#">Desde el {{$inicio_año->format('d/m/Y')}} </a></span>
                       </div>
                       
                     </div>
