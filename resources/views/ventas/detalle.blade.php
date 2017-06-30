@@ -41,7 +41,7 @@
                 </ul>
               <div class="clearfix"></div>
             </div>
-            <div class="x_content animated slideInUp">
+            <div class="x_content animated fadeIn">
               <p class="text-muted font-13 m-b-30"></p>
               <div class="table-responsive">
                 <table class="table table-striped jambo_table bulk_action">
@@ -65,7 +65,7 @@
                      <th>CLIENTE</th> 
                      @if($vista == '0')<th>PRECIO Bs</th> @endif
                      @if($vista == '0')<th>PRECIO Sus</th> @endif
-                     @if($vista == '0')<th>MONEDA</th> @endif
+                     {{-- @if($vista == '0')<th>MONEDA</th> @endif --}}
                      @if($vista == '0')<th>ESTADO</th> @endif
                      
                     </tr>

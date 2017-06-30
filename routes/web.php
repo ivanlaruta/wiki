@@ -204,10 +204,29 @@ Route::group(['prefix'=>'distribuidor','middleware'=>'auth'],function(){
 
 Route::group(['prefix'=>'ventas','middleware'=>'auth'],function(){
 	
+
+	route::get('ventas/{mes}/{suc}/{reg}/{vista}/detalle_mes_regional_sucursal',[
+		'uses' =>'VentasController@detalle_mes_regional_sucursal',
+		'as'   =>	'ventas.detalle_mes_regional_sucursal'
+	]);
+
+
+	route::get('ventas/{marca}/{mes}/mes_marca',[
+		'uses' =>'VentasController@mes_marca',
+		'as'   =>	'ventas.mes_marca'
+	]);
+
+	route::get('ventas/{reg}/{mes}/mes_regional',[
+		'uses' =>'VentasController@mes_regional',
+		'as'   =>	'ventas.mes_regional'
+	]);
+
 	route::get('ventas/{f_ini}/{f_fin}/{title}/{vista}/{origen}/detalle_fecha',[
 		'uses' =>'VentasController@detalle_fecha',
 		'as'   =>	'ventas.detalle_fecha'
 	]);
+	
+
 	
 	route::get('ventas/{marca}/por_marca',[
 		'uses' =>'VentasController@por_marca',

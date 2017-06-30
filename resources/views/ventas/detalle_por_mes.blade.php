@@ -19,7 +19,7 @@
                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
                         <span class="count_top"> Ventas del mes </span>
                         <div class="count green " align="center">{{$ventas_mes}}</div>
-                        <span class="count_bottom"><i class="green"><i class="fa fa-bar-chart"></i> </i> <a href="#">Total {{$desc_mes}}</a></span>
+                        <span class="count_bottom"><i class="green"><i class="fa fa-bar-chart"></i> </i> <a href="{{route('ventas.detalle_fecha',['f_ini'=>$inicio_mes,'f_fin'=>$fin_mes,'title'=>$desc_mes,'vista'=>'1','origen'=>'mes'])}}">Total {{$desc_mes}}</a></span>
                       </div>
 
                       <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
@@ -110,7 +110,7 @@
                             </table>
                           </div>                        
                         </div>
-                          <a href="#">Ver detalle <i class="fa fa-arrow-circle-right"></i></a>
+                         
                         </div>
                       </div>
 
@@ -137,7 +137,7 @@
                                 
                               <tbody>
                                @foreach($por_reg as $reg)
-                                <tr class='clickable-row' data-href="#" >                
+                                <tr class='v_regional' data-href="{{route('ventas.mes_regional',['reg'=>$reg-> REGIONAL,'mes'=>$mes])}}" >                
                                   <td> @if( is_null($reg-> REGIONAL)) Sin Dato @else {{ $reg-> REGIONAL }} @endif</td>
                                   <td align="right">{{ $reg-> VENTAS }}</td>
                                                                     
@@ -175,7 +175,7 @@
                                 
                               <tbody>
                                @foreach($por_marca as $mar)
-                                <tr class='clickable-row' data-href="#" >                
+                                <tr class='v_marca' data-href="{{route('ventas.mes_marca',['marca'=>$mar-> MARCA,'mes'=>$mes])}}" >                
                                   <td>  {{ $mar-> MARCA }} </td>
                                   <td align="right">{{ $mar-> VENTAS }}</td>
                                                                     
@@ -206,6 +206,17 @@
 
     $(document).ready(function($) {
         $(".v_res").click(function() {
+            window.location = $(this).data("href");
+        });
+    });    
+
+    $(document).ready(function($) {
+        $(".v_regional").click(function() {
+            window.location = $(this).data("href");
+        });
+    }); 
+    $(document).ready(function($) {
+        $(".v_marca").click(function() {
             window.location = $(this).data("href");
         });
     });

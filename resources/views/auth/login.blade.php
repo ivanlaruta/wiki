@@ -37,9 +37,11 @@
                 <button type="submit" class="btn btn-primary">
                             <i class="fa fa-btn fa-sign-in"></i> Ingresar
                 </button>
-                <button  class="btn btn-dark">
+                <button  class="btn btn-dark" >
                              Cancelar <i class="fa fa-btn fa-sign-out"  ></i>
-                        </button>
+                </button>
+
+
               </div>
 
 
@@ -57,5 +59,9 @@
                   <p>©2017 Todos los derechos reservados.TOYOSA S.A. </p>
                 </div>
               </div>
-            </form>                       
+            </form>     
+
+
+
+
 @endsection
