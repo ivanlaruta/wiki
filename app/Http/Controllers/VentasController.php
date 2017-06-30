@@ -616,6 +616,78 @@ class VentasController extends Controller
          
     }
 
+  
+
+    public function detalle_mes_regional_marca($mes,$reg,$marca,$vista,$origen)
+    {
+
+        $año_actual = Carbon::now('America/La_Paz') -> year;
+
+        $fecha = $año_actual.'-'.$mes.'-01';
+        $inicio = Carbon::parse($fecha)->toDateString();
+        $aux = Carbon::parse($fecha);
+        $final = $aux->endOfMonth()->toDateString();
+
+        if ($mes == 1) { $desc_mes='ENERO'; }
+        if ($mes == 2) { $desc_mes='FEBRERO'; }
+        if ($mes == 3) { $desc_mes='MARZO'; }
+        if ($mes == 4) { $desc_mes='ABRIL'; }
+        if ($mes == 5) { $desc_mes='MAYO'; }
+        if ($mes == 6) { $desc_mes='JUNIO'; }
+        if ($mes == 7) { $desc_mes='JULIO'; }
+        if ($mes == 8) { $desc_mes='AGOSTO'; }
+        if ($mes == 9) { $desc_mes='SEPTIEMBRE'; }
+        if ($mes == 10){ $desc_mes=' OCTUBRE'; }
+        if ($mes == 11) { $desc_mes='NOVIEMBRE'; }
+        if ($mes == 12) { $desc_mes='DICIEMBRE'; }
+
+       
+
+        $detalle=Venta::select(DB::raw('ROW_NUMBER() OVER(ORDER BY FECHA_FACTURA DESC) AS ITEM'),'*')
+          ->whereBetween('FECHA_FACTURA',[$inicio,$final])
+          ->where('REGIONAL','=',$reg)
+          ->where('MARCA','=',$marca)
+         ->get();
+
+         $origen = 'mes';
+         $title = $reg;
+         if($origen = 'regional'){
+            return view('ventas.detalle_mrm')
+
+         ->with('detalle',$detalle)
+         ->with('vista',$vista)
+         ->with('title',$title)
+         ->with('origen',$origen)
+         ->with('año_actual',$año_actual)
+         ->with('mes',$mes)
+         ->with('reg',$reg)
+         ->with('marca',$marca)
+         ->with('desc_mes',$desc_mes)
+         ;
+
+         }
+
+         if($origen ='marca'){
+            return view('ventas.detalle_mmr')
+
+         ->with('detalle',$detalle)
+         ->with('vista',$vista)
+         ->with('title',$title)
+         ->with('origen',$origen)
+         ->with('año_actual',$año_actual)
+         ->with('mes',$mes)
+         ->with('reg',$reg)
+         ->with('marca',$marca)
+         ->with('desc_mes',$desc_mes)
+         ;
+
+         }
+
+        
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      *

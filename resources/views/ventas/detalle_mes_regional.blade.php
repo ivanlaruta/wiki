@@ -92,7 +92,7 @@
                                 
                               <tbody>
                                @foreach($por_marca as $mar)
-                                <tr class='clickable-row' data-href="#" >                
+                                <tr class='por_marca' data-href="{{route('ventas.detalle_mes_regional_marca',['mes'=>$mes,'marca'=>$mar-> MARCA, 'reg'=>$regional,'vista'=>'1','origen'=>'regional'])}}" >                
                                   <td>  {{ $mar-> MARCA }} </td>
                                   <td align="right">{{ $mar-> VENTAS }}</td>
                                                                     
@@ -123,6 +123,12 @@
 <script type="text/javascript">
   $(document).ready(function($) {
         $(".suc_det").click(function() {
+            window.location = $(this).data("href");
+        });
+    });
+
+  $(document).ready(function($) {
+        $(".por_marca").click(function() {
             window.location = $(this).data("href");
         });
     });

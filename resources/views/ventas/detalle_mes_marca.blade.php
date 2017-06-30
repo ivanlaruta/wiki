@@ -52,7 +52,7 @@
                                 
                               <tbody>
                                @foreach($por_regional as $reg)
-                                <tr class='clickable-row' data-href="#" >                
+                                <tr class='por_regional' data-href="{{route('ventas.detalle_mes_regional_marca',['mes'=>$mes,'marca'=>$marca, 'reg'=>$reg-> REGIONAL,'vista'=>'1','origen'=>'marca'])}}" >                
                                   <td> @if( is_null($reg-> REGIONAL)) Sin Dato @else {{ $reg-> REGIONAL }} @endif</td>
                                   <td align="right">{{ $reg-> VENTAS }}</td>
                                                                     
@@ -120,6 +120,10 @@
    
 
 <script type="text/javascript">
-
+ $(document).ready(function($) {
+        $(".por_regional").click(function() {
+            window.location = $(this).data("href");
+        });
+    });
 </script>
 @endsection

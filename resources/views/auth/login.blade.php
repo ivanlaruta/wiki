@@ -37,9 +37,9 @@
                 <button type="submit" class="btn btn-primary">
                             <i class="fa fa-btn fa-sign-in"></i> Ingresar
                 </button>
-                <button  class="btn btn-dark" >
-                             Cancelar <i class="fa fa-btn fa-sign-out"  ></i>
-                </button>
+
+                <a href="javascript:history.back()" class="btn btn-link"> Volver a la pagina de inicio <i class="fa fa-btn fa-sign-out"  ></i>
+                </a>
 
 
               </div>

@@ -16,6 +16,11 @@ Route::get('/', function () {
 });
 
 
+Route::get('/inicio', function () {
+    return view('welcome');
+});
+
+
 Route::get('/test', function () {
     return view('pruebas');
 });
@@ -204,6 +209,11 @@ Route::group(['prefix'=>'distribuidor','middleware'=>'auth'],function(){
 
 Route::group(['prefix'=>'ventas','middleware'=>'auth'],function(){
 	
+
+	route::get('ventas/{mes}/{reg}/{marca}/{vista}/{origen}/detalle_mes_regional_marca',[
+		'uses' =>'VentasController@detalle_mes_regional_marca',
+		'as'   =>	'ventas.detalle_mes_regional_marca'
+	]);
 
 	route::get('ventas/{mes}/{suc}/{reg}/{vista}/detalle_mes_regional_sucursal',[
 		'uses' =>'VentasController@detalle_mes_regional_sucursal',
