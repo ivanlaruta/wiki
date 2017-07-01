@@ -207,7 +207,7 @@
                            @endif
                             
                           @endif
-                           @if($env->estado == '4' )
+                           @if($env->estado >= '4' )
                             <a href="{{ route('envios.envios_lista',$env->id_solicitud)}}" class="btn btn-info btn-round" >VER ENVIOS DE SOLICITUD</a>
                             @endif
                           </div>  

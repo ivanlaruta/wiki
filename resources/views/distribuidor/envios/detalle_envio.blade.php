@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label class="control-label col-md-6">Fecha_aprovacion: </label>
+                    <label class="control-label col-md-6">Fecha aprobacion: </label>
                     <div class="col-md-6">
                       {!!Form::text('env',date('d-m-Y',strtotime($solicitud->fecha_aprobado)),['class'=> 'form-control', 'readonly'])!!}
                     </div>
@@ -157,7 +157,7 @@
                           <th>COLOR EXTERIOR</th>
                           <th>COLOR INTERIOR</th>
                           <th>CHASSIS</th>
-                          <th>SALIDA CB</th>
+                          <th>SALIDA Cod_Barras</th>
                           {{-- <th>LLEGADA CB</th> --}}
                         </tr>
                       </thead>

@@ -130,7 +130,7 @@
                     <div class="about-content">
                         <i class="fa fa-edit fa-4x"></i>
                         <h3>FACIL INTERACCION</h3>
-                        <p>El sistema tiene una interfaz amigable por lo que al usuario no le resultara dificil la manipulacion d elos formularios y los reportes.</p>
+                        <p>El sistema tiene una interfaz amigable por lo que al usuario no le resultara dificil la manipulacion de formularios y  reportes.</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay=".6s">
@@ -176,10 +176,10 @@
                         <div class="media-body">
                             <h3 class="media-heading">SOLICITUDES Y ENVIOS</h3>
                             <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
+                                <li>Creacion de solcitiudes.</li>
+                                <li>Aprovacion y reserva de unidades de forma automatica.</li>
+                                <li>Generacion de envios.</li>
+                                <li>Rerpotes.</li>
                             </ul>
                         </div>
                     </div>
@@ -192,10 +192,11 @@
                         <div class="media-body">
                             <h3 class="media-heading">STOCK-INVENTARIO</h3>
                             <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
+                                <li>Estado de vehiculos estacionados</li>
+                                <li>Listas por regional</li>
+                                <li>Listas por marca</li>
+                                <li>busquedas avanzadas</li>
+                                <li>stock-max  stock-min</li>
                             </ul>
                         </div>
                     </div>
@@ -208,10 +209,11 @@
                         <div class="media-body">
                             <h3 class="media-heading">VENTAS</h3>
                             <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
+                                <li>Reporte de ventas</li>
+                                <li>Detalle por mes</li>
+                                <li>Detalle por marca</li>
+                                <li>Detalle por regional</li>
+                                <li>Objetivos.</li>
                             </ul>
                         </div>
                     </div>
