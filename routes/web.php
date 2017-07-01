@@ -210,6 +210,12 @@ Route::group(['prefix'=>'distribuidor','middleware'=>'auth'],function(){
 Route::group(['prefix'=>'ventas','middleware'=>'auth'],function(){
 	
 
+	route::get('ventas/{mes}/{marca}/{modelo}/{vista}/detalle_mes_marca_modelo',[
+		'uses' =>'VentasController@detalle_mes_marca_modelo',
+		'as'   =>	'ventas.detalle_mes_marca_modelo'
+	]);
+
+
 	route::get('ventas/{mes}/{reg}/{marca}/{vista}/{origen}/detalle_mes_regional_marca',[
 		'uses' =>'VentasController@detalle_mes_regional_marca',
 		'as'   =>	'ventas.detalle_mes_regional_marca'

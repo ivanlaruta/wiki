@@ -89,7 +89,7 @@
                                 
                               <tbody>
                                @foreach($por_modelo as $mod)
-                                <tr class='clickable-row' data-href="#" >                
+                                <tr class='por_modelo' data-href="{{route('ventas.detalle_mes_marca_modelo',['mes'=>$mes,'marca'=>$marca, 'modelo'=>$mod-> MODELO,'vista'=>'1'])}}" >                
                                   <td> {{ $mod-> MODELO }}</td>
                                   <td align="right">{{ $mod-> VENTAS }}</td>
                                                                     
@@ -125,5 +125,11 @@
             window.location = $(this).data("href");
         });
     });
+ $(document).ready(function($) {
+        $(".por_modelo").click(function() {
+            window.location = $(this).data("href");
+        });
+    });
+
 </script>
 @endsection

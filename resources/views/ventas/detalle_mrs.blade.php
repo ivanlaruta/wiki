@@ -89,8 +89,8 @@
                         @if($vista == '0')<td>{{$det->cod_tit}}</td> @endif
                         @if($vista == '0')<td>{{$det->NIT}}</td> @endif
                         <td>{{$det->CLIENTE}}</td> 
-                        @if($vista == '0')<td><label class="text-success">{{round($det->BOLIVIANOS,2)}}</label></td> @endif
-                        @if($vista == '0')<td><label class="text-primary">{{round($det->DOLARES,2)}}</label></td> @endif
+                        @if($vista == '0')<td align="right"><label class="text-success">{{number_format($det->BOLIVIANOS,2, '.', ',')}}</label></td> @endif
+                        @if($vista == '0')<td align="right"><label class="text-primary">{{number_format($det->DOLARES,2, '.', ',')}}</label></td> @endif
                        {{--  @if($vista == '0')<td> @if ($det->MONEDA == 1)BOLIVIANOS @endif @if ($det->MONEDA == 2)DOLARES @endif </td> @endif --}}
                         @if($vista == '0')<td>{{$det->ESTADO}}</td> @endif
                        

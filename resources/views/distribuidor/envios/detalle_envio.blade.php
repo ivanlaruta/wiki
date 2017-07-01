@@ -6,7 +6,7 @@
   <div class=""> 
     <div class="page-title">
       <div class="title_left">
-        <h3>ENVIO N° {{$envio->id_envio}} / <small>DERIVADO DE LA SOLICITUD N° {{$envio->id_solicitud}}</small></h3>
+        <h3>COD ENVIO: {{$envio->id_envio}} / <small>DERIVADO DE LA SOLICITUD N° {{$envio->id_solicitud}}</small></h3>
       </div>
     </div>
             

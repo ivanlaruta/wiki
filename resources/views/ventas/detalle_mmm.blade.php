@@ -9,7 +9,7 @@
         <div class="title">
           <h3>
             <a href="{{route('ventas.index')}}">REPORTE DE VENTAS / </a> <a href="{{route('ventas.por_mes',$mes)}}">{{$desc_mes}}-{{$año_actual}} / </a>  <a href="{{route('ventas.mes_marca',['marca'=>$marca,'mes'=>$mes])}}">{{$marca}}/ </a>
-            <small><i class="red"> {{$reg}} </i> <i class="fa fa-pencil-square-o"></i></small>
+            <small><i class="red"> {{$modelo}} </i> <i class="fa fa-pencil-square-o"></i></small>
           </h3>
         </div>
          <div class="title_right"></div>
@@ -19,11 +19,11 @@
         <div class="col-md-offset-8">
           <div class="">
             <label>
-              <input type="checkbox" class="js-switch v_res" @if($vista =='1') checked @endif data-href="{{route('ventas.detalle_mes_regional_marca',['mes'=>$mes,'marca'=>$marca, 'reg'=>$reg,'vista'=>'1','origen'=>'regional'])}}" /> Datos Genrales
+              <input type="checkbox" class="js-switch v_res" @if($vista =='1') checked @endif data-href="{{route('ventas.detalle_mes_marca_modelo',['mes'=>$mes,'marca'=>$marca, 'modelo'=>$modelo,'vista'=>'1'])}}" /> Datos Genrales
             </label>
          &nbsp|&nbsp
             <label>
-               <input type="checkbox" class="js-switch v_res" @if($vista =='0') checked @endif data-href="{{route('ventas.detalle_mes_regional_marca',['mes'=>$mes,'marca'=>$marca, 'reg'=>$reg,'vista'=>'0','origen'=>'regional'])}}" /> Datos Completos
+               <input type="checkbox" class="js-switch v_res" @if($vista =='0') checked @endif data-href="{{route('ventas.detalle_mes_marca_modelo',['mes'=>$mes,'marca'=>$marca, 'modelo'=>$modelo,'vista'=>'0'])}}" /> Datos Completos
             </label>
           </div>
 
@@ -34,7 +34,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>VENTAS <small> {{$desc_mes}}-{{$año_actual}}-{{$marca}} -{{$reg}} </small></h2>
+              <h2>VENTAS <small> {{$desc_mes}}-{{$año_actual}}-{{$marca}} -{{$modelo}} </small></h2>
                 <ul class="nav navbar-right panel_toolbox">
                   <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                   </li>
@@ -93,7 +93,7 @@
                         @if($vista == '0')<td align="right"><label class="text-primary">{{number_format($det->DOLARES,2, '.', ',')}}</label></td> @endif
                        {{--  @if($vista == '0')<td> @if ($det->MONEDA == 1)BOLIVIANOS @endif @if ($det->MONEDA == 2)DOLARES @endif </td> @endif --}}
                         @if($vista == '0')<td>{{$det->ESTADO}}</td> @endif
-                       
+                      
                       </tr>
                     @endforeach
                   </tbody>
