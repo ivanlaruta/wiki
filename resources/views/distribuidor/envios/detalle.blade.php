@@ -198,12 +198,17 @@
                         <div class="form-group">
                         <div class="col-md-12">
                           <div class="btn-group btn-group-justified">
-                          <a href="{{ route('envios.index')}}" class=" btn btn-primary btn-round">PAGINA ANTERIOR</a>
+                          <a href="{{ route('envios.index')}}" class=" btn btn-primary btn-round ">PAGINA ANTERIOR</a>
                           @if($env->estado < '5' )
                             
-                            <a href="{{ route('envios.envio_parcial',$env)}}" class="btn btn-warning btn-round">REALIZAR ENVIO PARCIAL </a>
+                            <a href="{{ route('envios.envio_parcial',$env)}}" class="btn btn-warning btn-round">ENVIO PARCIAL AUTOMATICO </a>
+
+                            <a href="" class="btn btn-info btn-round" >ENVIO PARCIAL MANUAL</a>
+
                             @if($env->estado == '3' )
-                            <a href="" class="btn btn-success btn-round" data-toggle="modal" data-target=".bs-example-modal-lg" >ENVIAR TODO</a>
+
+                            <a href="" class="btn btn-success btn-round" data-toggle="modal" data-target=".bs-example-modal" >ENVIAR TODO</a>
+
                            @endif
                             
                           @endif
@@ -216,46 +221,122 @@
                         </div>
                         
 
-                        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                          <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                            {!! Form::open(array('route' => ['envios.enviar',$env->id_solicitud], 'method' => 'get')) !!}﻿
+<div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
 
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel">Datos de Envio</h4>
-                              </div>
-                              <div class="modal-body">
-                              
-                              <p>Todas las unidades de esta solicitud se registraran con la fecha estimada de arribo que seleccionara, Ademas la solicitud se registraga como solicitud completa, es decir que todas las unidades se enviaran conjuntamente.</p>
-                              
-                                 
-                                 <fieldset>
-                                  <div class="control-group">
-                                  <label class="control-label col-md-2 col-md-offset-3" >Fecha estimada de arribo :</label>
-                                  <div class="col-md-4 ">
-                                    <div class="controls">
-                                      <div class="col-md-11 xdisplay_inputx form-group has-feedback">
-                                        <input type="text" name = "f_env" class="form-control has-feedback-left" id="f_env" aria-describedby="inputSuccess2Status2">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+    {{--   {!! Form::open(array('route' => ['envios.guardar_parcial'], 'method' => 'get' , 'id'=>'loginForm')) !!} --}}
+
+<input id="id" name="id" type="hidden" value="{{$id}}">
+
+<div class="modal-body">
+
+  <div class=" row">
+    <div class="col-md-12">
+      
+     <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-6" >Fecha estimada de arribo: </label>
+            <div class="col-md-6">
+              <input type="text" name = "f_env" class="form-control has-feedback-left" id="f_env" aria-describedby="inputSuccess2Status2">
                                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                         <span id="inputSuccess2Status2" class="sr-only">(success)</span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  </div>
-                                  
-                                </fieldset>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class=" row">
+    <div class="col-md-12">
+      
+      <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-6" >Responsable de envio </label>
+            <div class="col-md-6">
+              <select class="form-control" data-width="100%" name="resp" id="resp" required >
+                <option value="">Selecione un responsable</option>
+                  @foreach($resp as $emps)
+                    <option value="{{$emps->id}}">{{$emps->paterno}} {{$emps->nombre}}</option>
+                  @endforeach
+              </select>
 
-                              </div>
-                              <div class="modal-footer">
-                                
-                                <button type="submit" class="btn btn-success "> ENVIAR </button>
-                              </div>
-                            {!! Form::close()!!}
-                            </div>
-                          </div>
-                        </div>
+              </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-6" >transportadora: </label>
+            <div class="col-md-6">
+              {!! Form::select('transp',$trans,null,['class'=>'form-control','placeholder'=>'seleccione transportadora','required'])!!}
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class=" row">
+    <div class="col-md-12">
+      <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-6" >Placa:</label>
+            <div class="col-md-6">
+              {!! Form::text('placa',null,['class'=> 'form-control','placeholder'=>'Placa tranpostador','required'])!!}
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-6" >Conductor: </label>
+            <div class="col-md-6">
+
+              <select class="form-control" data-width="100%" name="conductor" id="conductor" required >
+                <option value="">Selecione un conductor</option>
+                  @foreach($cond as $co)
+                    <option value="{{$co->id}}">{{$co->paterno}} {{$co->nombre}}</option>
+                  @endforeach
+              </select>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+  <div class=" row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label col-md-3" >Observaciones:</label>
+            <div class="col-md-9">
+              {!! Form::text('observaciones',null,['class'=> 'form-control','placeholder'=>'Observaciones (Opcional)'])!!}
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="modal-footer">
+<div class="btn-group " role="group" aria-label="Basic">
+  <a href="#" class=" btn btn-default btn-round" data-dismiss="modal">Cerrar</a>
+
+  <button type="submit" class="btn btn-success btn-round">Enviar</button>
+  
+</div>
+
+
+</div>
+
+{{-- {!! Form::close()!!}
+ --}}
+    </div>
+  </div>
+</div>
   
                       </div>
                       <hr>

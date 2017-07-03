@@ -398,7 +398,7 @@
 
                             <a href="{{ route('solicitudes.espera',$env)}}" onclick ="return confirm('El sistema seleccionara unidades automáticamente y se las reservara. ¿Desea continuar?')"   @if($det->isEmpty()) class="btn btn-primary btn-round disabled" @else  class="btn btn-primary btn-round" @endif>GUARDAR Y ESPERAR APROBACION</a>
 
-                            <a href="" @if($det->isEmpty()) class="btn btn-success btn-round disabled" @else  class=" btn btn-success btn-round" @endif>GUARDAR Y APROBAR</a>
+                            <a href="{{ route('solicitudes.aprobar_directa',$env)}}" @if($det->isEmpty()) class="btn btn-success btn-round disabled" @else  class=" btn btn-success btn-round" @endif>GUARDAR Y APROBAR</a>
                             
                           </div>
                         </div>

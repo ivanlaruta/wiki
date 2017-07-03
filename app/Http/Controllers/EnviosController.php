@@ -296,12 +296,29 @@ class EnviosController extends Controller
         $det_all = Detalle_solicitud::where('id_solicitud','=',$id)->get();
 
         $det = Detalle_solicitud::where('id_solicitud','=',$id)->get();
+
+        $trans =Transportadora::orderBy('id','ASC')->pluck('nombre','id');
+
+        $resp = Responsable::orderBy('paterno','ASC')
+                    ->select('id', 'nombre','paterno')
+                    ->get();
+
+        $cond = Conductor::orderBy('paterno','ASC')
+                    ->select('id', 'nombre','paterno')
+                    ->get();
         
             return view('distribuidor.envios.detalle')
             ->with('env',$env)
             ->with('request',$request)
             ->with('det',$det)
             ->with('det_all',$det_all)
+
+            ->with('id',$id)
+             
+             ->with('resp',$resp)
+             ->with('cond',$cond)
+             ->with('trans',$trans)
             ;
+
     }
 }

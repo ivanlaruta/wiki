@@ -48,8 +48,8 @@
 			<div class="col-md-12">
 				<div class="form-group">
 				    <label class="control-label col-md-6" >A enviar: </label>
-				    <div class="col-md-4">
-				    	{!! Form::number('cant',null,['class'=> 'form-control','placeholder'=>'...','min'=>'0' ,'max'=>$det->cantidad_aprobada-$det->cantidad_enviada,'required'])!!}
+				    <div class="col-md-6">
+				    	{!! Form::number('cant',null,['class'=> 'form-control','min'=>'0' ,'max'=>$det->cantidad_aprobada-$det->cantidad_enviada,'required'])!!}
 				    </div>
 	 			</div>
 	 		</div>

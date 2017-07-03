@@ -170,7 +170,7 @@
                           
                           <div class="btn-group btn-group-justified">
                          
-                            <a href="{{ route('envios.index')}}" class= "btn btn-warning btn-round "  >DESCARTAR</a>
+                            <a href="{{ route('envios.detalle',$id)}}" class= "btn btn-warning btn-round "  >CANCELAR</a>
                            <a href="" @if($a>0) class="btn btn-success btn-round" @else class="btn btn-success btn-round disabled" @endif  data-toggle="modal" data-target=".bs-example-modal" >CONSOLIDAR ENVIO</a>
                             
                           </div>

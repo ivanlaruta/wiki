@@ -58,6 +58,11 @@ Route::group(['prefix'=>'distribuidor','middleware'=>'auth'],function(){
 	// 	'as'   =>	'solicitudes.index_aprobados'
 	// ]);
 
+	route::get('solicitudes/{id}/aprobar_directa',[
+		'uses' =>'SolicitudesController@aprobar_directa',
+		'as'   =>	'solicitudes.aprobar_directa'
+	]);
+
 	route::get('solicitudes/{id}/aprobar',[
 		'uses' =>'SolicitudesController@aprobar',
 		'as'   =>	'solicitudes.aprobar'
@@ -260,5 +265,11 @@ Route::group(['prefix'=>'ventas','middleware'=>'auth'],function(){
 	]);
 
 	route::resource('ventas','VentasController');
+
+});
+
+Route::group(['prefix'=>'alerta_vehiculos','middleware'=>'auth'],function(){
+	
+	route::resource('alerta_vehiculos','AlertaVehiculosController');
 
 });

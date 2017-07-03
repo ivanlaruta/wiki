@@ -179,6 +179,96 @@ class SolicitudesController extends Controller
             ;
     }
 
+    public function aprobar_directa(Request $request,$id)
+    {
+        
+        date_default_timezone_set('America/La_Paz');
+       $time = time();
+       $now =date("Y-m-d", $time);
+
+       $env =Solicitud::find($id);
+       
+       if($env->estado<2)
+       {
+            $det1 = Detalle_solicitud::where('id_solicitud','=',$id)->get();
+
+            foreach($det1 as $dd)
+            {
+                $count = DB::table('V_stock_gtauto')
+                    ->where('cod_marca','=',$dd->cod_marca)
+                    ->where('COD_MODELO','=',$dd->cod_modelo)
+                    ->where('COD_MASTER','=',$dd->cod_master)
+                    ->where('ANIO_MOD','=',$dd->anio)
+                    ->where('COLOR_EXTERNO','=',$dd->col_ext)
+                    ->where('COLOR_INTERNO','=',$dd->col_int)
+                    ->whereNotIn('CHASIS', function($query) {
+                                                    $query->select('chassis')
+                                                    ->from(with(new Reservas_chassis)->getTable())
+                                                    // ->where('estado','<','2')
+                                                    ;})
+                    ->count();
+                
+                if ($dd->cantidad <= $count)
+                {
+                    $unidades = V_stock_gtauto::
+                      where('cod_marca','=',$dd->cod_marca)
+                    ->where('COD_MODELO','=',$dd->cod_modelo)
+                    ->where('COD_MASTER','=',$dd->cod_master)
+                    ->where('ANIO_MOD','=',$dd->anio)
+                    ->where('COLOR_EXTERNO','=',$dd->col_ext)
+                    ->where('COLOR_INTERNO','=',$dd->col_int)
+                    ->whereNotIn('CHASIS', function($query) {
+                        $query->select('chassis')
+                        ->from(with(new Reservas_chassis)->getTable())
+                        // ->where('estado','<','2')
+                        ;})
+
+                    ->paginate($dd->cantidad);
+
+                    foreach($unidades as $add)
+                    {
+                        $det1 = new Reservas_chassis();
+                        $det1 -> id_solicitud = $id;
+                        $det1 -> id_detalle = $dd->id_detalle;
+                        $det1 -> chassis = $add->CHASIS;
+                        $det1 -> estado = '1';
+                        $det1 -> save();
+                    }
+                }
+            }
+            $env->estado = '2';
+            $env -> fecha_espera = $now;
+            $env->save();
+        }
+    
+
+        $det = Reservas_chassis::select(DB::raw('ROW_NUMBER() OVER(ORDER BY id_detalle DESC) AS ITEM'),'*', DB::raw("CASE WHEN (SELECT COUNT (dd.chassis) from reservas_chassis dd where dd.estado >= 2 and dd.chassis = reservas_chassis.chassis) >  0   THEN 'n' ELSE 's' END AS estado_disp"))
+        ->where('id_solicitud','=',$id)
+        ->get();
+
+        foreach ($det as $deta) {
+           
+            if($deta->estado_disp == 's')
+            {
+                DB::update("update reservas_chassis set validado = '1' where chassis = '".$deta->chassis."'");
+            }
+            else
+            {
+                DB::update("update reservas_chassis set validado = '0' where chassis = '".$deta->chassis."'");
+            }
+        }
+
+        $det_all = Reservas_chassis::select(DB::raw('ROW_NUMBER() OVER(ORDER BY id_detalle DESC) AS ITEM'),'*')
+            ->where('id_solicitud','=',$id)
+        ->get();
+
+        return view('distribuidor.solicitudes.hoja_aprobacion')
+            ->with('det_all',$det_all)
+            ->with('id',$id)
+            ->with('env',$env)
+            ;
+    } 
+
        
     public function enviar(Request $request,$id)
     {

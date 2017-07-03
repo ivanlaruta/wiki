@@ -1,4 +1,4 @@
-        <div class="col-md-3 left_col menu_fixed">
+        <div class="col-md-3 left_col menu_fixed animated fadeInLeft">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
             <a class="site_title" href="{{ url('/home') }}">
@@ -19,6 +19,9 @@
                       <li><a href="{{ route('ventas.index')}}">Reporte</a></li>
                     </ul>
                   </li>
+
+                   <li><a  href="{{ route('alerta_vehiculos.index')}}"><i class="fa fa-anchor"></i> Vehiculos estacionados</a>                    
+                  </li> 
 
                 {{--   <li><a><i class="fa fa-home"></i> Principal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -59,7 +62,7 @@
                     <ul class="nav child_menu">
                       <li><a href="{{ route('vehiculos.stock')}}"> Stock Vehiculos</a></li>
                       {{-- <li><a href="#">Stock Productos</a></li> --}}
-                      <li><a href="{{ route('vehiculos.index')}}">Unidades</a></li>
+                      <li><a href="{{ route('vehiculos.index')}}">Buscador de Unidades</a></li>
                     </ul>
                   </li>
 
