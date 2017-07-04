@@ -51,7 +51,7 @@
                               <tbody>
                                @foreach($por_mes as $mes)
                                 
-                                <tr class='clickable-row' data-href="{{ route('ventas.por_mes',$mes-> MES )}}" >                
+                                <tr class='vreg' data-href="{{route('ventas.detalle_detalle_mes_regional',['mes'=>$mes-> MES,'reg'=>$reg,'vista'=>'1','origen'=>'regional_mes'])}}" >                
                                   <td> 
                                   @if ($mes-> MES == 1) ENERO @endif
                                   @if ($mes-> MES == 2) FEBRERO @endif
@@ -101,7 +101,7 @@
                                 
                               <tbody>
                                @foreach($por_sucursal as $suc)
-                                <tr class='clickable-row' data-href="#" >                
+                                <tr class='v_suc' data-href="{{route('ventas.detalle_detalle_regional_sucursal',['reg'=>$reg,'suc'=>$suc-> SUCURSAL,'vista'=>'1','origen'=>'regional_suc'])}}" >                
                                    <td> {{ $suc-> SUCURSAL }}</td>
                                   <td align="right">{{ $suc-> VENTAS }}</td>
                                                                     
@@ -139,7 +139,7 @@
                                 
                               <tbody>
                                @foreach($por_marca as $mar)
-                                <tr class='clickable-row' data-href="#" >                
+                                <tr class='v_marca' data-href="{{route('ventas.detalle_regional_marca',['reg'=>$reg,'marca'=>$mar-> MARCA])}}" >                
                                   <td>  {{ $mar-> MARCA }} </td>
                                   <td align="right">{{ $mar-> VENTAS }}</td>
                                                                     
@@ -168,6 +168,20 @@
    
 
 <script type="text/javascript">
-
+ $(document).ready(function($) {
+        $(".vreg").click(function() {
+            window.location = $(this).data("href");
+        });
+    }); 
+ $(document).ready(function($) {
+        $(".v_suc").click(function() {
+            window.location = $(this).data("href");
+        });
+    });
+ $(document).ready(function($) {
+        $(".v_marca").click(function() {
+            window.location = $(this).data("href");
+        });
+    });
 </script>
 @endsection

@@ -5,7 +5,7 @@
               <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
-              <h1>Inicio de sesión</h1>
+              <h1>BIENVENIDO</h1>
 
               <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} has-feedback">
                     <div >
@@ -38,7 +38,7 @@
                             <i class="fa fa-btn fa-sign-in"></i> Ingresar
                 </button>
 
-                <a href="javascript:history.back()" class="btn btn-link"> Volver a la pagina de inicio <i class="fa fa-btn fa-sign-out"  ></i>
+                <a href="{{ route('inicio') }}" class="btn btn-link"> Ir a la pagina de inicio <i class="fa fa-btn fa-sign-out"  ></i>
                 </a>
 
 

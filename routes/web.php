@@ -18,12 +18,13 @@ Route::get('/', function () {
 
 Route::get('/inicio', function () {
     return view('welcome');
-});
+})->name('inicio');
 
 
 Route::get('/test', function () {
     return view('pruebas');
 });
+
 
 Auth::routes();
 
@@ -214,12 +215,30 @@ Route::group(['prefix'=>'distribuidor','middleware'=>'auth'],function(){
 
 Route::group(['prefix'=>'ventas','middleware'=>'auth'],function(){
 	
+	route::get('ventas/{reg}/{marca}/{modelo}/{vista}/{origen}/detalle_detalle_regional_marca_modelo',[
+		'uses' =>'VentasController@detalle_detalle_regional_marca_modelo',
+		'as'   =>	'ventas.detalle_detalle_regional_marca_modelo'
+	]);
+
+	route::get('ventas/{reg}/{marca}/detalle_regional_marca',[
+		'uses' =>'VentasController@detalle_regional_marca',
+		'as'   =>	'ventas.detalle_regional_marca'
+	]);
+
+	route::get('ventas/{reg}/{suc}/{vista}/{origen}/detalle_detalle_regional_sucursal',[
+		'uses' =>'VentasController@detalle_detalle_regional_sucursal',
+		'as'   =>	'ventas.detalle_detalle_regional_sucursal'
+	]);
+
+	route::get('ventas/{mes}/{reg}/{vista}/{origen}/detalle_detalle_mes_regional',[
+		'uses' =>'VentasController@detalle_detalle_mes_regional',
+		'as'   =>	'ventas.detalle_detalle_mes_regional'
+	]);
 
 	route::get('ventas/{mes}/{marca}/{modelo}/{vista}/detalle_mes_marca_modelo',[
 		'uses' =>'VentasController@detalle_mes_marca_modelo',
 		'as'   =>	'ventas.detalle_mes_marca_modelo'
 	]);
-
 
 	route::get('ventas/{mes}/{reg}/{marca}/{vista}/{origen}/detalle_mes_regional_marca',[
 		'uses' =>'VentasController@detalle_mes_regional_marca',
@@ -230,7 +249,6 @@ Route::group(['prefix'=>'ventas','middleware'=>'auth'],function(){
 		'uses' =>'VentasController@detalle_mes_regional_sucursal',
 		'as'   =>	'ventas.detalle_mes_regional_sucursal'
 	]);
-
 
 	route::get('ventas/{marca}/{mes}/mes_marca',[
 		'uses' =>'VentasController@mes_marca',

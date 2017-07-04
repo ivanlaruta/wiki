@@ -314,16 +314,16 @@ class VentasController extends Controller
          ->where('REGIONAL','=',$reg)
          ->whereNotNull('REGIONAL')
          ->groupBy('MARCA')
-          ->orderBy('VENTAS', 'desc')
+         ->orderBy('VENTAS', 'desc')
          ->get();
 
         $por_mes = Venta::select( DB::raw("month(FECHA_FACTURA) as MES , COUNT (*) as VENTAS"))
-          ->where('FECHA_FACTURA','>',$inicio_año)
-          ->where('REGIONAL','=',$reg)
-         ->whereNotNull('REGIONAL')
-          ->groupBy(DB::raw('month(FECHA_FACTURA)'))
-
-          ->get();
+        ->where('FECHA_FACTURA','>',$inicio_año)
+        ->where('REGIONAL','=',$reg)
+        ->whereNotNull('REGIONAL')
+        ->groupBy(DB::raw('month(FECHA_FACTURA)'))
+        ->orderBy(DB::raw('month(FECHA_FACTURA)'))
+        ->get();
 
         $regional = rtrim($reg);
 
@@ -340,6 +340,7 @@ class VentasController extends Controller
 
          ->with('regional',$regional)
          ->with('total',$total)
+         ->with('reg',$reg)
          ;
         
     }
@@ -371,6 +372,7 @@ class VentasController extends Controller
           ->where('FECHA_FACTURA','>',$inicio_año)
           ->where('MARCA',$marca)
           ->groupBy(DB::raw('month(FECHA_FACTURA)'))
+          ->orderBy(DB::raw('month(FECHA_FACTURA)'))
           ->get();
 
        
@@ -731,10 +733,151 @@ class VentasController extends Controller
          ->with('desc_mes',$desc_mes)
          ;
 
+    }
+
+    
+    public function detalle_detalle_mes_regional($mes,$reg,$vista,$origen)
+    {
+
+        $año_actual = Carbon::now('America/La_Paz') -> year;
+
+        $fecha = $año_actual.'-'.$mes.'-01';
+        $inicio = Carbon::parse($fecha)->toDateString();
+        $aux = Carbon::parse($fecha);
+        $final = $aux->endOfMonth()->toDateString();
+
+        if ($mes == 1) { $desc_mes='ENERO'; }
+        if ($mes == 2) { $desc_mes='FEBRERO'; }
+        if ($mes == 3) { $desc_mes='MARZO'; }
+        if ($mes == 4) { $desc_mes='ABRIL'; }
+        if ($mes == 5) { $desc_mes='MAYO'; }
+        if ($mes == 6) { $desc_mes='JUNIO'; }
+        if ($mes == 7) { $desc_mes='JULIO'; }
+        if ($mes == 8) { $desc_mes='AGOSTO'; }
+        if ($mes == 9) { $desc_mes='SEPTIEMBRE'; }
+        if ($mes == 10){ $desc_mes=' OCTUBRE'; }
+        if ($mes == 11) { $desc_mes='NOVIEMBRE'; }
+        if ($mes == 12) { $desc_mes='DICIEMBRE'; }
+
+
+        $detalle=Venta::select(DB::raw('ROW_NUMBER() OVER(ORDER BY FECHA_FACTURA DESC) AS ITEM'),'*')
+          ->whereBetween('FECHA_FACTURA',[$inicio,$final])
+          ->where('REGIONAL','=',$reg)
          
+         ->get();
+
+         $title = $reg;
+
+         return view('ventas.detalle_detalle_mes_regional')
+         ->with('detalle',$detalle)
+         ->with('vista',$vista)
+         ->with('title',$title)
+         ->with('origen',$origen)
+         ->with('año_actual',$año_actual)
+         ->with('mes',$mes)
+         ->with('reg',$reg)
+        
+         ->with('desc_mes',$desc_mes)
+         ;
+
+    }
+
+
+
+    public function detalle_detalle_regional_sucursal($reg,$suc,$vista,$origen)
+    {
+
+        $año_actual = Carbon::now('America/La_Paz') -> year;
+
+        $inicio_año=Carbon::now('America/La_Paz')->startOfYear()->toDateString();    //inicio de año
+
+       
+        $detalle=Venta::select(DB::raw('ROW_NUMBER() OVER(ORDER BY FECHA_FACTURA DESC) AS ITEM'),'*')
+          ->where('FECHA_FACTURA','>',$inicio_año)
+          ->where('REGIONAL','=',$reg)
+          ->where('SUCURSAL','=',$suc)
+         ->get();
+
+         $title = $suc;
+
+         return view('ventas.detalle_detalle_regional_sucursal')
+         ->with('detalle',$detalle)
+         ->with('vista',$vista)
+         ->with('title',$title)
+         ->with('origen',$origen)
+         ->with('año_actual',$año_actual)
+         ->with('suc',$suc)
+         ->with('reg',$reg)
+         ;
+
+    }
+
+
+    public function detalle_regional_marca($reg,$marca)
+    {
+        $año_actual = Carbon::now('America/La_Paz') -> year;
+        $inicio_año=Carbon::now('America/La_Paz')->startOfYear()->toDateString();    //inicio de año
+
+        $total = Venta::where('MARCA',$marca)
+        ->where('FECHA_FACTURA','>',$inicio_año)
+        ->where('REGIONAL','=',$reg)
+        ->count();
+      
+
+        $por_modelo =Venta::select('MODELO',DB::raw('COUNT(*) AS VENTAS'))
+         ->where('FECHA_FACTURA','>',$inicio_año)
+         ->where('MARCA',$marca)
+         ->where('REGIONAL','=',$reg)
+         ->groupBy('MODELO')
+         ->orderBy('VENTAS', 'desc')
+         ->get();
+
+      
+
+         //===================================================
+
+         return view('ventas.detalle_regional_marca')
+      
+         ->with('año_actual',$año_actual)      
+         ->with('por_modelo',$por_modelo)
+         ->with('reg',$reg)
+         ->with('marca',$marca)
+         ->with('total',$total)
+         ;
         
     }
 
+
+
+    public function detalle_detalle_regional_marca_modelo($reg,$marca,$modelo,$vista,$origen)
+    {
+
+        $año_actual = Carbon::now('America/La_Paz') -> year;
+
+        $inicio_año=Carbon::now('America/La_Paz')->startOfYear()->toDateString();    //inicio de año
+
+       
+        $detalle=Venta::select(DB::raw('ROW_NUMBER() OVER(ORDER BY FECHA_FACTURA DESC) AS ITEM'),'*')
+          ->where('FECHA_FACTURA','>',$inicio_año)
+          ->where('REGIONAL','=',$reg)
+          ->where('MARCA','=',$marca)
+          ->where('MODELO','=',$modelo)
+         ->get();
+
+         $title = $modelo;
+
+         return view('ventas.detalle_detalle_regional_marca_modelo')
+         ->with('detalle',$detalle)
+         ->with('vista',$vista)
+         ->with('title',$title)
+         ->with('origen',$origen)
+         ->with('año_actual',$año_actual)
+         ->with('reg',$reg)
+         ->with('marca',$marca)
+         ->with('modelo',$modelo)
+         ;
+
+    }
 
 
     /**
