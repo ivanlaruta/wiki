@@ -8,8 +8,8 @@
       <div class="page-title">
         <div class="title">
           <h3>
-            <a href="{{route('ventas.index')}}">REPORTE DE VENTAS / </a> <a href="{{ route('ventas.por_regional',$reg )}}"> {{$reg}} / </a>  
-            <small><i class="red">  {{$desc_mes}}-{{$año_actual}}</i> <i class="fa fa-pencil-square-o"></i></small>
+            <a href="{{route('ventas.index')}}">REPORTE DE VENTAS / </a> <a href="{{ route('ventas.por_regional',$reg )}}"> {{$reg}} -{{$año_actual}} / </a>  
+            <small><i class="red">  {{$desc_mes}}</i> <i class="fa fa-pencil-square-o"></i></small>
           </h3>
         </div>
          <div class="title_right"></div>

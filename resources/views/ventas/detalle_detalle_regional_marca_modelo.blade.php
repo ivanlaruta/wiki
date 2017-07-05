@@ -8,28 +8,29 @@
       <div class="page-title">
         <div class="title">
           <h3>
-            <a href="{{route('ventas.index')}}">REPORTE DE VENTAS / </a> <a href="{{ route('ventas.por_regional',$reg )}}"> {{$reg}} -{{$año_actual}} / </a>   <a href="{{route('ventas.detalle_detalle_regional_marca_modelo',['reg'=>$reg,'marca'=>$marca,'modelo'=>$mod-> MODELO,'vista'=>'0','origen'=>'regional_mod'])}}"> {{$marca}} / </a>  
+            <a href="{{route('ventas.index')}}">REPORTE DE VENTAS / </a> <a href="{{ route('ventas.por_regional',$reg )}}"> {{$reg}} -{{$año_actual}} / </a>   <a href="{{route('ventas.detalle_regional_marca',['reg'=>$reg,'marca'=>$marca])}}"> {{$marca}} / </a>  
             <small><i class="red">  {{$modelo}}</i> <i class="fa fa-pencil-square-o"></i></small>
           </h3>
         </div>
          <div class="title_right"></div>
       </div>
       <div class="clearfix"></div>
-      {{-- <div class="row">
+
+      <div class="row">
         <div class="col-md-offset-8">
           <div class="">
             <label>
-              <input type="checkbox" class="js-switch v_res" @if($vista =='1') checked @endif data-href="{{route('ventas.detalle_detalle_regional_sucursal',['reg'=>$reg,'suc'=>$suc,'vista'=>'1','origen'=>'regional_suc'])}}" /> Datos Genrales
+              <input type="checkbox" class="js-switch v_res" @if($vista =='1') checked @endif data-href="{{route('ventas.detalle_detalle_regional_marca_modelo',['reg'=>$reg,'marca'=>$marca,'modelo'=>$modelo,'vista'=>'1','origen'=>'regional_mod'])}}" /> Datos Genrales
             </label>
          &nbsp|&nbsp
             <label>
-               <input type="checkbox" class="js-switch v_res" @if($vista =='0') checked @endif data-href="{{route('ventas.detalle_detalle_regional_sucursal',['reg'=>$reg,'suc'=>$suc,'vista'=>'0','origen'=>'regional_suc'])}}" /> Datos Completos
+               <input type="checkbox" class="js-switch v_res" @if($vista =='0') checked @endif data-href="{{route('ventas.detalle_detalle_regional_marca_modelo',['reg'=>$reg,'marca'=>$marca,'modelo'=>$modelo,'vista'=>'0','origen'=>'regional_mod'])}}" /> Datos Completos
             </label>
           </div>
 
         </div> 
       </div>
- --}}
+
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">

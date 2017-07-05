@@ -52,7 +52,7 @@
                                 
                               <tbody>
                                @foreach($por_modelo as $mod)
-                                <tr class='por_modelo' data-href="{{route('ventas.detalle_detalle_regional_marca_modelo',['reg'=>$reg,'marca'=>$marca,'modelo'=>$mod-> MODELO,'vista'=>'0','origen'=>'regional_mod'])}}" >                
+                                <tr class='por_modelo' data-href="{{route('ventas.detalle_detalle_regional_marca_modelo',['reg'=>$reg,'marca'=>$marca,'modelo'=>$mod-> MODELO,'vista'=>'1','origen'=>'regional_mod'])}}" >                
                                   <td> {{ $mod-> MODELO }}</td>
                                   <td align="right">{{ $mod-> VENTAS }}</td>
                                                                     

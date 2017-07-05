@@ -26,7 +26,6 @@
                   </div>
                 </div>
 
-
                 <div class="col-md-12">
                   <div class="row">                     
                     
@@ -52,7 +51,7 @@
                               <tbody>
                                @foreach($por_mes as $mes)
                                 
-                                <tr class='clickable-row' data-href="{{ route('ventas.por_mes',$mes-> MES )}}" >                
+                                <tr class='v_marca' data-href="{{route('ventas.mes_marca',['marca'=>$marca,'mes'=>$mes-> MES])}}" >                
                                   <td> 
                                   @if ($mes-> MES == 1) ENERO @endif
                                   @if ($mes-> MES == 2) FEBRERO @endif
@@ -84,25 +83,22 @@
                       <div class="x_panel">
                         <div class="x_title">
                           <h2>VENTAS <small>REGIONAL</small></h2>
-                           
                           <div class="clearfix"></div>
                         </div>
                         
                         <div class="x_content">
-                          
                         <div class="table-responsive">
                             <table class="table table-striped jambo_table bulk_action">
                               <thead>
                                 <tr>
                                   <th>REGIONAL</th>
                                   <th style="text-align: right;">VENTAS</th>
-                                                                   
                                 </tr>
                               </thead>
                                 
                               <tbody>
                                @foreach($por_regional as $reg)
-                                <tr class='clickable-row' data-href="#" >                
+                                 <tr class='v_reg' data-href="{{route('ventas.detalle_regional_marca',['reg'=>$reg-> REGIONAL,'marca'=>$marca])}}" >                 
                                   <td> @if( is_null($reg-> REGIONAL)) Sin Dato @else {{ $reg-> REGIONAL }} @endif</td>
                                   <td align="right">{{ $reg-> VENTAS }}</td>
                                                                     
@@ -115,7 +111,6 @@
 
                         </div>
                       </div>
-                      
 
                       <div class="col-md-4 col-sm-12 col-xs-12 animated slideInUp">
                       <div class="x_panel">
@@ -153,14 +148,9 @@
                         </div>
                       </div>
 
-
-
-                    
                   </div>
                 </div>
-
           </div>
-
         </div>
       </div>
          
@@ -170,6 +160,16 @@
    
 
 <script type="text/javascript">
+ $(document).ready(function($) {
+        $(".v_marca").click(function() {
+            window.location = $(this).data("href");
+        });
+    });
 
+  $(document).ready(function($) {
+        $(".v_reg").click(function() {
+            window.location = $(this).data("href");
+        });
+    });
 </script>
 @endsection
