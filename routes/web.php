@@ -291,3 +291,14 @@ Route::group(['prefix'=>'alerta_vehiculos','middleware'=>'auth'],function(){
 	route::resource('alerta_vehiculos','AlertaVehiculosController');
 
 });
+
+Route::group(['prefix'=>'cotizaciones','middleware'=>'auth'],function(){
+
+	route::get('cotizaciones/{title}/{f_ini}/{f_fin}/{mes}/dashboard',[
+		'uses' =>'CotizacionesController@dashboard',
+		'as'   =>	'cotizaciones.dashboard'
+	]);
+	
+	
+
+});

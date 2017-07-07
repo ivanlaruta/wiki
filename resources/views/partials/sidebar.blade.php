@@ -14,11 +14,18 @@
                  {{--  <li><a  href="{{ route('ventas.index')}}"><i class="fa fa-bar-chart"></i> Ventas</a>                    
                   </li> --}}
                   
-                  <li><a><i class="fa fa-line-chart"></i> Ventas <span class="fa fa-chevron-down"></span></a>
+                  <li><a  href="{{ route('cotizaciones.dashboard',['title'=>'index','f_ini'=>'0','f_fin'=>'0','mes'=>'0'])}}"><i class="glyphicon glyphicon-fire"></i> Cotizaciones</a></li> 
+
+                  <li><a  href="#"><i class="glyphicon glyphicon-hourglass"></i> Reservas</a></li>
+
+                  
+                  <li><a  href="{{ route('ventas.index')}}"> <i class="fa fa-line-chart"></i> Ventas </a></li>
+
+                 {{--  <li><a><i class="fa fa-line-chart"></i> Ventas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('ventas.index')}}">Reporte</a></li>
                     </ul>
-                  </li>
+                  </li> --}}
 
                    <li><a  href="{{ route('alerta_vehiculos.index')}}"><i class="fa fa-anchor"></i> Vehiculos estacionados</a>                    
                   </li> 

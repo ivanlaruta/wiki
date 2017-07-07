@@ -64,6 +64,10 @@
                      @if($vista == '0')<th>COD TITULAR</th> @endif
                      @if($vista == '0')<th>NIT</th> @endif
                      <th>CLIENTE</th> 
+                     
+                     @if($vista == '0')<th>TELEFONO</th> @endif
+                     @if($vista == '0')<th>CORREO</th> @endif
+
                      @if($vista == '0')<th>PRECIO Bs</th> @endif
                      @if($vista == '0')<th>PRECIO Sus</th> @endif
                      {{-- @if($vista == '0')<th>MONEDA</th> @endif --}}
@@ -90,6 +94,10 @@
                         @if($vista == '0')<td>{{$det->cod_tit}}</td> @endif
                         @if($vista == '0')<td>{{$det->NIT}}</td> @endif
                         <td>{{$det->CLIENTE}}</td> 
+
+                        @if($vista == '0')<td>{{$det->telefono}}</td> @endif
+                        @if($vista == '0')<td>{{$det->correo}}</td> @endif
+                        
                         @if($vista == '0')<td align="right"><label class="text-success">{{number_format($det->BOLIVIANOS,2, '.', ',')}}</label></td> @endif
                         @if($vista == '0')<td align="right"><label class="text-primary">{{number_format($det->DOLARES,2, '.', ',')}}</label></td> @endif
                        {{--  @if($vista == '0')<td> @if ($det->MONEDA == 1)BOLIVIANOS @endif @if ($det->MONEDA == 2)DOLARES @endif </td> @endif --}}

@@ -77,7 +77,7 @@ class VentasController extends Controller
 
 
          $por_reg =Venta::select('REGIONAL',DB::raw('COUNT(*) AS VENTAS'))
-         ->where(DB::raw('YEAR(FECHA_FACTURA)'),'=',$año_actual)
+         ->where('FECHA_FACTURA','>',$inicio_año)
          ->groupBy('REGIONAL')
          ->orderBy('VENTAS', 'desc')
          ->get();
