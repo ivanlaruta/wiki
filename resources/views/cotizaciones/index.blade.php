@@ -50,9 +50,9 @@
 
           @if($title == 'diarias')
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
-            <span class="count_top"><i class="fa fa-clock-o"></i> Hoy</span>
+            <span class="count_top"><i class="fa fa-clock-o"></i> {{date('d/m/Y',strtotime($inicio))}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="#">Total {{date('d/m/Y',strtotime($inicio))}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="#">Total dia</a></span>
           </div>
           @endif
 
@@ -136,9 +136,9 @@
               </thead>
               <tbody>
                @foreach($por_dia as $dia)
-                <tr class='v_res' data-href="#" > 
-
-                  <td> {{date('d',strtotime($dia-> FECHA_COTIZACION))  }}</td>
+                <tr class='v_dia' data-href="{{route('cotizaciones.dashboard',['f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'title'=>'diarias','mes'=>'0'])}}" > 
+                 
+                  <td> <span class="badge badge-success">{{date('d',strtotime($dia-> FECHA_COTIZACION))}}</span> {{$dia->NOM_DIA}}</td>
                   <td align="right">{{ $dia-> COTIZACIONES }}</td>
                                                     
                 </tr>
@@ -211,7 +211,7 @@
             <tbody>
               @foreach($por_vendedor as $ven)
               <tr class='clickable-ven' data-href="#" >                
-                <td> {{ $ven-> Vendedor }} </td>
+                <td> <span class="label label-default">{{$ven-> REG_ABRE }}</span> {{ strtoupper($ven-> Vendedor) }} </td>
                 <td align="right">{{ $ven-> COTIZACIONES }}</td>
               </tr>
               @endforeach
@@ -246,6 +246,12 @@ $(document).ready(function($) {
 
 $(document).ready(function($) {
     $(".clickable-marca").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+
+$(document).ready(function($) {
+    $(".v_dia").click(function() {
         window.location = $(this).data("href");
     });
 });
