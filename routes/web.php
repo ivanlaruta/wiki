@@ -294,7 +294,7 @@ Route::group(['prefix'=>'alerta_vehiculos','middleware'=>'auth'],function(){
 
 Route::group(['prefix'=>'cotizaciones','middleware'=>'auth'],function(){
 
-	route::get('cotizaciones/{title}/{f_ini}/{f_fin}/{mes}/dashboard',[
+	route::get('cotizaciones/{title}/{f_ini}/{f_fin}/{mes}/{regional}/dashboard',[
 		'uses' =>'CotizacionesController@dashboard',
 		'as'   =>	'cotizaciones.dashboard'
 	]);

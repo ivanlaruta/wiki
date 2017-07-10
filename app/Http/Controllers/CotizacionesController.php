@@ -20,7 +20,7 @@ class CotizacionesController extends Controller
         dd('aqui ya no hay nada :(');
     }
 
-    public function dashboard($title,$f_ini, $f_fin ,$mes)
+    public function dashboard($title,$f_ini, $f_fin ,$mes,$regional)
     {
 
         $dt = Carbon::now('America/La_Paz');  //fecha actual
@@ -160,6 +160,60 @@ class CotizacionesController extends Controller
 
         if($title == 'mes')
         {
+
+        $fecha = $año_actual.'-'.$mes.'-01';
+        $inicio = Carbon::parse($fecha)->toDateString();
+        $aux = Carbon::parse($fecha);
+        $final = $aux->endOfMonth()->toDateString();
+
+
+        $total =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio,$final])->count();
+
+        $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw('COUNT(*) AS COTIZACIONES'))
+         ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+         ->groupBy('NOM_DIA','FECHA_COTIZACION')
+         ->orderBy('FECHA_COTIZACION')
+         ->get();
+
+        $por_reg =Cotizacion::select('Localidad',DB::raw('COUNT(*) AS COTIZACIONES'))
+        ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+        ->groupBy('Localidad')
+        ->orderBy('COTIZACIONES', 'desc')
+        ->get();   
+
+        $por_vendedor =Cotizacion::select('REG_ABRE','Vendedor',DB::raw('COUNT(*) AS COTIZACIONES'))
+        ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+        ->groupBy('REG_ABRE','Vendedor')
+        ->orderBy('COTIZACIONES', 'desc')
+        ->paginate(10); 
+
+         return view('cotizaciones.index') 
+
+         ->with('hoy',Carbon::now('America/La_Paz'))
+         ->with('año_actual', $año_actual) 
+
+         ->with('inicio',$inicio)
+         ->with('final',$final)
+
+         ->with('total',$total)
+        
+         ->with('por_reg',$por_reg)
+         ->with('por_vendedor',$por_vendedor)
+         ->with('por_dia',$por_dia)
+
+         ->with('title',$title)
+
+         ->with('desc_mes',$desc_mes)
+         ->with('mes',$mes)
+
+         ;
+       
+        }
+
+        if($title == 'regional')
+        {
+
+            dd($regional);
 
         $fecha = $año_actual.'-'.$mes.'-01';
         $inicio = Carbon::parse($fecha)->toDateString();

@@ -6,7 +6,7 @@
 
   <div class="page-title">
     <div class="title_left">
-      <h3><a href="{{ route('cotizaciones.dashboard',['f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0'])}}">COTIZACIONES {{$año_actual}} </a>/  <small> 
+      <h3><a href="{{ route('cotizaciones.dashboard',['f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0'])}}">COTIZACIONES {{$año_actual}} </a>/  <small> 
 
         @if($title == 'diarias') {{date('d/m/Y',strtotime($inicio))}} @endif 
         @if( $title == 'semanal' || $title == 'ult_15_dias' ){{date('d/m/Y',strtotime($inicio))}} - {{date('d/m/Y',strtotime($final))}} @endif 
@@ -24,27 +24,27 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> Hoy</span>
             <div class="count red" align="center">{{$dia}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('cotizaciones.dashboard',['f_ini'=>$hoy,'f_fin'=>$hoy,'title'=>'diarias','mes'=>'0'])}}">{{$hoy->format('d/m/Y')}} </a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('cotizaciones.dashboard',['f_ini'=>$hoy,'f_fin'=>$hoy,'title'=>'diarias','mes'=>'0','regional'=>'0'])}}">{{$hoy->format('d/m/Y')}} </a></span>
           </div>
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> Esta semana</span>
             <div class="count" align="center">{{$esta_sema}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('cotizaciones.dashboard',['f_ini'=>$inicio_sem,'f_fin'=>$hoy,'title'=>'semanal','mes'=>'0'])}}">Desde el {{$inicio_sem->format('d/m/Y')}} </a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('cotizaciones.dashboard',['f_ini'=>$inicio_sem,'f_fin'=>$hoy,'title'=>'semanal','mes'=>'0','regional'=>'0'])}}">Desde el {{$inicio_sem->format('d/m/Y')}} </a></span>
           </div>
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> Ultimos <i class="red">15 </i>dias</span>
             <div class="count "  align="center">{{$ult_15d}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('cotizaciones.dashboard',['f_ini'=>$ult_15,'f_fin'=>$hoy,'title'=>'ult_15_dias','mes'=>'0'])}}">Desde el {{$ult_15->format('d/m/Y')}}  </a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('cotizaciones.dashboard',['f_ini'=>$ult_15,'f_fin'=>$hoy,'title'=>'ult_15_dias','mes'=>'0','regional'=>'0'])}}">Desde el {{$ult_15->format('d/m/Y')}}  </a></span>
           </div>
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> Este mes</span>
             <div class="count" align="center">{{$este_mes}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('cotizaciones.dashboard',['f_ini'=>$inicio_mes,'f_fin'=>$hoy,'title'=>'mes','mes'=>'0'])}}">Desde el {{$inicio_mes->format('d/m/Y')}} </a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{route('cotizaciones.dashboard',['f_ini'=>$inicio_mes,'f_fin'=>$hoy,'title'=>'mes','mes'=>'0','regional'=>'0'])}}">Desde el {{$inicio_mes->format('d/m/Y')}} </a></span>
           </div>
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> Este año</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.dashboard',['f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0'])}}">Desde el {{$inicio_año->format('d/m/Y')}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.dashboard',['f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0'])}}">Desde el {{$inicio_año->format('d/m/Y')}}</a></span>
           </div>
           @endif
 
@@ -96,7 +96,7 @@
               </thead>
               <tbody>
                @foreach($por_mes as $mes)
-               <tr class='clickable-row' data-href="{{route('cotizaciones.dashboard',['f_ini'=>$inicio_mes,'f_fin'=>$hoy,'title'=>'mes','mes'=>$mes-> MES])}}" >               
+               <tr class='clickable-row' data-href="{{route('cotizaciones.dashboard',['f_ini'=>'0','f_fin'=>'0','title'=>'mes','mes'=>$mes-> MES,'regional'=>'0'])}}" >               
                 <td> 
                   @if ($mes-> MES == 1) ENERO @endif
                   @if ($mes-> MES == 2) FEBRERO @endif
@@ -136,7 +136,7 @@
               </thead>
               <tbody>
                @foreach($por_dia as $dia)
-                <tr class='v_dia' data-href="{{route('cotizaciones.dashboard',['f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'title'=>'diarias','mes'=>'0'])}}" > 
+                <tr class='v_dia' data-href="{{route('cotizaciones.dashboard',['f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'title'=>'diarias','mes'=>'0','regional'=>'0'])}}" > 
                  
                   <td> <span class="badge badge-success">{{date('d',strtotime($dia-> FECHA_COTIZACION))}}</span> {{$dia->NOM_DIA}}</td>
                   <td align="right">{{ $dia-> COTIZACIONES }}</td>
@@ -164,7 +164,7 @@
 
             <tbody>
               @foreach($por_reg as $reg)
-              <tr class='clickable-reg' data-href="#" >                
+              <tr class='v-reg' data-href="{{route('cotizaciones.dashboard',['f_ini'=>'0','f_fin'=>'0','title'=>'regional','mes'=>'0','regional'=>$reg-> Localidad])}}" >                
                 <td> @if( is_null($reg-> Localidad)) Sin Dato @else {{ $reg-> Localidad }} @endif</td>
                 <td align="right">{{ $reg-> COTIZACIONES }}</td>
               </tr>
@@ -239,7 +239,7 @@ $(document).ready(function($) {
 });
 
 $(document).ready(function($) {
-    $(".clickable-reg").click(function() {
+    $(".v-reg").click(function() {
         window.location = $(this).data("href");
     });
 });
