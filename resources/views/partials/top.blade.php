@@ -3,7 +3,7 @@
           <div class="nav_menu">
             <nav>
               <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                <a id="menu_toggle"><i class="glyphicon glyphicon-option-horizontal"></i></a>
               </div>
               <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
@@ -17,6 +17,15 @@
                       </a>
 
                         <ul class="dropdown-menu" role="menu">
+
+                            <li>
+                                <a href="#"> <i class="fa fa-user pull-right"></i> Perfil </a>
+                            </li>
+
+                            <li>
+                                <a href="#"> <i class="fa fa-cog pull-right"></i> Cotraseña </a>
+                            </li>
+
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -26,7 +35,8 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
-                            </li>
+                            </li> 
+                           
                         </ul>
                     </li>
                     <li role="presentation" class="dropdown">

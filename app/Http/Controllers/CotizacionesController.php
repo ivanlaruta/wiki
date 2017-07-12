@@ -16,13 +16,11 @@ class CotizacionesController extends Controller
      */
     public function index()
     {    
-
         dd('aqui ya no hay nada :(');
     }
 
-    public function dashboard($title,$f_ini, $f_fin ,$mes,$regional)
+    public function dashboard($v_aux,$title,$f_ini, $f_fin ,$mes,$regional,$marca)
     {
-
         $dt = Carbon::now('America/La_Paz');  //fecha actual
         $hoy = Carbon::now('America/La_Paz')->toDateString(); // hoy
         $ult_sem =  Carbon::now('America/La_Paz')->subWeek()->toDateString();  // menos una semana 
@@ -56,282 +54,407 @@ class CotizacionesController extends Controller
         if ($mes == 12) { $desc_mes='DICIEMBRE'; }
 
 
-
         if($title == 'index')
         {
-        $dia =Cotizacion::where('FECHA_COTIZACION',$hoy)->count();
+            $dia =Cotizacion::where('FECHA_COTIZACION',$hoy)->count();
 
-        $esta_sema =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio_sem,$hoy])->count();
+            $esta_sema =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio_sem,$hoy])->count();
 
-        $ult_15d =Cotizacion::whereBetween('FECHA_COTIZACION',[$ult_15,$hoy])->count();
+            $ult_15d =Cotizacion::whereBetween('FECHA_COTIZACION',[$ult_15,$hoy])->count();
 
-        $este_mes =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio_mes,$hoy])->count();
+            $este_mes =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio_mes,$hoy])->count();
 
-        $total =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio_año,$hoy])->count();
+            $total =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio_año,$hoy])->count();
 
-        $por_reg =Cotizacion::select('Localidad',DB::raw('COUNT(*) AS COTIZACIONES'))
-        ->where('FECHA_COTIZACION','>',$inicio_año)
-        ->groupBy('Localidad')
-        ->orderBy('COTIZACIONES', 'desc')
-        ->get();   
+            $por_reg =Cotizacion::select('REGIONAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where('FECHA_COTIZACION','>',$inicio_año)
+            ->groupBy('REGIONAL')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get();   
 
-        $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES"))
-        ->where('FECHA_COTIZACION','>',$inicio_año)
-        ->groupBy(DB::raw('month(FECHA_COTIZACION)'))
-        ->orderBy(DB::raw('month(FECHA_COTIZACION)'))
-        ->get();
+            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES"))
+            ->where('FECHA_COTIZACION','>',$inicio_año)
+            ->groupBy(DB::raw('month(FECHA_COTIZACION)'))
+            ->orderBy(DB::raw('month(FECHA_COTIZACION)'))
+            ->get();
 
-        $por_vendedor =Cotizacion::select('REG_ABRE','Vendedor',DB::raw('COUNT(*) AS COTIZACIONES'))
-        ->where('FECHA_COTIZACION','>',$inicio_año)
-        ->groupBy('REG_ABRE','Vendedor')
-        ->orderBy('COTIZACIONES', 'desc')
-        ->paginate(10); 
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where('FECHA_COTIZACION','>',$inicio_año)
+            ->groupBy('REG_ABRE','VENDEDOR')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->paginate(10); 
 
-         return view('cotizaciones.index') 
-         ->with('dia',$dia)
-         ->with('esta_sema',$esta_sema)
-         ->with('ult_15d',$ult_15d)
-         ->with('este_mes',$este_mes)
+            $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where('FECHA_COTIZACION','>',$inicio_año)
+            ->groupBy('MARCA')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get(); 
 
-         ->with('total',$total)
-       
-         ->with('hoy',Carbon::now('America/La_Paz'))
-         ->with('inicio_sem',Carbon::now('America/La_Paz')->startOfWeek())
-         ->with('inicio_mes',Carbon::now('America/La_Paz')->startOfMonth())
-         ->with('inicio_año',Carbon::now('America/La_Paz')->startOfYear())
-         ->with('ult_15', Carbon::now('America/La_Paz')->subDays(15))  
-         ->with('año_actual', $año_actual)  
+            return view('cotizaciones.index') 
+            ->with('v_aux',$v_aux)
 
-         ->with('por_reg',$por_reg)
-         ->with('por_mes',$por_mes)
-         ->with('por_vendedor',$por_vendedor)
+            ->with('dia',$dia)
+            ->with('esta_sema',$esta_sema)
+            ->with('ult_15d',$ult_15d)
+            ->with('este_mes',$este_mes)
 
-         ->with('title',$title)
+            ->with('total',$total)
 
-         ;
-       
+            ->with('hoy',Carbon::now('America/La_Paz'))
+            ->with('inicio_sem',Carbon::now('America/La_Paz')->startOfWeek())
+            ->with('inicio_mes',Carbon::now('America/La_Paz')->startOfMonth())
+            ->with('inicio_año',Carbon::now('America/La_Paz')->startOfYear())
+            ->with('ult_15', Carbon::now('America/La_Paz')->subDays(15))  
+            ->with('año_actual', $año_actual)  
+
+            ->with('por_reg',$por_reg)
+            ->with('por_mes',$por_mes)
+            ->with('por_vendedor',$por_vendedor)
+            ->with('por_marca',$por_marca)
+
+            ->with('title',$title)
+            ;
+
         }
 
         if($title == 'diarias' || $title == 'semanal' || $title == 'ult_15_dias' )
         {
 
-        $inicio=date('Y-m-d',strtotime($f_ini));
-        $final = date('Y-m-d',strtotime($f_fin));
+            $inicio=date('Y-m-d',strtotime($f_ini));
+            $final = date('Y-m-d',strtotime($f_fin));
 
-        $total =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio,$final])->count();
 
-        $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw('COUNT(*) AS COTIZACIONES'))
-         ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
-         ->groupBy('NOM_DIA','FECHA_COTIZACION')
-         ->orderBy('FECHA_COTIZACION')
-         ->get();
 
-        $por_reg =Cotizacion::select('Localidad',DB::raw('COUNT(*) AS COTIZACIONES'))
-        ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
-        ->groupBy('Localidad')
-        ->orderBy('COTIZACIONES', 'desc')
-        ->get();   
+            $total =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio,$final])->count();
 
-        $por_vendedor =Cotizacion::select('REG_ABRE','Vendedor',DB::raw('COUNT(*) AS COTIZACIONES'))
-        ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
-        ->groupBy('REG_ABRE','Vendedor')
-        ->orderBy('COTIZACIONES', 'desc')
-        ->paginate(10); 
+            $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->groupBy('NOM_DIA','FECHA_COTIZACION')
+            ->orderBy('FECHA_COTIZACION')
+            ->get();
 
-         return view('cotizaciones.index') 
+            $por_reg =Cotizacion::select('REGIONAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->groupBy('REGIONAL')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get();   
 
-         ->with('hoy',Carbon::now('America/La_Paz'))
-         ->with('año_actual', $año_actual) 
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->groupBy('REG_ABRE','VENDEDOR')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->paginate(10); 
 
-         ->with('inicio',$inicio)
-         ->with('final',$final)
+            $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->groupBy('MARCA')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get(); 
 
-         ->with('total',$total)
-        
-         ->with('por_reg',$por_reg)
-         ->with('por_vendedor',$por_vendedor)
-         ->with('por_dia',$por_dia)
+            return view('cotizaciones.index') 
+            ->with('v_aux',$v_aux)
 
-         ->with('title',$title)
+            ->with('hoy',Carbon::now('America/La_Paz'))
+            ->with('año_actual', $año_actual) 
 
-         ;
-       
+            ->with('inicio',$inicio)
+            ->with('final',$final)
+
+            ->with('total',$total)
+
+            ->with('por_reg',$por_reg)
+            ->with('por_vendedor',$por_vendedor)
+            ->with('por_marca',$por_marca)
+            ->with('por_dia',$por_dia)
+
+            ->with('title',$title)
+            ->with('mes',$mes)
+            ->with('desc_mes',$desc_mes)
+            ;
+
         }
 
         if($title == 'mes')
         {
 
-        $fecha = $año_actual.'-'.$mes.'-01';
-        $inicio = Carbon::parse($fecha)->toDateString();
-        $aux = Carbon::parse($fecha);
-        $final = $aux->endOfMonth()->toDateString();
+            $fecha = $año_actual.'-'.$mes.'-01';
+            $inicio = Carbon::parse($fecha)->toDateString();
+            $aux = Carbon::parse($fecha);
+            $final = $aux->endOfMonth()->toDateString();
 
+            $total =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio,$final])->count();
 
-        $total =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio,$final])->count();
+            $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->groupBy('NOM_DIA','FECHA_COTIZACION')
+            ->orderBy('FECHA_COTIZACION')
+            ->get();
 
-        $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw('COUNT(*) AS COTIZACIONES'))
-         ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
-         ->groupBy('NOM_DIA','FECHA_COTIZACION')
-         ->orderBy('FECHA_COTIZACION')
-         ->get();
+            $por_reg =Cotizacion::select('REGIONAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->groupBy('REGIONAL')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get();   
 
-        $por_reg =Cotizacion::select('Localidad',DB::raw('COUNT(*) AS COTIZACIONES'))
-        ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
-        ->groupBy('Localidad')
-        ->orderBy('COTIZACIONES', 'desc')
-        ->get();   
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->groupBy('REG_ABRE','VENDEDOR')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->paginate(10); 
 
-        $por_vendedor =Cotizacion::select('REG_ABRE','Vendedor',DB::raw('COUNT(*) AS COTIZACIONES'))
-        ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
-        ->groupBy('REG_ABRE','Vendedor')
-        ->orderBy('COTIZACIONES', 'desc')
-        ->paginate(10); 
+            $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->groupBy('MARCA')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get(); 
 
-         return view('cotizaciones.index') 
+            return view('cotizaciones.index') 
+            ->with('v_aux',$v_aux)
 
-         ->with('hoy',Carbon::now('America/La_Paz'))
-         ->with('año_actual', $año_actual) 
+            ->with('hoy',Carbon::now('America/La_Paz'))
+            ->with('año_actual', $año_actual) 
 
-         ->with('inicio',$inicio)
-         ->with('final',$final)
+            ->with('inicio',$inicio)
+            ->with('final',$final)
 
-         ->with('total',$total)
-        
-         ->with('por_reg',$por_reg)
-         ->with('por_vendedor',$por_vendedor)
-         ->with('por_dia',$por_dia)
+            ->with('total',$total)
 
-         ->with('title',$title)
+            ->with('por_reg',$por_reg)
+            ->with('por_vendedor',$por_vendedor)
+            ->with('por_marca',$por_marca)
+            ->with('por_dia',$por_dia)
 
-         ->with('desc_mes',$desc_mes)
-         ->with('mes',$mes)
+            ->with('title',$title)
 
-         ;
-       
+            ->with('desc_mes',$desc_mes)
+            ->with('mes',$mes)
+            ;
+
         }
 
         if($title == 'regional')
         {
+            $total =Cotizacion:: where ('REGIONAL',$regional)->count();
 
-            dd($regional);
+            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES"))
+            ->where('FECHA_COTIZACION','>',$inicio_año)
+            ->where ('REGIONAL',$regional)
+            ->groupBy(DB::raw('month(FECHA_COTIZACION)'))
+            ->orderBy(DB::raw('month(FECHA_COTIZACION)'))
+            ->get();
 
-        $fecha = $año_actual.'-'.$mes.'-01';
-        $inicio = Carbon::parse($fecha)->toDateString();
-        $aux = Carbon::parse($fecha);
-        $final = $aux->endOfMonth()->toDateString();
+            $por_suc =Cotizacion::select('SUCURSAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where ('REGIONAL',$regional)
+            ->groupBy('SUCURSAL')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get();   
 
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where ('REGIONAL',$regional)
+            ->groupBy('REG_ABRE','VENDEDOR')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->paginate(10); 
 
-        $total =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio,$final])->count();
+            $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where ('REGIONAL',$regional)
+            ->groupBy('MARCA')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get(); 
 
-        $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw('COUNT(*) AS COTIZACIONES'))
-         ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
-         ->groupBy('NOM_DIA','FECHA_COTIZACION')
-         ->orderBy('FECHA_COTIZACION')
-         ->get();
+            return view('cotizaciones.index') 
+            ->with('v_aux',$v_aux)
 
-        $por_reg =Cotizacion::select('Localidad',DB::raw('COUNT(*) AS COTIZACIONES'))
-        ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
-        ->groupBy('Localidad')
-        ->orderBy('COTIZACIONES', 'desc')
-        ->get();   
+            ->with('hoy',Carbon::now('America/La_Paz'))
+            ->with('año_actual', $año_actual) 
+            
+            ->with('total',$total)
+            
+            ->with('por_suc',$por_suc)
+            ->with('por_vendedor',$por_vendedor)
+            ->with('por_marca',$por_marca)
+            ->with('por_mes',$por_mes)
 
-        $por_vendedor =Cotizacion::select('REG_ABRE','Vendedor',DB::raw('COUNT(*) AS COTIZACIONES'))
-        ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
-        ->groupBy('REG_ABRE','Vendedor')
-        ->orderBy('COTIZACIONES', 'desc')
-        ->paginate(10); 
+            ->with('title',$title)
 
-         return view('cotizaciones.index') 
+            ->with('regional',$regional)
+            ;
+        }
 
-         ->with('hoy',Carbon::now('America/La_Paz'))
-         ->with('año_actual', $año_actual) 
+        if($title == 'marca')
+        {
+            $total =Cotizacion:: where ('MARCA',$marca)->count();
 
-         ->with('inicio',$inicio)
-         ->with('final',$final)
+            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES"))
+            ->where('FECHA_COTIZACION','>',$inicio_año)
+            ->where ('MARCA',$marca)
+            ->groupBy(DB::raw('month(FECHA_COTIZACION)'))
+            ->orderBy(DB::raw('month(FECHA_COTIZACION)'))
+            ->get();
 
-         ->with('total',$total)
-        
-         ->with('por_reg',$por_reg)
-         ->with('por_vendedor',$por_vendedor)
-         ->with('por_dia',$por_dia)
+            $por_reg =Cotizacion::select('REGIONAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where ('MARCA',$marca)
+            ->groupBy('REGIONAL')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get(); 
 
-         ->with('title',$title)
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where ('MARCA',$marca)
+            ->groupBy('REG_ABRE','VENDEDOR')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->paginate(10); 
 
-         ->with('desc_mes',$desc_mes)
-         ->with('mes',$mes)
+            $por_modelo =Cotizacion::select('MODELO',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where ('MARCA',$marca)
+            ->groupBy('MODELO')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get(); 
 
-         ;
-       
+            return view('cotizaciones.index') 
+            ->with('v_aux',$v_aux)
+
+            ->with('hoy',Carbon::now('America/La_Paz'))
+            ->with('año_actual', $año_actual) 
+            
+            ->with('total',$total)
+            
+            ->with('por_vendedor',$por_vendedor)
+            ->with('por_modelo',$por_modelo)
+            ->with('por_mes',$por_mes)
+            ->with('por_reg',$por_reg)
+
+            ->with('title',$title)
+
+            ->with('marca',$marca)
+            ;
         }
 
 
+        if($title == 'mes_marca' || $title == 'marca_mes')
+        {
+            $fecha = $año_actual.'-'.$mes.'-01';
+            $inicio = Carbon::parse($fecha)->toDateString();
+            $aux = Carbon::parse($fecha);
+            $final = $aux->endOfMonth()->toDateString();
+
+            $total =Cotizacion:: where ('MARCA',$marca)
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->count();
+
+            $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where ('MARCA',$marca)
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->groupBy('NOM_DIA','FECHA_COTIZACION')
+            ->orderBy('FECHA_COTIZACION')
+            ->get();
+
+            $por_reg =Cotizacion::select('REGIONAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->where ('MARCA',$marca)
+            ->groupBy('REGIONAL')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get(); 
+
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->where ('MARCA',$marca)
+            ->groupBy('REG_ABRE','VENDEDOR')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->paginate(10); 
+
+            $por_modelo =Cotizacion::select('MODELO',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->where ('MARCA',$marca)
+            ->groupBy('MODELO')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get(); 
+
+            return view('cotizaciones.index') 
+            ->with('v_aux',$v_aux)
+
+            ->with('hoy',Carbon::now('America/La_Paz'))
+            ->with('año_actual', $año_actual) 
+            
+            ->with('total',$total)
+            
+            ->with('por_vendedor',$por_vendedor)
+            ->with('por_modelo',$por_modelo)
+            ->with('por_dia',$por_dia)
+            ->with('por_reg',$por_reg)
+
+            ->with('title',$title)
+
+            ->with('marca',$marca)
+            ->with('mes',$mes)
+            ->with('desc_mes',$desc_mes)
+            ;
+        }
+
+
+        if($title == 'mes_regional' || $title == 'regional_mes')
+        {  
+            $fecha = $año_actual.'-'.$mes.'-01';
+            $inicio = Carbon::parse($fecha)->toDateString();
+            $aux = Carbon::parse($fecha);
+            $final = $aux->endOfMonth()->toDateString();
+
+            $total =Cotizacion:: where ('REGIONAL',$regional)
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->count();
+
+            $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where ('REGIONAL',$regional)
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->groupBy('NOM_DIA','FECHA_COTIZACION')
+            ->orderBy('FECHA_COTIZACION')
+            ->get();
+
+            $por_suc =Cotizacion::select('SUCURSAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where ('REGIONAL',$regional)
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->groupBy('SUCURSAL')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get();   
+
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where ('REGIONAL',$regional)
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->groupBy('REG_ABRE','VENDEDOR')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->paginate(10); 
+
+            $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
+            ->where ('REGIONAL',$regional)
+            ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
+            ->groupBy('MARCA')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get(); 
+
+
+            return view('cotizaciones.index') 
+            ->with('v_aux',$v_aux)
+
+            ->with('hoy',Carbon::now('America/La_Paz'))
+            
+            ->with('año_actual', $año_actual) 
+            ->with('total',$total)
+            
+            ->with('por_suc',$por_suc)
+            ->with('por_vendedor',$por_vendedor)
+            ->with('por_marca',$por_marca)
+            ->with('por_dia',$por_dia)
+
+            ->with('title',$title)
+
+            ->with('regional',$regional)
+            ->with('mes',$mes)
+            ->with('desc_mes',$desc_mes)
+            ;
+        } 
     }
 
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function lista_detalle()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('cotizaciones.lista_detalle') ;
     }
 }

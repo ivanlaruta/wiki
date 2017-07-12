@@ -294,11 +294,16 @@ Route::group(['prefix'=>'alerta_vehiculos','middleware'=>'auth'],function(){
 
 Route::group(['prefix'=>'cotizaciones','middleware'=>'auth'],function(){
 
-	route::get('cotizaciones/{title}/{f_ini}/{f_fin}/{mes}/{regional}/dashboard',[
+	route::get('cotizaciones/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/dashboard',[
 		'uses' =>'CotizacionesController@dashboard',
 		'as'   =>	'cotizaciones.dashboard'
 	]);
 	
+
+	route::get('cotizaciones/lista_detalle',[
+		'uses' =>'CotizacionesController@lista_detalle',
+		'as'   =>	'cotizaciones.lista_detalle'
+	]);
 	
 
 });
