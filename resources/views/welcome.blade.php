@@ -109,6 +109,18 @@
             <a class="btn page-scroll" href="#about"><i class="fa fa-angle-down fa-fw"></i></a>
         </div>
     </header>
+     {{-- <header class="video">
+        <div class="overlay"></div>
+        <div class="intro-content">
+            <img src="{{asset('vitality/assets/img/profile.png')}}" class="img-responsive img-centered" alt="">
+            <div class="brand-name">TOYOSA</div>
+            <hr class="colored">
+            <div class="brand-name-subtext">SOLICITUDES - ENVIOS, STOCK - VENTAS</div>
+        </div>
+        <div class="scroll-down page-scroll">
+            <a class="btn page-scroll" href="#about"><i class="fa fa-angle-down"></i></a>
+        </div>
+    </header> --}}
     <section id="about">
         <div class="container-fluid">
             <div class="row text-center">

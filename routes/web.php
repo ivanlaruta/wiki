@@ -294,13 +294,13 @@ Route::group(['prefix'=>'alerta_vehiculos','middleware'=>'auth'],function(){
 
 Route::group(['prefix'=>'cotizaciones','middleware'=>'auth'],function(){
 
-	route::get('cotizaciones/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/dashboard',[
+	route::get('cotizaciones/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/dashboard',[
 		'uses' =>'CotizacionesController@dashboard',
 		'as'   =>	'cotizaciones.dashboard'
 	]);
 	
 
-	route::get('cotizaciones/lista_detalle',[
+	route::get('cotizaciones/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/{master}/{chassis}/{vendedor}/{nro_cotizacion}/lista_detalle',[
 		'uses' =>'CotizacionesController@lista_detalle',
 		'as'   =>	'cotizaciones.lista_detalle'
 	]);

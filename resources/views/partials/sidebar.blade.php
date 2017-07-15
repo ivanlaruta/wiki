@@ -14,7 +14,7 @@
                  {{--  <li><a  href="{{ route('ventas.index')}}"><i class="fa fa-bar-chart"></i> Ventas</a>                    
                   </li> --}}
                   
-                  <li><a  href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0'])}}"><i class="glyphicon glyphicon-fire"></i> Cotizaciones</a></li> 
+                  <li><a  href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"><i class="glyphicon glyphicon-fire"></i> Cotizaciones</a></li> 
 
                   <li><a  href="#"><i class="glyphicon glyphicon-hourglass"></i> Reservas</a></li>
 
