@@ -62,7 +62,7 @@ class CotizacionesController extends Controller
         if ($mes == 11) { $desc_mes='NOVIEMBRE'; }
         if ($mes == 12) { $desc_mes='DICIEMBRE'; }
 
-
+       
         if($title == 'index')
         {
             $dia =Cotizacion::where('FECHA_COTIZACION',$hoy)
@@ -80,6 +80,11 @@ class CotizacionesController extends Controller
             $total =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio_año,$hoy])
             ->count();
 
+             $nom_dia =Cotizacion::select('NOM_DIA')->where('FECHA_COTIZACION',$hoy)
+            ->first();
+
+            $v_aux=$nom_dia->NOM_DIA;
+
             $por_reg =Cotizacion::select('REGIONAL',DB::raw('COUNT(*) AS COTIZACIONES'))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->groupBy('REGIONAL')
@@ -96,7 +101,7 @@ class CotizacionesController extends Controller
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
-            ->paginate(10); 
+            ->get();
 
             $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
             ->where('FECHA_COTIZACION','>',$inicio_año)
@@ -158,7 +163,7 @@ class CotizacionesController extends Controller
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
-            ->paginate(10); 
+            ->get();
 
             $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
@@ -216,7 +221,7 @@ class CotizacionesController extends Controller
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
-            ->paginate(10); 
+            ->get();
 
             $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
@@ -273,7 +278,7 @@ class CotizacionesController extends Controller
             ->where ('REGIONAL',$regional)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
-            ->paginate(10); 
+            ->get();
 
             $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
             ->where('FECHA_COTIZACION','>',$inicio_año)
@@ -321,7 +326,7 @@ class CotizacionesController extends Controller
             ->where ('SUCURSAL',$sucursal)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
-            ->paginate(10); 
+            ->get();
 
             $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
             ->where('FECHA_COTIZACION','>',$inicio_año)
@@ -379,7 +384,7 @@ class CotizacionesController extends Controller
             ->where ('MARCA',$marca)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
-            ->paginate(10); 
+            ->get();
 
             $por_modelo =Cotizacion::select('MODELO',DB::raw('COUNT(*) AS COTIZACIONES'))
             ->where('FECHA_COTIZACION','>',$inicio_año)
@@ -436,7 +441,7 @@ class CotizacionesController extends Controller
             ->where ('MARCA',$marca)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
-            ->paginate(10); 
+            ->get();
 
             $por_modelo =Cotizacion::select('MODELO',DB::raw('COUNT(*) AS COTIZACIONES'))
             ->where('FECHA_COTIZACION','>',$inicio_año)
@@ -496,7 +501,7 @@ class CotizacionesController extends Controller
             ->where ('MODELO',$modelo)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
-            ->paginate(10); 
+            ->get();
 
             $por_master =Cotizacion::select('MASTER',DB::raw('COUNT(*) AS COTIZACIONES'))
             ->where('FECHA_COTIZACION','>',$inicio_año)
@@ -558,7 +563,7 @@ class CotizacionesController extends Controller
             ->where ('MARCA',$marca)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
-            ->paginate(10); 
+            ->get();
 
             $por_modelo =Cotizacion::select('MODELO',DB::raw('COUNT(*) AS COTIZACIONES'))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
@@ -621,7 +626,7 @@ class CotizacionesController extends Controller
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
-            ->paginate(10); 
+            ->get();
 
             $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
             ->where ('REGIONAL',$regional)

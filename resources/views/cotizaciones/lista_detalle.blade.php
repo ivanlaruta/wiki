@@ -10,55 +10,18 @@
           <h3>
         <a href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}">COTIZACIONES {{$año_actual}} </a>  
 
-        @if( $title == 'mes_regional' || $title == 'mes' || $title == 'diarias' || $title == 'mes_marca')
+        @if( $title ==  'det_diarias_regional' )
         <a href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'mes','mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / {{$desc_mes}} </a>  
         @endif 
 
-        @if($title == 'diarias') 
-        / @if($v_aux <> '%'){{$v_aux}}@endif {{date('d',strtotime($inicio))}}  
+        @if($title == 'det_diarias_regional') 
+       <a href="{{route('cotizaciones.dashboard',['v_aux'=>$v_aux,'f_ini'=>$inicio,'f_fin'=>$inicio,'title'=>'diarias','mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / @if($v_aux <> '%'){{$v_aux}}@endif {{date('d',strtotime($inicio))}}   </a>
         @endif 
 
-        @if($title == 'marca' || $title == 'marca_mes' || $title == 'marca_regional'|| $title == 'marca_modelo') 
-        <a href="{{route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'marca','mes'=>'0','regional'=>'0','marca'=>($marca),'sucursal'=>'0','modelo'=>'0'])}}"> 
-          / {{$marca}}  </a>
+        @if( $title == 'det_diarias_regional' ) 
+        / {{$regional}}  
+        @endif 
 
-          @endif 
-
-          @if( $title == 'semanal' || $title == 'ult_15_dias' ) 
-          / {{date('d/m/Y',strtotime($inicio))}} - {{date('d/m/Y',strtotime($final))}} 
-          @endif 
-
-          @if( $title == 'regional' || $title == 'regional_mes'|| $title == 'regional_sucursal' ||  $title == 'regional_marca' )
-          <a href="{{route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'regional','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / {{$regional}} </a>  
-          @endif 
-
-          @if( $title == 'regional_mes') 
-          / {{$desc_mes}}  
-          @endif
-
-          @if( $title == 'mes_regional') 
-          / {{$regional}}  
-          @endif 
-
-          @if( $title == 'mes_marca') 
-          / {{$marca}}  
-          @endif 
-
-          @if( $title == 'regional_sucursal') 
-          / {{$sucursal}}  
-          @endif 
-          @if( $title == 'regional_marca') 
-          / {{$marca}}  
-          @endif 
-          @if( $title == 'marca_mes' ) 
-          / {{$desc_mes}}  
-          @endif 
-          @if( $title == 'marca_regional' ) 
-          / {{$regional}}  
-          @endif 
-          @if( $title == 'marca_modelo' ) 
-          / {{$modelo}}  
-          @endif 
 
         </h3>
         </div>

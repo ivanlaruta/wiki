@@ -13,7 +13,8 @@ class SesionController extends Controller
         
         if (Auth::user()->rol == '1')
         {
-            return redirect()->route('ventas.index');
+            //return redirect()->route('ventas.index');
+            return redirect()->route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0']);
         }
          if (Auth::user()->rol == '2')
         {
