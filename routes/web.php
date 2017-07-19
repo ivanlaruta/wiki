@@ -305,5 +305,10 @@ Route::group(['prefix'=>'cotizaciones','middleware'=>'auth'],function(){
 		'as'   =>	'cotizaciones.lista_detalle'
 	]);
 	
+	route::get('cotizaciones/busqueda',[
+		'uses' =>'CotizacionesController@busqueda',
+		'as'   =>	'cotizaciones.busqueda'
+	]);
+	
 
 });

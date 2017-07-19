@@ -19,6 +19,11 @@ class CotizacionesController extends Controller
         dd('aqui ya no hay nada :(');
     }
 
+    public function busqueda()
+    {    
+        return view('cotizaciones.busqueda') ;
+    }
+
     public function dashboard($v_aux,$title,$f_ini, $f_fin ,$mes,$regional,$marca,$sucursal,$modelo)
     {
         if($regional == '0'){$regional='%';}else{$regional=ltrim(rtrim($regional));}
@@ -80,7 +85,9 @@ class CotizacionesController extends Controller
             $total =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio_año,$hoy])
             ->count();
 
-             $nom_dia =Cotizacion::select('NOM_DIA')->where('FECHA_COTIZACION',$hoy)
+            $hoy_aux = Carbon::now('America/La_Paz')->format('d/m/Y');// la base exige este formato.. SQL SERVER :(
+
+            $nom_dia =Cotizacion::select( DB::raw(" [dbo].[fn_obtiene_dia]('".$hoy_aux."') NOM_DIA"))
             ->first();
 
             $v_aux=$nom_dia->NOM_DIA;
@@ -663,24 +670,28 @@ class CotizacionesController extends Controller
 
     public function lista_detalle($v_aux,$title,$f_ini,$f_fin,$mes,$regional,$marca,$sucursal,$modelo,$master,$chassis,$vendedor,$nro_cotizacion)
     {
+          
+        $inicio_sem=Carbon::now('America/La_Paz')->startOfWeek()->toDateString();   //inicio de semana
+        $inicio_mes=Carbon::now('America/La_Paz')->startOfMonth()->toDateString();  //inicio de mes
+        $ult_15 =  Carbon::now('America/La_Paz')->subDays(15)->toDateString();  // menos 15 dias
         $año_actual = Carbon::now('America/La_Paz') -> year;
         $inicio_año=Carbon::now('America/La_Paz')->startOfYear()->toDateString();
         $hoy = Carbon::now('America/La_Paz')->toDateString(); 
 
-        if ($mes == '0') { $mes = Carbon::now('America/La_Paz') -> month; }
+        if ($mes == '0') { $mes_aux = Carbon::now('America/La_Paz') -> month; } else{$mes_aux=$mes;}
 
-        if ($mes == 1) { $desc_mes='ENERO'; }
-        if ($mes == 2) { $desc_mes='FEBRERO'; }
-        if ($mes == 3) { $desc_mes='MARZO'; }
-        if ($mes == 4) { $desc_mes='ABRIL'; }
-        if ($mes == 5) { $desc_mes='MAYO'; }
-        if ($mes == 6) { $desc_mes='JUNIO'; }
-        if ($mes == 7) { $desc_mes='JULIO'; }
-        if ($mes == 8) { $desc_mes='AGOSTO'; }
-        if ($mes == 9) { $desc_mes='SEPTIEMBRE'; }
-        if ($mes == 10){ $desc_mes=' OCTUBRE'; }
-        if ($mes == 11) { $desc_mes='NOVIEMBRE'; }
-        if ($mes == 12) { $desc_mes='DICIEMBRE'; }
+        if ($mes_aux == 1) { $desc_mes='ENERO'; }
+        if ($mes_aux == 2) { $desc_mes='FEBRERO'; }
+        if ($mes_aux == 3) { $desc_mes='MARZO'; }
+        if ($mes_aux == 4) { $desc_mes='ABRIL'; }
+        if ($mes_aux == 5) { $desc_mes='MAYO'; }
+        if ($mes_aux == 6) { $desc_mes='JUNIO'; }
+        if ($mes_aux == 7) { $desc_mes='JULIO'; }
+        if ($mes_aux == 8) { $desc_mes='AGOSTO'; }
+        if ($mes_aux == 9) { $desc_mes='SEPTIEMBRE'; }
+        if ($mes_aux == 10){ $desc_mes=' OCTUBRE'; }
+        if ($mes_aux == 11) { $desc_mes='NOVIEMBRE'; }
+        if ($mes_aux == 12) { $desc_mes='DICIEMBRE'; }
 
         if($f_ini == '0' &&  $f_fin == '0')
         {
@@ -703,14 +714,33 @@ class CotizacionesController extends Controller
             $final = date('Y-m-d',strtotime($f_fin));
         }
 
-        if($regional == '0'){$regional='%';}else{$regional=ltrim(rtrim($regional));}
-        if($marca == '0'){$marca='%';}else{$marca=ltrim(rtrim($marca));}
-        if($sucursal == '0'){$sucursal='%';}else{$sucursal=ltrim(rtrim($sucursal));}
-        if($modelo == '0'){$modelo='%';}else{$modelo=ltrim(rtrim($modelo));}
-        if($master == '0'){$master='%';}else{$master=ltrim(rtrim($master));}
-        if($chassis == '0'){$chassis='%';}else{$chassis=ltrim(rtrim($chassis));}
-        if($vendedor == '0'){$vendedor='%';}else{$vendedor=ltrim(rtrim($vendedor));}
-        if($nro_cotizacion == '0'){$nro_cotizacion='%';}else{$nro_cotizacion=ltrim(rtrim($nro_cotizacion));}
+        if($regional == '0'){$regional='%';}
+        else{$regional=ltrim(rtrim($regional));}
+
+        if($marca == '0'){$marca='%';}
+        else{$marca=ltrim(rtrim($marca));}
+
+        if($sucursal == '0'){$sucursal='%';}
+        else{$sucursal=ltrim(rtrim($sucursal));}
+
+        if($modelo == '0'){$modelo='%';}
+        else{
+            $modelo= str_replace("_", "/", $modelo);
+            $modelo=ltrim(rtrim($modelo));}
+
+        if($master == '0'){$master='%';}
+        else{
+            $master= str_replace("_", "/", $master);
+            $master=ltrim(rtrim($master));}
+
+        if($chassis == '0'){$chassis='%';}
+        else{$chassis=ltrim(rtrim($chassis));}
+
+        if($vendedor == '0'){$vendedor='%';}
+        else{$vendedor=ltrim(rtrim($vendedor));}
+
+        if($nro_cotizacion == '0'){$nro_cotizacion='%';}
+        else{$nro_cotizacion=ltrim(rtrim($nro_cotizacion));}
 
 
 
@@ -725,7 +755,6 @@ class CotizacionesController extends Controller
             ->where('VENDEDOR','LIKE','%'.$vendedor.'%')
             ->where('NRO_COTIZACION','LIKE','%'.$nro_cotizacion.'%')
             ->get(); 
-
          
         return view('cotizaciones.lista_detalle') 
         ->with('detalle',$detalle)
@@ -744,6 +773,9 @@ class CotizacionesController extends Controller
         ->with('vendedor',$vendedor)
         ->with('nro_cotizacion',$nro_cotizacion)
 
+        ->with('hoy',$hoy)
+        ->with('ult_15',$ult_15)
+        ->with('inicio_sem',$inicio_sem)
         ->with('año_actual',$año_actual)
         ->with('inicio',$inicio)
         ->with('final',$final)

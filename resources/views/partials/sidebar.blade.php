@@ -2,7 +2,7 @@
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
             <a class="site_title" href="{{ url('/home') }}">
-                <i class="fa fa-cog mainSpinner"></i>
+                <i class="fa fa-cog mainSpinner "></i>
                 <span> SISTEMA </span>
             </a>                            
         </div>
@@ -14,12 +14,12 @@
                  {{--  <li><a  href="{{ route('ventas.index')}}"><i class="fa fa-bar-chart"></i> Ventas</a>                    
                   </li> --}}
                   
-                  <li><a  href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"><i class="glyphicon glyphicon-fire"></i> Cotizaciones</a></li> 
+                  {{-- <li><a  href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"><i class="glyphicon glyphicon-fire"></i> Cotizaciones</a></li>  --}}
 
-                  <li><a  href="#"><i class="glyphicon glyphicon-hourglass"></i> Reservas</a></li>
+                  {{-- <li><a  href="#"><i class="glyphicon glyphicon-hourglass"></i> Reservas</a></li> --}}
 
                   
-                  <li><a  href="{{ route('ventas.index')}}"> <i class="fa fa-line-chart"></i> Ventas </a></li>
+                  {{-- <li><a  href="{{ route('ventas.index')}}"> <i class="fa fa-line-chart"></i> Ventas </a></li> --}}
 
                  {{--  <li><a><i class="fa fa-line-chart"></i> Ventas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -27,8 +27,8 @@
                     </ul>
                   </li> --}}
 
-                   <li><a  href="{{ route('alerta_vehiculos.index')}}"><i class="fa fa-anchor"></i> Vehiculos estacionados</a>                    
-                  </li> 
+                  {{--  <li><a  href="{{ route('alerta_vehiculos.index')}}"><i class="fa fa-anchor"></i> Vehiculos estacionados</a>                    
+                  </li>  --}}
 
                 {{--   <li><a><i class="fa fa-home"></i> Principal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -37,6 +37,16 @@
                     </ul>
                   </li>
                   --}}
+
+
+                  <li><a><i class="fa fa-line-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a  href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Cotizaciones</a></li> 
+                      <li><a  href="#">Reservas</a></li>
+                      <li><a  href="{{ route('ventas.index')}}"> Facturados (ventas)</a></li>
+                      <li><a  href="{{ route('alerta_vehiculos.index')}}"> Vehiculos estacionados</a>  </li> 
+                    </ul>
+                  </li>
 
                   @if(Auth::user()->rol=='1' || Auth::user()->rol=='2' || Auth::user()->rol=='3')
                   <li><a><i class="fa fa-table"></i> Solicitudes <span class="fa fa-chevron-down"></span></a>

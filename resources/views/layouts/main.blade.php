@@ -116,7 +116,7 @@
     <script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
     --}}
     <!-- iCheck -->
-    <script src="{{asset('bower_components/gentelella/vendors/iCheck/icheck.min.js')}}"></script>
+    
 
     <!-- PNotify -->
     <script src="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.js')}}"></script>
@@ -142,15 +142,13 @@
     <script src="{{asset('bower_components/gentelella/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
 
 
-    <!-- bootstrap-daterangepicker -->
-    <script src="{{asset('bower_components/gentelella/vendors/moment/min/moment.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+    
     <!-- Switchery -->
     <script src="{{asset('bower_components/gentelella/vendors/switchery/dist/switchery.min.js')}}"></script>
     <!-- Select2 -->
     <script src="{{asset('bower_components/gentelella/vendors/select2/dist/js/select2.full.min.js')}}"></script>
     <!-- Parsley -->
-    <script src="{{asset('bower_components/gentelella/vendors/parsleyjs/dist/parsley.min.js')}}"></script>
+    {{-- <script src="{{asset('bower_components/gentelella/vendors/parsleyjs/dist/parsley.min.js')}}"></script> --}}
     <!-- Autosize -->
     <script src="{{asset('bower_components/gentelella/vendors/autosize/dist/autosize.min.js')}}"></script>
 
@@ -162,15 +160,15 @@
     <script src="{{asset('bower_components/gentelella/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
 
 
-    <!-- Custom Theme Scripts -->
-    {{--     <script src="{{asset('bower_components/gentelella/build/js/custom.min.js')}}"></script> --}}   
-    <script src="{{asset('js/custom.js')}}"></script>
-
+    
 
     @yield('scripts')
+<!-- Custom Theme Scripts -->
+    {{--     <script src="{{asset('bower_components/gentelella/build/js/custom.min.js')}}"></script> --}}   
+    
 
 
-
+<script src="{{asset('js/custom.js')}}"></script>
     {{-- alertas --}}
     @if(!session('mensaje')==null)
 
