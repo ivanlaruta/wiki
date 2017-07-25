@@ -19,10 +19,7 @@ class CotizacionesController extends Controller
         dd('aqui ya no hay nada :(');
     }
 
-    public function busqueda()
-    {    
-        return view('cotizaciones.busqueda') ;
-    }
+ 
 
     public function dashboard($v_aux,$title,$f_ini, $f_fin ,$mes,$regional,$marca,$sucursal,$modelo)
     {
@@ -668,7 +665,7 @@ class CotizacionesController extends Controller
     }
 
 
-    public function lista_detalle($v_aux,$title,$f_ini,$f_fin,$mes,$regional,$marca,$sucursal,$modelo,$master,$chassis,$vendedor,$nro_cotizacion)
+    public function lista_detalle($v_aux,$title,$f_ini,$f_fin,$mes,$regional,$marca,$sucursal,$modelo,$master,$chassis,$vendedor,$nro_cotizacion,$cliente)
     {
           
         $inicio_sem=Carbon::now('America/La_Paz')->startOfWeek()->toDateString();   //inicio de semana
@@ -742,6 +739,9 @@ class CotizacionesController extends Controller
         if($nro_cotizacion == '0'){$nro_cotizacion='%';}
         else{$nro_cotizacion=ltrim(rtrim($nro_cotizacion));}
 
+        if($cliente == '0'){$cliente='%';}
+        else{$cliente=ltrim(rtrim($cliente));}
+
 
 
         $detalle =Cotizacion::select(DB::raw('ROW_NUMBER() OVER(ORDER BY NRO_COTIZACION DESC) AS ITEM'),'*')
@@ -754,6 +754,7 @@ class CotizacionesController extends Controller
             ->where('CHASIS','LIKE','%'.$chassis.'%')
             ->where('VENDEDOR','LIKE','%'.$vendedor.'%')
             ->where('NRO_COTIZACION','LIKE','%'.$nro_cotizacion.'%')
+            ->where('CLIENTE','LIKE','%'.$cliente.'%')
             ->get(); 
          
         return view('cotizaciones.lista_detalle') 
@@ -782,5 +783,103 @@ class CotizacionesController extends Controller
         
         ->with('desc_mes',$desc_mes)
         ;
+    }
+
+    public function busqueda()
+    {    
+        return view('cotizaciones.busqueda') ;
+    }
+    public function buscador(Request $request)
+    {    
+
+
+        $arrayFecha = explode(' - ', $request->fecha);
+
+        $f_ini =  Carbon::parse($arrayFecha[0])->toDateString();
+        $f_fin =  Carbon::parse($arrayFecha[1])->toDateString();
+
+
+
+        if(is_null($request->nro_cotizacion) || $request->nro_cotizacion == ' ' ){
+            $nro_cotizacion = '0';
+        }
+        else
+        {
+            $nro_cotizacion = $request->nro_cotizacion ;
+        }
+        if(is_null($request->regional) || $request->regional == ' ' ){
+            $regional = '0';
+        }
+        else
+        {
+            $regional = $request->regional ;
+        }
+        if(is_null($request->sucursal) || $request->sucursal == ' ' ){
+            $sucursal = '0';
+        }
+        else
+        {
+            $sucursal = $request->sucursal ;
+        }
+        if(is_null($request->vendedor) || $request->vendedor == ' ' ){
+            $vendedor = '0';
+        }
+        else
+        {
+            $vendedor = $request->vendedor ;
+        }
+        if(is_null($request->cliente) || $request->cliente == ' ' ){
+            $cliente = '0';
+        }
+        else
+        {
+            $cliente = $request->cliente ;
+        }
+        if(is_null($request->chassis) || $request->chassis == ' ' ){
+            $chassis = '0';
+        }
+        else
+        {
+            $chassis = $request->chassis ;
+        }
+        if(is_null($request->master) || $request->master == ' ' ){
+            $master = '0';
+        }
+        else
+        {
+            $master = $request->master ;
+        }
+        if(is_null($request->modelo) || $request->modelo == ' ' ){
+            $modelo = '0';
+        }
+        else
+        {
+            $modelo = $request->modelo ;
+        }
+        if(is_null($request->marca) || $request->marca == ' ' ){
+            $marca = '0';
+        }
+        else
+        {
+            $marca = $request->marca ;
+        }
+
+        if($nro_cotizacion == '0' && $regional == '0' && $sucursal == '0' && $vendedor == '0' && $cliente == '0' && $chassis == '0' && $master == '0' && $modelo == '0' && $marca == '0' && $request->bandera == '0' )
+        {
+
+            return redirect()->route('cotizaciones.busqueda')->with('mensaje_error',"debe seleccional almenos un parametro de busqueda."); 
+        }
+        else
+        {
+            if ($request->bandera == '1')
+            {
+               return redirect()->route('cotizaciones.lista_detalle',['v_aux'=>'0','title'=>'busqueda','f_ini'=>$f_ini,'f_fin'=>$f_fin,'mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>$sucursal,'modelo'=>$modelo,'master'=>$master,'chassis'=>$chassis,'vendedor'=>$vendedor ,'nro_cotizacion'=>$nro_cotizacion,'cliente'=>$cliente]);
+           }
+           else
+           {
+            return redirect()->route('cotizaciones.lista_detalle',['v_aux'=>'0','title'=>'busqueda','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>$sucursal,'modelo'=>$modelo,'master'=>$master,'chassis'=>$chassis,'vendedor'=>$vendedor ,'nro_cotizacion'=>$nro_cotizacion,'cliente'=>$cliente]);
+           }
+        }
+
     }
 }

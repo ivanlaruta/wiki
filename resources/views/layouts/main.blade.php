@@ -111,10 +111,7 @@
         <!-- DateJS -->
         <script src="{{asset('bower_components/gentelella/vendors/DateJS/build/date.js')}}"></script>
 
-        <!-- bootstrap-daterangepicker -->
-    {{-- <script src="{{asset('bower_components/gentelella/vendors/moment/min/moment.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
-    --}}
+       
     <!-- iCheck -->
     
 

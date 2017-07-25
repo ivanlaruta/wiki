@@ -2,8 +2,8 @@
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
             <a class="site_title" href="{{ url('/home') }}">
-                <i class="fa fa-cog mainSpinner "></i>
-                <span> SISTEMA </span>
+                &nbsp<i class=" fa fa-home  "></i>
+                <span> TOYOSA </span>
             </a>                            
         </div>
 
@@ -38,12 +38,20 @@
                   </li>
                   --}}
 
-
                   <li><a><i class="fa fa-line-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a  href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Cotizaciones</a></li> 
-                      <li><a  href="#">Reservas</a></li>
+                      {{-- <li><a  href="#">Reservas</a></li> --}}
                       <li><a  href="{{ route('ventas.index')}}"> Facturados (ventas)</a></li>
+                      
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-car"></i> Stock <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{ route('vehiculos.stock',['vista'=>'ver_dist','ciudad'=>'DISTRIBUIDOR','pais'=>'TODOS'])}}"> Stock Vehiculos</a></li>
+                      {{-- <li><a href="#">Stock Productos</a></li> --}}
+                      <li><a href="{{ route('vehiculos.index')}}">Todas las Unidades</a></li>
                       <li><a  href="{{ route('alerta_vehiculos.index')}}"> Vehiculos estacionados</a>  </li> 
                     </ul>
                   </li>
@@ -75,13 +83,7 @@
                   </li>
                   @endif
                   
-                   <li><a><i class="fa fa-car"></i> Stock <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{ route('vehiculos.stock')}}"> Stock Vehiculos</a></li>
-                      {{-- <li><a href="#">Stock Productos</a></li> --}}
-                      <li><a href="{{ route('vehiculos.index')}}">Buscador de Unidades</a></li>
-                    </ul>
-                  </li>
+
 
                   <li><a><i class="fa fa-exclamation-triangle"></i> Alertas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

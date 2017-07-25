@@ -2,71 +2,87 @@
 
 @section('content')
 <div class="right_col" role="main">
-          <div class="">
-      
-            <div class="page-title">
-              <div class="title_left">
-                <h3>STOCK {{ $marca }} {{ $ciudad }}</h3>
-              </div>
+    <div class="page-title">
+      <div class="title">
+        <h3>
+          <a href="{{ route('vehiculos.stock',['vista'=>'ver_dist','ciudad'=>'DISTRIBUIDOR','pais'=>$pais])}}"> STOCK  </a> /
+            <a href="{{ route('vehiculos.stock',['vista'=>'ver_reg','ciudad'=>$ciudad,'pais'=>$pais])}}">
+            @if($ciudad  =='TODOS' )
+              TODAS LAS REGIONALES
+            @else
+              {{$ciudad}}  
+            @endif
+            @if($pais <> 'TODOS') <small class="red">({{$pais}})</small>  @endif
+            </a>
+            <a href="{{ route('vehiculos.modelos',['id'=>$modelos,'id2'=>$marca ,'id4'=>$ciudad,'pais'=>$pais])}}">/ {{$marca }} - {{ $modelos}}</a> /
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                </div>
-              </div>
-            </div>
-<!-- Start to do list -->
-            <div class="col-md-12">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>{{ $marca }} / {{ $modelos }} / {{ $modelo }} / {{ $mast->MASTER }}/<small>Vehiculos</small></h2>
-                  
-                  <div class="clearfix"></div>
-                </div>
-               
-                <div class="x_content">
-                  <table id="datatable1" class="table table-striped table-responsive">
-                      <thead>
-                        <tr>
-                          <th>Marca</th>
-                          <th>Modelo</th>
-                          <th>Master</th>
-                          <th>Año</th>
-                          <th>Chassis</th>
-                          <th>Exterior</th>
-                          <th>Interior</th>
-                          <th>Regional</th>
-                          <th>Ubicacion</th>
-                        </tr>
-                      </thead>
-                        
-                      <tbody>
-                        @foreach($v as $vs)
-                        <tr>                
-                          <td>{{ $vs-> MARCA }}</td>
-                          <td>{{ $vs -> MODELO }}</td>
-                          <td>{{ $vs -> MASTER }}</td>
-                          <td>{{ $vs -> ANIO_MOD }}</td>
-                          <td>{{ $vs -> CHASIS }}</td>
-                          <td>{{ $vs -> COLOR_EXTERNO}}</td>
-                          <td>{{ $vs -> COLOR_INTERNO }}</td>
-                          <td>{{ $vs -> nom_localidad }}</td>
-                          <td>{{ $vs -> UBICACION }}</td>
-                        </tr>
-                        @endforeach
-
-                      </tbody>
-                    </table>
-                  
-                    
-                </div>
-
-                </div>
-              </div>
-           
-              
-            <!-- End to do list -->
-         </div>
+            <a href="{{ route('vehiculos.master',['id'=>$modelo1->COD_MODELO,'id2'=> $modelos ,'id3'=>$marca,'id4'=>$ciudad ,'pais'=>$pais])}}">  {{ $modelo }} </a>
+            /{{ $mast->MASTER }}
+        </h3>
       </div>
+    </div>
+    <br>
+  
+<hr>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="table">
+        <table class="table table-striped jambo_table bulk_action" id="datatable1">
+          <thead>
+            <tr>
+              
+              <th></th>
+              <th>MARCA</th>
+              <th>COD_MASTER</th>
+              <th>MASTER</th>
+              <th>COD MODELO</th>
+              <th>MODELO</th>
+              <th>AÑO</th>
+              <th>COLOR EXTERNO</th>
+              <th>COLOR INTERNO</th>
+              <th>CHASSIS</th>
+              <th>COD UBICACION</th>
+              <th>UBICACION</th>
+              <th>REGIONAL</th>
+              <th>ESTADO</th>
+              <th>LIBERADO</th>
+              <th>NACIONALIZADO</th>
+              <th>PAIS</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($v as $vs)
+            <tr>                
+              
+              <td>{{ $vs -> ITEM}}</td>
+              <td>{{ $vs -> MARCA}}</td>
+              <td>{{ $vs -> COD_MASTER}}</td>
+              <td>{{ $vs -> MASTER}}</td>
+              <td>{{ $vs -> COD_MODELO}}</td>
+              <td>{{ $vs -> MODELO}}</td>
+              <td>{{ $vs -> ANIO_MOD}}</td>
+              <td>{{ $vs -> COLOR_EXTERNO}}</td>
+              <td>{{ $vs -> COLOR_INTERNO}}</td>
+              <td><strong>{{ $vs -> CHASIS}}</strong></td>
+              <td>{{ $vs -> COD_UBICACION}}</td>
+              <td>{{ $vs -> UBICACION}}</td>
+              <td>{{ $vs -> nom_localidad}}</td>
+              <td>{{ $vs -> ESTADO}}</td>
+              <td>{{ $vs -> LIBERADO}}</td>
+              <td>{{ $vs -> NACIONALIZADO}}</td>
+              <td>{{ $vs -> PAIS}}</td>
+              
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 @endsection
 
 @section('scripts')
@@ -99,9 +115,7 @@
                   "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
                   "sSortDescending": ": Activar para ordenar la columna de manera descendente"
               }
-
         },
-            responsive: true
 
         });
     });

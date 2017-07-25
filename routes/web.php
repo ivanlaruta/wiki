@@ -128,28 +128,28 @@ Route::group(['prefix'=>'distribuidor','middleware'=>'auth'],function(){
 	route::resource('principal','PrincipalController');
 	route::resource('vehiculos','VehiculosController');
 
-	route::get('stock',[
+
+	route::get('{vista}/{ciudad}/{pais}/stock',[
 		'uses' =>'VehiculosController@stock',
 		'as'   =>	'vehiculos.stock'
 	]);
 
-	route::get('{id}/{id2}/{id4}/modelos',[
+	route::get('{id}/{id2}/{id4}/{pais}/modelos',[
 		'uses' => 'VehiculosController@modelos', 
 		'as'   => 'vehiculos.modelos'
 	]);
 
-	route::get('{id}/{id2}/{id3}/{id4}/master',[
+	route::get('{id}/{id2}/{id3}/{id4}/{pais}/master',[
 		'uses' => 'VehiculosController@master', 
 		'as'   => 'vehiculos.master'
 	]);
 
-	route::get('{id}/{id1}/{id2}/{id3}/{id4}/det_vehiculos',[
+	route::get('{id}/{id1}/{id2}/{id3}/{id4}/{vista}/{pais}/det_vehiculos',[
 		'uses' => 'VehiculosController@det_vehiculos', 
 		'as'   => 'vehiculos.det_vehiculos'
 	]);
 
 	route::resource('stocks','AsignacionStocksController');
-
 
 	route::get('envios/{id}/detalle',[
 		'uses' =>'EnviosController@detalle',
@@ -300,7 +300,7 @@ Route::group(['prefix'=>'cotizaciones','middleware'=>'auth'],function(){
 	]);
 	
 
-	route::get('cotizaciones/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/{master}/{chassis}/{vendedor}/{nro_cotizacion}/lista_detalle',[
+	route::get('cotizaciones/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/{master}/{chassis}/{vendedor}/{nro_cotizacion}/{cliente}/lista_detalle',[
 		'uses' =>'CotizacionesController@lista_detalle',
 		'as'   =>	'cotizaciones.lista_detalle'
 	]);
@@ -308,6 +308,10 @@ Route::group(['prefix'=>'cotizaciones','middleware'=>'auth'],function(){
 	route::get('cotizaciones/busqueda',[
 		'uses' =>'CotizacionesController@busqueda',
 		'as'   =>	'cotizaciones.busqueda'
+	]);
+	route::get('cotizaciones/buscador',[
+		'uses' =>'CotizacionesController@buscador',
+		'as'   =>	'cotizaciones.buscador'
 	]);
 	
 

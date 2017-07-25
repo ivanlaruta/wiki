@@ -11,6 +11,7 @@ use App\Master;
 use App\Detalle_solicitud;
 use App\Reservas_chassis;
 use App\V_stock_gtauto;
+use Carbon\Carbon;
 use DB;
 
 class SolicitudesController extends Controller
@@ -412,7 +413,7 @@ class SolicitudesController extends Controller
         date_default_timezone_set('America/La_Paz');
         $time = time();
         $now =date("Y-m-d", $time);
-
+        
         $env = new Solicitud($request->all());
         $env->fecha_creacion = $now;
         $env->fecha_modificacion = $now;

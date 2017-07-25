@@ -11,7 +11,7 @@ class Envios_realizados extends Model
 	protected $primaryKey ='id_envio';
 
     protected $dates =['fecha_envio','fecha_estimada_arribo','fecha_arribo'];
-    protected $dateFormat = 'Y-m-d';
+    protected $dateFormat = 'Ymd';
     public $timestamps = true;
 
     public function conductor1()

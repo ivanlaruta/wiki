@@ -11,7 +11,7 @@ class Reservas_chassis extends Model
     public $incrementing=false;
     
     protected $dates =['fecha_envio','fecha_estimada_arribo','fecha_arribo'];
-    protected $dateFormat = 'Y-m-d H:i:s';
+    protected $dateFormat = 'Ymd H:i:s';
     public $timestamps = true;
 
     public function vehiculo()

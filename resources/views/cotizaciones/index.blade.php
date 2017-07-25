@@ -103,7 +103,7 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{date('d/m/Y',strtotime($inicio))}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}">Total dia</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total dia</a></span>
           </div>
           @endif
 
@@ -111,7 +111,7 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{date('d/m/Y',strtotime($inicio))}} -{{date('d/m/Y',strtotime($final))}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}">Total {{$title}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total {{$title}}</a></span>
           </div>
           @endif
 
@@ -119,7 +119,7 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$desc_mes}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}">Total {{$desc_mes}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total {{$desc_mes}}</a></span>
           </div>
           @endif
 
@@ -127,7 +127,7 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$regional}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}">Total {{$año_actual}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total {{$año_actual}}</a></span>
           </div>
           @endif
 
@@ -135,7 +135,7 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$regional}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"> {{$sucursal}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"> {{$sucursal}}</a></span>
           </div>
           @endif
 
@@ -143,7 +143,7 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$regional}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}">{{$desc_mes}} {{$año_actual}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$desc_mes}} {{$año_actual}}</a></span>
           </div>
           @endif
 
@@ -151,7 +151,7 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$marca}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}">{{$marca}} {{$año_actual}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$marca}} {{$año_actual}}</a></span>
           </div>
           @endif
 
@@ -159,7 +159,7 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$marca}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}">{{$desc_mes}} {{$año_actual}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$desc_mes}} {{$año_actual}}</a></span>
           </div>
           @endif
 
@@ -167,7 +167,7 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$marca}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}">{{$modelo}} {{$año_actual}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$modelo}} {{$año_actual}}</a></span>
           </div>
           @endif
 
@@ -175,7 +175,7 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$marca}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}">{{$marca}} {{$año_actual}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$marca}} {{$año_actual}}</a></span>
           </div>
           @endif
 
@@ -188,7 +188,7 @@
         </div>
       </div>
     </div>
-
+   <div class="row">
     <div class="col-md-12">
       <div class="row">
 
@@ -225,16 +225,16 @@
                 data-href="{{route('cotizaciones.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'marca_mes','mes'=>$mes-> MES,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0'])}}" @endif
 
                 @if($title == 'regional_sucursal')
-                data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_sucursal_mes','f_ini'=>'0','f_fin'=>'0','mes'=>$mes-> MES,'regional'=>$regional,'marca'=>'0','sucursal'=>$sucursal,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif
+                data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_sucursal_mes','f_ini'=>'0','f_fin'=>'0','mes'=>$mes-> MES,'regional'=>$regional,'marca'=>'0','sucursal'=>$sucursal,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
                 @if($title == 'regional_marca')
-                data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_marca_mes','f_ini'=>'0','f_fin'=>'0','mes'=>$mes-> MES,'regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif
+                data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_marca_mes','f_ini'=>'0','f_fin'=>'0','mes'=>$mes-> MES,'regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
              
                 @if($title == 'marca_regional')
-                data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_regional_mes','f_ini'=>'0','f_fin'=>'0','mes'=>$mes-> MES,'regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif
+                data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_regional_mes','f_ini'=>'0','f_fin'=>'0','mes'=>$mes-> MES,'regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
                 @if($title == 'marca_modelo')
-                data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_modelo_mes','f_ini'=>'0','f_fin'=>'0','mes'=>$mes-> MES,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>$modelo,'master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif
+                data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_modelo_mes','f_ini'=>'0','f_fin'=>'0','mes'=>$mes-> MES,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>$modelo,'master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
                 >               
                 <td> 
@@ -282,27 +282,27 @@
               @endif
 
               @if( $title == 'mes_regional' )
-              data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$dia->NOM_DIA,'title'=>'det_mes_regional_dia','f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"  
+              data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$dia->NOM_DIA,'title'=>'det_mes_regional_dia','f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"  
               @endif
 
               @if( $title == 'regional_mes')
-              data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$dia->NOM_DIA,'title'=>'det_regional_mes_dia','f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"  
+              data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$dia->NOM_DIA,'title'=>'det_regional_mes_dia','f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"  
               @endif
 
               @if( $title == 'semanal' )
-              data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$dia->NOM_DIA,'title'=>'det_semanal_dia','f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"  
+              data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$dia->NOM_DIA,'title'=>'det_semanal_dia','f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"  
               @endif
 
               @if( $title == 'ult_15_dias' )
-              data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$dia->NOM_DIA,'title'=>'det_15_dia','f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"  
+              data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$dia->NOM_DIA,'title'=>'det_15_dia','f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"  
               @endif
 
               @if( $title == 'mes_marca' )
-              data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$dia->NOM_DIA,'title'=>'det_mes_marca_dia','f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"  
+              data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$dia->NOM_DIA,'title'=>'det_mes_marca_dia','f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"  
               @endif
 
               @if( $title == 'marca_mes')
-              data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$dia->NOM_DIA,'title'=>'det_marca_mes_dia','f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"  
+              data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$dia->NOM_DIA,'title'=>'det_marca_mes_dia','f_ini'=>$dia-> FECHA_COTIZACION,'f_fin'=>$dia-> FECHA_COTIZACION,'mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"  
               @endif
 
               >
@@ -346,27 +346,27 @@
             data-href="{{route('cotizaciones.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'mes_regional','mes'=>$mes,'regional'=>$reg-> REGIONAL,'marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}" @endif  
 
             @if($title == 'diarias' )
-            data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_diarias_regional' ,'f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$reg-> REGIONAL,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif  
+            data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_diarias_regional' ,'f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$reg-> REGIONAL,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif  
 
             @if( $title == 'semanal')
-            data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_semanal_regional' ,'f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$reg-> REGIONAL,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif  
+            data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_semanal_regional' ,'f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$reg-> REGIONAL,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif  
 
             @if( $title == 'ult_15_dias')
-            data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_15_regional' ,'f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$reg-> REGIONAL,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif  
+            data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_15_regional' ,'f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$reg-> REGIONAL,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif  
 
             @if($title == 'marca')
             data-href="{{route('cotizaciones.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'marca_regional','mes'=>'0','regional'=>$reg-> REGIONAL,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0'])}}" @endif  
 
             @if( $title == 'mes_marca' )
-            data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_marca_regional','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$reg-> REGIONAL,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"  
+            data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_marca_regional','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$reg-> REGIONAL,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"  
             @endif
 
             @if( $title == 'marca_mes')
-            data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_mes_regional','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$reg-> REGIONAL,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"  
+            data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_mes_regional','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$reg-> REGIONAL,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"  
             @endif
 
             @if( $title == 'marca_modelo')
-            data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_modelo_regional','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$reg-> REGIONAL,'marca'=>$marca,'sucursal'=>'0','modelo'=>$modelo,'master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"  
+            data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_modelo_regional','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$reg-> REGIONAL,'marca'=>$marca,'sucursal'=>'0','modelo'=>$modelo,'master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"  
             @endif
 
             >      
@@ -405,19 +405,19 @@
           @endif
 
           @if( $title == 'mes_regional' )
-          data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_regional_sucursal','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>$suc-> SUCURSAL,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"  
+          data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_regional_sucursal','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>$suc-> SUCURSAL,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"  
           @endif
 
           @if(  $title == 'regional_mes')
-          data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_mes_sucursal','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>$suc-> SUCURSAL,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"  
+          data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_mes_sucursal','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>$suc-> SUCURSAL,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"  
           @endif
 
           @if(  $title == 'regional_marca')
-          data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_marca_sucursal','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>$suc-> SUCURSAL,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"  
+          data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_marca_sucursal','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>$suc-> SUCURSAL,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"  
           @endif
 
           @if(  $title == 'marca_regional')
-          data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_regional_sucursal','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>$suc-> SUCURSAL,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}"  
+          data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_regional_sucursal','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>$suc-> SUCURSAL,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"  
           @endif
 
           >                
@@ -459,22 +459,22 @@
         data-href="{{route('cotizaciones.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional_marca','mes'=>'0','regional'=>$regional,'marca'=>$mar-> MARCA,'sucursal'=>'0','modelo'=>'0'])}}" @endif
 
         @if($title == 'diarias'  )
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_diarias_marca','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$mar-> MARCA,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_diarias_marca','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$mar-> MARCA,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if($title == 'semanal')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_semanal_marca','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$mar-> MARCA,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_semanal_marca','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$mar-> MARCA,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if( $title == 'ult_15_dias' )
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_15_marca','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$mar-> MARCA,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_15_marca','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$mar-> MARCA,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if($title == 'mes_regional')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_regional_marca','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$regional,'marca'=>$mar-> MARCA,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_regional_marca','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$regional,'marca'=>$mar-> MARCA,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if($title == 'regional_mes')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_mes_marca','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$regional,'marca'=>$mar-> MARCA,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_mes_marca','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$regional,'marca'=>$mar-> MARCA,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if($title == 'regional_sucursal')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_sucursal_marca','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$mar-> MARCA,'sucursal'=>$sucursal,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_sucursal_marca','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$mar-> MARCA,'sucursal'=>$sucursal,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         >                
         <td> {{ $mar-> MARCA }}</td>
@@ -507,16 +507,16 @@
         data-href="{{route('cotizaciones.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'marca_modelo','mes'=>'0','regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>str_replace("/", "_", $mod-> MODELO)])}}" @endif
 
         @if( $title == 'mes_marca' )
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_marca_modelo','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>str_replace("/", "_", $mod-> MODELO),'master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif              
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_marca_modelo','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>str_replace("/", "_", $mod-> MODELO),'master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif              
 
         @if( $title == 'marca_mes')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_mes_modelo','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>str_replace("/", "_", $mod-> MODELO),'master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif              
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_mes_modelo','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>str_replace("/", "_", $mod-> MODELO),'master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif              
 
         @if( $title == 'regional_marca')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_marca_modelo','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>str_replace("/", "_", $mod-> MODELO),'master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif              
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_marca_modelo','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>str_replace("/", "_", $mod-> MODELO),'master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif              
 
         @if( $title == 'marca_regional')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_regional_modelo','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>str_replace("/", "_", $mod-> MODELO),'master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" @endif              
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_regional_modelo','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>str_replace("/", "_", $mod-> MODELO),'master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif              
 
         >                
         <td> {{ $mod-> MODELO }}</td>
@@ -544,7 +544,7 @@
       </thead>
       <tbody>
         @foreach($por_master as $mas)
-        <tr class='v_link' data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_modelo_master','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>$modelo,'master'=> str_replace("/", "_", $mas-> MASTER),'chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0'])}}" >     
+        <tr class='v_link' data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_modelo_master','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>$modelo,'master'=> str_replace("/", "_", $mas-> MASTER),'chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" >     
 
           <td> {{ $mas-> MASTER }}</td>
           <td align="right"><span class="badge badge-success">{{ $mas-> COTIZACIONES }}</span></td>
@@ -580,49 +580,49 @@
         <tr class='v_link vend' 
 
         @if($title == 'index')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if($title == 'diarias' )
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_diarias_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_diarias_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if( $title == 'semanal'  )
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_semanal_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_semanal_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if( $title == 'ult_15_dias' )
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_15_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_15_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if($title == 'mes')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if($title == 'regional')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if($title == 'marca')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if($title == 'mes_regional')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_regional_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_regional_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if($title == 'regional_mes')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_mes_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_mes_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if($title == 'regional_marca')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_marca_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_marca_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if($title == 'marca_regional')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_regional_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_regional_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if($title == 'regional_sucursal')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_sucursal_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=>$sucursal,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_sucursal_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=>$sucursal,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif
 
         @if( $title == 'mes_marca' )
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_marca_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif 
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_marca_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif 
 
         @if( $title == 'marca_mes')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_mes_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif 
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_mes_vendedor','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif 
 
         @if( $title == 'marca_modelo')
-        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_modelo_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>$modelo,'master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0'])}}" @endif 
+        data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_modelo_vendedor','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>$modelo,'master'=>'0','chassis'=>'0','vendedor'=>$ven-> VENDEDOR,'nro_cotizacion'=>'0','cliente'=>'0'])}}" @endif 
 
         >                
         <td> <span class="label label-default">{{$ven-> REG_ABRE }}</span> {{ strtoupper($ven-> VENDEDOR) }} </td>
@@ -634,6 +634,7 @@
 </div>                        
 </div>
 
+</div>
 </div>
 </div>
 

@@ -10,7 +10,7 @@ class Detalle_solicitud extends Model
     protected $primaryKey =['id_solicitud', 'id_detalle'];
     public $incrementing=false;
     
-    protected $dateFormat = 'Y-m-d H:i:s';
+    protected $dateFormat = 'Ymd H:i:s';
     public $timestamps = true;
 
     public function master()

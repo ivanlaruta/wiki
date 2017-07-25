@@ -13,7 +13,10 @@
         
          {{--  link ULT 15 DIAS --}}
 
-        @if( $title ==  'det_15_regional' ||  $title ==  'det_15_marca' || $title ==  'det_15_vendedor'|| $title ==  'det_15_dia'  )
+        @if( $title ==  'busqueda')
+        <a href="{{route('cotizaciones.busqueda')}}"> / BUSQUEDA AVANZADA</a>  /RESULTADO DE BUSQUEDA
+        @endif 
+         @if( $title ==  'det_15_regional' ||  $title ==  'det_15_marca' || $title ==  'det_15_vendedor'|| $title ==  'det_15_dia'  )
         <a href="{{route('cotizaciones.dashboard',['v_aux'=>$v_aux,'f_ini'=>$ult_15,'f_fin'=>$hoy,'title'=>'ult_15_dias','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / ULTIMOS 15 DIAS</a>  
         @endif 
          {{--  link semanal --}}

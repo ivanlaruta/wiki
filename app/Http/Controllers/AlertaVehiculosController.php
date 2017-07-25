@@ -24,13 +24,13 @@ class AlertaVehiculosController extends Controller
 
         $dt = Carbon::now('America/La_Paz');  //fecha actual
 
-        $hoy = Carbon::now('America/La_Paz')->toDateString(); // hoy
+        $hoy = Carbon::now('America/La_Paz')->format('Ymd'); // hoy
 
-        $ult_60 =  Carbon::now('America/La_Paz')->subDays(60)->toDateString();  // menos 60 dias
-        $ult_mes = Carbon::now('America/La_Paz')->subMonth();  // menos un mes
-        $ult_6mes = Carbon::now('America/La_Paz')->subMonth(6);  // menos un mes
-        $ult_anio = Carbon::now('America/La_Paz')->subYear()->toDateString(); // menos un año
-        $ult_2anio = Carbon::now('America/La_Paz')->subYear(2)->toDateString(); // menos dos año
+        $ult_60 =  Carbon::now('America/La_Paz')->subDays(60)->format('Ymd');  // menos 60 dias
+        $ult_mes = Carbon::now('America/La_Paz')->subMonth()->format('Ymd'); // menos un mes
+        $ult_6mes = Carbon::now('America/La_Paz')->subMonth(6)->format('Ymd');  // menos un mes
+        $ult_anio = Carbon::now('America/La_Paz')->subYear()->format('Ymd'); // menos un año
+        $ult_2anio = Carbon::now('America/La_Paz')->subYear(2)->format('Ymd'); // menos dos año
         
         // $inicio_sem=Carbon::now('America/La_Paz')->startOfWeek()->toDateString();   //inicio de semana
         // $inicio_mes=Carbon::now('America/La_Paz')->startOfMonth()->toDateString();  //inicio de mes

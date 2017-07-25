@@ -10,6 +10,12 @@ class V_histo_ubica extends Model
     protected $primaryKey ='CHASIS';
     public $incrementing=false;
    
+   protected $fillable =['fecha_ult_mov'];
+
+    protected $dates =['fecha_ult_mov'];
+    
+    protected $dateFormat = 'Ymd';
+
     
 
     public function master()

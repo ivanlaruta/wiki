@@ -357,9 +357,16 @@
 @endsection
 
 @section('scripts')
+ <!-- bootstrap-daterangepicker -->
+    <script src="{{asset('bower_components/gentelella/vendors/moment/min/moment.min.js')}}"></script>
+    <script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+   
+
+   
 <script type="text/javascript">
 
   var eta = $("#f_env");
+
   eta.daterangepicker({
     singleDatePicker:true,
     minDate: moment(),
