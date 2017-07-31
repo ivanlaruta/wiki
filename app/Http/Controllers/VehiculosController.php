@@ -629,7 +629,8 @@ if($pais == '%')
             $mast = V_stock_gtauto::select('MASTER')->where('COD_MASTER', '=', $master)->first();
 
             $modelo1 = V_stock_gtauto::select('COD_MODELO')->where('MODELO', '=', $modelo)->first();
-if($pais == '%')
+            
+        if($pais == '%')
         {
             $pais='TODOS';
         }

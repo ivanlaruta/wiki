@@ -45,7 +45,7 @@ class VentasController extends Controller
 
         $este_año =Venta::whereBetween('FECHA_FACTURA',[$inicio_año,$hoy])->count();
 
-        $fact = DB::select(" select SUM (c.BOLIVIANOS) AS TOTAL FROM (select PRECIO_VENTA * CONVERSION AS BOLIVIANOS from v_ventas_fac where FECHA_FACTURA >'".$inicio_año."' ) as c  ");
+        $fact = DB::select(" select SUM (c.BOLIVIANOS) AS TOTAL FROM (select PRECIO_VENTA * CONVERSION AS BOLIVIANOS from v_facturados where FECHA_FACTURA >'".$inicio_año."' ) as c  ");
 
         $facturado = $fact[0]->TOTAL;
 
@@ -209,7 +209,7 @@ class VentasController extends Controller
         $ventas_mes =Venta::whereBetween('FECHA_FACTURA',[$inicio_mes,$fin_mes])->count();
         $ventas_mes_anterior =Venta::whereBetween('FECHA_FACTURA',[$inicio_mes_anterior,$fin_mes_anterior])->count();
 
-        $prom = DB::select("SELECT avg(VENTAS) AS VENTAS FROM (SELECT  COUNT (*) as VENTAS FROM v_ventas_fac where FECHA_FACTURA >'".$inicio_año."'Group by month(FECHA_FACTURA)) as VENTAS");
+        $prom = DB::select("SELECT avg(VENTAS) AS VENTAS FROM (SELECT  COUNT (*) as VENTAS FROM v_facturados where FECHA_FACTURA >'".$inicio_año."'Group by month(FECHA_FACTURA)) as VENTAS");
 
         $promedio = $prom[0]->VENTAS;
 
@@ -219,7 +219,7 @@ class VentasController extends Controller
         //==========================================0
 
         // =========== FACTURADO ===========
-        $fact = DB::select(" select SUM (c.BOLIVIANOS) AS TOTAL FROM (select PRECIO_VENTA * CONVERSION AS BOLIVIANOS from v_ventas_fac where FECHA_FACTURA BETWEEN '".$inicio_mes."' AND '".$fin_mes."') as c  ");
+        $fact = DB::select(" select SUM (c.BOLIVIANOS) AS TOTAL FROM (select PRECIO_VENTA * CONVERSION AS BOLIVIANOS from v_facturados where FECHA_FACTURA BETWEEN '".$inicio_mes."' AND '".$fin_mes."') as c  ");
 
         $facturado = $fact[0]->TOTAL;
 

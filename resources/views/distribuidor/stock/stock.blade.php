@@ -115,7 +115,7 @@
     <div class="col-md-4 col-sm-12 col-xs-12">
       <div class="x_panel">
         <h2>LEXUS <small class=" red">@if($pais == 'TODOS') TODAS LAS UNIDADES @else EN {{$pais}} @endif</small>
-          <a href="#" class="pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver unidades"><i class="fa fa-car green "></i> <strong class="green"> {{$total_l}}</strong></a>
+          <a href="javascript:;" class="pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver unidades"><i class="fa fa-car green "></i> <strong class="green"> {{$total_l}}</strong></a>
         </h2>
       </div>
    
@@ -146,7 +146,7 @@
     <div class="col-md-4 col-sm-12 col-xs-12">
     <div class="x_panel">
         <h2>YAMAHA <small class=" red">@if($pais == 'TODOS') TODAS LAS UNIDADES @else EN {{$pais}} @endif</small>
-          <a href="#" class="pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver unidades"><i class="fa fa-car green "></i> <strong class="green"> {{$total_y}}</strong></a>
+          <a href="javascript:;" class="pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver unidades"><i class="fa fa-car green "></i> <strong class="green"> {{$total_y}}</strong></a>
         </h2>
       </div>
 
@@ -177,7 +177,7 @@
     <div class="col-md-4 col-sm-12 col-xs-12">
        <div class="x_panel">
         <h2>TOYOTA <small class=" red">@if($pais == 'TODOS') TODAS LAS UNIDADES @else EN {{$pais}} @endif</small>
-          <a href="#" class="pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver unidades"><i class="fa fa-car green "></i> <strong class="green"> {{$total_t}}</strong></a>
+          <a href="javascript:;" class="pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver unidades"><i class="fa fa-car green "></i> <strong class="green"> {{$total_t}}</strong></a>
         </h2>
       </div>
 

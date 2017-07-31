@@ -135,6 +135,52 @@
         /  {{$master}}
         @endif 
 
+        {{-- Enlace para indicadores de ver detalle..... --}}
+        @if( $title == 'det_mes_regional' || $title == 'det_mes' || $title == 'det_diarias' || $title == 'det_mes_marca')
+        <a href="{{ route('cotizaciones.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'mes','mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / {{$desc_mes}} </a>  
+        @endif 
+
+        @if($title == 'det_diarias') 
+        / @if($v_aux <> '0'){{$v_aux}}@endif {{date('d',strtotime($inicio))}}  
+        @endif 
+
+        @if($title == 'det_marca' || $title == 'det_marca_mes' || $title == 'det_marca_regional'|| $title == 'det_marca_modelo') 
+        <a href="{{route('cotizaciones.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'marca','mes'=>'0','regional'=>'0','marca'=>($marca),'sucursal'=>'0','modelo'=>'0'])}}"> 
+          / {{$marca}}  </a>
+          @endif 
+
+          @if( $title == 'det_semanal' ) 
+          / ESTA SEMANA{{-- {{date('d/m/Y',strtotime($inicio))}} - {{date('d/m/Y',strtotime($final))}} --}} 
+          @endif 
+
+          @if(  $title == 'det_ult_15_dias' ) 
+          / ULTIMOS 15 DIAS{{-- {{date('d/m/Y',strtotime($inicio))}} - {{date('d/m/Y',strtotime($final))}} --}} 
+          @endif 
+
+          @if( $title == 'det_regional' || $title == 'det_regional_mes'|| $title == 'det_regional_sucursal' ||  $title == 'det_regional_marca' )
+          <a href="{{route('cotizaciones.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / {{$regional}} </a>  
+          @endif 
+
+          @if( $title == 'det_regional_mes' || $title == 'det_marca_mes') 
+          / {{$desc_mes}}  
+          @endif
+          
+          @if( $title == 'det_marca_regional' || $title == 'det_mes_regional' ) 
+          / {{$regional}}  
+          @endif 
+
+          @if( $title == 'det_regional_marca' ||  $title == 'det_mes_marca') 
+          / {{$marca}}  
+          @endif 
+          
+          @if( $title == 'det_regional_sucursal') 
+          / {{$sucursal}}  
+          @endif 
+                    
+          @if( $title == 'det_marca_modelo' ) 
+          / {{$modelo}}  
+          @endif 
+
         </h3>
         </div>
          <div class="title_right"></div>
@@ -156,20 +202,23 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_content animated fadeIn">
               <p class="text-muted font-13 m-b-30"></p>
-              <div class="table-responsive" {{-- style="max-height: 450px; width: 100%; margin: 0; overflow-y: auto; --}}">
-                <table class="table table-striped jambo_table bulk_action">
+              <div class="" {{-- style="max-height: 450px; width: 100%; margin: 0; overflow-y: auto; --}}">
+                <table class="table table-striped jambo_table bulk_action" id="datatable1">
                   <thead style="">
                     <tr>
                      <th></th>
                      <th>NRO COTIZACION</th>
-                     <th>FECHA</th>
+                     <th>FECHA COTIZACION</th>
                      <th>REGIONAL</th>
                      <th>SUCURSAL</th>
                      <th>VENDEDOR</th>
-                     <th>TIPO CLIENTE</th>
-                     <th>NIT</th>
                      <th>CLIENTE</th>
+                     <th>NIT</th>
+                     <th>DIRECCION</th>
+                     <th>TELEFONO</th>
+                     <th>CELULAR</th>
                      <th>MARCA</th>
+                     <th>COD MODELO</th> 
                      <th>MODELO</th>
                      <th>MASTER</th>
                      <th>AÑO</th>
@@ -177,31 +226,37 @@
                      <th>CHASIS</th>
                      <th>PRECIO</th>
                      <th>MODALIDAD</th>
-                     
-                     
 
+                     <th>FACTURADO</th>
+                     
+                     
                     </tr>
                   </thead>
                   <tbody>
                   @foreach($detalle as $det)
-                    <tr>
+                    <tr @if ($det->FACTURADO == 'SI') class="success" @endif>
                      <td>{{$det->ITEM}}</td>
-                     <td>{{$det->NRO_COTIZACION}}</td>
-                     <td>{{$det->FECHA_COTIZACION}}</td>
+                     <td><strong>{{$det->NRO_COTIZACION}}</strong></td>
+                     <td><strong>{{$det->FECHA_COTIZACION}}</strong></td>
                      <td>{{$det->REGIONAL}}</td>
                      <td>{{$det->SUCURSAL}}</td>
                      <td>{{strtoupper($det->VENDEDOR)}}</td>  
-                     <td>{{$det->TIPO_CLIENTE}}</td>
+                     <td><strong>{{$det->CLIENTE}}</strong></td>
                      <td>{{$det->NIT}}</td>
-                     <td>{{$det->CLIENTE}}</td>
+                     <td>{{$det->DIRECCION}}</td>
+                     <td>{{$det->TELEFONO}}</td>
+                     <td>{{$det->CELULAR}}</td>
                      <td>{{$det->MARCA}}</td>
+                     <td>{{$det->COD_MODELO}}</td>
                      <td>{{$det->MODELO}}</td>
                      <td>{{$det->MASTER}}</td>
-                     <td>{{$det->Año}}</td>
+                     <td>{{$det->ANIO}}</td>
                      <td>{{$det->color}}</td>
-                     <td>{{$det->CHASIS}}</td>
+                     <td><strong>{{$det->CHASIS}}</strong></td>
                      <td>{{$det->PRECIO_TOTAL}}</td>
                      <td>{{$det->modalidad}}</td>
+
+                     <td>{{$det->FACTURADO}}</td>
                      
                                         
                     </tr>
@@ -222,9 +277,42 @@
 @endsection
 @section('scripts')
 
-<script type="text/javascript">
+<script>
 
+    $(document).ready(function() {
+         //alert('1');
+        $('#datatable1').DataTable({
+          
+             "language": {
+            
+              "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst":    "Primero",
+                  "sLast":     "Último",
+                  "sNext":     "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
 
+        },
+            
 
-</script>
+        });
+    });
+
+</script> 
 @endsection

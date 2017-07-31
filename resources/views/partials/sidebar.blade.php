@@ -43,7 +43,8 @@
                       <li><a  href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Cotizaciones</a></li> 
                       {{-- <li><a  href="#">Reservas</a></li> --}}
                       <li><a  href="{{ route('ventas.index')}}"> Facturados (ventas)</a></li>
-                      
+
+                      <li><a  href="{{ route('facturados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Fac. pruebas pruebas</a></li> 
                     </ul>
                   </li>
 

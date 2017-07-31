@@ -313,6 +313,29 @@ Route::group(['prefix'=>'cotizaciones','middleware'=>'auth'],function(){
 		'uses' =>'CotizacionesController@buscador',
 		'as'   =>	'cotizaciones.buscador'
 	]);
+});
+
+Route::group(['prefix'=>'facturados','middleware'=>'auth'],function(){
+
+	route::get('facturados/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/dashboard',[
+		'uses' =>'FacturadosController@dashboard',
+		'as'   =>	'facturados.dashboard'
+	]);
+	
+
+	route::get('facturados/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/{master}/{chassis}/{vendedor}/{nro_factura}/{cliente}/lista_detalle',[
+		'uses' =>'FacturadosController@lista_detalle',
+		'as'   =>	'facturados.lista_detalle'
+	]);
+	
+	route::get('facturados/busqueda',[
+		'uses' =>'FacturadosController@busqueda',
+		'as'   =>	'facturados.busqueda'
+	]);
+	route::get('facturados/buscador',[
+		'uses' =>'FacturadosController@buscador',
+		'as'   =>	'facturados.buscador'
+	]);
 	
 
 });

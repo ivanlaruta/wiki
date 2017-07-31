@@ -4,6 +4,27 @@
 
 <div class="right_col" role="main">
 
+<style type="text/css">
+  .badge-danger {
+  background-color: #d43f3a;
+}
+.badge-warning {
+background-color: #d58512;
+}
+
+.badge-success {
+background-color: #44bca5;
+}
+
+.badge-info {
+background-color: #269abc;
+}
+
+.badge-inverse {
+background-color: #333333;
+}
+</style>
+
   <div class="page-title">
     <div class="title">
       <h3>
@@ -103,15 +124,23 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{date('d/m/Y',strtotime($inicio))}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total dia</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_diarias','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total dia</a></span>
           </div>
           @endif
 
-          @if($title == 'semanal' || $title == 'ult_15_dias')
+          @if($title == 'semanal' )
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{date('d/m/Y',strtotime($inicio))}} -{{date('d/m/Y',strtotime($final))}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total {{$title}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_semanal','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total {{$title}}</a></span>
+          </div>
+          @endif
+
+          @if($title == 'ult_15_dias')
+          <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
+            <span class="count_top"><i class="fa fa-clock-o"></i> {{date('d/m/Y',strtotime($inicio))}} -{{date('d/m/Y',strtotime($final))}}</span>
+            <div class="count blue" align="center">{{$total}}</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_ult_15_dias','f_ini'=>$inicio,'f_fin'=>$final,'mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total {{$title}}</a></span>
           </div>
           @endif
 
@@ -119,7 +148,7 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$desc_mes}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total {{$desc_mes}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes','f_ini'=>'0','f_fin'=>'0','mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total {{$desc_mes}}</a></span>
           </div>
           @endif
 
@@ -127,7 +156,7 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$regional}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total {{$año_actual}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total {{$año_actual}}</a></span>
           </div>
           @endif
 
@@ -135,15 +164,23 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$regional}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"> {{$sucursal}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_sucursal','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=>$sucursal,'modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}"> {{$sucursal}}</a></span>
           </div>
           @endif
 
-          @if( $title == 'mes_regional' || $title == 'regional_mes' )
+          @if( $title == 'mes_regional' )
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$regional}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$desc_mes}} {{$año_actual}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_regional','f_ini'=>'0','f_fin'=>'0','mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$desc_mes}} {{$año_actual}}</a></span>
+          </div>
+          @endif
+
+          @if( $title == 'regional_mes' )
+          <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
+            <span class="count_top"><i class="fa fa-clock-o"></i> {{$regional}}</span>
+            <div class="count blue" align="center">{{$total}}</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_mes','f_ini'=>'0','f_fin'=>'0','mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$desc_mes}} {{$año_actual}}</a></span>
           </div>
           @endif
 
@@ -151,15 +188,23 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$marca}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$marca}} {{$año_actual}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$marca}} {{$año_actual}}</a></span>
           </div>
           @endif
 
-          @if( $title == 'mes_marca' || $title == 'marca_mes' )
+          @if( $title == 'mes_marca'  )
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$marca}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$desc_mes}} {{$año_actual}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes_marca','f_ini'=>'0','f_fin'=>'0','mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$desc_mes}} {{$año_actual}}</a></span>
+          </div>
+          @endif
+
+          @if( $title == 'marca_mes' )
+          <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
+            <span class="count_top"><i class="fa fa-clock-o"></i> {{$marca}}</span>
+            <div class="count blue" align="center">{{$total}}</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_mes','f_ini'=>'0','f_fin'=>'0','mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$desc_mes}} {{$año_actual}}</a></span>
           </div>
           @endif
 
@@ -167,15 +212,23 @@
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$marca}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$modelo}} {{$año_actual}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_modelo','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>$modelo,'master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$modelo}} {{$año_actual}}</a></span>
           </div>
           @endif
 
-          @if($title == 'regional_marca' || $title == 'marca_regional' )
+          @if($title == 'regional_marca'  )
           <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$marca}}</span>
             <div class="count blue" align="center">{{$total}}</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'0','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$marca}} {{$año_actual}}</a></span>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_regional_marca','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$marca}} {{$año_actual}}</a></span>
+          </div>
+          @endif
+
+          @if($title == 'marca_regional' )
+          <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
+            <span class="count_top"><i class="fa fa-clock-o"></i> {{$marca}}</span>
+            <div class="count blue" align="center">{{$total}}</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_regional','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">{{$marca}} {{$año_actual}}</a></span>
           </div>
           @endif
 
@@ -331,7 +384,8 @@
           <thead>
             <tr>
               <th>REGIONAL</th>
-              <th style="text-align: right;">COTIZACIONES</th>
+              <th style="text-align: right;">COT</th>
+              <th style="text-align: right;">FACT</th>
             </tr>
           </thead>
 
@@ -372,6 +426,7 @@
             >      
             <td> @if( is_null($reg-> REGIONAL)) Sin Dato @else {{ $reg-> REGIONAL }} @endif</td>
             <td align="right"><span class="badge badge-success">{{ $reg-> COTIZACIONES }}</span></td>
+            <td align="right"><span class="badge ">{{ $reg-> FACTURADOS }}</span></td>
           </tr>
           @endforeach
         </tbody>
@@ -563,8 +618,8 @@
   <div class="x_panel">
 
     <h2><span class="desc_corta">VEND.</span><span class="desc_larga">VENDEDORES</span><small class="desc">TOP-10</small>
-      <a href="#" class="ver_todo pull-right"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver todos "><i class="fa fa-plus-square"></i></a>
-      <a href="#" class="ver_top pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver Top 10"><i class="fa fa-minus-square"></i></a>
+      <a href="javascript:;" class="ver_todo pull-right"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver todos "><i class="fa fa-plus-square"></i></a>
+      <a href="javascript:;" class="ver_top pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver Top 10"><i class="fa fa-minus-square"></i></a>
     </h2>
   </div>
   <div class="table-responsive">

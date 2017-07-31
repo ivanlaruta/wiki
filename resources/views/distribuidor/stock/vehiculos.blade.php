@@ -18,7 +18,7 @@
       <div class="table">
         <table class="table table-striped jambo_table bulk_action" id="datatable1">
           <thead>
-            <tr>
+            <tr> 
               
               <th></th>
               <th>MARCA</th>
