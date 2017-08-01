@@ -615,7 +615,6 @@ class VentasController extends Controller
          ->with('desc_mes',$desc_mes)
          ;
 
-         
     }
 
   
@@ -643,7 +642,6 @@ class VentasController extends Controller
         if ($mes == 11) { $desc_mes='NOVIEMBRE'; }
         if ($mes == 12) { $desc_mes='DICIEMBRE'; }
 
-       
 
         $detalle=Venta::select(DB::raw('ROW_NUMBER() OVER(ORDER BY FECHA_FACTURA DESC) AS ITEM'),'*')
           ->whereBetween('FECHA_FACTURA',[$inicio,$final])

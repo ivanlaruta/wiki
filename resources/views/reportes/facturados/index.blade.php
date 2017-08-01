@@ -5,9 +5,9 @@
 <div class="right_col" role="main">
 
   <div class="page-title">
-    <div class="title">
+    <div class="col-md-11">
       <h3>
-        <a href="{{ route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}">FACTURADOS (VENTAS) {{$año_actual}} </a>  
+        <a href="{{ route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}">FACTURADOS {{$año_actual}} </a>  
 
         @if( $title == 'mes_regional' || $title == 'mes' || $title == 'diarias' || $title == 'mes_marca')
         <a href="{{ route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'mes','mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / {{$desc_mes}} </a>  
@@ -64,7 +64,11 @@
 
         </h3>
       </div>
-      <div class="title_right"></div>
+      <div class=" col-md-1 pull-right" >
+         <a href="{{route('facturados.busqueda')}}" class="btn btn-success btn-sm btn-round" >
+          <span class="fa fa-search-plus" ></span> <small> BUSCAR</small>
+        </a>
+      </div>
     </div>
 
     <div class="col-md-12">
@@ -97,6 +101,31 @@
             <div class="count blue" align="center">{{$total}}</div>
             <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}">Desde el {{$inicio_año->format('d/m/Y')}}</a></span>
           </div>
+
+          <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
+            <span class="count_top "><i class="fa fa-money green"></i> Facturado (Bs.) </span>
+            <div class="count green" align="center">{{$abrv_facturado}}</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="#"  data-toggle="modal" data-target="#myModal">Desde el {{$inicio_año->format('d/m/Y')}} </a></span>
+          </div>
+          
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Total Facturado</h4>
+                </div>
+                <div class="modal-body">
+                  <h2>Bs {{number_format($facturado,2, '.', ',')}}</h2>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
           @endif
 
           @if($title == 'diarias')
@@ -128,6 +157,45 @@
             <span class="count_top"><i class="fa fa-clock-o"></i> {{$desc_mes}}</span>
             <div class="count blue" align="center">{{$total}}</div>
             <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('facturados.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_mes','f_ini'=>'0','f_fin'=>'0','mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0','master'=>'0','chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}">Total {{$desc_mes}}</a></span>
+          </div>
+          <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
+            <span class="count_top "><i class="fa fa-money "></i> Mes anterior </span>
+            <div class="count" align="center">{{$total_mes_anterior}}</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="#" >  </a></span>
+          </div>
+          <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
+            <span class="count_top"> Dif. mes anterior</span>
+            <div 
+              @if($dif_mes_anterior<0) class="count red" 
+              @else class="count green"
+              @endif
+              align="center">@if($dif_mes_anterior>0) +@endif{{$dif_mes_anterior}}</div>
+             <span class="count_bottom">
+             @if($dif_mes_anterior<0)<i class="red"><i class="fa fa-sort-desc"></i>Menos ventas </i> 
+             @else <i class="green"><i class="fa fa-sort-asc"></i>Mas ventas </i> @endif
+            <a href="#"></a></span>
+          </div>
+          <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
+            <span class="count_top "><i class="fa fa-money green"></i> Facturado (Bs.) </span>
+            <div class="count green" align="center">{{$abrv_facturado}}</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="#"  data-toggle="modal" data-target="#myModal"> {{$desc_mes}} </a></span>
+          </div>
+          
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Total Facturado</h4>
+                </div>
+                <div class="modal-body">
+                  <h2>Bs {{number_format($facturado,2, '.', ',')}}</h2>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
           </div>
           @endif
 
@@ -211,12 +279,7 @@
           </div>
           @endif
 
-          <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
-          <span class="count_top"><i class="fa fa-eye"></i> Buscador </span>
-            <div class="count green" align="center"><a href="{{route('facturados.busqueda')}}"><i class="fa fa-search-plus "></i></a></div>
-            <span class="count_bottom">  Busqueda Avanzada </span>
-          </div>
-
+          
         </div>
       </div>
     </div>

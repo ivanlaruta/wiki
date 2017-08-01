@@ -9,7 +9,7 @@
       <div class="title">
         <h3>
 
-          <a href="{{ route('facturados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}">FACTURADOS (VENTAS) {{date ("Y")}} </a>  / BUSQUEDA AVANZADA
+          <a href="{{ route('facturados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}">FACTURADOS {{date ("Y")}} </a>  / BUSQUEDA AVANZADA
 
         </h3>
       </div>

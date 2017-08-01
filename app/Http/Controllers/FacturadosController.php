@@ -57,6 +57,23 @@ class FacturadosController extends Controller
         if ($mes == 11) { $desc_mes='NOVIEMBRE'; }
         if ($mes == 12) { $desc_mes='DICIEMBRE'; }
 
+        $fact = DB::select(" select SUM (c.BOLIVIANOS) AS TOTAL FROM (select PRECIO_VENTA * CONVERSION AS BOLIVIANOS from v_facturados where FECHA_FACTURA >'".$inicio_año."' ) as c  ");
+
+        $facturado = $fact[0]->TOTAL;
+
+        if($facturado <1000 ){
+            $abrv_facturado = $facturado;
+        }
+
+        if($facturado >= 1000 && $facturado <1000000){
+            $f = $facturado/1000 ;
+            $abrv_facturado = strval(round($f,1)).' K';
+        }
+
+        if($facturado >= 1000000){
+            $f = $facturado/1000000 ;
+            $abrv_facturado = strval(round($f,1)).' M';
+        }
        
         if($title == 'index')
         {
@@ -128,6 +145,9 @@ class FacturadosController extends Controller
             ->with('por_marca',$por_marca)
 
             ->with('title',$title)
+
+            ->with('facturado',$facturado)
+            ->with('abrv_facturado',$abrv_facturado)
             ;
 
         }
@@ -197,7 +217,34 @@ class FacturadosController extends Controller
             $inicio = Carbon::parse($fecha)->toDateString();
             $aux = Carbon::parse($fecha);
             $final = $aux->endOfMonth()->toDateString();
+//
+            $inicio_mes_anterior = Carbon::parse($fecha)->subMonth()->toDateString();
+            $aux_ant = Carbon::parse($fecha)->subMonth();
+            $fin_mes_anterior = $aux_ant->endOfMonth()->toDateString();
 
+            $total =Factura::whereBetween('FECHA_FACTURA',[$inicio,$final])->count();
+            $total_mes_anterior =Factura::whereBetween('FECHA_FACTURA',[$inicio_mes_anterior,$fin_mes_anterior])->count();
+
+            $dif_mes_anterior = $total - $total_mes_anterior ;
+
+            $fact = DB::select(" select SUM (c.BOLIVIANOS) AS TOTAL FROM (select PRECIO_VENTA * CONVERSION AS BOLIVIANOS from v_facturados where FECHA_FACTURA BETWEEN '".$inicio."' AND '".$final."') as c  ");
+
+            $facturado = $fact[0]->TOTAL;
+
+            if($facturado <1000 ){
+                $abrv_facturado = $facturado;
+            }
+
+            if($facturado >= 1000 && $facturado <1000000){
+                $f = $facturado/1000 ;
+                $abrv_facturado = strval(round($f,1)).' K';
+            }
+
+            if($facturado >= 1000000){
+                $f = $facturado/1000000 ;
+                $abrv_facturado = strval(round($f,1)).' M';
+            }
+//
             $total =Factura::whereBetween('FECHA_FACTURA',[$inicio,$final])
             ->count();
 
@@ -245,6 +292,15 @@ class FacturadosController extends Controller
 
             ->with('desc_mes',$desc_mes)
             ->with('mes',$mes)
+
+            ->with('total_mes_anterior',$total_mes_anterior)
+
+            
+            ->with('dif_mes_anterior',$dif_mes_anterior)
+            
+            
+            ->with('abrv_facturado',$abrv_facturado)
+            ->with('facturado',$facturado)
             ;
 
         }

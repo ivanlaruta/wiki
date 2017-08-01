@@ -5,28 +5,28 @@
 <div class="right_col" role="main">
 
 <style type="text/css">
-  .badge-danger {
-  background-color: #d43f3a;
-}
-.badge-warning {
-background-color: #d58512;
-}
+    .badge-danger {
+    background-color: #d43f3a;
+  }
+  .badge-warning {
+  background-color: #d58512;
+  }
 
-.badge-success {
-background-color: #0ab087;
-}
+  .badge-success {
+  background-color: #0ab087;
+  }
 
-.badge-info {
-background-color: #269abc;
-}
+  .badge-info {
+  background-color: #269abc;
+  }
 
-.badge-inverse {
-background-color: #333333;
-}
+  .badge-inverse {
+  background-color: #333333;
+  }
 </style>
 
   <div class="page-title">
-    <div class="title">
+    <div class="col-md-11">
       <h3>
         <a href="{{ route('cotizaciones.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}">COTIZACIONES {{$año_actual}} </a>  
 
@@ -81,12 +81,17 @@ background-color: #333333;
           @endif 
           @if( $title == 'marca_modelo' ) 
           / {{$modelo}}  
-          @endif 
-
+          @endif
         </h3>
       </div>
-      <div class="title_right"></div>
+       <div class=" col-md-1 pull-right" >
+         <a href="{{route('cotizaciones.busqueda')}}" class="btn btn-success btn-sm btn-round">
+          <span class="fa fa-search-plus" ></span> <small> BUSCAR</small>
+        </a>
+      </div>
     </div>
+
+    
 
     <div class="col-md-12">
       <div class="row">
@@ -118,6 +123,7 @@ background-color: #333333;
             <div class="count blue" align="center">{{$total}}</div>
             <span class="count_bottom"><i class="green"><i class="fa fa-calendar"></i> </i> <a href="{{ route('cotizaciones.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}">Desde el {{$inicio_año->format('d/m/Y')}}</a></span>
           </div>
+
           @endif
 
           @if($title == 'diarias')
@@ -232,11 +238,6 @@ background-color: #333333;
           </div>
           @endif
 
-          <div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count animated flipInY">
-          <span class="count_top"><i class="fa fa-eye"></i> Buscador </span>
-            <div class="count green" align="center"><a href="{{route('cotizaciones.busqueda')}}"><i class="fa fa-search-plus "></i></a></div>
-            <span class="count_bottom">  Busqueda Avanzada </span>
-          </div>
 
         </div>
       </div>
@@ -632,7 +633,7 @@ background-color: #333333;
     </h2>
   </div>
   <div class="table-responsive">
-    <table class="table table-striped jambo_table bulk_action">
+    <table class="table table-striped jambo_table bulk_action companyBoxList">
       <thead>
         <tr>
           <th>VENDEDOR</th>
