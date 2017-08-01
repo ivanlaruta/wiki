@@ -1,7 +1,7 @@
         <div class="col-md-3 left_col menu_fixed ">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-            <a class="site_title" href="{{ url('/home') }}">
+            <a class="site_title"{{--  href="{{ url('/home') }}" --}}>
                 &nbsp<i class=" fa fa-home  "></i>
                 <span> TOYOSA </span>
             </a>                            
@@ -42,9 +42,9 @@
                     <ul class="nav child_menu">
                       <li><a  href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Cotizaciones</a></li> 
                       {{-- <li><a  href="#">Reservas</a></li> --}}
-                      <li><a  href="{{ route('ventas.index')}}"> Facturados (ventas)</a></li>
+                      {{-- <li><a  href="{{ route('ventas.index')}}"> Facturados (ventas)</a></li> --}}
 
-                      <li><a  href="{{ route('facturados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Fac. pruebas pruebas</a></li> 
+                      <li><a  href="{{ route('facturados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Facturados (ventas)</a></li> 
                     </ul>
                   </li>
 

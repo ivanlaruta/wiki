@@ -77,10 +77,9 @@ class CotizacionesController extends Controller
 
             $hoy_aux = Carbon::now('America/La_Paz')->format('d/m/Y');// la base exige este formato.. SQL SERVER :(
 
-            $nom_dia =Cotizacion::select( DB::raw(" [dbo].[fn_obtiene_dia]('".$hoy_aux."') NOM_DIA"))
-            ->first();
-
-            $v_aux=$nom_dia->NOM_DIA;
+            $nom_dia =DB::select( DB::raw("select dbo.fn_obtiene_dia('".$hoy_aux."') AS NOM_DIA"));
+                      
+            $v_aux=$nom_dia[0]->NOM_DIA;
 
             $por_reg =Cotizacion::select('REGIONAL',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.REGIONAL = v_cotizaciones.REGIONAL) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
@@ -88,19 +87,19 @@ class CotizacionesController extends Controller
             ->orderBy('COTIZACIONES', 'desc')
             ->get();   
 
-            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES"))
+            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES, (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND month(d.FECHA_COTIZACION) = month(v_cotizaciones.FECHA_COTIZACION)) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->groupBy(DB::raw('month(FECHA_COTIZACION)'))
             ->orderBy(DB::raw('month(FECHA_COTIZACION)'))
             ->get();
 
-            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw("COUNT(*) AS COTIZACIONES, (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.VENDEDOR = v_cotizaciones.VENDEDOR) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
             ->get();
 
-            $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_marca =Cotizacion::select('MARCA',DB::raw("COUNT(*) AS COTIZACIONES, (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.MARCA = v_cotizaciones.MARCA) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->groupBy('MARCA')
             ->orderBy('COTIZACIONES', 'desc')
@@ -144,25 +143,25 @@ class CotizacionesController extends Controller
             $total =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->count();
 
-            $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION = v_cotizaciones.FECHA_COTIZACION ) as FACTURADOS"))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('NOM_DIA','FECHA_COTIZACION')
             ->orderBy('FECHA_COTIZACION')
             ->get();
 
-            $por_reg =Cotizacion::select('REGIONAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_reg =Cotizacion::select('REGIONAL',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION Between '".$inicio."' and '".$final."' AND d.REGIONAL = v_cotizaciones.REGIONAL ) as FACTURADOS"))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('REGIONAL')
             ->orderBy('COTIZACIONES', 'desc')
             ->get();   
 
-            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw("COUNT(*) AS COTIZACIONES, (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION Between '".$inicio."' and '".$final."' AND d.VENDEDOR = v_cotizaciones.VENDEDOR ) as FACTURADOS "))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
             ->get();
 
-            $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_marca =Cotizacion::select('MARCA',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION Between '".$inicio."' and '".$final."' AND d.MARCA = v_cotizaciones.MARCA ) as FACTURADOS"))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('MARCA')
             ->orderBy('COTIZACIONES', 'desc')
@@ -202,25 +201,25 @@ class CotizacionesController extends Controller
             $total =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->count();
 
-            $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION = v_cotizaciones.FECHA_COTIZACION) as FACTURADOS"))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('NOM_DIA','FECHA_COTIZACION')
             ->orderBy('FECHA_COTIZACION')
             ->get();
 
-            $por_reg =Cotizacion::select('REGIONAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_reg =Cotizacion::select('REGIONAL',DB::raw("COUNT(*) AS COTIZACIONES  , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION Between '".$inicio."' and '".$final."' AND d.REGIONAL = v_cotizaciones.REGIONAL ) as FACTURADOS"))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('REGIONAL')
             ->orderBy('COTIZACIONES', 'desc')
             ->get();   
 
-            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw("COUNT(*) AS COTIZACIONES  , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION Between '".$inicio."' and '".$final."' AND d.VENDEDOR = v_cotizaciones.VENDEDOR ) as FACTURADOS"))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
             ->get();
 
-            $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_marca =Cotizacion::select('MARCA',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION Between '".$inicio."' and '".$final."' AND d.MARCA = v_cotizaciones.MARCA ) as FACTURADOS"))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('MARCA')
             ->orderBy('COTIZACIONES', 'desc')
@@ -256,28 +255,28 @@ class CotizacionesController extends Controller
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->count();
 
-            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES"))
+            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND month(d.FECHA_COTIZACION) =month(v_cotizaciones.FECHA_COTIZACION) AND d.REGIONAL ='".$regional."' ) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('REGIONAL',$regional)
             ->groupBy(DB::raw('month(FECHA_COTIZACION)'))
             ->orderBy(DB::raw('month(FECHA_COTIZACION)'))
             ->get();
 
-            $por_suc =Cotizacion::select('SUCURSAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_suc =Cotizacion::select('SUCURSAL',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.REGIONAL ='".$regional."' AND d.SUCURSAL = v_cotizaciones.SUCURSAL) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('REGIONAL',$regional)
             ->groupBy('SUCURSAL')
             ->orderBy('COTIZACIONES', 'desc')
             ->get();   
 
-            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.REGIONAL ='".$regional."' AND d.VENDEDOR = v_cotizaciones.VENDEDOR) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('REGIONAL',$regional)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
             ->get();
 
-            $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_marca =Cotizacion::select('MARCA',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.REGIONAL ='".$regional."' AND d.MARCA = v_cotizaciones.MARCA) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('REGIONAL',$regional)
             ->groupBy('MARCA')
@@ -309,7 +308,7 @@ class CotizacionesController extends Controller
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->count();
 
-            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES"))
+            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES, (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND month(d.FECHA_COTIZACION) = month(v_cotizaciones.FECHA_COTIZACION) AND d.REGIONAL ='".$regional."' AND d.SUCURSAL ='".$sucursal."' ) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('REGIONAL',$regional)
             ->where ('SUCURSAL',$sucursal)
@@ -317,7 +316,7 @@ class CotizacionesController extends Controller
             ->orderBy(DB::raw('month(FECHA_COTIZACION)'))
             ->get();
 
-            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.REGIONAL ='".$regional."' AND d.REGIONAL ='".$regional."' AND d.SUCURSAL ='".$sucursal."'  AND d.VENDEDOR = v_cotizaciones.VENDEDOR) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('REGIONAL',$regional)
             ->where ('SUCURSAL',$sucursal)
@@ -325,7 +324,7 @@ class CotizacionesController extends Controller
             ->orderBy('COTIZACIONES', 'desc')
             ->get();
 
-            $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_marca =Cotizacion::select('MARCA',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.REGIONAL ='".$regional."'  AND d.REGIONAL ='".$regional."' AND d.SUCURSAL ='".$sucursal."' AND d.MARCA = v_cotizaciones.MARCA) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('REGIONAL',$regional)
             ->where ('SUCURSAL',$sucursal)
@@ -358,7 +357,7 @@ class CotizacionesController extends Controller
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->count();
 
-            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES"))
+           $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES, (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND month(d.FECHA_COTIZACION) = month(v_cotizaciones.FECHA_COTIZACION) AND d.REGIONAL ='".$regional."' AND d.MARCA ='".$marca."' ) as FACTURADOS"))
             ->where ('REGIONAL',$regional)
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('MARCA',$marca)
@@ -366,7 +365,7 @@ class CotizacionesController extends Controller
             ->orderBy(DB::raw('month(FECHA_COTIZACION)'))
             ->get();
 
-            $por_suc =Cotizacion::select('SUCURSAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_suc =Cotizacion::select('SUCURSAL',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.REGIONAL ='".$regional."' AND d.MARCA ='".$marca."' AND d.SUCURSAL = v_cotizaciones.SUCURSAL) as FACTURADOS "))
             ->where ('REGIONAL',$regional)
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('MARCA',$marca)
@@ -375,7 +374,7 @@ class CotizacionesController extends Controller
             ->orderBy('COTIZACIONES', 'desc')
             ->get(); 
 
-            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.REGIONAL ='".$regional."' AND d.MARCA ='".$marca."' AND d.VENDEDOR = v_cotizaciones.VENDEDOR) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('REGIONAL',$regional)
             ->where ('MARCA',$marca)
@@ -383,7 +382,7 @@ class CotizacionesController extends Controller
             ->orderBy('COTIZACIONES', 'desc')
             ->get();
 
-            $por_modelo =Cotizacion::select('MODELO',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_modelo =Cotizacion::select('MODELO',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.REGIONAL ='".$regional."' AND d.MARCA ='".$marca."' AND d.MODELO = v_cotizaciones.MODELO) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('REGIONAL',$regional)
             ->where ('MARCA',$marca)
@@ -419,28 +418,28 @@ class CotizacionesController extends Controller
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->count();
 
-            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES"))
+            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND month(d.FECHA_COTIZACION) =month(v_cotizaciones.FECHA_COTIZACION) AND d.MARCA ='".$marca."' ) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('MARCA',$marca)
             ->groupBy(DB::raw('month(FECHA_COTIZACION)'))
             ->orderBy(DB::raw('month(FECHA_COTIZACION)'))
             ->get();
 
-            $por_reg =Cotizacion::select('REGIONAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_reg =Cotizacion::select('REGIONAL',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.MARCA ='".$marca."' AND d.REGIONAL = v_cotizaciones.REGIONAL) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('MARCA',$marca)
             ->groupBy('REGIONAL')
             ->orderBy('COTIZACIONES', 'desc')
             ->get(); 
 
-            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.MARCA ='".$marca."' AND d.VENDEDOR = v_cotizaciones.VENDEDOR) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('MARCA',$marca)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
             ->get();
 
-            $por_modelo =Cotizacion::select('MODELO',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_modelo =Cotizacion::select('MODELO',DB::raw("COUNT(*) AS COTIZACIONES, (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.MARCA ='".$marca."' AND d.MODELO = v_cotizaciones.MODELO) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('MARCA',$marca)
             ->groupBy('MODELO')
@@ -476,7 +475,7 @@ class CotizacionesController extends Controller
             ->where ('MODELO',$modelo)
             ->count();
 
-            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES"))
+            $por_mes = Cotizacion::select( DB::raw("month(FECHA_COTIZACION) as MES , COUNT (*) as COTIZACIONES , COUNT (*) as COTIZACIONES, (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.MARCA ='".$marca."' AND d.MODELO ='".$modelo."') as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('MARCA',$marca)
             ->where ('MODELO',$modelo)
@@ -484,7 +483,7 @@ class CotizacionesController extends Controller
             ->orderBy(DB::raw('month(FECHA_COTIZACION)'))
             ->get();
 
-            $por_reg =Cotizacion::select('REGIONAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_reg =Cotizacion::select('REGIONAL',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.MARCA ='".$marca."' AND d.MODELO ='".$modelo."'  AND d.REGIONAL = v_cotizaciones.REGIONAL) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('MARCA',$marca)
             ->where ('MODELO',$modelo)
@@ -492,7 +491,7 @@ class CotizacionesController extends Controller
             ->orderBy('COTIZACIONES', 'desc')
             ->get(); 
 
-            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw("COUNT(*) AS COTIZACIONES, (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.MARCA ='".$marca."' AND d.MODELO ='".$modelo."'  AND d.VENDEDOR = v_cotizaciones.VENDEDOR) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('MARCA',$marca)
             ->where ('MODELO',$modelo)
@@ -500,7 +499,7 @@ class CotizacionesController extends Controller
             ->orderBy('COTIZACIONES', 'desc')
             ->get();
 
-            $por_master =Cotizacion::select('MASTER',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_master =Cotizacion::select('MASTER',DB::raw("COUNT(*) AS COTIZACIONES, (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION > '".$inicio_año."' AND d.MARCA ='".$marca."' AND d.MODELO ='".$modelo."'  AND d.MASTER = v_cotizaciones.MASTER) as FACTURADOS"))
             ->where('FECHA_COTIZACION','>',$inicio_año)
             ->where ('MARCA',$marca)
             ->where ('MODELO',$modelo)
@@ -541,28 +540,30 @@ class CotizacionesController extends Controller
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->count();
 
-            $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION = v_cotizaciones.FECHA_COTIZACION and d.MARCA = '".$marca."') as FACTURADOS"))
             ->where ('MARCA',$marca)
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('NOM_DIA','FECHA_COTIZACION')
             ->orderBy('FECHA_COTIZACION')
             ->get();
 
-            $por_reg =Cotizacion::select('REGIONAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+ 
+            $por_reg =Cotizacion::select('REGIONAL',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION Between '".$inicio."' and '".$final."' AND d.REGIONAL = v_cotizaciones.REGIONAL and d.MARCA = '".$marca."') as FACTURADOS"))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->where ('MARCA',$marca)
             ->groupBy('REGIONAL')
             ->orderBy('COTIZACIONES', 'desc')
             ->get(); 
 
-            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw("COUNT(*) AS COTIZACIONES  , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION Between '".$inicio."' and '".$final."' AND d.VENDEDOR = v_cotizaciones.VENDEDOR and d.MARCA = '".$marca."') as FACTURADOS"))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->where ('MARCA',$marca)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
             ->get();
 
-            $por_modelo =Cotizacion::select('MODELO',DB::raw('COUNT(*) AS COTIZACIONES'))
+
+            $por_modelo =Cotizacion::select('MODELO',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION Between '".$inicio."' and '".$final."' AND d.MODELO = v_cotizaciones.MODELO and d.MARCA = '".$marca."') as FACTURADOS"))
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->where ('MARCA',$marca)
             ->groupBy('MODELO')
@@ -604,28 +605,28 @@ class CotizacionesController extends Controller
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->count();
 
-            $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_dia =Cotizacion::select('NOM_DIA','FECHA_COTIZACION',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION = v_cotizaciones.FECHA_COTIZACION and d.REGIONAL = '".$regional."') as FACTURADOS"))
             ->where ('REGIONAL',$regional)
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('NOM_DIA','FECHA_COTIZACION')
             ->orderBy('FECHA_COTIZACION')
             ->get();
 
-            $por_suc =Cotizacion::select('SUCURSAL',DB::raw('COUNT(*) AS COTIZACIONES'))
+            $por_suc =Cotizacion::select('SUCURSAL',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION Between '".$inicio."' and '".$final."' AND d.SUCURSAL = v_cotizaciones.SUCURSAL and d.REGIONAL = '".$regional."') as FACTURADOS"))
             ->where ('REGIONAL',$regional)
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('SUCURSAL')
             ->orderBy('COTIZACIONES', 'desc')
             ->get();   
 
-            $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS COTIZACIONES'))
+           $por_vendedor =Cotizacion::select('REG_ABRE','VENDEDOR',DB::raw("COUNT(*) AS COTIZACIONES  , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION Between '".$inicio."' and '".$final."' AND d.VENDEDOR = v_cotizaciones.VENDEDOR and d.REGIONAL = '".$regional."') as FACTURADOS"))
             ->where ('REGIONAL',$regional)
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('COTIZACIONES', 'desc')
             ->get();
 
-            $por_marca =Cotizacion::select('MARCA',DB::raw('COUNT(*) AS COTIZACIONES'))
+           $por_marca =Cotizacion::select('MARCA',DB::raw("COUNT(*) AS COTIZACIONES , (select count(d.CHASIS) from v_cotizaciones d where d.FACTURADO ='SI' AND d.FECHA_COTIZACION Between '".$inicio."' and '".$final."' AND d.MARCA = v_cotizaciones.MARCA and d.REGIONAL = '".$regional."') as FACTURADOS"))
             ->where ('REGIONAL',$regional)
             ->whereBetween('FECHA_COTIZACION',[$inicio,$final])
             ->groupBy('MARCA')

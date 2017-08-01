@@ -77,10 +77,9 @@ class FacturadosController extends Controller
 
             $hoy_aux = Carbon::now('America/La_Paz')->format('d/m/Y');// la base exige este formato.. SQL SERVER :(
 
-            $nom_dia =Factura::select( DB::raw(" [dbo].[fn_obtiene_dia]('".$hoy_aux."') NOM_DIA"))
-            ->first();
-
-            $v_aux=$nom_dia->NOM_DIA;
+            $nom_dia =DB::select( DB::raw("select dbo.fn_obtiene_dia('".$hoy_aux."') AS NOM_DIA"));
+                      
+            $v_aux=$nom_dia[0]->NOM_DIA;
 
             $por_reg =Factura::select('REGIONAL',DB::raw('COUNT(*) AS FACTURADOS'))
             ->where('FECHA_FACTURA','>',$inicio_año)
