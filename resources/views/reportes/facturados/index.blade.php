@@ -303,7 +303,7 @@
               <thead>
                 <tr>
                   <th>MES</th>
-                  <th style="text-align: right;">FACTURADOS</th>
+                  <th style="text-align: center;"><small>FACTURADOS</small></th>
                 </tr>
               </thead>
               <tbody>
@@ -346,7 +346,7 @@
                   @if ($mes-> MES == 11) NOVIEMBRE @endif
                   @if ($mes-> MES == 12) DICIEMBRE @endif
                 </td>
-                <td align="right"><span class="badge badge-success">{{ $mes-> FACTURADOS }}</span></td>
+                <td align="center"><span class="badge badge-success">{{ $mes-> FACTURADOS }}</span></td>
               </tr>
               @endforeach
             </tbody>
@@ -366,7 +366,7 @@
             <thead>
               <tr>
                 <th>DIA</th>
-                <th style="text-align: right;">FACTURADOS</th>
+                <th style="text-align: center;"><small>FACTURADOS</small></th>
               </tr>
             </thead>
             <tbody>
@@ -405,7 +405,7 @@
               <td>  <span class="label label-default">{{date('d',strtotime($dia-> FECHA_FACTURA))}}</span> {{$dia->NOM_DIA}} 
 
               </td>
-              <td align="right"><span class="badge badge-success">{{ $dia-> FACTURADOS }}</span></td>
+              <td align="center"><span class="badge badge-success">{{ $dia-> FACTURADOS }}</span></td>
 
             </tr>
             @endforeach
@@ -426,7 +426,7 @@
           <thead>
             <tr>
               <th>REGIONAL</th>
-              <th style="text-align: right;">FACTURADOS</th>
+              <th style="text-align: center;"><small>FACTURADOS</small></th>
             </tr>
           </thead>
 
@@ -466,7 +466,7 @@
 
             >      
             <td> @if( is_null($reg-> REGIONAL)) Sin Dato @else {{ $reg-> REGIONAL }} @endif</td>
-            <td align="right"><span class="badge badge-success">{{ $reg-> FACTURADOS }}</span></td>
+            <td align="center"><span class="badge badge-success">{{ $reg-> FACTURADOS }}</span></td>
           </tr>
           @endforeach
         </tbody>
@@ -487,7 +487,7 @@
         <thead>
           <tr>
             <th>SUCURSAL</th>
-            <th style="text-align: right;">FACTURADOS</th>
+            <th style="text-align: center;"><small>FACTURADOS</small></th>
           </tr>
         </thead>
 
@@ -517,7 +517,7 @@
 
           >                
           <td> {{ $suc-> SUCURSAL }}</td>
-          <td align="right"><span class="badge badge-success">{{ $suc-> FACTURADOS }}</span></td>
+          <td align="center"><span class="badge badge-success">{{ $suc-> FACTURADOS }}</span></td>
         </tr>
         @endforeach
       </tbody>
@@ -537,7 +537,7 @@
       <thead>
         <tr>
           <th>MARCA</th>
-          <th style="text-align: right;">FACTURADOS</th>
+          <th style="text-align: center;"><small>FACTURADOS</small></th>
         </tr>
       </thead>
       <tbody>
@@ -573,7 +573,7 @@
 
         >                
         <td> {{ $mar-> MARCA }}</td>
-        <td align="right"><span class="badge badge-success">{{ $mar-> FACTURADOS }}</span></td>
+        <td align="center"><span class="badge badge-success">{{ $mar-> FACTURADOS }}</span></td>
       </tr>
       @endforeach
     </tbody>
@@ -592,7 +592,7 @@
       <thead>
         <tr>
           <th>MODELO</th>
-          <th style="text-align: right;">FACTURADOS</th>
+          <th style="text-align: center;"><small>FACTURADOS</small></th>
         </tr>
       </thead>
       <tbody>
@@ -615,7 +615,7 @@
 
         >                
         <td> {{ $mod-> MODELO }}</td>
-        <td align="right"><span class="badge badge-success">{{ $mod-> FACTURADOS }}</span></td>
+        <td align="center"><span class="badge badge-success">{{ $mod-> FACTURADOS }}</span></td>
       </tr>
       @endforeach
     </tbody>
@@ -634,7 +634,7 @@
       <thead>
         <tr>
           <th>MASTER</th>
-          <th style="text-align: right;">FACTURADOS</th>
+          <th style="text-align: center;"><small>FACTURADOS</small></th>
         </tr>
       </thead>
       <tbody>
@@ -642,7 +642,7 @@
         <tr class='v_link' data-href="{{ route('facturados.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_modelo_master','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>$modelo,'master'=> str_replace("/", "_", $mas-> MASTER),'chassis'=>'0','vendedor'=>'0','nro_factura'=>'0','cliente'=>'0'])}}" >     
 
           <td> {{ $mas-> MASTER }}</td>
-          <td align="right"><span class="badge badge-success">{{ $mas-> FACTURADOS }}</span></td>
+          <td align="center"><span class="badge badge-success">{{ $mas-> FACTURADOS }}</span></td>
         </tr>
         @endforeach
       </tbody>
@@ -667,7 +667,7 @@
       <thead>
         <tr>
           <th>VENDEDOR</th>
-          <th style="text-align: right;">FACTURADOS</th>
+          <th style="text-align: center;"><small>FACTURADOS</small></th>
         </tr>
       </thead>
       <tbody>
@@ -721,7 +721,7 @@
 
         >                
         <td> <span class="label label-default">{{$ven-> REG_ABRE }}</span> {{ strtoupper($ven-> VENDEDOR) }} </td>
-        <td align="right"><span class="badge badge-success">{{ $ven-> FACTURADOS }}</span></td>
+        <td align="center"><span class="badge badge-success">{{ $ven-> FACTURADOS }}</span></td>
       </tr>
       @endforeach
     </tbody>

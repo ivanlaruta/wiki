@@ -35,12 +35,9 @@
 
         <div class="right_col" role="main">
           <div class="">
-
-
+<a href="{{ route('principal.create')}}">Ver detalle </a>
           <br />
             
-
-
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="dashboard_graph">
@@ -101,7 +98,7 @@
                   </div>
                   <div class="x_content">
 
-                    <div id="mainbb" style="height:350px;"></div>
+                   {{--  <div id="mainbb" style="height:350px;"></div> --}}
 
                   </div>
                 </div>
@@ -219,10 +216,10 @@
 
 
                 <div class="col-md-9 col-sm-9 col-xs-12">
-                  <div id="chart_plot_01" class="demo-placeholder"></div>
+                  {{-- <div id="chart_plot_01" class="demo-placeholder"></div> --}}
                 </div>
 
-                <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
+                <div class="col-md-3 col-sm-3 col-xs-12 bg-white">{{-- 
                   <div class="x_title">
                     <h2>Reposiciones</h2>
                     <div class="clearfix"></div>
@@ -258,7 +255,7 @@
                     
                   </div>
 
-                </div>
+                 --}}</div>
 
                 <div class="clearfix"></div>
               </div>
@@ -271,6 +268,19 @@
 @endsection
 @section('scripts')
 <script type="text/javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+
 var theme = {
           color: [
             '#26B99A', '#34495E', '#BDC3C7', '#3498DB',
@@ -483,7 +493,10 @@ var theme = {
           }
         };
 
+var jArray= <?php echo json_encode($data); ?>;
 
+        // alert(jArray);
+   
  var myChart = echarts.init(document.getElementById('mainbb'), theme); 
         
         var option = {
@@ -495,7 +508,7 @@ var theme = {
         trigger: 'axis'
     },
     legend: {
-        data:['TOYOTA','LEXUS','YAMAHA']
+        data:(jArray)
     },
     toolbox: {
         show : true,
@@ -520,7 +533,7 @@ var theme = {
         }
     ],
    series: [{
-            name: 'TOYOTA',
+            name: jArray[0],
             type: 'bar',
             data: [0,1,6,5,7,0,8,1,9],
             markPoint: {
@@ -539,7 +552,7 @@ var theme = {
             }]
             }
           }, {
-            name: 'YAMAHA',
+            name: jArray[1],
             type: 'bar',
             data: [7,2,4,2,4,2,2,2,4],
             markPoint: {
@@ -558,7 +571,7 @@ var theme = {
             }]
             }
           }, {
-            name: 'LEXUS',
+            name: jArray[2],
             type: 'bar',
             data: [9,6,3,4,4,7,3,8,4],
             markPoint: {

@@ -257,7 +257,7 @@
                      <td>{{$det->modalidad}}</td>
 
                      <td>{{$det->FACTURADO}}</td>
-                     
+                     {{-- {{ $detalle->links() }} --}}
                                         
                     </tr>
                     @endforeach

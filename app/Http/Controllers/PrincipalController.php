@@ -30,9 +30,8 @@ class PrincipalController extends Controller
 
         $extraordinarios =Solicitud::where('tipo', '=', 'EXTRAORDINARIO')->count();
 
-       
-
-        //return response()->json([ 'borradores' => $borradores, 'espera' => $espera, 'aprobados' => $aprobados]);
+        $data = array("Yamaha","lexus","Toyota","hino");
+     
 
         return view('distribuidor.index')
          ->with('borradores',$borradores)
@@ -43,15 +42,32 @@ class PrincipalController extends Controller
          ->with('enviados',$enviados)
          ->with('regulares',$regulares)
          ->with('extraordinarios',$extraordinarios)
+         ->with('data',$data)
         ;
     }
 
-    public function rep_barras()
+    public function create()
     {
                
+       $borradores =Solicitud::where('estado', '=', '1')->count();
+       
+        $espera =Solicitud::where('estado', '=', '2')->count();
+       
+        $aprobados =Solicitud::where('estado', '>=', '3')->count();
 
-        //return response()->json([ 'borradores' => $borradores, 'espera' => $espera, 'aprobados' => $aprobados]);
+        $sin_enviar =Solicitud::where('estado', '=', '3')->count();
 
+        $envio_parcial =Solicitud::where('estado', '=', '4')->count();
+
+        $enviados =Solicitud::where('estado', '=', '5')->count();
+
+        $regulares =Solicitud::where('tipo', '=', 'REGULAR')->count();
+
+        $extraordinarios =Solicitud::where('tipo', '=', 'EXTRAORDINARIO')->count();
+
+        return response()->json(['name' => 'Abigail', 'state' => 'CA']);
+
+        // return response()->json([ 'borradores' => $borradores, 'espera' => $espera, 'aprobados' => $aprobados]);
     }
 
     /**
@@ -59,10 +75,7 @@ class PrincipalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+  
 
     /**
      * Store a newly created resource in storage.

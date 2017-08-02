@@ -262,7 +262,7 @@
               <thead>
                 <tr>
                   <th>MES</th>
-                  <th style="text-align: right;"><SMALL>COTIZADOS</SMALL></th>
+                  <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
                   <th "><SMALL>FACTURADOS</SMALL></th>
                 </tr>
               </thead>
@@ -306,8 +306,8 @@
                   @if ($mes-> MES == 11) NOVIEMBRE @endif
                   @if ($mes-> MES == 12) DICIEMBRE @endif
                 </td>
-                <td align="right"><span class="badge badge-success">{{ $mes-> COTIZACIONES }}</span></td>
-                <td ><span class="badge ">{{ $mes-> FACTURADOS }}</span></td>
+                <td align="center"><span class="badge badge-success">{{ $mes-> COTIZACIONES }}</span></td>
+                <td align="center"><span class="badge ">{{ $mes-> FACTURADOS }}</span></td>
               </tr>
               @endforeach
             </tbody>
@@ -327,7 +327,7 @@
             <thead>
               <tr>
                 <th>DIA</th>
-                <th style="text-align: right;"><SMALL>COTIZADOS</SMALL></th>
+                <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
           <th "><SMALL>FACTURADOS</SMALL></th>
               </tr>
             </thead>
@@ -365,8 +365,8 @@
               >
 
               <td>  <span class="label label-default">{{date('d',strtotime($dia-> FECHA_COTIZACION))}}</span> {{$dia->NOM_DIA}} </td>
-              <td align="right"><span class="badge badge-success">{{ $dia-> COTIZACIONES }}</span></td>
-              <td ><span class="badge  ">{{ $dia-> FACTURADOS }}</span></td>
+              <td align="center"><span class="badge badge-success">{{ $dia-> COTIZACIONES }}</span></td>
+              <td align="center"><span class="badge  ">{{ $dia-> FACTURADOS }}</span></td>
 
             </tr>
             @endforeach
@@ -387,7 +387,7 @@
           <thead>
             <tr>
               <th>REGIONAL</th>
-              <th style="text-align: right;"><SMALL>COTIZADOS</SMALL></th>
+              <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
               <th "><SMALL>FACTURADOS</SMALL></th>
             </tr>
           </thead>
@@ -428,8 +428,8 @@
 
             >      
             <td> @if( is_null($reg-> REGIONAL)) Sin Dato @else {{ $reg-> REGIONAL }} @endif</td>
-            <td align="right"><span class="badge badge-success">{{ $reg-> COTIZACIONES }}</span></td>
-            <td ><span class="badge ">{{ $reg-> FACTURADOS }}</span></td>
+            <td align="center"><span class="badge badge-success">{{ $reg-> COTIZACIONES }}</span></td>
+            <td align="center"><span class="badge ">{{ $reg-> FACTURADOS }}</span></td>
           </tr>
           @endforeach
         </tbody>
@@ -450,7 +450,7 @@
         <thead>
           <tr>
             <th>SUCURSAL</th>
-            <th style="text-align: right;"><SMALL>COTIZADOS</SMALL></th>
+            <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
           <th "><SMALL>FACTURADOS</SMALL></th>
           </tr>
         </thead>
@@ -481,8 +481,8 @@
 
           >                
           <td> {{ $suc-> SUCURSAL }}</td>
-          <td align="right"><span class="badge badge-success">{{ $suc-> COTIZACIONES }}</span></td>
-          <td ><span class="badge ">{{ $suc-> FACTURADOS }}</span></td>
+          <td align="center"><span class="badge badge-success">{{ $suc-> COTIZACIONES }}</span></td>
+          <td align="center"><span class="badge ">{{ $suc-> FACTURADOS }}</span></td>
         </tr>
         @endforeach
       </tbody>
@@ -502,7 +502,7 @@
       <thead>
         <tr>
           <th>MARCA</th>
-          <th style="text-align: right;"><SMALL>COTIZADOS</SMALL></th>
+          <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
           <th "><SMALL>FACTURADOS</SMALL></th>
         </tr>
       </thead>
@@ -539,8 +539,8 @@
 
         >                
         <td> {{ $mar-> MARCA }}</td>
-        <td align="right"><span class="badge badge-success">{{ $mar-> COTIZACIONES }}</span></td>
-        <td ><span class="badge ">{{ $mar-> FACTURADOS }}</span></td>
+        <td align="center"><span class="badge badge-success">{{ $mar-> COTIZACIONES }}</span></td>
+        <td align="center"><span class="badge ">{{ $mar-> FACTURADOS }}</span></td>
       </tr>
       @endforeach
     </tbody>
@@ -559,7 +559,7 @@
       <thead>
         <tr>
           <th>MODELO</th>
-          <th style="text-align: right;"><SMALL>COTIZADOS</SMALL></th>
+          <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
           <th "><SMALL>FACTURADOS</SMALL></th>
         </tr>
       </thead>
@@ -583,8 +583,8 @@
 
         >                
         <td> {{ $mod-> MODELO }}</td>
-        <td align="right"><span class="badge badge-success">{{ $mod-> COTIZACIONES }}</span></td>
-        <td ><span class="badge ">{{ $mod-> FACTURADOS }}</span></td>
+        <td align="center"><span class="badge badge-success">{{ $mod-> COTIZACIONES }}</span></td>
+        <td align="center"><span class="badge ">{{ $mod-> FACTURADOS }}</span></td>
       </tr>
       @endforeach
     </tbody>
@@ -603,7 +603,7 @@
       <thead>
         <tr>
           <th>MASTER</th>
-          <th style="text-align: right;"><SMALL>COTIZADOS</SMALL></th>
+          <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
           <th "><SMALL>FACTURADOS</SMALL></th>
         </tr>
       </thead>
@@ -612,8 +612,8 @@
         <tr class='v_link' data-href="{{ route('cotizaciones.lista_detalle',['v_aux'=>$v_aux,'title'=>'det_marca_modelo_master','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>$modelo,'master'=> str_replace("/", "_", $mas-> MASTER),'chassis'=>'0','vendedor'=>'0','nro_cotizacion'=>'0','cliente'=>'0'])}}" >     
 
           <td> {{ $mas-> MASTER }}</td>
-          <td align="right"><span class="badge badge-success">{{ $mas-> COTIZACIONES }}</span></td>
-        </tr>
+          <td align="center"><span class="badge badge-success">{{ $mas-> COTIZACIONES }}</span></td>
+        </tralign="center">
         @endforeach
       </tbody>
     </table>
@@ -637,7 +637,7 @@
       <thead>
         <tr>
           <th>VENDEDOR</th>
-          <th style="text-align: right;"><SMALL>COTIZADOS</SMALL></th>
+          <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
           <th "><SMALL>FACTURADOS</SMALL></th>
         </tr>
       </thead>
@@ -692,8 +692,8 @@
 
         >                
         <td> <span class="label label-default">{{$ven-> REG_ABRE }}</span> {{ strtoupper($ven-> VENDEDOR) }} </td>
-        <td align="right"><span class="badge badge-success">{{ $ven-> COTIZACIONES }}</span></td>
-        <td ><span class="badge ">{{ $ven-> FACTURADOS }}</span></td>
+        <td align="center"><span class="badge badge-success">{{ $ven-> COTIZACIONES }}</span></td>
+        <td align="center"><span class="badge ">{{ $ven-> FACTURADOS }}</span></td>
       </tr>
       @endforeach
     </tbody>
