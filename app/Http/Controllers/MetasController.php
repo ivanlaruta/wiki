@@ -86,67 +86,67 @@ class MetasController extends Controller
         ->where('REGIONAL','NO ASIGNADO')
         ->get();
 
-        $SUCURSALES_BENI=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
+        $SUCURSALES_BENI=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
             
             ->where ('REGIONAL','BENI')
             ->groupBy('SUCURSAL')
             ->orderBy('meta_total_unidades', 'desc')
             ->get();
-        $SUCURSALES_COBIJA=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
+        $SUCURSALES_COBIJA=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
             
             ->where ('REGIONAL','COBIJA')
             ->groupBy('SUCURSAL')
             ->orderBy('meta_total_unidades', 'desc')
             ->get();
-        $SUCURSALES_COCHABAMBA=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
+        $SUCURSALES_COCHABAMBA=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
             
             ->where ('REGIONAL','COCHABAMBA')
             ->groupBy('SUCURSAL')
             ->orderBy('meta_total_unidades', 'desc')
             ->get();
-        $SUCURSALES_EL_ALTO=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
+        $SUCURSALES_EL_ALTO=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
             
             ->where ('REGIONAL','EL ALTO')
             ->groupBy('SUCURSAL')
             ->orderBy('meta_total_unidades', 'desc')
             ->get();
-        $SUCURSALES_LA_PAZ=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
+        $SUCURSALES_LA_PAZ=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
             
             ->where ('REGIONAL','LA PAZ')
             ->groupBy('SUCURSAL')
             ->orderBy('meta_total_unidades', 'desc')
             ->get();
-        $SUCURSALES_ORURO=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
+        $SUCURSALES_ORURO=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
             
             ->where ('REGIONAL','ORURO')
             ->groupBy('SUCURSAL')
             ->orderBy('meta_total_unidades', 'desc')
             ->get();
-        $SUCURSALES_POTOSI=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
+        $SUCURSALES_POTOSI=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
             
             ->where ('REGIONAL','POTOSI')
             ->groupBy('SUCURSAL')
             ->orderBy('meta_total_unidades', 'desc')
             ->get();
-        $SUCURSALES_SANTA_CRUZ=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
+        $SUCURSALES_SANTA_CRUZ=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
             
             ->where ('REGIONAL','SANTA CRUZ')
             ->groupBy('SUCURSAL')
             ->orderBy('meta_total_unidades', 'desc')
             ->get();
-        $SUCURSALES_SUCRE=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
+        $SUCURSALES_SUCRE=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
             
             ->where ('REGIONAL','SUCRE')
             ->groupBy('SUCURSAL')
             ->orderBy('meta_total_unidades', 'desc')
             ->get();
-        $SUCURSALES_TARIJA=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
+        $SUCURSALES_TARIJA=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
             
             ->where ('REGIONAL','TARIJA')
             ->groupBy('SUCURSAL')
             ->orderBy('meta_total_unidades', 'desc')
             ->get();
-        $SUCURSALES_NO_ASIGNADO=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
+        $SUCURSALES_NO_ASIGNADO=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
             
             ->where ('REGIONAL','NO ASIGNADO')
             ->groupBy('SUCURSAL')
