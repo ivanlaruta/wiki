@@ -165,7 +165,10 @@
     
 
 
-<script src="{{asset('js/custom.js')}}"></script>
+    <script src="{{asset('js/custom.js')}}"></script>
+
+
+
     {{-- alertas --}}
     @if(!session('mensaje')==null)
 

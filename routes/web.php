@@ -339,3 +339,7 @@ Route::group(['prefix'=>'facturados','middleware'=>'auth'],function(){
 	
 
 });
+
+Route::group(['prefix'=>'metas','middleware'=>'auth'],function(){
+	route::resource('metas','MetasController');
+});
