@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Factura;
 use App\Metas;
 use Carbon\Carbon;
 use DB;
@@ -16,6 +17,12 @@ class MetasController extends Controller
      */
     public function index()
     {
+
+        $ubica =Factura::select('REGIONAL')
+        ->groupBy('REGIONAL')
+        ->orderBy('REGIONAL','ASC')
+        ->get();
+
         $dt = Carbon::now('America/La_Paz');  //fecha actual
         $hoy = Carbon::now('America/La_Paz')->toDateString(); // hoy
         $ult_sem =  Carbon::now('America/La_Paz')->subWeek()->toDateString();  // menos una semana 
@@ -30,163 +37,32 @@ class MetasController extends Controller
         $año_actual = Carbon::now('America/La_Paz') -> year; //año actual.
 
 
-        $BENI = 'BENI';
-        $COBIJA = 'COBIJA';
-        $COCHABAMBA = 'COCHABAMBA';
-        $EL_ALTO = 'EL ALTO';
         $LA_PAZ = 'LA PAZ';
-        $ORURO = 'ORURO';
-        $POTOSI = 'POTOSI';
-        $SANTA_CRUZ = 'SANTA CRUZ';
-        $SUCRE = 'SUCRE';
-        $TARIJA = 'TARIJA';
-        $NO_ASIGNADO = 'NO ASIGNADO';
 
-        $TOTALES_BENI =Metas::select(DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
-        ->where('REGIONAL','BENI')
-        ->get();
 
-        $TOTALES_COBIJA =Metas::select(DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
-        ->where('REGIONAL','COBIJA')
-        ->get();
-
-        $TOTALES_COCHABAMBA =Metas::select(DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
-        ->where('REGIONAL','COCHABAMBA')
-        ->get();
-
-        $TOTALES_EL_ALTO =Metas::select(DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
-        ->where('REGIONAL','EL ALTO')
-        ->get();
-
-        $TOTALES_LA_PAZ =Metas::select(DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
+        $TOTALES_LA_PAZ =Metas::select(DB::raw('metas.REGIONAL,SUM(meta_unidades) as META_TOTAL_UNIDADES, SUM(meta_montos) as META_TOTAL_MONTOS ,(SELECT COUNT(f.CHASIS)as Expr1 from v_facturados f where f.REGIONAL = metas.REGIONAL )as REAL_TOTAL_UNIDADES, (SELECT SUM (F.BOLIVIANOS)as Expr2 from v_facturados f where f.REGIONAL = metas.REGIONAL  )AS REAL_TOTAL_MONTO'))
         ->where('REGIONAL','LA PAZ')
-        ->get();
+        ->groupBy('REGIONAL')
+        ->first();
 
-        $TOTALES_ORURO =Metas::select(DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
-        ->where('REGIONAL','ORURO')
-        ->get();
-
-        $TOTALES_POTOSI =Metas::select(DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
-        ->where('REGIONAL','POTOSI')
-        ->get();
-
-        $TOTALES_SANTA_CRUZ =Metas::select(DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
-        ->where('REGIONAL','SANTA CRUZ')
-        ->get();
-
-        $TOTALES_SUCRE =Metas::select(DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
-        ->where('REGIONAL','SUCRE')
-        ->get();
-
-        $TOTALES_TARIJA =Metas::select(DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
-        ->where('REGIONAL','TARIJA')
-        ->get();
-
-        $TOTALES_NO_ASIGNADO =Metas::select(DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_total_montos'))
-        ->where('REGIONAL','NO ASIGNADO')
-        ->get();
-
-        $SUCURSALES_BENI=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
-            
-            ->where ('REGIONAL','BENI')
-            ->groupBy('SUCURSAL')
-            ->orderBy('meta_total_unidades', 'desc')
-            ->get();
-        $SUCURSALES_COBIJA=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
-            
-            ->where ('REGIONAL','COBIJA')
-            ->groupBy('SUCURSAL')
-            ->orderBy('meta_total_unidades', 'desc')
-            ->get();
-        $SUCURSALES_COCHABAMBA=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
-            
-            ->where ('REGIONAL','COCHABAMBA')
-            ->groupBy('SUCURSAL')
-            ->orderBy('meta_total_unidades', 'desc')
-            ->get();
-        $SUCURSALES_EL_ALTO=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
-            
-            ->where ('REGIONAL','EL ALTO')
-            ->groupBy('SUCURSAL')
-            ->orderBy('meta_total_unidades', 'desc')
-            ->get();
-        $SUCURSALES_LA_PAZ=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
+        //dd($TOTALES_LA_PAZ->META_TOTAL_UNIDADES);
+        $SUCURSALES_LA_PAZ=Metas::select(DB::raw('metas.REGIONAL,metas.SUCURSAL,SUM(metas.META_UNIDADES) as META_UNIDADES,SUM(metas.META_MONTOS) as META_MONTOS ,(SELECT COUNT(f.CHASIS)as Expr1 from v_facturados f where f.REGIONAL = metas.REGIONAL and metas.SUCURSAL = f.SUCURSAL)as REAL_UNIDADES, (SELECT SUM (F.BOLIVIANOS)as Expr2 from v_facturados f where f.REGIONAL = metas.REGIONAL and metas.SUCURSAL = f.SUCURSAL )AS REAL_MONTO '))
             
             ->where ('REGIONAL','LA PAZ')
-            ->groupBy('SUCURSAL')
-            ->orderBy('meta_total_unidades', 'desc')
-            ->get();
-        $SUCURSALES_ORURO=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
-            
-            ->where ('REGIONAL','ORURO')
-            ->groupBy('SUCURSAL')
-            ->orderBy('meta_total_unidades', 'desc')
-            ->get();
-        $SUCURSALES_POTOSI=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
-            
-            ->where ('REGIONAL','POTOSI')
-            ->groupBy('SUCURSAL')
-            ->orderBy('meta_total_unidades', 'desc')
-            ->get();
-        $SUCURSALES_SANTA_CRUZ=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
-            
-            ->where ('REGIONAL','SANTA CRUZ')
-            ->groupBy('SUCURSAL')
-            ->orderBy('meta_total_unidades', 'desc')
-            ->get();
-        $SUCURSALES_SUCRE=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
-            
-            ->where ('REGIONAL','SUCRE')
-            ->groupBy('SUCURSAL')
-            ->orderBy('meta_total_unidades', 'desc')
-            ->get();
-        $SUCURSALES_TARIJA=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
-            
-            ->where ('REGIONAL','TARIJA')
-            ->groupBy('SUCURSAL')
-            ->orderBy('meta_total_unidades', 'desc')
-            ->get();
-        $SUCURSALES_NO_ASIGNADO=Metas::select('SUCURSAL',DB::raw('SUM(meta_unidades) as meta_total_unidades, SUM(meta_montos) as meta_monto'))
-            
-            ->where ('REGIONAL','NO ASIGNADO')
-            ->groupBy('SUCURSAL')
-            ->orderBy('meta_total_unidades', 'desc')
-            ->get();
+            ->groupBy('REGIONAL','SUCURSAL')
+            ->orderBy('META_UNIDADES', 'desc')
+            ->get();      
+          
 
         return view('reportes.metas.index') 
-        ->with('BENI',$BENI)
-        ->with('COBIJA',$COBIJA)
-        ->with('COCHABAMBA',$COCHABAMBA)
-        ->with('EL_ALTO',$EL_ALTO)
+        
         ->with('LA_PAZ',$LA_PAZ)
-        ->with('ORURO',$ORURO)
-        ->with('POTOSI',$POTOSI)
-        ->with('SANTA_CRUZ',$SANTA_CRUZ)
-        ->with('SUCRE',$SUCRE)
-        ->with('TARIJA',$TARIJA)
-        ->with('NO_ASIGNADO',$NO_ASIGNADO)
-        ->with('TOTALES_BENI',$TOTALES_BENI)
-        ->with('TOTALES_COBIJA',$TOTALES_COBIJA)
-        ->with('TOTALES_COCHABAMBA',$TOTALES_COCHABAMBA)
-        ->with('TOTALES_EL_ALTO',$TOTALES_EL_ALTO)
+       
         ->with('TOTALES_LA_PAZ',$TOTALES_LA_PAZ)
-        ->with('TOTALES_ORURO',$TOTALES_ORURO)
-        ->with('TOTALES_POTOSI',$TOTALES_POTOSI)
-        ->with('TOTALES_SANTA_CRUZ',$TOTALES_SANTA_CRUZ)
-        ->with('TOTALES_SUCRE',$TOTALES_SUCRE)
-        ->with('TOTALES_TARIJA',$TOTALES_TARIJA)
-        ->with('TOTALES_NO_ASIGNADO',$TOTALES_NO_ASIGNADO)
-        ->with('SUCURSALES_BENI',$SUCURSALES_BENI)
-        ->with('SUCURSALES_COBIJA',$SUCURSALES_COBIJA)
-        ->with('SUCURSALES_COCHABAMBA',$SUCURSALES_COCHABAMBA)
-        ->with('SUCURSALES_EL_ALTO',$SUCURSALES_EL_ALTO)
+       
         ->with('SUCURSALES_LA_PAZ',$SUCURSALES_LA_PAZ)
-        ->with('SUCURSALES_ORURO',$SUCURSALES_ORURO)
-        ->with('SUCURSALES_POTOSI',$SUCURSALES_POTOSI)
-        ->with('SUCURSALES_SANTA_CRUZ',$SUCURSALES_SANTA_CRUZ)
-        ->with('SUCURSALES_SUCRE',$SUCURSALES_SUCRE)
-        ->with('SUCURSALES_TARIJA',$SUCURSALES_TARIJA)
-        ->with('SUCURSALES_NO_ASIGNADO',$SUCURSALES_NO_ASIGNADO)
+        ->with('ubica',$ubica)
+        
         ;
     }
 
