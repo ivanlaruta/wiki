@@ -72,16 +72,15 @@
                  </option>                
               @endforeach
             </select>
-         
         </div>
       </div>        
     </div>
-  <hr>
+    <hr>
     <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>{{$LA_PAZ}} <small></small></h2>
+                    <h2>{{$LA_PAZ}} <small>TODOS LOS PERIODOS </small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <select class="select_style" data-width="100%" option="" name="REGIONAL" id="REGIONAL" >
                         <option value="TODOS">SELECCIONE UN PERIODO</option>
@@ -102,9 +101,9 @@
 
                     <div class="col-md-12">               
                       <div class="col-md-6 sidebar-widget" align="center">
-                        <h4> UNIDADES <i class="fa fa-car"></i></h4>
-                        <span class="gauge-value pull-left">Actual:{{$TOTALES_LA_PAZ->REAL_TOTAL_UNIDADES}} Unidades</span><br>
-                        <span class="gauge-value pull-left">Meta  :{{$TOTALES_LA_PAZ->META_TOTAL_UNIDADES}} Unidades</span><br>
+                        <h4> <strong>UNIDADES </strong> <i class="fa fa-car"></i></h4>
+                        <span class="gauge-value pull-left"><strong>Actual: </strong>{{$TOTALES_LA_PAZ->REAL_TOTAL_UNIDADES}} Unidades</span><br>
+                        <span class="gauge-value pull-left"><strong>Meta  : </strong>{{$TOTALES_LA_PAZ->META_TOTAL_UNIDADES}} Unidades</span><br>
                         <canvas width="200" height="130" id="gauge_lpz2" class="" ></canvas>
                         <div class="goal-wrapper">
                           <span id="gauge-text-lpz2" class="gauge-value gauge-chart ">0</span>
@@ -112,9 +111,9 @@
                         </div>
                       </div>
                       <div class="col-md-6 sidebar-widget" align="center">
-                        <h4 class="green">MONTO <i class="fa fa-dollar"></i></h4>
-                        <span class="gauge-value pull-left green">Actual:{{number_format($TOTALES_LA_PAZ->REAL_TOTAL_MONTO,2, '.', ',')}} Bs.</span><br>
-                        <span class="gauge-value pull-left green">Meta  :{{number_format($TOTALES_LA_PAZ->META_TOTAL_MONTOS,2, '.', ',')}} Bs.</span><br>
+                        <h4 class="green"><strong>MONTO </strong> <i class="fa fa-dollar"></i></h4>
+                        <span class="gauge-value pull-left green"><strong>Actual: </strong>{{number_format($TOTALES_LA_PAZ->REAL_TOTAL_MONTO,2, '.', ',')}} Bs.</span><br>
+                        <span class="gauge-value pull-left green"><strong>Meta  : </strong>{{number_format($TOTALES_LA_PAZ->META_TOTAL_MONTOS,2, '.', ',')}} Bs.</span><br>
                         <canvas width="200" height="130" id="gauge_lpz" class="" ></canvas>
                         <div class="goal-wrapper">
                           <span id="gauge-text-lpz" class="gauge-value gauge-chart ">0</span>
@@ -147,7 +146,7 @@
                     }
 
                     ?>
-                    
+
                       <div class="row">
                       <hr>
                         <div class="progress_title" align="center">
@@ -171,7 +170,6 @@
                               <div class="col-md-2">
                                 <span>{{number_format($per_uni,2, '.', ',')}}%</span>
                               </div>
-                              
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                               <div class="col-md-1 ">
@@ -194,20 +192,20 @@
                               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class=" col-md-8 col-md-offset-2">
                                   <div class="row">
-                                    Actual:<span> {{ $lp-> REAL_UNIDADES }} Unidades</span>
+                                    <strong>Actual: </strong><span> {{ $lp-> REAL_UNIDADES }} Unidades</span>
                                   </div>
                                   <div class="row">
-                                    Meta:<span> {{ $lp-> META_UNIDADES }} Unidades</span>
+                                    <strong>Meta : </strong><span> {{ $lp-> META_UNIDADES }} Unidades</span>
                                   </div>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class=" col-md-8 col-md-offset-2">
                                   <div class="row">
-                                    <span class="green">Actual: {{number_format( $lp-> REAL_MONTO ,2, '.', ',')}} Bs</span>
+                                    <span class="green"><strong>Actual: </strong> {{number_format( $lp-> REAL_MONTO ,2, '.', ',')}} Bs</span>
                                   </div>
                                   <div class="row">
-                                    <span class="green">Meta: {{number_format( $lp-> META_MONTOS ,2, '.', ',')}} Bs</span>
+                                    <span class="green"><strong>Meta :  </strong>{{number_format( $lp-> META_MONTOS ,2, '.', ',')}} Bs</span>
                                   </div>
                                 </div>
                               </div>
@@ -216,36 +214,7 @@
                         </div>
                       </div>
 
-
-                         {{--  <div class="col-xs-3">
-                            <i class="fa fa-car"></i>
-                            <span> {{ $lp-> REAL_UNIDADES }} de {{ $lp-> META_UNIDADES }}</span>
-                          </div>
-                          <div class="col-xs-7">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-default" role="progressbar" data-transitiongoal= {{number_format($per_uni,2, '.', ',')}}></div>
-                            </div>
-  
-                          </div>
-                          <div class="col-xs-2 more_info">
-                            <span>{{number_format($per_uni,2, '.', ',')}}%</span>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-xs-3">
-                            <i class="fa fa-dollar green"></i>
-                            <span>{{number_format( $lp-> REAL_MONTO,2, '.', ',')}} de {{number_format($lp-> META_MONTOS,2, '.', ',')}} </span>
-                          </div>
-                          <div class="col-xs-7">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal={{number_format($per_mont,2, '.', ',')}}></div>
-                            </div>
-                          </div>
-                          <div class="col-xs-2 more_info">
-                            <span>{{number_format($per_mont,2, '.', ',')}}%</span>
-                          </div>
-                        </div>
-                      </div> --}}
++    
                     @endforeach
                     </div>
 
@@ -263,8 +232,7 @@
 @endsection
 
 @section('scripts')
- <!-- Chart.js -->
-
+    <!-- Chart.js -->
     <script src="{{asset('bower_components/gentelella/vendors/Chart.js/dist/Chart.min.js')}}"></script>
     <!-- jQuery Sparklines -->
     <script src="{{asset('bower_components/gentelella/vendors/jquery-sparkline/dist/jquery.sparkline.min.js')}}"></script>
@@ -292,7 +260,6 @@
     <!-- bootstrap-daterangepicker -->
     <script src="{{asset('bower_components/gentelella/vendors/moment/min/moment.min.js')}}"></script>
     <script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
-
 
 <script type="text/javascript">
 var opts = {
@@ -343,9 +310,6 @@ else
   var REAL_TOTAL_MONTO_LPZ=('<?php echo $TOTALES_LA_PAZ->REAL_TOTAL_MONTO; ?>'*100)/'<?php echo $TOTALES_LA_PAZ->META_TOTAL_MONTOS; ?>';
 }
 
-
-
-
 var target_lpz = document.getElementById('gauge_lpz'); // your canvas element
 var gauge_lpz = new Gauge(target_lpz).setOptions(opts); // create sexy gauge!
 gauge_lpz.maxValue =100; // set max gauge_lpz value
@@ -353,8 +317,6 @@ gauge_lpz.setMinValue(0);  // set min value
 gauge_lpz.animationSpeed = 100;
 gauge_lpz.set(REAL_TOTAL_MONTO_LPZ); // set actual value
 gauge_lpz.setTextField(document.getElementById("gauge-text-lpz"));
-
-
 
 var target_lpz2 = document.getElementById('gauge_lpz2'); // your canvas element
 var gauge_lpz2 = new Gauge(target_lpz2).setOptions(opts2); // create sexy gauge!
@@ -395,8 +357,6 @@ gauge_lpz2.setTextField(document.getElementById("gauge-text-lpz2"));
 // gauge_pt.animationSpeed = 250;
 // gauge_pt.set(15); // set actual value
 // gauge_pt.setTextField(document.getElementById("gauge-text-pt"));
-
-
 
 </script>
 @endsection
