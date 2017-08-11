@@ -601,7 +601,15 @@ if($pais == '%')
 
     public function det_vehiculos($master,$modelo,$modelos,$marca,$ciudad,$vista,$pais)
     {   
-         if($pais == 'TODOS')
+        if($master=='0') {$master='%';}
+        if($modelo=='0') {$modelo='%';}
+        if($modelos=='0') {$modelos='%';}
+        if($marca=='0') {$marca='%';}
+        
+        if($vista=='0') {$vista='%';}
+        
+
+        if($pais == 'TODOS')
         {
             $pais='%';
         }
@@ -612,7 +620,9 @@ if($pais == '%')
             {
                 $v = V_stock_gtauto::select(DB::raw('ROW_NUMBER() OVER(ORDER BY CHASIS ASC) AS ITEM'),'*')
                 ->where('PAIS','LIKE','%'.$pais.'%')
-                ->where('COD_MASTER', '=', $master)
+                ->where('COD_MASTER','LIKE','%'.$master.'%')
+                ->where('MARCA','LIKE','%'.$marca.'%')
+
                 ->orderBy('CHASIS')
                 ->get();
             }
@@ -620,7 +630,7 @@ if($pais == '%')
             {
                 $v = V_stock_gtauto::select(DB::raw('ROW_NUMBER() OVER(ORDER BY CHASIS DESC) AS ITEM'),'*')
                 ->where('PAIS','LIKE','%'.$pais.'%')
-                ->where('COD_MASTER', '=', $master)
+                ->where('COD_MASTER','LIKE','%'.$master.'%')
                 ->where('nom_localidad', '=', $ciudad)
                 ->orderBy('CHASIS')
                 ->get();
@@ -634,6 +644,19 @@ if($pais == '%')
         {
             $pais='TODOS';
         }
+
+
+
+        if($master=='%') {$master='0';}
+        if($modelo=='%') {$modelo='0';}
+        if($modelos=='%') {$modelos='0';}
+        if($marca=='%') {$marca='0';}
+        if($ciudad=='%') {$ciudad='0';}
+        if($vista=='%') {$vista='0';}
+        if(is_null($modelo1)){$modelo1='0';}
+        if(is_null($mast)){$mast='0';}
+
+
             return view('distribuidor.stock.det_vehiculos')
             ->with('pais',$pais)
             ->with('marca',$marca)
@@ -644,6 +667,7 @@ if($pais == '%')
             ->with('mast',$mast)
             ->with('ciudad',$ciudad)
             ->with('v',$v)
+            ->with('vista',$vista)
             ;
      
     }

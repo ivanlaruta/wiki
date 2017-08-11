@@ -212,8 +212,9 @@
                      <th>REGIONAL</th>
                      <th>SUCURSAL</th>
                      <th>VENDEDOR</th>
-                     <th>CLIENTE</th>
                      <th>NIT</th>
+                     <th>CLIENTE</th>
+                     
                      <th>DIRECCION</th>
                      <th>TELEFONO</th>
                      <th>CELULAR</th>
@@ -240,9 +241,9 @@
                      <td><strong>{{$det->FECHA_COTIZACION}}</strong></td>
                      <td>{{$det->REGIONAL}}</td>
                      <td>{{$det->SUCURSAL}}</td>
-                     <td>{{strtoupper($det->VENDEDOR)}}</td>  
-                     <td><strong>{{$det->CLIENTE}}</strong></td>
+                     <td>{{strtoupper($det->VENDEDOR)}}</td> 
                      <td>{{$det->NIT}}</td>
+                     <td><strong>{{$det->CLIENTE}}</strong></td>
                      <td>{{$det->DIRECCION}}</td>
                      <td>{{$det->TELEFONO}}</td>
                      <td>{{$det->CELULAR}}</td>
@@ -250,7 +251,7 @@
                      <td>{{$det->COD_MODELO}}</td>
                      <td>{{$det->MODELO}}</td>
                      <td>{{$det->MASTER}}</td>
-                     <td>{{$det->ANIO}}</td>
+                     <td>{{$det->anio}}</td>
                      <td>{{$det->color}}</td>
                      <td><strong>{{$det->CHASIS}}</strong></td>
                      <td>{{$det->PRECIO_TOTAL}}</td>

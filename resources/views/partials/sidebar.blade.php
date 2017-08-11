@@ -51,7 +51,8 @@
 
                   <li><a><i class="fa fa-dashboard"></i> Indicadores <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('metas.index')}}">Metas</a></li>
+                      {{-- <li><a href="{{ route('metas.index')}}">Metas</a></li> --}}
+                      <li><a href="{{ route('metas.create')}}">Metas Nuevo</a></li>
                     </ul>
                   </li>
 

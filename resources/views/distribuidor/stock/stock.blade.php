@@ -114,8 +114,12 @@
   <div class="row">
     <div class="col-md-4 col-sm-12 col-xs-12">
       <div class="x_panel">
-        <h2>LEXUS <small class=" red">@if($pais == 'TODOS') TODAS LAS UNIDADES @else EN {{$pais}} @endif</small>
+        <h2>LEXUS <small class="red">@if($pais == 'TODOS') TODAS LAS UNIDADES @else EN {{$pais}} @endif</small>
+          @if($pais == 'TODOS')
           <a href="javascript:;" class="pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver unidades"><i class="fa fa-car green "></i> <strong class="green"> {{$total_l}}</strong></a>
+          @else 
+          <a href="javascript:;" class="pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver unidades"><i class="fa fa-car green "></i> <strong class="green"> {{$total_l}}</strong></a>
+          @endif
         </h2>
       </div>
    

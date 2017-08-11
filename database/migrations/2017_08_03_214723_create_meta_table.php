@@ -17,13 +17,21 @@ class CreateMetaTable extends Migration
             $table->increments('id');
             $table->string('regional',100);
             $table->string('sucursal',100);
-            $table->string('marca',100);
-            $table->string('modelo_generico',100)->nullable();
+           
             $table->string('periodo',10)->nullable();
-            $table->integer('meta_unidades')->nullable();
-            $table->float('meta_montos',8,2)->nullable();
-            $table->integer('real_unidades')->nullable();
-            $table->float('real_monto',8,2)->nullable();
+
+            $table->integer('meta_cotizaciones')->nullable();
+            $table->integer('meta_test_drive')->nullable();
+            $table->integer('meta_reservas')->nullable();
+            $table->integer('meta_facturas')->nullable();
+
+            $table->integer('nro_vendedores')->nullable();
+            
+            $table->integer('real_cotizaciones')->nullable();
+            $table->integer('real_test_drive')->nullable();
+            $table->integer('real_reservas')->nullable();
+            $table->integer('real_facturas')->nullable();
+
             $table->string('creado_por')->nullable()->unsigned();
             $table->string('modificado_por')->nullable()->unsigned();
             $table->timestamps();

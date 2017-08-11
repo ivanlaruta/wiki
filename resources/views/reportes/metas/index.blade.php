@@ -4,6 +4,9 @@
 
 <style type="text/css">
 
+.asd {
+    font-weight: bold;
+}
 .select_style 
 {
   background: #FFF;
@@ -52,6 +55,8 @@
 }
 
 </style>
+
+
 <div class="right_col" role="main">
   <div class="">
     <div class="page-title">
@@ -80,20 +85,17 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>{{$LA_PAZ}} <small>TODOS LOS PERIODOS </small></h2>
+                    <h2>REGIONAL  <small>TODOS LOS PERIODOS </small></h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <select class="select_style" data-width="100%" option="" name="REGIONAL" id="REGIONAL" >
+                      <select class="select_style" data-width="100%" option="LA PAZ" name="REGIONAL" id="REGIONAL" >
                         <option value="TODOS">SELECCIONE UN PERIODO</option>
                         <option value="TODOS">TODOS LOS PERIODOS</option>
-                        <option value="TODOS">2017-01</option>
-                        <option value="TODOS">2017-02</option>
-                        <option value="TODOS">2017-03</option>
-                        <option value="TODOS">2017-04</option>
-                        <option value="TODOS">2017-05</option>
-                        <option value="TODOS">2017-06</option>
-                        <option value="TODOS">2017-07</option>
-             
-            </select>
+                        @foreach($peri as $per)
+                          <option value="{{$per->periodo}}" >
+                           {{$per->periodo}} 
+                           </option>                
+                        @endforeach
+                      </select>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -102,127 +104,147 @@
                     <div class="col-md-12">               
                       <div class="col-md-6 sidebar-widget" align="center">
                         <h4> <strong>UNIDADES </strong> <i class="fa fa-car"></i></h4>
-                        <span class="gauge-value pull-left"><strong>Actual: </strong>{{$TOTALES_LA_PAZ->REAL_TOTAL_UNIDADES}} Unidades</span><br>
-                        <span class="gauge-value pull-left"><strong>Meta  : </strong>{{$TOTALES_LA_PAZ->META_TOTAL_UNIDADES}} Unidades</span><br>
-                        <canvas width="200" height="130" id="gauge_lpz2" class="" ></canvas>
-                        <div class="goal-wrapper">
-                          <span id="gauge-text-lpz2" class="gauge-value gauge-chart ">0</span>
+                        <span class="gauge-value pull-left"><strong>Actual: </strong>{{$TOTALES->REAL_TOTAL_UNIDADES}} Unidades</span><br>
+                        <span class="gauge-value pull-left"><strong>Meta  : </strong>{{$TOTALES->META_TOTAL_UNIDADES}} Unidades</span><br>
+                        <canvas width="200" height="130" id="gauge_unidades" class="" ></canvas>
+                        <div class="goal-wrapper goal-unidades">
+                          <span id="gauge-text-unidades" class="gauge-value gauge-chart ">0</span>
                           <span class="gauge-value ">%</span>
                         </div>
                       </div>
                       <div class="col-md-6 sidebar-widget" align="center">
                         <h4 class="green"><strong>MONTO </strong> <i class="fa fa-dollar"></i></h4>
-                        <span class="gauge-value pull-left green"><strong>Actual: </strong>{{number_format($TOTALES_LA_PAZ->REAL_TOTAL_MONTO,2, '.', ',')}} Bs.</span><br>
-                        <span class="gauge-value pull-left green"><strong>Meta  : </strong>{{number_format($TOTALES_LA_PAZ->META_TOTAL_MONTOS,2, '.', ',')}} Bs.</span><br>
-                        <canvas width="200" height="130" id="gauge_lpz" class="" ></canvas>
-                        <div class="goal-wrapper">
-                          <span id="gauge-text-lpz" class="gauge-value gauge-chart ">0</span>
+                        <span class="gauge-value pull-left "><strong>Actual: </strong>{{number_format($TOTALES->REAL_TOTAL_MONTO,2, '.', ',')}} Bs.</span><br>
+                        <span class="gauge-value pull-left "><strong>Meta  : </strong>{{number_format($TOTALES->META_TOTAL_MONTOS,2, '.', ',')}} Bs.</span><br>
+                        <canvas width="200" height="130" id="gauge_montos" class="" ></canvas>
+                        <div class="goal-wrapper goal-montos">
+                          <span id="gauge-text-montos" class="gauge-value gauge-chart ">0</span>
                           <span class="gauge-value ">%</span>
                         </div>
                       </div>
 
                     </div>
                 <hr>
-                    <div class="col-xs-12 bg-white ">
-                    @foreach($SUCURSALES_LA_PAZ as $lp)
-
-                    <?php 
-                    if($lp-> REAL_UNIDADES >= $lp-> META_UNIDADES)
-                    {
-                        $per_uni = 100;
-                    }
-                    else
-                    {
-                      $per_uni = ($lp-> REAL_UNIDADES *100)/$lp-> META_UNIDADES;
-                    }
-
-                    if($lp-> REAL_MONTO >= $lp-> META_MONTOS)
-                    {
-                        $per_mont = 100;
-                    }
-                    else
-                    {
-                      $per_mont = ($lp-> REAL_MONTO *100)/$lp-> META_MONTOS;
-                    }
-
-                    ?>
-
-                      <div class="row">
-                      <hr>
-                        <div class="progress_title" align="center">
-                          <span class="center" style="text-decoration: underline;"><strong>{{ $lp-> SUCURSAL }}</strong></span>
-                          <span class="right"></span>
-                          <div class="clearfix"></div>
-                        </div>
-                        <br>
-                        <div class="row">
-                          <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
-                              <div class="col-md-1 ">
-                                <i class="fa fa-car"></i>
-                              </div>
-                              <div class="col-md-9">
-                                <div class="progress progress progress_sm">
-                                  <div class="progress-bar progress-bar-striped active bg-default" role="progressbar"  data-transitiongoal= {{number_format($per_uni,2, '.', ',')}}>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-2">
-                                <span>{{number_format($per_uni,2, '.', ',')}}%</span>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                              <div class="col-md-1 ">
-                                <i class="fa fa-dollar green"></i>
-                              </div>
-                              <div class="col-md-9">
-                                <div class="progress progress progress_sm">
-                                  <div class="progress-bar progress-bar-success progress-bar-striped active " role="progressbar" data-transitiongoal= {{number_format($per_mont,2, '.', ',')}}>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-2">
-                               <span> {{number_format($per_mont,2, '.', ',')}}%</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
-                              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class=" col-md-8 col-md-offset-2">
-                                  <div class="row">
-                                    <strong>Actual: </strong><span> {{ $lp-> REAL_UNIDADES }} Unidades</span>
-                                  </div>
-                                  <div class="row">
-                                    <strong>Meta : </strong><span> {{ $lp-> META_UNIDADES }} Unidades</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class=" col-md-8 col-md-offset-2">
-                                  <div class="row">
-                                    <span class="green"><strong>Actual: </strong> {{number_format( $lp-> REAL_MONTO ,2, '.', ',')}} Bs</span>
-                                  </div>
-                                  <div class="row">
-                                    <span class="green"><strong>Meta :  </strong>{{number_format( $lp-> META_MONTOS ,2, '.', ',')}} Bs</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-+    
-                    @endforeach
-                    </div>
+                   
 
                   </div>
                 </div>
               </div>
       
     </div>
+
+    <div class="row">
+                    @foreach($SUCURSALES as $lp)
+
+                    <?php 
+                    if($lp-> REAL_UNIDADES >= $lp-> META_UNIDADES)
+                    {
+                        $per_uni = 100;
+                        $pertxt_uni = ($lp-> REAL_UNIDADES *100)/$lp-> META_UNIDADES;
+                    }
+                    else
+                    {
+                      $per_uni = ($lp-> REAL_UNIDADES *100)/$lp-> META_UNIDADES;
+                      $pertxt_uni = ($lp-> REAL_UNIDADES *100)/$lp-> META_UNIDADES;
+                    }
+
+                    if($lp-> REAL_MONTO >= $lp-> META_MONTOS)
+                    {
+                      $per_mont = 100;
+                      $pertxt_mont = ($lp-> REAL_MONTO *100)/$lp-> META_MONTOS;
+                    }
+                    else
+                    {
+                      $per_mont = ($lp-> REAL_MONTO *100)/$lp-> META_MONTOS;
+                      $pertxt_mont = ($lp-> REAL_MONTO *100)/$lp-> META_MONTOS;
+                    }
+
+                    ?>
+
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                          <div class="x_title">
+                            {{ $lp-> SUCURSAL }}
+                            <ul class="nav navbar-right panel_toolbox">
+                              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                              </li>
+                             
+                              <li><a class="close-link"><i class="fa fa-close"></i></a>
+                              </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                          </div>
+                          <div class="x_content">
+
+                                           
+                            <div class="row">
+                              <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
+                                  <div class="col-md-1 ">
+                                    <i class="fa fa-car"></i>
+                                  </div>
+                                  <div class="col-md-9">
+                                    <div class="progress progress progress_sm">
+                                      <div class="progress-bar progress-bar-striped active bg-default" role="progressbar"  data-transitiongoal= {{number_format($per_uni,2, '.', ',')}}>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div @if ($pertxt_uni> 100) class="col-md-2 red asd animated infinite pulse" @else class="col-md-2" @endif>
+                                    <span >{{number_format($pertxt_uni,2, '.', ',')}}%</span>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="col-md-1 ">
+                                    <i class="fa fa-dollar green"></i>
+                                  </div>
+                                  <div class="col-md-9">
+                                    <div class="progress progress progress_sm">
+                                      <div class="progress-bar progress-bar-success progress-bar-striped active " role="progressbar" data-transitiongoal= {{number_format($per_mont,2, '.', ',')}}>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div  @if ($pertxt_mont> 100) class="col-md-2 red asd animated infinite pulse" @else class="col-md-2" @endif >
+                                   <span > {{number_format($pertxt_mont,2, '.', ',')}}%</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class=" col-md-8 col-md-offset-2">
+                                      <div class="row">
+                                        <strong>Actual: </strong><span> {{ $lp-> REAL_UNIDADES }} Unidades</span>
+                                      </div>
+                                      <div class="row">
+                                        <strong>Meta : </strong><span> {{ $lp-> META_UNIDADES }} Unidades</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class=" col-md-8 col-md-offset-2">
+                                      <div class="row">
+                                        <span class=""><strong>Actual: </strong> {{number_format( $lp-> REAL_MONTO ,2, '.', ',')}} Bs</span>
+                                      </div>
+                                      <div class="row">
+                                        <span class=""><strong>Meta :  </strong>{{number_format( $lp-> META_MONTOS ,2, '.', ',')}} Bs</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                    @endforeach
+                  </div>
   </div>
 </div>
 
@@ -293,38 +315,52 @@ var opts2 = {
       generateGradient: true
 };
 
+var rtu = '<?php echo $TOTALES->REAL_TOTAL_UNIDADES; ?>' *1;
+var mtu = '<?php echo $TOTALES->META_TOTAL_UNIDADES; ?>'*1;
+var rtm = '<?php echo $TOTALES->REAL_TOTAL_MONTO; ?>' *1;
+var mtm = '<?php echo $TOTALES->META_TOTAL_MONTOS; ?>'*1;
 
-if(('<?php echo $TOTALES_LA_PAZ->REAL_TOTAL_UNIDADES; ?>' *1)>('<?php echo $TOTALES_LA_PAZ->META_TOTAL_UNIDADES; ?>'*1) ){
-  var REAL_TOTAL_UNIDADES_LPZ=100;
+
+if(rtu>=mtu) 
+{
+  var max_rtu= (rtu *100)/mtu;
+  var set_rtu= (rtu *100)/mtu;
+  $(".goal-unidades").addClass("red asd animated infinite tada ");
 }
 else
 {
-  var REAL_TOTAL_UNIDADES_LPZ=('<?php echo $TOTALES_LA_PAZ->REAL_TOTAL_UNIDADES; ?>' *100)/'<?php echo $TOTALES_LA_PAZ->META_TOTAL_UNIDADES; ?>';
+  var set_rtu= (rtu *100)/mtu;
+  var max_rtu=100;
 }
 
-if(('<?php echo $TOTALES_LA_PAZ->REAL_TOTAL_MONTO; ?>' *1)>('<?php echo $TOTALES_LA_PAZ->META_TOTAL_MONTOS; ?>'*1) ){
-  var REAL_TOTAL_MONTO_LPZ=100;
+if(rtm>mtm )
+{
+  var set_rtm=(rtm*100)/mtm;
+  var max_rtm=(rtm*100)/mtm;
+  $(".goal-montos").addClass("red asd animated infinite tada ");
 }
 else
 {
-  var REAL_TOTAL_MONTO_LPZ=('<?php echo $TOTALES_LA_PAZ->REAL_TOTAL_MONTO; ?>'*100)/'<?php echo $TOTALES_LA_PAZ->META_TOTAL_MONTOS; ?>';
+  var set_rtm=(rtm*100)/mtm;
+  var max_rtm=100;
 }
 
-var target_lpz = document.getElementById('gauge_lpz'); // your canvas element
-var gauge_lpz = new Gauge(target_lpz).setOptions(opts); // create sexy gauge!
-gauge_lpz.maxValue =100; // set max gauge_lpz value
-gauge_lpz.setMinValue(0);  // set min value
-gauge_lpz.animationSpeed = 100;
-gauge_lpz.set(REAL_TOTAL_MONTO_LPZ); // set actual value
-gauge_lpz.setTextField(document.getElementById("gauge-text-lpz"));
+var target_montos = document.getElementById('gauge_montos'); // your canvas element
+var gauge_montos = new Gauge(target_montos).setOptions(opts); // create sexy gauge!
+gauge_montos.maxValue =max_rtm; // set max gauge_montos value
+gauge_montos.setMinValue(0);  // set min value
+gauge_montos.animationSpeed = 100;
+gauge_montos.set(set_rtm); // set actual value
+gauge_montos.setTextField(document.getElementById("gauge-text-montos"));
 
-var target_lpz2 = document.getElementById('gauge_lpz2'); // your canvas element
-var gauge_lpz2 = new Gauge(target_lpz2).setOptions(opts2); // create sexy gauge!
-gauge_lpz2.maxValue = 100; // set max gauge_lpz2 value
-gauge_lpz2.setMinValue(0);  // set min value
-gauge_lpz2.animationSpeed = 100;
-gauge_lpz2.set(REAL_TOTAL_UNIDADES_LPZ); // set actual value
-gauge_lpz2.setTextField(document.getElementById("gauge-text-lpz2"));
+
+var target_unidades = document.getElementById('gauge_unidades'); // your canvas element
+var gauge_unidades = new Gauge(target_unidades).setOptions(opts2); // create sexy gauge!
+gauge_unidades.maxValue = max_rtu; // set max gauge_unidades value
+gauge_unidades.setMinValue(0);  // set min value
+gauge_unidades.animationSpeed = 100;
+gauge_unidades.set(set_rtu); // set actual value
+gauge_unidades.setTextField(document.getElementById("gauge-text-unidades"));
 
 // var target_cocha = document.getElementById('gauge_cocha'); // your canvas element
 // var gauge_cocha = new Gauge(target_cocha).setOptions(opts); // create sexy gauge!

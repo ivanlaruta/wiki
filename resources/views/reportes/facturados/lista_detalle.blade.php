@@ -230,6 +230,7 @@
                      <th>MASTER</th> 
                      <th>AÑO</th> 
                      <th>CHASSIS</th> 
+                     <th>UBICACION UNIDAD</th> 
                      
                      <th>PRECIO Bs</th>
                      <th>PRECIO Sus</th>
@@ -255,12 +256,13 @@
                       <td>{{$det->CELULAR}}</td> 
                       
                       <td>{{$det->MARCA}}</td>
-                      <td>{{$det->cod_modelo}}</td>
+                      <td>{{$det->COD_MODELO}}</td>
                       <td>{{$det->MODELO}}</td>
                       <td>{{$det->cod_master}}</td>
                       <td>{{$det->MASTER}}</td>
                       <td>{{$det->ANIO}}</td> 
-                      <td><strong>{{$det->CHASIS}}</strong></td> 
+                      <td><strong>{{$det->CHASIS}}</strong></td>
+                      <td>{{$det->SUCURSAL_STOCK}}</td>
                        
                       
                       <td align="right"><label class="text-success">{{number_format($det->BOLIVIANOS,2, '.', ',')}}</label></td> 
