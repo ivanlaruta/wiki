@@ -84,42 +84,38 @@ class MetasController extends Controller
         ->orderBy('MARCA','ASC')
         ->get();
       
-        $TOTALES =Metas::select(DB::raw('
+        $TOTALES =Metas::select(DB::raw("
             REGIONAL,
             SUM(meta_cotizaciones) AS meta_cotizaciones,
             SUM(meta_test_drive) AS meta_test_drive,
             SUM(meta_reservas) AS meta_reservas,
             SUM(meta_facturas) AS meta_facturados,
             SUM(nro_vendedores) AS vendedores,
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_cotizaciones c where c.REGIONAL = metas.REGIONAL )as real_cotizaciones,
-            (SELECT ROUND((COUNT(c.CHASIS))*0.3,0) as Expr1 from  v_cotizaciones c where c.REGIONAL = metas.REGIONAL )as real_test_drive,
-            (SELECT COUNT(c.CHASIS)*1.1 as Expr1 from  v_facturados c where c.REGIONAL = metas.REGIONAL )as real_reservas,
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_facturados c where c.REGIONAL = metas.REGIONAL )as real_facturados
-            '))
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_cotizaciones c where c.REG_ASIGNADA = metas.REGIONAL AND c.MARCA ='TOYOTA' )as real_cotizaciones,
+            (SELECT ROUND((COUNT(c.CHASIS))*0.3,0) as Expr1 from  v_cotizaciones c where c.REGIONAL = metas.REGIONAL AND c.MARCA ='TOYOTA')as real_test_drive,
+            (SELECT COUNT(c.CHASIS)*1.1 as Expr1 from  v_facturados c where c.REGIONAL = metas.REGIONAL AND c.MARCA ='TOYOTA')as real_reservas,
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_facturados c where c.REG_ASIGNADA = metas.REGIONAL AND c.MARCA ='TOYOTA')as real_facturados
+            "))
 
         ->where('REGIONAL','LA PAZ')
         ->groupBy('REGIONAL')
         ->first();
 
-        $SUCURSALES =Metas::select(DB::raw('
+        $SUCURSALES =Metas::select(DB::raw("
             metas.REGIONAL,
             metas.SUCURSAL,
             SUM(metas.meta_cotizaciones) as meta_cotizaciones,
             SUM(metas.meta_test_drive) as meta_test_drive ,
             SUM(metas.meta_reservas) AS meta_reservas,
             SUM(metas.meta_facturas) AS meta_facturados,
-            SUM(metas.nro_vendedores) AS vendedores
-            '))
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_cotizaciones c where c.REG_ASIGNADA = metas.REGIONAL AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA')as real_cotizaciones,
+            (SELECT ROUND((COUNT(c.CHASIS))*0.3,0) as Expr1 from  v_cotizaciones c where c.REGIONAL = metas.REGIONAL )as real_test_drive,
+            (SELECT COUNT(c.CHASIS)*1.1 as Expr1 from  v_facturados c where c.REGIONAL = metas.REGIONAL )as real_reservas,
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_facturados c where c.REG_ASIGNADA = metas.REGIONAL  AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA')as real_facturados
+            "))
             ->where ('REGIONAL','LA PAZ')
             ->groupBy('REGIONAL','SUCURSAL')
             ->get();      
-          
-        // $SUCURSALES =Metas::select(DB::raw('metas.REGIONAL,metas.SUCURSAL,SUM(metas.META_UNIDADES) as META_UNIDADES,SUM(metas.META_MONTOS) as META_MONTOS ,(SELECT COUNT(f.CHASIS)as Expr1 from v_facturados f where f.REGIONAL = metas.REGIONAL and metas.SUCURSAL = f.SUCURSAL)as REAL_UNIDADES, (SELECT SUM (F.BOLIVIANOS)as Expr2 from v_facturados f where f.REGIONAL = metas.REGIONAL and metas.SUCURSAL = f.SUCURSAL )AS REAL_MONTO '))
-            
-        //     ->where ('REGIONAL','LA PAZ')
-        //     ->groupBy('REGIONAL','SUCURSAL')
-        //     ->orderBy('META_UNIDADES', 'desc')
-        //     ->get();      
           
         return view('reportes.todo_metas.index') 
         ->with('TOTALES',$TOTALES)

@@ -164,7 +164,11 @@
 
       @foreach($SUCURSALES as $suc)
 
-      
+             <?php 
+             $percent_cotizaciones = number_format((($suc-> real_cotizaciones *100)/$suc-> meta_cotizaciones),2, '.', ',');
+             $percent_facturados = number_format((($suc-> real_facturados *100)/$suc-> meta_facturados),2, '.', ',');
+                    
+              ?> 
               <div class="col-md-12 col-sm-12 col-xs-12 ">
                 <div class="x_panel">
                   <div class="x_title">
@@ -187,17 +191,17 @@
                             <div class="clearfix"></div>
                           </div>
                           <div class="col-xs-2 col-lg-offset-2">
-                            <strong>Actual: </strong><span> {{-- {{ $suc-> REAL_UNIDADES }}  --}}Cotizaciones</span>
+                            <strong>Actual: </strong><span> {{ $suc-> real_cotizaciones }} Cotizaciones</span>
                             <br>
-                            <strong>Meta : </strong><span> {{-- {{ $suc-> META_UNIDADES }} --}} Cotizaciones</span> 
+                            <strong>Meta : </strong><span> {{ $suc-> meta_cotizaciones }} Cotizaciones</span> 
                           </div>
                           <div class="col-xs-7">
                             <div class="progress progress_sm">
-                              <div class="progress-bar progress-bar-striped active bg-default" role="progressbar" data-transitiongoal="{{number_format(50,2, '.', ',')}}"></div>
+                              <div class="progress-bar progress-bar-striped active bg-default" role="progressbar" data-transitiongoal="{{$percent_cotizaciones}}"></div>
                             </div>
                           </div>
                           <div class="col-xs-1 more_info">
-                            <span class="bold">{{number_format(50,2, '.', ',')}}%</span>
+                            <span class="bold">{{$percent_cotizaciones}}%</span>
                           </div>
                         </div>
 
@@ -247,17 +251,17 @@
                             <div class="clearfix"></div>
                           </div>
                           <div class="col-xs-2 col-lg-offset-2">
-                            <strong class="purple">Actual: </strong><span> {{-- {{number_format( $suc-> REAL_MONTO ,2, '.', ',')}} --}} Facturados</span>
+                            <strong class="purple">Actual: </strong><span> {{$suc-> real_facturados}} Facturados</span>
                             <br>
-                            <strong class="purple">Meta : </strong><span> {{-- {{number_format( $suc-> META_MONTOS ,2, '.', ',')}} --}} Facturados</span> 
+                            <strong class="purple">Meta : </strong><span> {{$suc-> meta_facturados}} Facturados</span> 
                           </div>
                           <div class="col-xs-7">
                             <div class="progress progress_sm">
-                              <div class="progress-bar progress-bar-striped active bg-purple1" role="progressbar" data-transitiongoal="{{number_format(50,2, '.', ',')}}"></div>
+                              <div class="progress-bar progress-bar-striped active bg-purple1" role="progressbar" data-transitiongoal="{{$percent_facturados}}"></div>
                             </div>
                           </div>
                           <div class="col-xs-1 more_info">
-                            <span class="purple bold">{{number_format(50,2, '.', ',')}}%</span>
+                            <span class="purple bold">{{$percent_facturados}}%</span>
                           </div>
                         </div>
 

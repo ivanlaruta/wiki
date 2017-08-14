@@ -321,13 +321,10 @@ Route::group(['prefix'=>'facturados','middleware'=>'auth'],function(){
 		'uses' =>'FacturadosController@dashboard',
 		'as'   =>	'facturados.dashboard'
 	]);
-	
-
 	route::get('facturados/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/{master}/{chassis}/{vendedor}/{nro_factura}/{cliente}/lista_detalle',[
 		'uses' =>'FacturadosController@lista_detalle',
 		'as'   =>	'facturados.lista_detalle'
 	]);
-	
 	route::get('facturados/busqueda',[
 		'uses' =>'FacturadosController@busqueda',
 		'as'   =>	'facturados.busqueda'
@@ -336,9 +333,32 @@ Route::group(['prefix'=>'facturados','middleware'=>'auth'],function(){
 		'uses' =>'FacturadosController@buscador',
 		'as'   =>	'facturados.buscador'
 	]);
-	
-
 });
+
+
+Route::group(['prefix'=>'reservados','middleware'=>'auth'],function(){
+
+	route::get('reservados/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/dashboard',[
+		'uses' =>'ReservasController@dashboard',
+		'as'   =>	'reservados.dashboard'
+	]);	
+
+	route::get('reservados/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/{master}/{chassis}/{vendedor}/{nro_factura}/{cliente}/lista_detalle',[
+		'uses' =>'ReservasController@lista_detalle',
+		'as'   =>	'reservados.lista_detalle'
+	]);
+	
+	route::get('reservados/busqueda',[
+		'uses' =>'ReservasController@busqueda',
+		'as'   =>	'reservados.busqueda'
+	]);
+	route::get('reservados/buscador',[
+		'uses' =>'ReservasController@buscador',
+		'as'   =>	'reservados.buscador'
+	]);
+	
+});
+
 
 Route::group(['prefix'=>'metas','middleware'=>'auth'],function(){
 	route::resource('metas','MetasController');

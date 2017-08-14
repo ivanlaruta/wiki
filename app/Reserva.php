@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reserva extends Model
 {
-    //
+    protected $table = "v_reservados";
+    public $incrementing=false;
 }

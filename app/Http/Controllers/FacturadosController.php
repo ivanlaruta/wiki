@@ -57,7 +57,7 @@ class FacturadosController extends Controller
         if ($mes == 11) { $desc_mes='NOVIEMBRE'; }
         if ($mes == 12) { $desc_mes='DICIEMBRE'; }
 
-        $fact = DB::select(" select SUM (c.BOLIVIANOS) AS TOTAL FROM (select PRECIO_VENTA * CONVERSION AS BOLIVIANOS from v_facturados where FECHA_FACTURA >'".$inicio_año."' ) as c  ");
+        $fact = DB::select(" select SUM (c.BOLIVIANOS) AS TOTAL FROM (select PRECIO_VENTA  AS BOLIVIANOS from v_facturados where FECHA_FACTURA >'".$inicio_año."' ) as c  ");
 
         $facturado = $fact[0]->TOTAL;
 
@@ -227,7 +227,7 @@ class FacturadosController extends Controller
 
             $dif_mes_anterior = $total - $total_mes_anterior ;
 
-            $fact = DB::select(" select SUM (c.BOLIVIANOS) AS TOTAL FROM (select PRECIO_VENTA * CONVERSION AS BOLIVIANOS from v_facturados where FECHA_FACTURA BETWEEN '".$inicio."' AND '".$final."') as c  ");
+            $fact = DB::select(" select SUM (c.BOLIVIANOS) AS TOTAL FROM (select PRECIO_VENTA  AS BOLIVIANOS from v_facturados where FECHA_FACTURA BETWEEN '".$inicio."' AND '".$final."') as c  ");
 
             $facturado = $fact[0]->TOTAL;
 
@@ -804,7 +804,8 @@ class FacturadosController extends Controller
             ->where('NRO_FACTURA','LIKE','%'.$nro_factura.'%')
             ->where('CLIENTE','LIKE','%'.$cliente.'%')
             ->get(); 
-         
+        
+
         return view('reportes.facturados.lista_detalle') 
         ->with('detalle',$detalle)
 
