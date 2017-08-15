@@ -343,7 +343,7 @@ Route::group(['prefix'=>'reservados','middleware'=>'auth'],function(){
 		'as'   =>	'reservados.dashboard'
 	]);	
 
-	route::get('reservados/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/{master}/{chassis}/{vendedor}/{nro_factura}/{cliente}/lista_detalle',[
+	route::get('reservados/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/{master}/{chassis}/{vendedor}/{nro_docum}/{cliente}/lista_detalle',[
 		'uses' =>'ReservasController@lista_detalle',
 		'as'   =>	'reservados.lista_detalle'
 	]);

@@ -18,7 +18,7 @@ class ReservasController extends Controller
         //if($master == '0'){$master='%';}else{$master=ltrim(rtrim($master));}
         //if($chassis == '0'){$chassis='%';}else{$chassis=ltrim(rtrim($chassis));}
         //if($vendedor == '0'){$vendedor='%';}else{$vendedor=ltrim(rtrim($vendedor));}
-        //if($nro_factura == '0'){$nro_factura='%';}else{$nro_factura=ltrim(rtrim($nro_factura));}
+        //if($nro_docum == '0'){$nro_docum='%';}else{$nro_docum=ltrim(rtrim($nro_docum));}
 
         $dt = Carbon::now('America/La_Paz');  //fecha actual
         $hoy = Carbon::now('America/La_Paz')->toDateString(); // hoy
@@ -674,7 +674,7 @@ class ReservasController extends Controller
     }
 
 
-    public function lista_detalle($v_aux,$title,$f_ini,$f_fin,$mes,$regional,$marca,$sucursal,$modelo,$master,$chassis,$vendedor,$nro_factura,$cliente)
+    public function lista_detalle($v_aux,$title,$f_ini,$f_fin,$mes,$regional,$marca,$sucursal,$modelo,$master,$chassis,$vendedor,$nro_docum,$cliente)
     {
           
         $inicio_sem=Carbon::now('America/La_Paz')->startOfWeek()->toDateString();   //inicio de semana
@@ -745,15 +745,14 @@ class ReservasController extends Controller
         if($vendedor == '0'){$vendedor='%';}
         else{$vendedor=ltrim(rtrim($vendedor));}
 
-        if($nro_factura == '0'){$nro_factura='%';}
-        else{$nro_factura=ltrim(rtrim($nro_factura));}
+        if($nro_docum == '0'){$nro_docum='%';}
+        else{$nro_docum=ltrim(rtrim($nro_docum));}
 
         if($cliente == '0'){$cliente='%';}
         else{$cliente=ltrim(rtrim($cliente));}
 
 
-
-        $detalle =Reserva::select(DB::raw('ROW_NUMBER() OVER(ORDER BY NRO_FACTURA DESC) AS ITEM'),'*')
+        $detalle =Reserva::select(DB::raw('ROW_NUMBER() OVER(ORDER BY nro_docum DESC) AS ITEM'),'*')
             ->whereBetween('FECHA_RESERVA',[$inicio,$final])
             ->where('REGIONAL','LIKE','%'.$regional.'%')
             ->where('MARCA','LIKE','%'.$marca.'%')
@@ -762,7 +761,7 @@ class ReservasController extends Controller
             ->where('MASTER','LIKE','%'.$master.'%')
             ->where('CHASIS','LIKE','%'.$chassis.'%')
             ->where('VENDEDOR','LIKE','%'.$vendedor.'%')
-            ->where('NRO_FACTURA','LIKE','%'.$nro_factura.'%')
+            ->where('nro_docum','LIKE','%'.$nro_docum.'%')
             ->where('CLIENTE','LIKE','%'.$cliente.'%')
             ->get(); 
         
@@ -782,7 +781,7 @@ class ReservasController extends Controller
         ->with('master',$master)
         ->with('chassis',$chassis)
         ->with('vendedor',$vendedor)
-        ->with('nro_factura',$nro_factura)
+        ->with('nro_docum',$nro_docum)
 
         ->with('hoy',$hoy)
         ->with('ult_15',$ult_15)
@@ -802,20 +801,17 @@ class ReservasController extends Controller
     public function buscador(Request $request)
     {    
 
-
         $arrayFecha = explode(' - ', $request->fecha);
 
         $f_ini =  Carbon::parse($arrayFecha[0])->toDateString();
         $f_fin =  Carbon::parse($arrayFecha[1])->toDateString();
 
-
-
-        if(is_null($request->nro_factura) || $request->nro_factura == ' ' ){
-            $nro_factura = '0';
+        if(is_null($request->nro_docum) || $request->nro_docum == ' ' ){
+            $nro_docum = '0';
         }
         else
         {
-            $nro_factura = $request->nro_factura ;
+            $nro_docum = $request->nro_docum ;
         }
         if(is_null($request->regional) || $request->regional == ' ' ){
             $regional = '0';
@@ -874,7 +870,7 @@ class ReservasController extends Controller
             $marca = $request->marca ;
         }
 
-        if($nro_factura == '0' && $regional == '0' && $sucursal == '0' && $vendedor == '0' && $cliente == '0' && $chassis == '0' && $master == '0' && $modelo == '0' && $marca == '0' && $request->bandera == '0' )
+        if($nro_docum == '0' && $regional == '0' && $sucursal == '0' && $vendedor == '0' && $cliente == '0' && $chassis == '0' && $master == '0' && $modelo == '0' && $marca == '0' && $request->bandera == '0' )
         {
 
             return redirect()->route('reservados.busqueda')->with('mensaje_error',"No selecciono ningun parametro de busqueda."); 
@@ -883,11 +879,11 @@ class ReservasController extends Controller
         {
             if ($request->bandera == '1')
             {
-               return redirect()->route('reservados.lista_detalle',['v_aux'=>'0','title'=>'busqueda','f_ini'=>$f_ini,'f_fin'=>$f_fin,'mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>$sucursal,'modelo'=>$modelo,'master'=>$master,'chassis'=>$chassis,'vendedor'=>$vendedor ,'nro_factura'=>$nro_factura,'cliente'=>$cliente]);
+               return redirect()->route('reservados.lista_detalle',['v_aux'=>'0','title'=>'busqueda','f_ini'=>$f_ini,'f_fin'=>$f_fin,'mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>$sucursal,'modelo'=>$modelo,'master'=>$master,'chassis'=>$chassis,'vendedor'=>$vendedor ,'nro_docum'=>$nro_docum,'cliente'=>$cliente]);
            }
            else
            {
-            return redirect()->route('reservados.lista_detalle',['v_aux'=>'0','title'=>'busqueda','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>$sucursal,'modelo'=>$modelo,'master'=>$master,'chassis'=>$chassis,'vendedor'=>$vendedor ,'nro_factura'=>$nro_factura,'cliente'=>$cliente]);
+            return redirect()->route('reservados.lista_detalle',['v_aux'=>'0','title'=>'busqueda','f_ini'=>'0','f_fin'=>'0','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>$sucursal,'modelo'=>$modelo,'master'=>$master,'chassis'=>$chassis,'vendedor'=>$vendedor ,'nro_docum'=>$nro_docum,'cliente'=>$cliente]);
            }
         }
 

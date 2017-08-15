@@ -8,43 +8,43 @@
       <div class="page-title">
         <div class="title">
           <h3>
-         {{--  link facturados --}}
-        <a href="{{ route('facturados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}">FACTURADOS {{$año_actual}} </a>  
+         {{--  link reservados --}}
+        <a href="{{ route('reservados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}">RESERVAS {{$año_actual}} </a>  
         
          {{--  link ULT 15 DIAS --}}
 
         @if( $title ==  'busqueda')
-        <a href="{{route('facturados.busqueda')}}"> / BUSQUEDA AVANZADA</a>  /RESULTADO DE BUSQUEDA
+        <a href="{{route('reservados.busqueda')}}"> / BUSQUEDA AVANZADA</a>  /RESULTADO DE BUSQUEDA
         @endif 
          @if( $title ==  'det_15_regional' ||  $title ==  'det_15_marca' || $title ==  'det_15_vendedor'|| $title ==  'det_15_dia'  )
-        <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>$ult_15,'f_fin'=>$hoy,'title'=>'ult_15_dias','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / ULTIMOS 15 DIAS</a>  
+        <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>$ult_15,'f_fin'=>$hoy,'title'=>'ult_15_dias','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / ULTIMOS 15 DIAS</a>  
         @endif 
          {{--  link semanal --}}
 
         @if( $title ==  'det_semanal_dia' || $title ==  'det_semanal_regional'  || $title ==  'det_semanal_marca'  || $title ==  'det_semanal_vendedor'  )
-        <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>$inicio_sem,'f_fin'=>$hoy,'title'=>'semanal','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / ESTA SEMANA </a>  
+        <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>$inicio_sem,'f_fin'=>$hoy,'title'=>'semanal','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / ESTA SEMANA </a>  
         @endif 
 
          {{--  link MES --}}
 
         @if( $title ==  'det_diarias_regional' || $title ==  'det_diarias_marca' ||$title ==  'det_diarias_vendedor'  ||$title ==  'det_mes_regional_dia'  ||$title ==  'det_mes_regional_sucursal' ||$title ==  'det_mes_regional_marca' ||$title ==  'det_mes_regional_vendedor' ||$title ==  'det_mes_marca_modelo' || $title == 'det_mes_marca_dia'|| $title == 'det_mes_marca_regional'|| $title == 'det_mes_marca_modelo'|| $title == 'det_mes_marca_vendedor' || $title == 'det_mes_vendedor' )
-        <a href="{{ route('facturados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'mes','mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / {{$desc_mes}} </a>  
+        <a href="{{ route('reservados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'mes','mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / {{$desc_mes}} </a>  
         @endif 
 
         {{--  link DIARIOS --}}
 
         @if($title == 'det_diarias_regional' || $title ==  'det_diarias_marca' || $title ==  'det_diarias_vendedor'  ) 
-       <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>$inicio,'f_fin'=>$inicio,'title'=>'diarias','mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / @if($v_aux <> '%'){{$v_aux}}@endif {{date('d',strtotime($inicio))}}   </a>
+       <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>$inicio,'f_fin'=>$inicio,'title'=>'diarias','mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / @if($v_aux <> '%'){{$v_aux}}@endif {{date('d',strtotime($inicio))}}   </a>
         @endif 
 
         {{--  link MES_REGIONAL --}}
         @if($title == 'det_mes_regional_dia'|| $title == 'det_mes_regional_sucursal'|| $title == 'det_mes_regional_marca' || $title == 'det_mes_regional_vendedor'  ) 
-       <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'mes_regional','mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> /  {{$regional}}   </a>
+       <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'mes_regional','mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> /  {{$regional}}   </a>
         @endif 
 
       {{--  link MES_MARCA --}}
         @if($title == 'det_mes_marca_dia'|| $title == 'det_mes_marca_regional'|| $title == 'det_mes_marca_modelo'|| $title == 'det_mes_marca_vendedor'  ) 
-       <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'mes_marca','mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0'])}}"> /  {{$marca}}   </a>
+       <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'mes_marca','mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0'])}}"> /  {{$marca}}   </a>
         @endif 
 
 
@@ -52,7 +52,7 @@
       {{--  link REGIONAL --}}
         @if($title == 'det_regional_mes_dia' || $title == 'det_regional_mes_sucursal'|| $title == 'det_regional_mes_marca'|| $title == 'det_regional_mes_vendedor'|| $title == 'det_regional_sucursal_mes' || $title == 'det_regional_sucursal_marca' || $title == 'det_regional_sucursal_vendedor'|| $title == 'det_regional_vendedor' || $title == 'det_regional_marca_mes'|| $title == 'det_regional_marca_vendedor' || $title == 'det_regional_marca_sucursal'|| $title == 'det_regional_marca_modelo' ) 
 
-       <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> /  {{$regional}}   </a>
+       <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> /  {{$regional}}   </a>
         @endif 
 
 
@@ -60,20 +60,20 @@
       {{--  link REGIONAL marca.. --}}
         @if($title == 'det_regional_marca_mes' || $title == 'det_regional_marca_vendedor'|| $title == 'det_regional_marca_sucursal'|| $title == 'det_regional_marca_modelo' ) 
 
-       <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional_marca','mes'=>$mes,'regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0'])}}"> /  {{$marca}}   </a>
+       <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional_marca','mes'=>$mes,'regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0'])}}"> /  {{$marca}}   </a>
         @endif 
 
    {{--  link REGIONAL sucursal.. --}}
         @if($title == 'det_regional_sucursal_mes' || $title == 'det_regional_sucursal_marca' || $title == 'det_regional_sucursal_vendedor' ) 
 
-       <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional_sucursal','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=> $sucursal,'modelo'=>'0'])}}"> /  {{$sucursal}}   </a>
+       <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional_sucursal','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=> $sucursal,'modelo'=>'0'])}}"> /  {{$sucursal}}   </a>
         @endif 
 
 
       {{--  link REGIONAL MES.. --}}
         @if($title == 'det_regional_mes_dia' || $title == 'det_regional_mes_sucursal'|| $title == 'det_regional_mes_marca'|| $title == 'det_regional_mes_vendedor') 
 
-       <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional_mes','mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> /  {{$desc_mes}}   </a>
+       <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional_mes','mes'=>$mes,'regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> /  {{$desc_mes}}   </a>
         @endif 
 
 
@@ -81,25 +81,25 @@
       {{--  link marca --}}
         @if($title == 'det_marca_mes_dia' || $title == 'det_marca_mes_regional' || $title == 'det_marca_mes_modelo' || $title == 'det_marca_mes_vendedor'|| $title == 'det_marca_regional_mes'|| $title == 'det_marca_regional_sucursal'|| $title == 'det_marca_regional_modelo'|| $title == 'det_marca_regional_vendedor' || $title == 'det_marca_vendedor'|| $title == 'det_marca_modelo_mes'|| $title == 'det_marca_modelo_regional' || $title == 'det_marca_modelo_vendedor'|| $title == 'det_marca_modelo_master' ) 
 
-       <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'marca','mes'=>'0','regional'=>'0','marca'=>rtrim(($marca)),'sucursal'=>'0','modelo'=>'0'])}}"> /  {{$marca}}   </a>
+       <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'marca','mes'=>'0','regional'=>'0','marca'=>rtrim(($marca)),'sucursal'=>'0','modelo'=>'0'])}}"> /  {{$marca}}   </a>
         @endif 
 
   {{--  link marca mes --}}
          @if($title == 'det_marca_mes_dia' || $title == 'det_marca_mes_regional'  || $title == 'det_marca_mes_modelo'|| $title == 'det_marca_mes_vendedor' ) 
 
-       <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'marca_mes','mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0'])}}"> /  {{$desc_mes}}   </a>
+       <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'marca_mes','mes'=>$mes,'regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=>'0'])}}"> /  {{$desc_mes}}   </a>
         @endif 
 
   {{--  link marca regional --}}
          @if($title == 'det_marca_regional_mes' || $title == 'det_marca_regional_sucursal'  || $title == 'det_marca_regional_modelo'|| $title == 'det_marca_regional_vendedor' ) 
 
-       <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional_marca','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0'])}}"> /  {{$regional}}   </a>
+       <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional_marca','mes'=>'0','regional'=>$regional,'marca'=>$marca,'sucursal'=>'0','modelo'=>'0'])}}"> /  {{$regional}}   </a>
         @endif 
 
   {{--  link marca modelo --}}
          @if($title == 'det_marca_modelo_mes' || $title == 'det_marca_modelo_regional' || $title == 'det_marca_modelo_vendedor' || $title == 'det_marca_modelo_master'  ) 
 
-       <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'marca_modelo','mes'=>'0','regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=> $modelo ])}}"> /  {{$modelo}}   </a>
+       <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'marca_modelo','mes'=>'0','regional'=>'0','marca'=>$marca,'sucursal'=>'0','modelo'=> $modelo ])}}"> /  {{$modelo}}   </a>
         @endif 
 
       {{--  linkS FINLES --}}
@@ -138,7 +138,7 @@
         
               {{-- Enlace para indicadores de ver detalle..... --}}
         @if( $title == 'det_mes_regional' || $title == 'det_mes' || $title == 'det_diarias' || $title == 'det_mes_marca')
-        <a href="{{ route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'mes','mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / {{$desc_mes}} </a>  
+        <a href="{{ route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'mes','mes'=>$mes,'regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / {{$desc_mes}} </a>  
         @endif 
 
         @if($title == 'det_diarias') 
@@ -146,7 +146,7 @@
         @endif 
 
         @if($title == 'det_marca' || $title == 'det_marca_mes' || $title == 'det_marca_regional'|| $title == 'det_marca_modelo') 
-        <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'marca','mes'=>'0','regional'=>'0','marca'=>($marca),'sucursal'=>'0','modelo'=>'0'])}}"> 
+        <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'marca','mes'=>'0','regional'=>'0','marca'=>($marca),'sucursal'=>'0','modelo'=>'0'])}}"> 
           / {{$marca}}  </a>
           @endif 
 
@@ -159,7 +159,7 @@
           @endif 
 
           @if( $title == 'det_regional' || $title == 'det_regional_mes'|| $title == 'det_regional_sucursal' ||  $title == 'det_regional_marca' )
-          <a href="{{route('facturados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / {{$regional}} </a>  
+          <a href="{{route('reservados.dashboard',['v_aux'=>$v_aux,'f_ini'=>'0','f_fin'=>'0','title'=>'regional','mes'=>'0','regional'=>$regional,'marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> / {{$regional}} </a>  
           @endif 
 
           @if( $title == 'det_regional_mes' || $title == 'det_marca_mes') 
@@ -194,7 +194,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="title">
-              <h2>FACTURAS <small>  </small></h2>
+              <h2>RESERVAS <small>  </small></h2>
 
             </div>
           </div>
@@ -210,10 +210,10 @@
                     <tr>
                      <tr>
                      <th></th> 
-                     <th>NRO FACTURA</th> 
-                     {{-- <th>FECHA CONTRATO</th> --}}
-                     <th>FECHA FACTURA</th> 
-                     <th>FECHA ENTREGA</th>
+                     <th>NRO RESERVA</th> 
+                    
+                     <th>FECHA RESERVA</th> 
+                     
                      <th>REGIONAL</th>
                      <th>SUCURSAL</th> 
                      <th>VENDEDOR</th>
@@ -232,9 +232,6 @@
                      <th>CHASSIS</th> 
                      <th>UBICACION UNIDAD</th> 
                      
-                     <th>PRECIO Bs</th>
-                     <th>PRECIO Sus</th>
-                     <th>ESTADO</th>
 
                     </tr>
                   </thead>
@@ -242,10 +239,10 @@
                   @foreach($detalle as $det)
                     <tr>
                      <td>{{$det->ITEM}}</td> 
-                     <td>{{$det->NRO_FACTURA}}</td> 
-                      {{-- <td>@if (is_null($det->FECHA_CONTRATO)) CON ADENDA @else {{date('d/m/Y',strtotime($det->FECHA_CONTRATO))}}@endif</td>  --}}
-                      <td><label class="text-success">{{date('d/m/Y',strtotime($det->FECHA_FACTURA))}}</label></td>
-                      <td> @if (is_null($det->FECHA_ENTREGA)) No Entregado @else {{date('d/m/Y',strtotime($det->FECHA_ENTREGA))}} @endif </td>
+                     <td>{{$det->nro_docum}}</td> 
+                      
+                      <td><label class="text-success">{{date('d/m/Y',strtotime($det->FECHA_RESERVA))}}</label></td>
+                      
                       <td>{{$det->REGIONAL}}</td> 
                       <td>{{$det->SUCURSAL}}</td> 
                       <td>{{$det->VENDEDOR}}</td> 
@@ -259,15 +256,12 @@
                       <td>{{$det->MODELO}}</td>
                       <td>{{$det->cod_master}}</td>
                       <td>{{$det->MASTER}}</td>
-                      <td>{{$det->ANIO}}</td> 
+                      <td>{{$det->AÑO}}</td> 
                       <td><strong>{{$det->CHASIS}}</strong></td>
                       <td>{{$det->SUCURSAL_STOCK}}</td>
                        
                       
-                      <td align="right"><label class="text-success">{{number_format($det->BOLIVIANOS,2, '.', ',')}}</label></td> 
-                      <td align="right"><label class="text-primary">{{number_format($det->DOLARES,2, '.', ',')}}</label></td> 
-                     
-                      <td>{{$det->ESTADO}}</td> 
+                      
                                         
                     </tr>
                     @endforeach
