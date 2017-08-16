@@ -10,65 +10,27 @@ use DB;
 
 class MetasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-
-        $ubica =Metas::select('REGIONAL')
-        ->groupBy('REGIONAL')
-        ->orderBy('REGIONAL','ASC')
-        ->get();
-
-        $peri =Metas::select('periodo')
-        ->groupBy('periodo')
-        ->orderBy('periodo','ASC')
-        ->get();
-      
-        $TOTALES =Metas::select(DB::raw('
-            REGIONAL,
-            SUM(meta_cotizaciones) AS meta_cotizaciones,
-            SUM(meta_test_drive) AS meta_test_drive,
-            SUM(meta_reservas) AS meta_reservas,
-            SUM(meta_facturas) AS meta_facturados,
-            SUM(nro_vendedores) AS vendedores,
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_cotizaciones c where c.REGIONAL = REGIONAL )as real_cotizaciones,
-            (SELECT ROUND((COUNT(c.CHASIS))*0.3,0) as Expr1 from  v_cotizaciones c where c.REGIONAL = REGIONAL )as real_test_drive,
-            (SELECT COUNT(c.CHASIS)*1.1 as Expr1 from  v_facturados c where c.REGIONAL = REGIONAL )as real_reservas,
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_facturados c where c.REGIONAL = REGIONAL )as real_facturados
-            '))
-
-        ->where('REGIONAL','LA PAZ')
-        ->groupBy('REGIONAL')
-        ->first();
-
-        // $SUCURSALES =Metas::select(DB::raw('metas.REGIONAL,metas.SUCURSAL,SUM(metas.META_UNIDADES) as META_UNIDADES,SUM(metas.META_MONTOS) as META_MONTOS ,(SELECT COUNT(f.CHASIS)as Expr1 from v_facturados f where f.REGIONAL = metas.REGIONAL and metas.SUCURSAL = f.SUCURSAL)as REAL_UNIDADES, (SELECT SUM (F.BOLIVIANOS)as Expr2 from v_facturados f where f.REGIONAL = metas.REGIONAL and metas.SUCURSAL = f.SUCURSAL )AS REAL_MONTO '))
-            
-        //     ->where ('REGIONAL','LA PAZ')
-        //     ->groupBy('REGIONAL','SUCURSAL')
-        //     ->orderBy('META_UNIDADES', 'desc')
-        //     ->get();      
-          
-        return view('reportes.metas.index') 
-              
-        ->with('TOTALES',$TOTALES)
-        // ->with('SUCURSALES',$SUCURSALES)
-        ->with('ubica',$ubica)
-        ->with('peri',$peri)
-        
-        ;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
+        $dt = Carbon::now('America/La_Paz');  //fecha actual
+        $hoy = Carbon::now('America/La_Paz')->toDateString(); // hoy
+        $ult_sem =  Carbon::now('America/La_Paz')->subWeek()->toDateString();  // menos una semana 
+        $ult_15 =  Carbon::now('America/La_Paz')->subDays(15)->toDateString();  // menos 15 dias
+        $ult_mes = Carbon::now('America/La_Paz')->subMonth();  // menos un mes
+        $ult_mes2 = Carbon::now('America/La_Paz')->subMonth();  // menos un mes
+        $ult_anio = Carbon::now('America/La_Paz')->subYear()->toDateString(); // menos un año
+        
+        $inicio_sem=Carbon::now('America/La_Paz')->startOfWeek()->toDateString();   //inicio de semana
+        $inicio_mes=Carbon::now('America/La_Paz')->startOfMonth()->toDateString();  //inicio de mes
+        $inicio_año=Carbon::now('America/La_Paz')->startOfYear()->toDateString();    //inicio de año
+
+        $inicio_mes_ant = $ult_mes->startOfMonth()->toDateString();
+        $fin_mes_ant = $ult_mes2->endOfMonth()->toDateString();
+
+        $año_actual = Carbon::now('America/La_Paz') -> year; //año actual.
+
+
         $ubica =Metas::select('REGIONAL')
         ->groupBy('REGIONAL')
         ->orderBy('REGIONAL','ASC')
@@ -91,10 +53,10 @@ class MetasController extends Controller
             SUM(meta_reservas) AS meta_reservas,
             SUM(meta_facturas) AS meta_facturados,
             SUM(nro_vendedores) AS vendedores,
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_cotizaciones c where c.REG_ASIGNADA = metas.REGIONAL AND c.MARCA ='TOYOTA' )as real_cotizaciones,
-            (SELECT ROUND((COUNT(c.CHASIS))*0.3,0) as Expr1 from  v_cotizaciones c where c.REGIONAL = metas.REGIONAL AND c.MARCA ='TOYOTA')as real_test_drive,
-            (SELECT COUNT(c.CHASIS)*1.1 as Expr1 from  v_facturados c where c.REGIONAL = metas.REGIONAL AND c.MARCA ='TOYOTA')as real_reservas,
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_facturados c where c.REG_ASIGNADA = metas.REGIONAL AND c.MARCA ='TOYOTA')as real_facturados
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_cotizaciones c where c.REG_ASIGNADA = metas.REGIONAL AND c.MARCA ='TOYOTA' AND FECHA_COTIZACION BETWEEN '2017/01/01' AND '2017/08/15')as real_cotizaciones,
+            (SELECT ROUND((COUNT(c.CHASIS))*0.3,0) as Expr1 from  v_cotizaciones c where c.REGIONAL = metas.REGIONAL AND c.MARCA ='TOYOTA' AND FECHA_COTIZACION BETWEEN '2017/01/01' AND '2017/08/15')as real_test_drive,
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_reservados c where c.REG_ASIGNADA = metas.REGIONAL AND c.MARCA ='TOYOTA' AND FECHA_RESERVA BETWEEN '2017/01/01' AND '2017/08/15')as real_reservas,
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_facturados c where c.REG_ASIGNADA = metas.REGIONAL AND c.MARCA ='TOYOTA' AND FECHA_FACTURA BETWEEN '2017/01/01' AND '2017/08/15')as real_facturados
             "))
 
         ->where('REGIONAL','LA PAZ')
@@ -108,16 +70,21 @@ class MetasController extends Controller
             SUM(metas.meta_test_drive) as meta_test_drive ,
             SUM(metas.meta_reservas) AS meta_reservas,
             SUM(metas.meta_facturas) AS meta_facturados,
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_cotizaciones c where c.REG_ASIGNADA = metas.REGIONAL AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA')as real_cotizaciones,
-            (SELECT ROUND((COUNT(c.CHASIS))*0.3,0) as Expr1 from  v_cotizaciones c where c.REGIONAL = metas.REGIONAL )as real_test_drive,
-            (SELECT COUNT(c.CHASIS)*1.1 as Expr1 from  v_facturados c where c.REGIONAL = metas.REGIONAL )as real_reservas,
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_facturados c where c.REG_ASIGNADA = metas.REGIONAL  AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA')as real_facturados
+
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_cotizaciones c where c.REG_ASIGNADA = metas.REGIONAL AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA'AND FECHA_COTIZACION BETWEEN '2017/01/01' AND '2017/08/15')as real_cotizaciones,
+
+            (SELECT ROUND((COUNT(c.CHASIS))*0.3,0) as Expr1 from  v_cotizaciones c where c.REGIONAL = metas.REGIONAL AND FECHA_COTIZACION BETWEEN '2017/01/01' AND '2017/08/15')as real_test_drive,
+
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_reservados c where c.REG_ASIGNADA = metas.REGIONAL  AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA' AND FECHA_RESERVA BETWEEN '2017/01/01' AND '2017/08/15')as real_reservas,
+
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_facturados c where c.REG_ASIGNADA = metas.REGIONAL  AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA' AND FECHA_FACTURA BETWEEN '2017/01/01' AND '2017/08/15')as real_facturados
+            
             "))
             ->where ('REGIONAL','LA PAZ')
             ->groupBy('REGIONAL','SUCURSAL')
             ->get();      
           
-        return view('reportes.todo_metas.index') 
+        return view('reportes.metas.index') 
         ->with('TOTALES',$TOTALES)
         ->with('SUCURSALES',$SUCURSALES)
         ->with('ubica',$ubica)
@@ -127,59 +94,5 @@ class MetasController extends Controller
      
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -200,11 +200,11 @@
           </div>
         </div>
        </div>
-         <div class="row">
+        
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_content animated fadeIn">
               <p class="text-muted font-13 m-b-30"></p>
-              <div class="" {{-- style="max-height: 450px; width: 100%; margin: 0; overflow-y: auto; --}}">
+              <div class="table-responsive" {{-- style="max-height: 450px; width: 100%; margin: 0; overflow-y: auto; --}}">
                 <table class="table table-striped jambo_table bulk_action" id="datatable1">
                   <thead style="">
                     <tr>
@@ -235,6 +235,8 @@
                      <th>PRECIO Bs</th>
                      <th>PRECIO Sus</th>
                      <th>ESTADO</th>
+                     <th>REGIONAL ASIGNADA</th>
+                     <th>SUCURSAL ASIGNADA</th>
 
                     </tr>
                   </thead>
@@ -268,6 +270,8 @@
                       <td align="right"><label class="text-primary">{{number_format($det->DOLARES,2, '.', ',')}}</label></td> 
                      
                       <td>{{$det->ESTADO}}</td> 
+                      <td>{{$det->REG_ASIGNADA}}</td> 
+                      <td>{{$det->SUC_ASIGNADA}}</td> 
                                         
                     </tr>
                     @endforeach
@@ -276,7 +280,7 @@
               </div>
             </div>
             </div>
-            </div>
+           
          
        
 
@@ -289,7 +293,7 @@
 
 <script>
 
-    $(document).ready(function() {
+   $(document).ready(function() {
          //alert('1');
         $('#datatable1').DataTable({
           
@@ -316,13 +320,18 @@
               "oAria": {
                   "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
                   "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-              }
+              },
 
         },
-            
+
+     "dom": 'Blfrtip' ,
+   "buttons": [ 'excel'],
+
+   "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "TODOS"]]
+
+ 
 
         });
     });
-
 </script> 
 @endsection

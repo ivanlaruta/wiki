@@ -98,9 +98,9 @@ class FacturadosController extends Controller
                       
             $v_aux=$nom_dia[0]->NOM_DIA;
 
-            $por_reg =Factura::select('REGIONAL',DB::raw('COUNT(*) AS FACTURADOS'))
+            $por_reg =Factura::select('REG_ASIGNADA',DB::raw('COUNT(*) AS FACTURADOS'))
             ->where('FECHA_FACTURA','>',$inicio_año)
-            ->groupBy('REGIONAL')
+            ->groupBy('REG_ASIGNADA')
             ->orderBy('FACTURADOS', 'desc')
             ->get();   
 
@@ -169,9 +169,9 @@ class FacturadosController extends Controller
             ->orderBy('FECHA_FACTURA')
             ->get();
 
-            $por_reg =Factura::select('REGIONAL',DB::raw('COUNT(*) AS FACTURADOS'))
+            $por_reg =Factura::select('REG_ASIGNADA',DB::raw('COUNT(*) AS FACTURADOS'))
             ->whereBetween('FECHA_FACTURA',[$inicio,$final])
-            ->groupBy('REGIONAL')
+            ->groupBy('REG_ASIGNADA')
             ->orderBy('FACTURADOS', 'desc')
             ->get();   
 
@@ -254,9 +254,9 @@ class FacturadosController extends Controller
             ->orderBy('FECHA_FACTURA')
             ->get();
 
-            $por_reg =Factura::select('REGIONAL',DB::raw('COUNT(*) AS FACTURADOS'))
+            $por_reg =Factura::select('REG_ASIGNADA',DB::raw('COUNT(*) AS FACTURADOS'))
             ->whereBetween('FECHA_FACTURA',[$inicio,$final])
-            ->groupBy('REGIONAL')
+            ->groupBy('REG_ASIGNADA')
             ->orderBy('FACTURADOS', 'desc')
             ->get();   
 
@@ -307,34 +307,34 @@ class FacturadosController extends Controller
 
         if($title == 'regional')
         {
-            $total =Factura:: where ('REGIONAL',$regional)
+            $total =Factura:: where ('REG_ASIGNADA',$regional)
             ->where('FECHA_FACTURA','>',$inicio_año)
             ->count();
 
             $por_mes = Factura::select( DB::raw("month(FECHA_FACTURA) as MES , COUNT (*) as FACTURADOS"))
             ->where('FECHA_FACTURA','>',$inicio_año)
-            ->where ('REGIONAL',$regional)
+            ->where ('REG_ASIGNADA',$regional)
             ->groupBy(DB::raw('month(FECHA_FACTURA)'))
             ->orderBy(DB::raw('month(FECHA_FACTURA)'))
             ->get();
 
-            $por_suc =Factura::select('SUCURSAL',DB::raw('COUNT(*) AS FACTURADOS'))
+            $por_suc =Factura::select('SUC_ASIGNADA',DB::raw('COUNT(*) AS FACTURADOS'))
             ->where('FECHA_FACTURA','>',$inicio_año)
-            ->where ('REGIONAL',$regional)
-            ->groupBy('SUCURSAL')
+            ->where ('REG_ASIGNADA',$regional)
+            ->groupBy('SUC_ASIGNADA')
             ->orderBy('FACTURADOS', 'desc')
             ->get();   
 
             $por_vendedor =Factura::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS FACTURADOS'))
             ->where('FECHA_FACTURA','>',$inicio_año)
-            ->where ('REGIONAL',$regional)
+            ->where ('REG_ASIGNADA',$regional)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('FACTURADOS', 'desc')
             ->get();
 
             $por_marca =Factura::select('MARCA',DB::raw('COUNT(*) AS FACTURADOS'))
             ->where('FECHA_FACTURA','>',$inicio_año)
-            ->where ('REGIONAL',$regional)
+            ->where ('REG_ASIGNADA',$regional)
             ->groupBy('MARCA')
             ->orderBy('FACTURADOS', 'desc')
             ->get(); 
@@ -360,30 +360,30 @@ class FacturadosController extends Controller
 
         if($title == 'regional_sucursal')
         {
-            $total =Factura:: where ('REGIONAL',$regional)->where ('SUCURSAL',$sucursal)
+            $total =Factura:: where ('REG_ASIGNADA',$regional)->where ('SUC_ASIGNADA',$sucursal)
             ->where('FECHA_FACTURA','>',$inicio_año)
             ->count();
 
             $por_mes = Factura::select( DB::raw("month(FECHA_FACTURA) as MES , COUNT (*) as FACTURADOS"))
             ->where('FECHA_FACTURA','>',$inicio_año)
-            ->where ('REGIONAL',$regional)
-            ->where ('SUCURSAL',$sucursal)
+            ->where ('REG_ASIGNADA',$regional)
+            ->where ('SUC_ASIGNADA',$sucursal)
             ->groupBy(DB::raw('month(FECHA_FACTURA)'))
             ->orderBy(DB::raw('month(FECHA_FACTURA)'))
             ->get();
 
             $por_vendedor =Factura::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS FACTURADOS'))
             ->where('FECHA_FACTURA','>',$inicio_año)
-            ->where ('REGIONAL',$regional)
-            ->where ('SUCURSAL',$sucursal)
+            ->where ('REG_ASIGNADA',$regional)
+            ->where ('SUC_ASIGNADA',$sucursal)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('FACTURADOS', 'desc')
             ->get();
 
             $por_marca =Factura::select('MARCA',DB::raw('COUNT(*) AS FACTURADOS'))
             ->where('FECHA_FACTURA','>',$inicio_año)
-            ->where ('REGIONAL',$regional)
-            ->where ('SUCURSAL',$sucursal)
+            ->where ('REG_ASIGNADA',$regional)
+            ->where ('SUC_ASIGNADA',$sucursal)
             ->groupBy('MARCA')
             ->orderBy('FACTURADOS', 'desc')
             ->get(); 
@@ -409,30 +409,30 @@ class FacturadosController extends Controller
 
         if($title == 'regional_marca' || $title == 'marca_regional')
         {
-            $total =Factura:: where ('MARCA',$marca)->where ('REGIONAL',$regional)
+            $total =Factura:: where ('MARCA',$marca)->where ('REG_ASIGNADA',$regional)
             ->where('FECHA_FACTURA','>',$inicio_año)
             ->count();
 
             $por_mes = Factura::select( DB::raw("month(FECHA_FACTURA) as MES , COUNT (*) as FACTURADOS"))
-            ->where ('REGIONAL',$regional)
+            ->where ('REG_ASIGNADA',$regional)
             ->where('FECHA_FACTURA','>',$inicio_año)
             ->where ('MARCA',$marca)
             ->groupBy(DB::raw('month(FECHA_FACTURA)'))
             ->orderBy(DB::raw('month(FECHA_FACTURA)'))
             ->get();
 
-            $por_suc =Factura::select('SUCURSAL',DB::raw('COUNT(*) AS FACTURADOS'))
-            ->where ('REGIONAL',$regional)
+            $por_suc =Factura::select('SUC_ASIGNADA',DB::raw('COUNT(*) AS FACTURADOS'))
+            ->where ('REG_ASIGNADA',$regional)
             ->where('FECHA_FACTURA','>',$inicio_año)
             ->where ('MARCA',$marca)
-            ->where ('REGIONAL',$regional)
-            ->groupBy('SUCURSAL')
+            ->where ('REG_ASIGNADA',$regional)
+            ->groupBy('SUC_ASIGNADA')
             ->orderBy('FACTURADOS', 'desc')
             ->get(); 
 
             $por_vendedor =Factura::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS FACTURADOS'))
             ->where('FECHA_FACTURA','>',$inicio_año)
-            ->where ('REGIONAL',$regional)
+            ->where ('REG_ASIGNADA',$regional)
             ->where ('MARCA',$marca)
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('FACTURADOS', 'desc')
@@ -440,7 +440,7 @@ class FacturadosController extends Controller
 
             $por_modelo =Factura::select('MODELO',DB::raw('COUNT(*) AS FACTURADOS'))
             ->where('FECHA_FACTURA','>',$inicio_año)
-            ->where ('REGIONAL',$regional)
+            ->where ('REG_ASIGNADA',$regional)
             ->where ('MARCA',$marca)
             ->groupBy('MODELO')
             ->orderBy('FACTURADOS', 'desc')
@@ -481,10 +481,10 @@ class FacturadosController extends Controller
             ->orderBy(DB::raw('month(FECHA_FACTURA)'))
             ->get();
 
-            $por_reg =Factura::select('REGIONAL',DB::raw('COUNT(*) AS FACTURADOS'))
+            $por_reg =Factura::select('REG_ASIGNADA',DB::raw('COUNT(*) AS FACTURADOS'))
             ->where('FECHA_FACTURA','>',$inicio_año)
             ->where ('MARCA',$marca)
-            ->groupBy('REGIONAL')
+            ->groupBy('REG_ASIGNADA')
             ->orderBy('FACTURADOS', 'desc')
             ->get(); 
 
@@ -539,11 +539,11 @@ class FacturadosController extends Controller
             ->orderBy(DB::raw('month(FECHA_FACTURA)'))
             ->get();
 
-            $por_reg =Factura::select('REGIONAL',DB::raw('COUNT(*) AS FACTURADOS'))
+            $por_reg =Factura::select('REG_ASIGNADA',DB::raw('COUNT(*) AS FACTURADOS'))
             ->where('FECHA_FACTURA','>',$inicio_año)
             ->where ('MARCA',$marca)
             ->where ('MODELO',$modelo)
-            ->groupBy('REGIONAL')
+            ->groupBy('REG_ASIGNADA')
             ->orderBy('FACTURADOS', 'desc')
             ->get(); 
 
@@ -603,10 +603,10 @@ class FacturadosController extends Controller
             ->orderBy('FECHA_FACTURA')
             ->get();
 
-            $por_reg =Factura::select('REGIONAL',DB::raw('COUNT(*) AS FACTURADOS'))
+            $por_reg =Factura::select('REG_ASIGNADA',DB::raw('COUNT(*) AS FACTURADOS'))
             ->whereBetween('FECHA_FACTURA',[$inicio,$final])
             ->where ('MARCA',$marca)
-            ->groupBy('REGIONAL')
+            ->groupBy('REG_ASIGNADA')
             ->orderBy('FACTURADOS', 'desc')
             ->get(); 
 
@@ -655,33 +655,33 @@ class FacturadosController extends Controller
             $aux = Carbon::parse($fecha);
             $final = $aux->endOfMonth()->toDateString();
 
-            $total =Factura:: where ('REGIONAL',$regional)
+            $total =Factura:: where ('REG_ASIGNADA',$regional)
             ->whereBetween('FECHA_FACTURA',[$inicio,$final])
             ->count();
 
             $por_dia =Factura::select('NOM_DIA','FECHA_FACTURA',DB::raw('COUNT(*) AS FACTURADOS'))
-            ->where ('REGIONAL',$regional)
+            ->where ('REG_ASIGNADA',$regional)
             ->whereBetween('FECHA_FACTURA',[$inicio,$final])
             ->groupBy('NOM_DIA','FECHA_FACTURA')
             ->orderBy('FECHA_FACTURA')
             ->get();
 
-            $por_suc =Factura::select('SUCURSAL',DB::raw('COUNT(*) AS FACTURADOS'))
-            ->where ('REGIONAL',$regional)
+            $por_suc =Factura::select('SUC_ASIGNADA',DB::raw('COUNT(*) AS FACTURADOS'))
+            ->where ('REG_ASIGNADA',$regional)
             ->whereBetween('FECHA_FACTURA',[$inicio,$final])
-            ->groupBy('SUCURSAL')
+            ->groupBy('SUC_ASIGNADA')
             ->orderBy('FACTURADOS', 'desc')
             ->get();   
 
             $por_vendedor =Factura::select('REG_ABRE','VENDEDOR',DB::raw('COUNT(*) AS FACTURADOS'))
-            ->where ('REGIONAL',$regional)
+            ->where ('REG_ASIGNADA',$regional)
             ->whereBetween('FECHA_FACTURA',[$inicio,$final])
             ->groupBy('REG_ABRE','VENDEDOR')
             ->orderBy('FACTURADOS', 'desc')
             ->get();
 
             $por_marca =Factura::select('MARCA',DB::raw('COUNT(*) AS FACTURADOS'))
-            ->where ('REGIONAL',$regional)
+            ->where ('REG_ASIGNADA',$regional)
             ->whereBetween('FECHA_FACTURA',[$inicio,$final])
             ->groupBy('MARCA')
             ->orderBy('FACTURADOS', 'desc')
@@ -794,9 +794,9 @@ class FacturadosController extends Controller
 
         $detalle =Factura::select(DB::raw('ROW_NUMBER() OVER(ORDER BY NRO_FACTURA DESC) AS ITEM'),'*')
             ->whereBetween('FECHA_FACTURA',[$inicio,$final])
-            ->where('REGIONAL','LIKE','%'.$regional.'%')
+            ->where('REG_ASIGNADA','LIKE','%'.$regional.'%')
             ->where('MARCA','LIKE','%'.$marca.'%')
-            ->where('SUCURSAL','LIKE','%'.$sucursal.'%')
+            ->where('SUC_ASIGNADA','LIKE','%'.$sucursal.'%')
             ->where('MODELO','LIKE','%'.$modelo.'%')
             ->where('MASTER','LIKE','%'.$master.'%')
             ->where('CHASIS','LIKE','%'.$chassis.'%')

@@ -4,71 +4,68 @@
 
 <style type="text/css">
 
-.asd {
+.bold
+{
     font-weight: bold;
 }
-.select_style 
+.green2
 {
-  background: #FFF;
-  overflow: hidden;
-  display: inline-block;
-  color: #525252;
-  font-weight: 300;
-  -webkit-border-radius: 5px 4px 4px 5px/5px 5px 4px 4px;
-  -moz-border-radius: 5px 4px 4px 5px/5px 5px 4px 4px;
-  border-radius: 5px 4px 4px 5px/5px 5px 4px 4px;
-  -webkit-box-shadow: 0 0 5px rgba(123, 123, 123, 0.2);
-  -moz-box-shadow: 0 0 5px rgba(123,123,123,.2);
-  box-shadow: 0 0 5px rgba(123, 123, 123, 0.2);
-  border: solid 1px #DADADA;
-  font-family: "helvetica neue",arial;
-  position: relative;
-  cursor: pointer;
-  padding-right:20px;
+    color: #145d66;
+}
+.purple
+{
+    color: #4b3a52;
+}
+.blue
+{
+    color: #455c73;
+}
+.bg-default
+{
+  background-color: #73879c; 
+}
+.bg-green2
+{
+    background-color: #145d66;
+}
+.bg-purple1
+{
+    background-color: #4b3a52;
+}
+.bg-blue1
+{
+    background-color: #455c73;
+}
 
-}
-.select_style span
+
+.select_style
 {
-  position: absolute;
-  right: 10px;
-  width: 8px;
-  height: 8px;
-  background: url(http://projects.authenticstyle.co.uk/niceselect/arrow.png) no-repeat;
-  top: 50%;
-  margin-top: -4px;
-}
-.select_style select
-{
-  -webkit-appearance: none;
-  appearance:none;
-  width:120%;
-  background:none;
-  background:transparent;
-  border:none;
-  outline:none;
-  cursor:pointer;
-  padding:7px 10px;
-}
-  .bg-default {
-  background-color: #73879c;
+  -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+
+  width: 268px;
+  padding: 5px;
  
+  
+  color: #73879c;
+  overflow: hidden;
+  border: solid 1px #b2bfcc;
 }
-
 </style>
-
 
 <div class="right_col" role="main">
   <div class="">
     <div class="page-title">
       <div class="title_left">
         <h3>
-        METAS REGIONALES
+        METAS TOYOTA
       </h3>
       </div>
       
       <div class="title_right">
-        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-            <select class="select_style" data-width="100%" option="LA PAZ" name="REGIONAL" id="REGIONAL" >
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <select class="select_style " data-width="100%" option="LA PAZ" name="REGIONAL" id="REGIONAL" >
               <option value="TODOS">SELECCIONE UNA REGIONAL</option>
               <option value="TODOS">TODAS LAS REGIONALES</option>
               @foreach($ubica as $ub)
@@ -78,173 +75,204 @@
               @endforeach
             </select>
         </div>
-      </div>        
-    </div>
+      
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <select class="select_style " data-width="100%" option="LA PAZ" name="REGIONAL" id="REGIONAL" >
+              <option value="TODOS">SELECCIONE UNA MARCA</option>
+              <option value="TODOS">TODAS LAS MARCAS</option>
+              @foreach($marcas as $mar)
+                <option value="{{$mar->MARCA}}" >
+                 {{$mar->MARCA}} 
+                 </option>                
+              @endforeach
+            </select>
+        </div>
+      </div>
+    </div>        
+    
     <hr>
     <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-12 col-sm-12 col-xs-12 ">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>LA PAZ  <small>ANUAL </small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <select class="select_style" data-width="100%" option="LA PAZ" name="REGIONAL" id="REGIONAL" >
+                <option value="TODOS">SELECCIONE UN PERIODO</option>
+                <option value="TODOS">ANUAL</option>
+                <option value="TODOS">1° SEMESTRE</option>
+                <option value="TODOS">2° SEMESTRE</option>
+                @foreach($peri as $per)
+                  <option value="{{$per->periodo}}" >
+                   {{$per->periodo}} 
+                   </option>                
+                @endforeach
+              </select>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="col-md-12">               
+              <div class="col-md-3 col-sm-6 col-xs-12 sidebar-widget" align="center">
+                <h4 class=""> <strong>COTIZACIONES </strong> </h4>
+                <span class="gauge-value "><strong class="">Actual: </strong>{{$TOTALES->real_cotizaciones}} Cotizaciones</span><br>
+                <span class="gauge-value "><strong class="">Meta  : </strong>{{$TOTALES->meta_cotizaciones}} Cotizaciones</span><br>
+                <canvas width="180" height="120" id="gauge_cotizados" class="" ></canvas>
+                <div class="goal-wrapper goal-cotizados">
+                  <span id="gauge-text-cotizados" class="gauge-value gauge-chart ">0</span>
+                  <span class="gauge-value ">%</span>
+                </div>
+              </div>  
+               <div class="col-md-3 col-sm-6 col-xs-12 sidebar-widget" align="center">
+                <h4 class="blue"><strong>TEST DRIVE </strong> </h4>
+                <span class="gauge-value  "><strong class="blue">Actual: </strong>{{$TOTALES->real_test_drive}} Test's</span><br>
+                <span class="gauge-value  "><strong class="blue">Meta  : </strong>{{$TOTALES->meta_test_drive}} Test's</span><br>
+                <canvas width="180" height="120" id="gauge_test" class="" ></canvas>
+                <div class="goal-wrapper goal-test">
+                  <span id="gauge-text-test" class="gauge-value gauge-chart ">0</span>
+                  <span class="gauge-value ">%</span>
+                </div>
+              </div>             
+              <div class="col-md-3 col-sm-6 col-xs-12 sidebar-widget" align="center">
+                <h4 class="green2"> <strong>RESERVAS </strong> </h4>
+                <span class="gauge-value "><strong class="green2">Actual: </strong>{{$TOTALES->real_reservas}} Reservas</span><br>
+                <span class="gauge-value "><strong class="green2">Meta  : </strong>{{$TOTALES->meta_reservas}} Reservas</span><br>
+                <canvas width="180" height="120" id="gauge_reservados" class="" ></canvas>
+                <div class="goal-wrapper goal-reservados">
+                  <span id="gauge-text-reservados" class="gauge-value gauge-chart ">0</span>
+                  <span class="gauge-value ">%</span>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 col-xs-12 sidebar-widget" align="center">
+                <h4 class="purple"><strong>FACTURAS </strong> </h4>
+                <span class="gauge-value  "><strong class="purple">Actual: </strong>{{$TOTALES->real_facturados}} Facturados</span><br>
+                <span class="gauge-value  "><strong class="purple">Meta  : </strong>{{$TOTALES->meta_facturados}} Facturados</span><br>
+                <canvas width="180" height="120" id="gauge_facturados" class="" ></canvas>
+                <div class="goal-wrapper goal-facturados">
+                  <span id="gauge-text-facturados" class="gauge-value gauge-chart ">0</span>
+                  <span class="gauge-value ">%</span>
+                </div>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>    
+
+    <div class="row">
+
+      @foreach($SUCURSALES as $suc)
+
+             <?php 
+             $percent_cotizaciones = number_format((($suc-> real_cotizaciones *100)/$suc-> meta_cotizaciones),2, '.', ',');
+             $percent_reservados = number_format((($suc-> real_reservas *100)/$suc-> meta_reservas),2, '.', ',');
+             $percent_facturados = number_format((($suc-> real_facturados *100)/$suc-> meta_facturados),2, '.', ',');
+                    
+              ?> 
+              <div class="col-md-12 col-sm-12 col-xs-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>REGIONAL  <small>TODOS LOS PERIODOS </small></h2>
+                    <h2>{{ $suc-> SUCURSAL }}</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <select class="select_style" data-width="100%" option="LA PAZ" name="REGIONAL" id="REGIONAL" >
-                        <option value="TODOS">SELECCIONE UN PERIODO</option>
-                        <option value="TODOS">TODOS LOS PERIODOS</option>
-                        @foreach($peri as $per)
-                          <option value="{{$per->periodo}}" >
-                           {{$per->periodo}} 
-                           </option>                
-                        @endforeach
-                      </select>
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+                    <div class="col-xs-12 bg-white progress_summary">
+                        
+                        <div class="row">
+                          <div class="progress_title">
+                            <span class="left bold">COTIZACIONES</span>
+                            <div class="clearfix"></div>
+                          </div>
+                          <div class="col-xs-2 col-lg-offset-2">
+                            <strong>Actual: </strong><span> {{ $suc-> real_cotizaciones }} Cotizaciones</span>
+                            <br>
+                            <strong>Meta : </strong><span> {{ $suc-> meta_cotizaciones }} Cotizaciones</span> 
+                          </div>
+                          <div class="col-xs-7">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar progress-bar-striped active bg-default" role="progressbar" data-transitiongoal="{{$percent_cotizaciones}}"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-1 more_info">
+                            <span class="bold">{{$percent_cotizaciones}}%</span>
+                          </div>
+                        </div>
 
-                    <div class="col-md-12">               
-                      <div class="col-md-6 sidebar-widget" align="center">
-                        <h4> <strong>UNIDADES </strong> <i class="fa fa-car"></i></h4>
-                        <span class="gauge-value pull-left"><strong>Actual: </strong>{{$TOTALES->REAL_TOTAL_UNIDADES}} Unidades</span><br>
-                        <span class="gauge-value pull-left"><strong>Meta  : </strong>{{$TOTALES->META_TOTAL_UNIDADES}} Unidades</span><br>
-                        <canvas width="200" height="130" id="gauge_unidades" class="" ></canvas>
-                        <div class="goal-wrapper goal-unidades">
-                          <span id="gauge-text-unidades" class="gauge-value gauge-chart ">0</span>
-                          <span class="gauge-value ">%</span>
+                        <div class="row">
+                          <div class="progress_title">
+                            <span class="left bold blue">TEST DRIVE</span>
+                            <div class="clearfix"></div>
+                          </div>
+                          <div class="col-xs-2 col-lg-offset-2">
+                            <strong class="blue">Actual: </strong><span>{{--  {{number_format( $suc-> REAL_MONTO ,2, '.', ',')}} --}} Test's</span>
+                            <br>
+                            <strong class="blue">Meta : </strong><span> {{-- {{number_format( $suc-> META_MONTOS ,2, '.', ',')}} --}} Test's</span> 
+                          </div>
+                          <div class="col-xs-7">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar progress-bar-striped active bg-blue1" role="progressbar" data-transitiongoal="{{number_format(50,2, '.', ',')}}"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-1 more_info">
+                            <span class="blue bold">{{number_format(50,2, '.', ',')}}%</span>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-md-6 sidebar-widget" align="center">
-                        <h4 class="green"><strong>MONTO </strong> <i class="fa fa-dollar"></i></h4>
-                        <span class="gauge-value pull-left "><strong>Actual: </strong>{{number_format($TOTALES->REAL_TOTAL_MONTO,2, '.', ',')}} Bs.</span><br>
-                        <span class="gauge-value pull-left "><strong>Meta  : </strong>{{number_format($TOTALES->META_TOTAL_MONTOS,2, '.', ',')}} Bs.</span><br>
-                        <canvas width="200" height="130" id="gauge_montos" class="" ></canvas>
-                        <div class="goal-wrapper goal-montos">
-                          <span id="gauge-text-montos" class="gauge-value gauge-chart ">0</span>
-                          <span class="gauge-value ">%</span>
+
+                        <div class="row">
+                          <div class="progress_title">
+                            <span class="left bold green2">RESERVAS</span>
+                            <div class="clearfix"></div>
+                          </div>
+                          <div class="col-xs-2 col-lg-offset-2">
+                            <strong class="green2">Actual: </strong><span> {{ $suc-> real_reservas }} Reservas</span>
+                            <br>
+                            <strong class="green2">Meta : </strong><span> {{ $suc-> meta_reservas }} Reservas</span> 
+                          </div>
+                          <div class="col-xs-7">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar progress-bar-striped active bg-green2" role="progressbar" data-transitiongoal="{{$percent_reservados}}"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-1 more_info">
+                            <span class="green2 bold">{{$percent_reservados}}%</span>
+                          </div>
                         </div>
-                      </div>
+
+                        <div class="row">
+                          <div class="progress_title">
+                            <span class="left bold purple">FACTURAS</span>
+                            <div class="clearfix"></div>
+                          </div>
+                          <div class="col-xs-2 col-lg-offset-2">
+                            <strong class="purple">Actual: </strong><span> {{$suc-> real_facturados}} Facturados</span>
+                            <br>
+                            <strong class="purple">Meta : </strong><span> {{$suc-> meta_facturados}} Facturados</span> 
+                          </div>
+                          <div class="col-xs-7">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar progress-bar-striped active bg-purple1" role="progressbar" data-transitiongoal="{{$percent_facturados}}"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-1 more_info">
+                            <span class="purple bold">{{$percent_facturados}}%</span>
+                          </div>
+                        </div>
 
                     </div>
-                <hr>
-                   
-
                   </div>
                 </div>
               </div>
-      
+
+      @endforeach
     </div>
-
-    <div class="row">
-                    @foreach($SUCURSALES as $lp)
-
-                    <?php 
-                    if($lp-> REAL_UNIDADES >= $lp-> META_UNIDADES)
-                    {
-                        $per_uni = 100;
-                        $pertxt_uni = ($lp-> REAL_UNIDADES *100)/$lp-> META_UNIDADES;
-                    }
-                    else
-                    {
-                      $per_uni = ($lp-> REAL_UNIDADES *100)/$lp-> META_UNIDADES;
-                      $pertxt_uni = ($lp-> REAL_UNIDADES *100)/$lp-> META_UNIDADES;
-                    }
-
-                    if($lp-> REAL_MONTO >= $lp-> META_MONTOS)
-                    {
-                      $per_mont = 100;
-                      $pertxt_mont = ($lp-> REAL_MONTO *100)/$lp-> META_MONTOS;
-                    }
-                    else
-                    {
-                      $per_mont = ($lp-> REAL_MONTO *100)/$lp-> META_MONTOS;
-                      $pertxt_mont = ($lp-> REAL_MONTO *100)/$lp-> META_MONTOS;
-                    }
-
-                    ?>
-
-
-                    <div class="clearfix"></div>
-
-                    <div class="row">
-                      <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="x_panel">
-                          <div class="x_title">
-                            {{ $lp-> SUCURSAL }}
-                            <ul class="nav navbar-right panel_toolbox">
-                              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                              </li>
-                             
-                              <li><a class="close-link"><i class="fa fa-close"></i></a>
-                              </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                          </div>
-                          <div class="x_content">
-
-                                           
-                            <div class="row">
-                              <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
-                                  <div class="col-md-1 ">
-                                    <i class="fa fa-car"></i>
-                                  </div>
-                                  <div class="col-md-9">
-                                    <div class="progress progress progress_sm">
-                                      <div class="progress-bar progress-bar-striped active bg-default" role="progressbar"  data-transitiongoal= {{number_format($per_uni,2, '.', ',')}}>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div @if ($pertxt_uni> 100) class="col-md-2 red asd animated infinite pulse" @else class="col-md-2" @endif>
-                                    <span >{{number_format($pertxt_uni,2, '.', ',')}}%</span>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                                  <div class="col-md-1 ">
-                                    <i class="fa fa-dollar green"></i>
-                                  </div>
-                                  <div class="col-md-9">
-                                    <div class="progress progress progress_sm">
-                                      <div class="progress-bar progress-bar-success progress-bar-striped active " role="progressbar" data-transitiongoal= {{number_format($per_mont,2, '.', ',')}}>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div  @if ($pertxt_mont> 100) class="col-md-2 red asd animated infinite pulse" @else class="col-md-2" @endif >
-                                   <span > {{number_format($pertxt_mont,2, '.', ',')}}%</span>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="row">
-                                <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
-                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class=" col-md-8 col-md-offset-2">
-                                      <div class="row">
-                                        <strong>Actual: </strong><span> {{ $lp-> REAL_UNIDADES }} Unidades</span>
-                                      </div>
-                                      <div class="row">
-                                        <strong>Meta : </strong><span> {{ $lp-> META_UNIDADES }} Unidades</span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class=" col-md-8 col-md-offset-2">
-                                      <div class="row">
-                                        <span class=""><strong>Actual: </strong> {{number_format( $lp-> REAL_MONTO ,2, '.', ',')}} Bs</span>
-                                      </div>
-                                      <div class="row">
-                                        <span class=""><strong>Meta :  </strong>{{number_format( $lp-> META_MONTOS ,2, '.', ',')}} Bs</span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          
-                          </div>
-                        </div>
-                      </div>
-                    </div> 
-                    @endforeach
-                  </div>
   </div>
 </div>
 
@@ -284,7 +312,7 @@
     <script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 
 <script type="text/javascript">
-var opts = {
+var opts_green = {
   lines: 12,
       angle: 0.0,
       lineWidth: 0.4,
@@ -299,7 +327,8 @@ var opts = {
       strokeColor: '#F0F3F3',
       generateGradient: true
 };
-var opts2 = {
+
+var opts_gray = {
   lines: 12,
       angle: 0.0,
       lineWidth: 0.4,
@@ -315,84 +344,145 @@ var opts2 = {
       generateGradient: true
 };
 
-var rtu = '<?php echo $TOTALES->REAL_TOTAL_UNIDADES; ?>' *1;
-var mtu = '<?php echo $TOTALES->META_TOTAL_UNIDADES; ?>'*1;
-var rtm = '<?php echo $TOTALES->REAL_TOTAL_MONTO; ?>' *1;
-var mtm = '<?php echo $TOTALES->META_TOTAL_MONTOS; ?>'*1;
+var opts_green_2 = {
+  lines: 12,
+      angle: 0.0,
+      lineWidth: 0.4,
+      pointer: {
+        length: 0.75,
+        strokeWidth: 0.042,
+        color: '#2a3f54'
+      },
+      limitMax: 'false',
+      colorStart: '#145d66',
+      colorStop: '#145d66',
+      strokeColor: '#F0F3F3',
+      generateGradient: true
+};
 
+var opts_blue = {
+  lines: 12,
+      angle: 0.0,
+      lineWidth: 0.4,
+      pointer: {
+        length: 0.75,
+        strokeWidth: 0.042,
+        color: '#2a3f54'
+      },
+      limitMax: 'false',
+      colorStart: '#455c73',
+      colorStop: '#455c73',
+      strokeColor: '#F0F3F3',
+      generateGradient: true
+};
+var opts_purple = {
+  lines: 12,
+      angle: 0.0,
+      lineWidth: 0.4,
+      pointer: {
+        length: 0.75,
+        strokeWidth: 0.042,
+        color: '#2a3f54'
+      },
+      limitMax: 'false',
+      colorStart: '#4b3a52',
+      colorStop: '#4b3a52',
+      strokeColor: '#F0F3F3',
+      generateGradient: true
+};
 
-if(rtu>=mtu) 
+var real_cotizaciones = '<?php echo $TOTALES->real_cotizaciones; ?>' *1;
+var meta_cotizaciones = '<?php echo $TOTALES->meta_cotizaciones; ?>'*1;
+
+var real_test_drive = '<?php echo $TOTALES->real_test_drive; ?>' *1;
+var meta_test_drive = '<?php echo $TOTALES->meta_test_drive; ?>'*1;
+
+var real_reservas = '<?php echo $TOTALES->real_reservas; ?>' *1;
+var meta_reservas = '<?php echo $TOTALES->meta_reservas; ?>'*1;
+
+var real_facturados = '<?php echo $TOTALES->real_facturados; ?>' *1;
+var meta_facturados = '<?php echo $TOTALES->meta_facturados; ?>'*1;
+
+if(real_cotizaciones>=meta_cotizaciones) 
 {
-  var max_rtu= (rtu *100)/mtu;
-  var set_rtu= (rtu *100)/mtu;
-  $(".goal-unidades").addClass("red asd animated infinite tada ");
+  var max_real_cotizaciones= (real_cotizaciones *100)/meta_cotizaciones;
+  var set_real_cotizaciones= (real_cotizaciones *100)/meta_cotizaciones;
+  $(".goal-cotizados").addClass("red bold animated infinite tada ");
+  alert()
 }
 else
 {
-  var set_rtu= (rtu *100)/mtu;
-  var max_rtu=100;
+  var set_real_cotizaciones= (real_cotizaciones *100)/meta_cotizaciones;
+  var max_real_cotizaciones=100;
 }
 
-if(rtm>mtm )
+if(real_test_drive>=meta_test_drive )
 {
-  var set_rtm=(rtm*100)/mtm;
-  var max_rtm=(rtm*100)/mtm;
-  $(".goal-montos").addClass("red asd animated infinite tada ");
+  var set_real_test_drive=(real_test_drive*100)/meta_test_drive;
+  var max_real_test_drive=(real_test_drive*100)/meta_test_drive;
+  $(".goal-test").addClass("red bold animated infinite tada ");
 }
 else
 {
-  var set_rtm=(rtm*100)/mtm;
-  var max_rtm=100;
+  var set_real_test_drive=(real_test_drive*100)/meta_test_drive;
+  var max_real_test_drive=100;
+}
+if(real_reservas>=meta_reservas) 
+{
+  var max_real_reservas= (real_reservas *100)/meta_reservas;
+  var set_real_reservas= (real_reservas *100)/meta_reservas;
+  $(".goal-reservados").addClass("red bold animated infinite tada ");
+}
+else
+{
+  var set_real_reservas= (real_reservas *100)/meta_reservas;
+  var max_real_reservas=100;
 }
 
-var target_montos = document.getElementById('gauge_montos'); // your canvas element
-var gauge_montos = new Gauge(target_montos).setOptions(opts); // create sexy gauge!
-gauge_montos.maxValue =max_rtm; // set max gauge_montos value
-gauge_montos.setMinValue(0);  // set min value
-gauge_montos.animationSpeed = 100;
-gauge_montos.set(set_rtm); // set actual value
-gauge_montos.setTextField(document.getElementById("gauge-text-montos"));
+if(real_facturados>meta_facturados )
+{
+  var set_real_facturados=(real_facturados*100)/meta_facturados;
+  var max_real_facturados=(real_facturados*100)/meta_facturados;
+  $(".goal-facturados").addClass("red bold animated infinite tada ");
+}
+else
+{
+  var set_real_facturados=(real_facturados*100)/meta_facturados;
+  var max_real_facturados=100;
+}
+
+var target_cotizados = document.getElementById('gauge_cotizados'); // your canvas element
+var gauge_cotizados = new Gauge(target_cotizados).setOptions(opts_gray); // create sexy gauge!
+gauge_cotizados.maxValue = max_real_cotizaciones; // set max gauge_cotizados value
+gauge_cotizados.setMinValue(0);  // set min value
+gauge_cotizados.animationSpeed = 100;
+gauge_cotizados.set(set_real_cotizaciones); // set actual value
+gauge_cotizados.setTextField(document.getElementById("gauge-text-cotizados"));
+
+var target_test = document.getElementById('gauge_test'); // your canvas element
+var gauge_test = new Gauge(target_test).setOptions(opts_blue); // create sexy gauge!
+gauge_test.maxValue =max_real_test_drive; // set max gauge_test value
+gauge_test.setMinValue(0);  // set min value
+gauge_test.animationSpeed = 100;
+gauge_test.set(set_real_test_drive); // set actual value
+gauge_test.setTextField(document.getElementById("gauge-text-test"));
+
+var target_reservados = document.getElementById('gauge_reservados'); // your canvas element
+var gauge_reservados = new Gauge(target_reservados).setOptions(opts_green_2); // create sexy gauge!
+gauge_reservados.maxValue = max_real_reservas; // set max gauge_reservados value
+gauge_reservados.setMinValue(0);  // set min value
+gauge_reservados.animationSpeed = 100;
+gauge_reservados.set(set_real_reservas); // set actual value
+gauge_reservados.setTextField(document.getElementById("gauge-text-reservados"));
 
 
-var target_unidades = document.getElementById('gauge_unidades'); // your canvas element
-var gauge_unidades = new Gauge(target_unidades).setOptions(opts2); // create sexy gauge!
-gauge_unidades.maxValue = max_rtu; // set max gauge_unidades value
-gauge_unidades.setMinValue(0);  // set min value
-gauge_unidades.animationSpeed = 100;
-gauge_unidades.set(set_rtu); // set actual value
-gauge_unidades.setTextField(document.getElementById("gauge-text-unidades"));
-
-// var target_cocha = document.getElementById('gauge_cocha'); // your canvas element
-// var gauge_cocha = new Gauge(target_cocha).setOptions(opts); // create sexy gauge!
-// gauge_cocha.maxValue = 100; // set max gauge_cocha value
-// gauge_cocha.setMinValue(0);  // set min value
-// gauge_cocha.animationSpeed = 250;
-// gauge_cocha.set(90); // set actual value
-// gauge_cocha.setTextField(document.getElementById("gauge-text-cocha"));
-
-// var target_santa = document.getElementById('gauge_santa'); // your canvas element
-// var gauge_santa = new Gauge(target_santa).setOptions(opts); // create sexy gauge!
-// gauge_santa.maxValue = 100; // set max gauge_santa value
-// gauge_santa.setMinValue(0);  // set min value
-// gauge_santa.animationSpeed = 250;
-// gauge_santa.set(75); // set actual value
-// gauge_santa.setTextField(document.getElementById("gauge-text-santa"));
-
-// var target_ea = document.getElementById('gauge_ea'); // your canvas element
-// var gauge_ea = new Gauge(target_ea).setOptions(opts); // create sexy gauge!
-// gauge_ea.maxValue = 100; // set max gauge_ea value
-// gauge_ea.setMinValue(0);  // set min value
-// gauge_ea.animationSpeed = 250;
-// gauge_ea.set(25); // set actual value
-// gauge_ea.setTextField(document.getElementById("gauge-text-ea"));
-
-// var target_pt = document.getElementById('gauge_pt'); // your canvas element
-// var gauge_pt = new Gauge(target_pt).setOptions(opts); // create sexy gauge!
-// gauge_pt.maxValue = 100; // set max gauge_pt value
-// gauge_pt.setMinValue(0);  // set min value
-// gauge_pt.animationSpeed = 250;
-// gauge_pt.set(15); // set actual value
-// gauge_pt.setTextField(document.getElementById("gauge-text-pt"));
+var target_facturados = document.getElementById('gauge_facturados'); // your canvas element
+var gauge_facturados = new Gauge(target_facturados).setOptions(opts_purple); // create sexy gauge!
+gauge_facturados.maxValue =max_real_facturados; // set max gauge_facturados value
+gauge_facturados.setMinValue(0);  // set min value
+gauge_facturados.animationSpeed = 100;
+gauge_facturados.set(set_real_facturados); // set actual value
+gauge_facturados.setTextField(document.getElementById("gauge-text-facturados"));
 
 </script>
 @endsection

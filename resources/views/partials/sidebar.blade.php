@@ -44,7 +44,7 @@
                                             
                       <li><a  href="{{ route('reservados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Reservas</a></li> 
 
-                      <li><a  href="{{ route('facturados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Facturados (ventas)</a></li> 
+                      <li><a  href="{{ route('facturados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Facturados</a></li> 
                      
                       
                      
@@ -54,7 +54,7 @@
                   <li><a><i class="fa fa-dashboard"></i> Indicadores <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       {{-- <li><a href="{{ route('metas.index')}}">Metas</a></li> --}}
-                      <li><a href="{{ route('metas.create')}}">Metas Nuevo</a></li>
+                      <li><a href="{{ route('metas.create')}}">Metas</a></li>
                     </ul>
                   </li>
 

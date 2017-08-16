@@ -204,7 +204,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_content animated fadeIn">
               <p class="text-muted font-13 m-b-30"></p>
-              <div class="" {{-- style="max-height: 450px; width: 100%; margin: 0; overflow-y: auto; --}}">
+              <div class="table-responsive" {{-- style="max-height: 450px; width: 100%; margin: 0; overflow-y: auto; --}}">
                 <table class="table table-striped jambo_table bulk_action" id="datatable1">
                   <thead style="">
                     <tr>
@@ -271,9 +271,6 @@
             </div>
             </div>
             </div>
-         
-       
-
     </div>
   </div>       
 
@@ -286,7 +283,7 @@
     $(document).ready(function() {
          //alert('1');
         $('#datatable1').DataTable({
-          
+            
              "language": {
             
               "sProcessing":     "Procesando...",
@@ -310,10 +307,17 @@
               "oAria": {
                   "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
                   "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-              }
+              },
+
+
+             
 
         },
-            
+       
+        "dom": "Blfrtip",
+   "buttons": [ 'copy', 'excel'],
+
+   "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
 
         });
     });
