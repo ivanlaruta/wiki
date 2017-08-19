@@ -213,7 +213,7 @@
                      <th>NRO FACTURA</th> 
                      {{-- <th>FECHA CONTRATO</th> --}}
                      <th>FECHA FACTURA</th> 
-                     <th>FECHA ENTREGA</th>
+                     {{-- <th>FECHA ENTREGA</th> --}}
                      <th>REGIONAL</th>
                      <th>SUCURSAL</th> 
                      <th>VENDEDOR</th>
@@ -247,7 +247,7 @@
                      <td>{{$det->NRO_FACTURA}}</td> 
                       {{-- <td>@if (is_null($det->FECHA_CONTRATO)) CON ADENDA @else {{date('d/m/Y',strtotime($det->FECHA_CONTRATO))}}@endif</td>  --}}
                       <td><label class="text-success">{{date('d/m/Y',strtotime($det->FECHA_FACTURA))}}</label></td>
-                      <td> @if (is_null($det->FECHA_ENTREGA)) No Entregado @else {{date('d/m/Y',strtotime($det->FECHA_ENTREGA))}} @endif </td>
+                      {{-- <td> @if (is_null($det->FECHA_ENTREGA)) No Entregado @else {{date('d/m/Y',strtotime($det->FECHA_ENTREGA))}} @endif </td> --}}
                       <td>{{$det->REGIONAL}}</td> 
                       <td>{{$det->SUCURSAL}}</td> 
                       <td>{{$det->VENDEDOR}}</td> 
@@ -325,7 +325,7 @@
         },
 
      "dom": 'Blfrtip' ,
-   "buttons": [ 'excel'],
+   "buttons": [ 'copy','excel'],
 
    "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "TODOS"]]
 

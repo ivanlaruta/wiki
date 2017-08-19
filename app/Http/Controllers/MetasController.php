@@ -11,7 +11,7 @@ use DB;
 class MetasController extends Controller
 {
     
-    public function create()
+    public function index($periodo,$marca,$regional,$sucursal)
     {
         $dt = Carbon::now('America/La_Paz');  //fecha actual
         $hoy = Carbon::now('America/La_Paz')->toDateString(); // hoy
@@ -30,11 +30,16 @@ class MetasController extends Controller
 
         $año_actual = Carbon::now('America/La_Paz') -> year; //año actual.
 
+        if($marca == '0') { $marca ='TOYOTA';}
+        if($regional == '0') { $regional ='LA PAZ';}
+        if($periodo == '0') { $periodo ='2017-01';}
 
         $ubica =Metas::select('REGIONAL')
         ->groupBy('REGIONAL')
         ->orderBy('REGIONAL','ASC')
         ->get();
+
+       
 
         $peri =Metas::select('periodo')
         ->groupBy('periodo')
@@ -45,7 +50,20 @@ class MetasController extends Controller
         ->groupBy('MARCA')
         ->orderBy('MARCA','ASC')
         ->get();
-      
+
+       
+
+        $mes_periodo = explode("-", $periodo);
+        $mes = $mes_periodo[1];
+
+        $fecha = $año_actual.'-'.$mes.'-01';
+        $fecha_inicio = Carbon::parse($fecha)->toDateString();
+        $aux = Carbon::parse($fecha);
+        $fecha_final = $aux->endOfMonth()->toDateString();
+
+
+
+
         $TOTALES =Metas::select(DB::raw("
             REGIONAL,
             SUM(meta_cotizaciones) AS meta_cotizaciones,
@@ -53,13 +71,14 @@ class MetasController extends Controller
             SUM(meta_reservas) AS meta_reservas,
             SUM(meta_facturas) AS meta_facturados,
             SUM(nro_vendedores) AS vendedores,
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_cotizaciones c where c.REG_ASIGNADA = metas.REGIONAL AND c.MARCA ='TOYOTA' AND FECHA_COTIZACION BETWEEN '2017/01/01' AND '2017/08/15')as real_cotizaciones,
-            (SELECT ROUND((COUNT(c.CHASIS))*0.3,0) as Expr1 from  v_cotizaciones c where c.REGIONAL = metas.REGIONAL AND c.MARCA ='TOYOTA' AND FECHA_COTIZACION BETWEEN '2017/01/01' AND '2017/08/15')as real_test_drive,
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_reservados c where c.REG_ASIGNADA = metas.REGIONAL AND c.MARCA ='TOYOTA' AND FECHA_RESERVA BETWEEN '2017/01/01' AND '2017/08/15')as real_reservas,
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_facturados c where c.REG_ASIGNADA = metas.REGIONAL AND c.MARCA ='TOYOTA' AND FECHA_FACTURA BETWEEN '2017/01/01' AND '2017/08/15')as real_facturados
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_cotizaciones c where c.REG_ASIGNADA = metas.REGIONAL AND c.MARCA ='TOYOTA' AND FECHA_COTIZACION BETWEEN '".$fecha_inicio."' AND '".$fecha_final."')as real_cotizaciones,
+            (SELECT ROUND((COUNT(c.CHASIS))*0.3,0) as Expr1 from  v_cotizaciones c where c.REGIONAL = metas.REGIONAL AND c.MARCA ='TOYOTA' AND FECHA_COTIZACION BETWEEN '".$fecha_inicio."' AND '".$fecha_final."')as real_test_drive,
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_reservados c where c.REG_ASIGNADA = metas.REGIONAL AND c.MARCA ='TOYOTA' AND FECHA_RESERVA BETWEEN '".$fecha_inicio."' AND '".$fecha_final."')as real_reservas,
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_facturados c where c.REG_ASIGNADA = metas.REGIONAL AND c.MARCA ='TOYOTA' AND FECHA_FACTURA BETWEEN '".$fecha_inicio."' AND '".$fecha_final."')as real_facturados
             "))
 
-        ->where('REGIONAL','LA PAZ')
+        ->where('REGIONAL',$regional)
+        ->where('periodo', $periodo)
         ->groupBy('REGIONAL')
         ->first();
 
@@ -71,16 +90,17 @@ class MetasController extends Controller
             SUM(metas.meta_reservas) AS meta_reservas,
             SUM(metas.meta_facturas) AS meta_facturados,
 
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_cotizaciones c where c.REG_ASIGNADA = metas.REGIONAL AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA'AND FECHA_COTIZACION BETWEEN '2017/01/01' AND '2017/08/15')as real_cotizaciones,
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_cotizaciones c where c.REG_ASIGNADA = metas.REGIONAL AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA'AND FECHA_COTIZACION BETWEEN '".$fecha_inicio."' AND '".$fecha_final."')as real_cotizaciones,
 
-            (SELECT ROUND((COUNT(c.CHASIS))*0.3,0) as Expr1 from  v_cotizaciones c where c.REGIONAL = metas.REGIONAL AND FECHA_COTIZACION BETWEEN '2017/01/01' AND '2017/08/15')as real_test_drive,
+            (SELECT ROUND((COUNT(c.CHASIS))*0.3,0) as Expr1 from  v_cotizaciones c where c.REGIONAL = metas.REGIONAL AND FECHA_COTIZACION BETWEEN '".$fecha_inicio."' AND '".$fecha_final."')as real_test_drive,
 
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_reservados c where c.REG_ASIGNADA = metas.REGIONAL  AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA' AND FECHA_RESERVA BETWEEN '2017/01/01' AND '2017/08/15')as real_reservas,
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_reservados c where c.REG_ASIGNADA = metas.REGIONAL  AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA' AND FECHA_RESERVA BETWEEN '".$fecha_inicio."' AND '".$fecha_final."')as real_reservas,
 
-            (SELECT COUNT(c.CHASIS)as Expr1 from  v_facturados c where c.REG_ASIGNADA = metas.REGIONAL  AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA' AND FECHA_FACTURA BETWEEN '2017/01/01' AND '2017/08/15')as real_facturados
+            (SELECT COUNT(c.CHASIS)as Expr1 from  v_facturados c where c.REG_ASIGNADA = metas.REGIONAL  AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA' AND FECHA_FACTURA BETWEEN '".$fecha_inicio."' AND '".$fecha_final."')as real_facturados
             
             "))
-            ->where ('REGIONAL','LA PAZ')
+            ->where ('REGIONAL',$regional)
+            ->where('periodo', $periodo)
             ->groupBy('REGIONAL','SUCURSAL')
             ->get();      
           
@@ -90,6 +110,11 @@ class MetasController extends Controller
         ->with('ubica',$ubica)
         ->with('peri',$peri)
         ->with('marcas',$marcas)
+        ->with('periodo',$periodo)
+        ->with('marca',$marca)
+        ->with('regional',$regional)
+        ->with('sucursal',$sucursal)
+        ->with('año_actual',$año_actual)
         ;
      
     }

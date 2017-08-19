@@ -54,7 +54,7 @@
                   <li><a><i class="fa fa-dashboard"></i> Indicadores <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       {{-- <li><a href="{{ route('metas.index')}}">Metas</a></li> --}}
-                      <li><a href="{{ route('metas.create')}}">Metas</a></li>
+                      <li><a href="{{ route('metas.index',['periodo'=>'0','marca'=>'0','regional'=>'0','sucursal'=>'0'])}}">Metas</a></li>
                     </ul>
                   </li>
 

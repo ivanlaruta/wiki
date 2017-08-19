@@ -361,5 +361,11 @@ Route::group(['prefix'=>'reservados','middleware'=>'auth'],function(){
 
 
 Route::group(['prefix'=>'metas','middleware'=>'auth'],function(){
-	route::resource('metas','MetasController');
+
+	route::get('metas/{periodo}/{marca}/{regional}/{sucursal}/index',[
+		'uses' =>'MetasController@index',
+		'as'   =>	'metas.index'
+	]);
+
+	
 });

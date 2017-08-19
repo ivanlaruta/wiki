@@ -59,30 +59,32 @@
     <div class="page-title">
       <div class="title_left">
         <h3>
-        METAS TOYOTA
+        METAS {{$marca}} {{$año_actual}}
       </h3>
       </div>
       
       <div class="title_right">
-        <div class="col-md-6 col-sm-12 col-xs-12">
-            <select class="select_style " data-width="100%" option="LA PAZ" name="REGIONAL" id="REGIONAL" >
-              <option value="TODOS">SELECCIONE UNA REGIONAL</option>
-              <option value="TODOS">TODAS LAS REGIONALES</option>
-              @foreach($ubica as $ub)
-                <option value="{{$ub->REGIONAL}}" >
-                 {{$ub->REGIONAL}} 
-                 </option>                
-              @endforeach
-            </select>
-        </div>
-      
-        <div class="col-md-6 col-sm-12 col-xs-12">
-            <select class="select_style " data-width="100%" option="LA PAZ" name="REGIONAL" id="REGIONAL" >
-              <option value="TODOS">SELECCIONE UNA MARCA</option>
-              <option value="TODOS">TODAS LAS MARCAS</option>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12 ">
+          <select class="select_style pull-right" data-width="100%" option="TOYOTA" name="REGIONAL" id="REGIONAL" >
+              
               @foreach($marcas as $mar)
                 <option value="{{$mar->MARCA}}" >
                  {{$mar->MARCA}} 
+                 </option>                
+              @endforeach
+            </select>
+            
+        </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12 ">
+            <select class="select_style pull-right" value="{{$regional}}" data-width="100%"  name="REGIONAL" id="REGIONAL" onchange="location = this.value;">
+              
+              <option value="" >TODAS LAS REGIONALES</option>
+              @foreach($ubica as $ub)
+                <option value="{{ route('metas.index',['periodo'=>$periodo,'marca'=>$marca,'regional'=>$ub->REGIONAL,'sucursal'=>'0'])}}"  @if($regional == $ub->REGIONAL) selected @endif >
+                 {{$ub->REGIONAL}} 
                  </option>                
               @endforeach
             </select>
@@ -95,17 +97,17 @@
       <div class="col-md-12 col-sm-12 col-xs-12 ">
         <div class="x_panel">
           <div class="x_title">
-            <h2>LA PAZ  <small>ANUAL </small></h2>
+            <h2>{{$regional}} <small> {{$periodo}}</small></h2>
             <ul class="nav navbar-right panel_toolbox">
-              <select class="select_style" data-width="100%" option="LA PAZ" name="REGIONAL" id="REGIONAL" >
+              <select class="select_style pull-right" data-width="100%"  name="PERIODO" id="PERIODO" onchange="location = this.value;">
                 <option value="TODOS">SELECCIONE UN PERIODO</option>
                 <option value="TODOS">ANUAL</option>
                 <option value="TODOS">1° SEMESTRE</option>
                 <option value="TODOS">2° SEMESTRE</option>
                 @foreach($peri as $per)
-                  <option value="{{$per->periodo}}" >
-                   {{$per->periodo}} 
-                   </option>                
+                   <option value="{{ route('metas.index',['periodo'=>$per->periodo,'marca'=>$marca,'regional'=>$regional,'sucursal'=>'0'])}}"  @if($periodo == $per->periodo) selected @endif >
+                 {{$per->periodo}} 
+                 </option>             
                 @endforeach
               </select>
             </ul>
@@ -218,11 +220,11 @@
                           </div>
                           <div class="col-xs-7">
                             <div class="progress progress_sm">
-                              <div class="progress-bar progress-bar-striped active bg-blue1" role="progressbar" data-transitiongoal="{{number_format(50,2, '.', ',')}}"></div>
+                              <div class="progress-bar progress-bar-striped active bg-blue1" role="progressbar" data-transitiongoal="{{number_format(10,2, '.', ',')}}"></div>
                             </div>
                           </div>
                           <div class="col-xs-1 more_info">
-                            <span class="blue bold">{{number_format(50,2, '.', ',')}}%</span>
+                            <span class="blue bold">{{number_format(10,2, '.', ',')}}%</span>
                           </div>
                         </div>
 
