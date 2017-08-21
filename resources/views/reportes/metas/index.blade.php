@@ -66,13 +66,13 @@
       <div class="title_right">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12 ">
-          <select class="select_style pull-right" data-width="100%" option="TOYOTA" name="REGIONAL" id="REGIONAL" >
-              
-              @foreach($marcas as $mar)
-                <option value="{{$mar->MARCA}}" >
+          <select class="select_style pull-right" data-width="100%"  name="MARCA" id="MARCA" >
+              <option value="#"> {{$marca}}
+              {{-- @foreach($marcas as $mar)
+                <option value="#" @if(rtrim($mar->MARCA) == $marca ) selected @endif>
                  {{$mar->MARCA}} 
                  </option>                
-              @endforeach
+              @endforeach --}}
             </select>
             
         </div>
@@ -81,7 +81,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12 ">
             <select class="select_style pull-right" value="{{$regional}}" data-width="100%"  name="REGIONAL" id="REGIONAL" onchange="location = this.value;">
               
-              <option value="" >TODAS LAS REGIONALES</option>
+              {{-- <option value="" >TODAS LAS REGIONALES</option> --}}
               @foreach($ubica as $ub)
                 <option value="{{ route('metas.index',['periodo'=>$periodo,'marca'=>$marca,'regional'=>$ub->REGIONAL,'sucursal'=>'0'])}}"  @if($regional == $ub->REGIONAL) selected @endif >
                  {{$ub->REGIONAL}} 
@@ -97,13 +97,13 @@
       <div class="col-md-12 col-sm-12 col-xs-12 ">
         <div class="x_panel">
           <div class="x_title">
-            <h2>{{$regional}} <small> {{$periodo}}</small></h2>
+            <h2>{{$regional}} / {{$desc_periodo}} / <small> del <strong>{{date('d/m/Y',strtotime($fecha_inicio))}}</strong> al <strong>{{date('d/m/Y',strtotime($fecha_final))}}</strong></small></h2>
             <ul class="nav navbar-right panel_toolbox">
               <select class="select_style pull-right" data-width="100%"  name="PERIODO" id="PERIODO" onchange="location = this.value;">
-                <option value="TODOS">SELECCIONE UN PERIODO</option>
-                <option value="TODOS">ANUAL</option>
-                <option value="TODOS">1° SEMESTRE</option>
-                <option value="TODOS">2° SEMESTRE</option>
+                
+                <option value="{{ route('metas.index',['periodo'=>'ANUAL','marca'=>$marca,'regional'=>$regional,'sucursal'=>'0'])}}"@if($periodo == 'ANUAL') selected @endif>ANUAL</option>
+                <option value="{{ route('metas.index',['periodo'=>'SEMESTRE_1','marca'=>$marca,'regional'=>$regional,'sucursal'=>'0'])}}"@if($periodo == 'SEMESTRE_1') selected @endif>1° SEMESTRE</option>
+                <option value="{{ route('metas.index',['periodo'=>'SEMESTRE_2','marca'=>$marca,'regional'=>$regional,'sucursal'=>'0'])}}"@if($periodo == 'SEMESTRE_2') selected @endif>2° SEMESTRE</option>
                 @foreach($peri as $per)
                    <option value="{{ route('metas.index',['periodo'=>$per->periodo,'marca'=>$marca,'regional'=>$regional,'sucursal'=>'0'])}}"  @if($periodo == $per->periodo) selected @endif >
                  {{$per->periodo}} 
@@ -119,6 +119,7 @@
                 <h4 class=""> <strong>COTIZACIONES </strong> </h4>
                 <span class="gauge-value "><strong class="">Actual: </strong>{{$TOTALES->real_cotizaciones}} Cotizaciones</span><br>
                 <span class="gauge-value "><strong class="">Meta  : </strong>{{$TOTALES->meta_cotizaciones}} Cotizaciones</span><br>
+                <span class="gauge-value " style="text-decoration-line:overline;"><strong class="">Diferncia: </strong><span class="red">{{$TOTALES->real_cotizaciones-$TOTALES->meta_cotizaciones}}</span class="red"> Cotizaciones</span><br>
                 <canvas width="180" height="120" id="gauge_cotizados" class="" ></canvas>
                 <div class="goal-wrapper goal-cotizados">
                   <span id="gauge-text-cotizados" class="gauge-value gauge-chart ">0</span>
@@ -127,8 +128,9 @@
               </div>  
                <div class="col-md-3 col-sm-6 col-xs-12 sidebar-widget" align="center">
                 <h4 class="blue"><strong>TEST DRIVE </strong> </h4>
-                <span class="gauge-value  "><strong class="blue">Actual: </strong>{{$TOTALES->real_test_drive}} Test's</span><br>
+                <span class="gauge-value  "><strong class="blue">Actual: </strong>{{intval($TOTALES->real_test_drive)}} Test's</span><br>
                 <span class="gauge-value  "><strong class="blue">Meta  : </strong>{{$TOTALES->meta_test_drive}} Test's</span><br>
+                <span class="gauge-value " style="text-decoration-line:overline;"><strong class="blue">Diferncia: </strong><span class="red">{{$TOTALES->real_test_drive-$TOTALES->meta_test_drive}}</span class="red"> Test's</span><br>
                 <canvas width="180" height="120" id="gauge_test" class="" ></canvas>
                 <div class="goal-wrapper goal-test">
                   <span id="gauge-text-test" class="gauge-value gauge-chart ">0</span>
@@ -139,6 +141,7 @@
                 <h4 class="green2"> <strong>RESERVAS </strong> </h4>
                 <span class="gauge-value "><strong class="green2">Actual: </strong>{{$TOTALES->real_reservas}} Reservas</span><br>
                 <span class="gauge-value "><strong class="green2">Meta  : </strong>{{$TOTALES->meta_reservas}} Reservas</span><br>
+                <span class="gauge-value " style="text-decoration-line:overline;"><strong class="green2">Diferncia: </strong><span class="red">{{$TOTALES->real_reservas-$TOTALES->meta_reservas}}</span class="red"> Reservas</span><br>
                 <canvas width="180" height="120" id="gauge_reservados" class="" ></canvas>
                 <div class="goal-wrapper goal-reservados">
                   <span id="gauge-text-reservados" class="gauge-value gauge-chart ">0</span>
@@ -149,6 +152,7 @@
                 <h4 class="purple"><strong>FACTURAS </strong> </h4>
                 <span class="gauge-value  "><strong class="purple">Actual: </strong>{{$TOTALES->real_facturados}} Facturados</span><br>
                 <span class="gauge-value  "><strong class="purple">Meta  : </strong>{{$TOTALES->meta_facturados}} Facturados</span><br>
+                <span class="gauge-value " style="text-decoration-line:overline;"><strong class="purple">Diferncia: </strong><span class="red">{{$TOTALES->real_facturados-$TOTALES->meta_facturados}}</span class="red"> Facturados</span><br>
                 <canvas width="180" height="120" id="gauge_facturados" class="" ></canvas>
                 <div class="goal-wrapper goal-facturados">
                   <span id="gauge-text-facturados" class="gauge-value gauge-chart ">0</span>
@@ -168,6 +172,7 @@
 
              <?php 
              $percent_cotizaciones = number_format((($suc-> real_cotizaciones *100)/$suc-> meta_cotizaciones),2, '.', ',');
+             $percent_test_drive = number_format((($suc-> real_test_drive *100)/$suc-> meta_test_drive),2, '.', ',');
              $percent_reservados = number_format((($suc-> real_reservas *100)/$suc-> meta_reservas),2, '.', ',');
              $percent_facturados = number_format((($suc-> real_facturados *100)/$suc-> meta_facturados),2, '.', ',');
                     
@@ -196,7 +201,7 @@
                           <div class="col-xs-2 col-lg-offset-2">
                             <strong>Actual: </strong><span> {{ $suc-> real_cotizaciones }} Cotizaciones</span>
                             <br>
-                            <strong>Meta : </strong><span> {{ $suc-> meta_cotizaciones }} Cotizaciones</span> 
+                            <strong>Meta: </strong><span> {{ $suc-> meta_cotizaciones }} Cotizaciones</span> 
                           </div>
                           <div class="col-xs-7">
                             <div class="progress progress_sm">
@@ -204,7 +209,7 @@
                             </div>
                           </div>
                           <div class="col-xs-1 more_info">
-                            <span class="bold">{{$percent_cotizaciones}}%</span>
+                            <span @if ($percent_cotizaciones >=100) class="red bold animated tada infinite" @else class="bold"@endif>{{$percent_cotizaciones}}%</span>
                           </div>
                         </div>
 
@@ -214,17 +219,17 @@
                             <div class="clearfix"></div>
                           </div>
                           <div class="col-xs-2 col-lg-offset-2">
-                            <strong class="blue">Actual: </strong><span>{{--  {{number_format( $suc-> REAL_MONTO ,2, '.', ',')}} --}} Test's</span>
+                            <strong class="blue">Actual: </strong><span> {{intval( $suc-> real_test_drive )}} Test's</span>
                             <br>
-                            <strong class="blue">Meta : </strong><span> {{-- {{number_format( $suc-> META_MONTOS ,2, '.', ',')}} --}} Test's</span> 
+                            <strong class="blue">Meta: </strong><span> {{intval( $suc-> meta_test_drive )}} Test's</span> 
                           </div>
                           <div class="col-xs-7">
                             <div class="progress progress_sm">
-                              <div class="progress-bar progress-bar-striped active bg-blue1" role="progressbar" data-transitiongoal="{{number_format(10,2, '.', ',')}}"></div>
+                              <div class="progress-bar progress-bar-striped active bg-blue1" role="progressbar" data-transitiongoal="{{$percent_test_drive}}"></div>
                             </div>
                           </div>
                           <div class="col-xs-1 more_info">
-                            <span class="blue bold">{{number_format(10,2, '.', ',')}}%</span>
+                            <span @if ($percent_test_drive >=100) class="red bold animated tada infinite" @else class="blue bold"@endif>{{$percent_test_drive}}%</span>
                           </div>
                         </div>
 
@@ -236,7 +241,7 @@
                           <div class="col-xs-2 col-lg-offset-2">
                             <strong class="green2">Actual: </strong><span> {{ $suc-> real_reservas }} Reservas</span>
                             <br>
-                            <strong class="green2">Meta : </strong><span> {{ $suc-> meta_reservas }} Reservas</span> 
+                            <strong class="green2">Meta: </strong><span> {{ $suc-> meta_reservas }} Reservas</span> 
                           </div>
                           <div class="col-xs-7">
                             <div class="progress progress_sm">
@@ -244,7 +249,7 @@
                             </div>
                           </div>
                           <div class="col-xs-1 more_info">
-                            <span class="green2 bold">{{$percent_reservados}}%</span>
+                            <span @if ($percent_reservados >=100) class="red bold animated tada infinite" @else class="green2 bold"@endif>{{$percent_reservados}}%</span>
                           </div>
                         </div>
 
@@ -256,7 +261,7 @@
                           <div class="col-xs-2 col-lg-offset-2">
                             <strong class="purple">Actual: </strong><span> {{$suc-> real_facturados}} Facturados</span>
                             <br>
-                            <strong class="purple">Meta : </strong><span> {{$suc-> meta_facturados}} Facturados</span> 
+                            <strong class="purple">Meta: </strong><span> {{$suc-> meta_facturados}} Facturados</span> 
                           </div>
                           <div class="col-xs-7">
                             <div class="progress progress_sm">
@@ -264,7 +269,7 @@
                             </div>
                           </div>
                           <div class="col-xs-1 more_info">
-                            <span class="purple bold">{{$percent_facturados}}%</span>
+                            <span @if ($percent_facturados >=100) class="red bold animated tada infinite" @else class="purple bold"@endif>{{$percent_facturados}}%</span>
                           </div>
                         </div>
 
@@ -410,7 +415,6 @@ if(real_cotizaciones>=meta_cotizaciones)
   var max_real_cotizaciones= (real_cotizaciones *100)/meta_cotizaciones;
   var set_real_cotizaciones= (real_cotizaciones *100)/meta_cotizaciones;
   $(".goal-cotizados").addClass("red bold animated infinite tada ");
-  alert()
 }
 else
 {
@@ -418,6 +422,9 @@ else
   var max_real_cotizaciones=100;
 }
 
+
+// var set_real_test_drive=0;
+// var max_real_test_drive=100;
 if(real_test_drive>=meta_test_drive )
 {
   var set_real_test_drive=(real_test_drive*100)/meta_test_drive;
@@ -453,11 +460,13 @@ else
   var max_real_facturados=100;
 }
 
+
+
 var target_cotizados = document.getElementById('gauge_cotizados'); // your canvas element
 var gauge_cotizados = new Gauge(target_cotizados).setOptions(opts_gray); // create sexy gauge!
 gauge_cotizados.maxValue = max_real_cotizaciones; // set max gauge_cotizados value
 gauge_cotizados.setMinValue(0);  // set min value
-gauge_cotizados.animationSpeed = 100;
+gauge_cotizados.animationSpeed = 50;
 gauge_cotizados.set(set_real_cotizaciones); // set actual value
 gauge_cotizados.setTextField(document.getElementById("gauge-text-cotizados"));
 
@@ -465,7 +474,7 @@ var target_test = document.getElementById('gauge_test'); // your canvas element
 var gauge_test = new Gauge(target_test).setOptions(opts_blue); // create sexy gauge!
 gauge_test.maxValue =max_real_test_drive; // set max gauge_test value
 gauge_test.setMinValue(0);  // set min value
-gauge_test.animationSpeed = 100;
+gauge_test.animationSpeed = 50;
 gauge_test.set(set_real_test_drive); // set actual value
 gauge_test.setTextField(document.getElementById("gauge-text-test"));
 
@@ -473,7 +482,7 @@ var target_reservados = document.getElementById('gauge_reservados'); // your can
 var gauge_reservados = new Gauge(target_reservados).setOptions(opts_green_2); // create sexy gauge!
 gauge_reservados.maxValue = max_real_reservas; // set max gauge_reservados value
 gauge_reservados.setMinValue(0);  // set min value
-gauge_reservados.animationSpeed = 100;
+gauge_reservados.animationSpeed = 50;
 gauge_reservados.set(set_real_reservas); // set actual value
 gauge_reservados.setTextField(document.getElementById("gauge-text-reservados"));
 
@@ -482,7 +491,7 @@ var target_facturados = document.getElementById('gauge_facturados'); // your can
 var gauge_facturados = new Gauge(target_facturados).setOptions(opts_purple); // create sexy gauge!
 gauge_facturados.maxValue =max_real_facturados; // set max gauge_facturados value
 gauge_facturados.setMinValue(0);  // set min value
-gauge_facturados.animationSpeed = 100;
+gauge_facturados.animationSpeed = 50;
 gauge_facturados.set(set_real_facturados); // set actual value
 gauge_facturados.setTextField(document.getElementById("gauge-text-facturados"));
 
