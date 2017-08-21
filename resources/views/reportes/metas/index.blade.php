@@ -113,13 +113,19 @@
             </ul>
             <div class="clearfix"></div>
           </div>
+          <?php 
+             $dif_cotizaciones = $TOTALES-> real_cotizaciones - $TOTALES-> meta_cotizaciones;
+             $dif_test_drive = $TOTALES-> real_test_drive - $TOTALES-> meta_test_drive;
+             $dif_reservados = $TOTALES-> real_reservas - $TOTALES-> meta_reservas;
+             $dif_facturados = $TOTALES-> real_facturados - $TOTALES-> meta_facturados;      
+          ?> 
           <div class="x_content">
             <div class="col-md-12">               
               <div class="col-md-3 col-sm-6 col-xs-12 sidebar-widget" align="center">
                 <h4 class=""> <strong>COTIZACIONES </strong> </h4>
-                <span class="gauge-value "><strong class="">Actual: </strong>{{$TOTALES->real_cotizaciones}} Cotizaciones</span><br>
-                <span class="gauge-value "><strong class="">Meta  : </strong>{{$TOTALES->meta_cotizaciones}} Cotizaciones</span><br>
-                <span class="gauge-value " style="text-decoration-line:overline;"><strong class="">Diferncia: </strong><span class="red">{{$TOTALES->real_cotizaciones-$TOTALES->meta_cotizaciones}}</span class="red"> Cotizaciones</span><br>
+                <span class="gauge-value "><strong class="">Actual: </strong>{{$TOTALES->real_cotizaciones}} Cotizados</span><br>
+                <span class="gauge-value "><strong class="">Meta  : </strong>{{$TOTALES->meta_cotizaciones}} Cotizados</span><br>
+                <span class="gauge-value " style="text-decoration-line:overline;"><strong class="">Dif.: </strong>@if($dif_cotizaciones >=0 )<strong class="green">+@else <strong class="red">@endif{{$dif_cotizaciones}}</strong> Cotizados</span><br>
                 <canvas width="180" height="120" id="gauge_cotizados" class="" ></canvas>
                 <div class="goal-wrapper goal-cotizados">
                   <span id="gauge-text-cotizados" class="gauge-value gauge-chart ">0</span>
@@ -130,7 +136,7 @@
                 <h4 class="blue"><strong>TEST DRIVE </strong> </h4>
                 <span class="gauge-value  "><strong class="blue">Actual: </strong>{{intval($TOTALES->real_test_drive)}} Test's</span><br>
                 <span class="gauge-value  "><strong class="blue">Meta  : </strong>{{$TOTALES->meta_test_drive}} Test's</span><br>
-                <span class="gauge-value " style="text-decoration-line:overline;"><strong class="blue">Diferncia: </strong><span class="red">{{$TOTALES->real_test_drive-$TOTALES->meta_test_drive}}</span class="red"> Test's</span><br>
+                <span class="gauge-value " style="text-decoration-line:overline;"><strong class="blue">Dif.: </strong>@if($dif_test_drive >=0 )<strong class="green">+@else <strong class="red">@endif{{$dif_test_drive}}</strong> Test's</span><br>
                 <canvas width="180" height="120" id="gauge_test" class="" ></canvas>
                 <div class="goal-wrapper goal-test">
                   <span id="gauge-text-test" class="gauge-value gauge-chart ">0</span>
@@ -141,7 +147,7 @@
                 <h4 class="green2"> <strong>RESERVAS </strong> </h4>
                 <span class="gauge-value "><strong class="green2">Actual: </strong>{{$TOTALES->real_reservas}} Reservas</span><br>
                 <span class="gauge-value "><strong class="green2">Meta  : </strong>{{$TOTALES->meta_reservas}} Reservas</span><br>
-                <span class="gauge-value " style="text-decoration-line:overline;"><strong class="green2">Diferncia: </strong><span class="red">{{$TOTALES->real_reservas-$TOTALES->meta_reservas}}</span class="red"> Reservas</span><br>
+                <span class="gauge-value " style="text-decoration-line:overline;"><strong class="green2">Dif.: </strong>@if($dif_reservados >=0 )<strong class="green">+@else <strong class="red">@endif{{$dif_reservados}}</strong> Reservas</span><br>
                 <canvas width="180" height="120" id="gauge_reservados" class="" ></canvas>
                 <div class="goal-wrapper goal-reservados">
                   <span id="gauge-text-reservados" class="gauge-value gauge-chart ">0</span>
@@ -152,7 +158,7 @@
                 <h4 class="purple"><strong>FACTURAS </strong> </h4>
                 <span class="gauge-value  "><strong class="purple">Actual: </strong>{{$TOTALES->real_facturados}} Facturados</span><br>
                 <span class="gauge-value  "><strong class="purple">Meta  : </strong>{{$TOTALES->meta_facturados}} Facturados</span><br>
-                <span class="gauge-value " style="text-decoration-line:overline;"><strong class="purple">Diferncia: </strong><span class="red">{{$TOTALES->real_facturados-$TOTALES->meta_facturados}}</span class="red"> Facturados</span><br>
+                <span class="gauge-value " style="text-decoration-line:overline;"><strong class="purple">Dif.: </strong>@if($dif_facturados >=0 )<strong class="green">+@else <strong class="red">@endif{{$dif_facturados}}</strong> Facturados</span><br>
                 <canvas width="180" height="120" id="gauge_facturados" class="" ></canvas>
                 <div class="goal-wrapper goal-facturados">
                   <span id="gauge-text-facturados" class="gauge-value gauge-chart ">0</span>
@@ -171,10 +177,16 @@
       @foreach($SUCURSALES as $suc)
 
              <?php 
-             $percent_cotizaciones = number_format((($suc-> real_cotizaciones *100)/$suc-> meta_cotizaciones),2, '.', ',');
-             $percent_test_drive = number_format((($suc-> real_test_drive *100)/$suc-> meta_test_drive),2, '.', ',');
-             $percent_reservados = number_format((($suc-> real_reservas *100)/$suc-> meta_reservas),2, '.', ',');
-             $percent_facturados = number_format((($suc-> real_facturados *100)/$suc-> meta_facturados),2, '.', ',');
+             $percent_cotizaciones = intval((($suc-> real_cotizaciones *100)/$suc-> meta_cotizaciones));
+             $percent_test_drive = intval((($suc-> real_test_drive *100)/$suc-> meta_test_drive));
+             $percent_reservados = intval((($suc-> real_reservas *100)/$suc-> meta_reservas));
+             $percent_facturados = intval((($suc-> real_facturados *100)/$suc-> meta_facturados));
+
+             $dif_cotizaciones = $suc-> real_cotizaciones - $suc-> meta_cotizaciones;
+             $dif_test_drive = $suc-> real_test_drive - $suc-> meta_test_drive;
+             $dif_reservados = $suc-> real_reservas - $suc-> meta_reservas;
+             $dif_facturados = $suc-> real_facturados - $suc-> meta_facturados;
+
                     
               ?> 
               <div class="col-md-12 col-sm-12 col-xs-12 ">
@@ -209,7 +221,7 @@
                             </div>
                           </div>
                           <div class="col-xs-1 more_info">
-                            <span @if ($percent_cotizaciones >=100) class="red bold animated tada infinite" @else class="bold"@endif>{{$percent_cotizaciones}}%</span>
+                            <span @if ($percent_cotizaciones >=100) class="green bold animated pulse infinite" @else class="bold"@endif>{{$percent_cotizaciones}}%</span>
                           </div>
                         </div>
 
@@ -229,7 +241,7 @@
                             </div>
                           </div>
                           <div class="col-xs-1 more_info">
-                            <span @if ($percent_test_drive >=100) class="red bold animated tada infinite" @else class="blue bold"@endif>{{$percent_test_drive}}%</span>
+                            <span @if ($percent_test_drive >=100) class="green bold animated pulse infinite" @else class="blue bold"@endif>{{$percent_test_drive}}%</span>
                           </div>
                         </div>
 
@@ -249,7 +261,7 @@
                             </div>
                           </div>
                           <div class="col-xs-1 more_info">
-                            <span @if ($percent_reservados >=100) class="red bold animated tada infinite" @else class="green2 bold"@endif>{{$percent_reservados}}%</span>
+                            <span @if ($percent_reservados >=100) class="green bold animated pulse infinite" @else class="green2 bold"@endif>{{$percent_reservados}}%</span>
                           </div>
                         </div>
 
@@ -269,7 +281,7 @@
                             </div>
                           </div>
                           <div class="col-xs-1 more_info">
-                            <span @if ($percent_facturados >=100) class="red bold animated tada infinite" @else class="purple bold"@endif>{{$percent_facturados}}%</span>
+                            <span @if ($percent_facturados >=100) class="green bold animated pulse infinite" @else class="purple bold"@endif>{{$percent_facturados}}%</span>
                           </div>
                         </div>
 
@@ -414,12 +426,13 @@ if(real_cotizaciones>=meta_cotizaciones)
 {
   var max_real_cotizaciones= (real_cotizaciones *100)/meta_cotizaciones;
   var set_real_cotizaciones= (real_cotizaciones *100)/meta_cotizaciones;
-  $(".goal-cotizados").addClass("red bold animated infinite tada ");
+  $(".goal-cotizados").addClass("green bold animated infinite pulse ");
 }
 else
 {
   var set_real_cotizaciones= (real_cotizaciones *100)/meta_cotizaciones;
   var max_real_cotizaciones=100;
+  $(".goal-cotizados").addClass("red bold animated infinite pulse ");
 }
 
 
@@ -429,35 +442,38 @@ if(real_test_drive>=meta_test_drive )
 {
   var set_real_test_drive=(real_test_drive*100)/meta_test_drive;
   var max_real_test_drive=(real_test_drive*100)/meta_test_drive;
-  $(".goal-test").addClass("red bold animated infinite tada ");
+  $(".goal-test").addClass("green bold animated infinite pulse ");
 }
 else
 {
   var set_real_test_drive=(real_test_drive*100)/meta_test_drive;
   var max_real_test_drive=100;
+  $(".goal-test").addClass("red bold animated infinite pulse ");
 }
 if(real_reservas>=meta_reservas) 
 {
   var max_real_reservas= (real_reservas *100)/meta_reservas;
   var set_real_reservas= (real_reservas *100)/meta_reservas;
-  $(".goal-reservados").addClass("red bold animated infinite tada ");
+  $(".goal-reservados").addClass("green bold animated infinite pulse ");
 }
 else
 {
   var set_real_reservas= (real_reservas *100)/meta_reservas;
   var max_real_reservas=100;
+  $(".goal-reservados").addClass("red bold animated infinite pulse ");
 }
 
-if(real_facturados>meta_facturados )
+if(real_facturados>=meta_facturados )
 {
   var set_real_facturados=(real_facturados*100)/meta_facturados;
   var max_real_facturados=(real_facturados*100)/meta_facturados;
-  $(".goal-facturados").addClass("red bold animated infinite tada ");
+  $(".goal-facturados").addClass("green bold animated infinite pulse ");
 }
 else
 {
   var set_real_facturados=(real_facturados*100)/meta_facturados;
   var max_real_facturados=100;
+  $(".goal-facturados").addClass("red bold animated infinite pulse ");
 }
 
 
