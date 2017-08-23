@@ -359,13 +359,13 @@ Route::group(['prefix'=>'reservados','middleware'=>'auth'],function(){
 	
 });
 
-
 Route::group(['prefix'=>'metas','middleware'=>'auth'],function(){
-
 	route::get('metas/{periodo}/{marca}/{regional}/{sucursal}/index',[
 		'uses' =>'MetasController@index',
 		'as'   =>	'metas.index'
 	]);
+});
 
-	
+Route::group(['prefix'=>'seguimiento','middleware'=>'auth'],function(){
+	route::resource('seguimiento','SeguimientoController');
 });

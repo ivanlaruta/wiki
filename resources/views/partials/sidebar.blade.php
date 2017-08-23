@@ -2,7 +2,7 @@
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
             <a class="site_title" href="{{ url('/home') }}">
-                &nbsp<i class=" fa fa-codepen fa-spin "></i>
+                &nbsp<i class=" fa fa-gears fa-spin "></i>
                 <span> TOYOSA </span>
             </a>                            
         </div>
@@ -45,6 +45,8 @@
                       <li><a  href="{{ route('reservados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Reservas</a></li> 
 
                       <li><a  href="{{ route('facturados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Facturados</a></li> 
+                      
+                      <li><a  href="{{ route('seguimiento.index')}}"> Seguimineto de unidades</a></li> 
                      
                       
                      

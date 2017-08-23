@@ -230,9 +230,7 @@
                      <th>MASTER</th> 
                      <th>AÑO</th> 
                      <th>CHASSIS</th> 
-                     <th>UBICACION UNIDAD</th> 
                      
-
                     </tr>
                   </thead>
                   <tbody>
@@ -242,7 +240,6 @@
                      <td>{{$det->nro_docum}}</td> 
                       
                       <td><label class="text-success">{{date('d/m/Y',strtotime($det->FECHA_RESERVA))}}</label></td>
-                      
                       <td>{{$det->REGIONAL}}</td> 
                       <td>{{$det->SUCURSAL}}</td> 
                       <td>{{$det->VENDEDOR}}</td> 
@@ -258,11 +255,7 @@
                       <td>{{$det->MASTER}}</td>
                       <td>{{$det->AÑO}}</td> 
                       <td><strong>{{$det->CHASIS}}</strong></td>
-                      <td>{{$det->SUCURSAL_STOCK}}</td>
-                       
-                      
-                      
-                                        
+
                     </tr>
                     @endforeach
                   </tbody>

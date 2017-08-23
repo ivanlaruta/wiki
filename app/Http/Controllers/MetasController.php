@@ -21,11 +21,9 @@ class MetasController extends Controller
         $ult_mes = Carbon::now('America/La_Paz')->subMonth();  // menos un mes
         $ult_mes2 = Carbon::now('America/La_Paz')->subMonth();  // menos un mes
         $ult_anio = Carbon::now('America/La_Paz')->subYear()->toDateString(); // menos un año
-        
         $inicio_sem=Carbon::now('America/La_Paz')->startOfWeek()->toDateString();   //inicio de semana
         $inicio_mes=Carbon::now('America/La_Paz')->startOfMonth()->toDateString();  //inicio de mes
         $inicio_año=Carbon::now('America/La_Paz')->startOfYear()->toDateString();    //inicio de año
-
         $inicio_mes_ant = $ult_mes->startOfMonth()->toDateString();
         $fin_mes_ant = $ult_mes2->endOfMonth()->toDateString();
 
@@ -79,12 +77,10 @@ class MetasController extends Controller
        {
             $mes_periodo = explode("-", $periodo);
             $mes = $mes_periodo[1];
-
             $fecha = $año_actual.'-'.$mes.'-01';
             $fecha_inicio = Carbon::parse($fecha)->toDateString();
             $aux = Carbon::parse($fecha);
             $fecha_final = $aux->endOfMonth()->toDateString();
-
             $TOTALES =Metas::select(DB::raw("
             REGIONAL,
             SUM(meta_cotizaciones) AS meta_cotizaciones,
@@ -132,8 +128,7 @@ class MetasController extends Controller
         {
             $fecha_inicio = $año_actual.'-01-01';
             $fecha_final = $año_actual.'-06-30';
-
-                        $TOTALES =Metas::select(DB::raw("
+            $TOTALES =Metas::select(DB::raw("
             REGIONAL,
             SUM(meta_cotizaciones) AS meta_cotizaciones,
             SUM(meta_test_drive) AS meta_test_drive,
@@ -180,8 +175,7 @@ class MetasController extends Controller
         {
             $fecha_inicio = $año_actual.'-07-01';
             $fecha_final = $año_actual.'-12-31';
-
-                        $TOTALES =Metas::select(DB::raw("
+            $TOTALES =Metas::select(DB::raw("
             REGIONAL,
             SUM(meta_cotizaciones) AS meta_cotizaciones,
             SUM(meta_test_drive) AS meta_test_drive,
@@ -205,7 +199,7 @@ class MetasController extends Controller
             SUM(metas.meta_cotizaciones) as meta_cotizaciones,
             SUM(metas.meta_test_drive) as meta_test_drive ,
             SUM(metas.meta_reservas) AS meta_reservas,
-            SUM(metas.meta_facturas) AS meta_facturados,
+            SUM(metas.meta_facturas) AS meta_facturados, 
 
             (SELECT COUNT(c.CHASIS)as Expr1 from  v_cotizaciones c where c.REG_ASIGNADA = metas.REGIONAL AND metas.SUCURSAL = c.SUC_ASIGNADA AND c.MARCA ='TOYOTA'AND FECHA_COTIZACION BETWEEN '".$fecha_inicio."' AND '".$fecha_final."')as real_cotizaciones,
 
@@ -220,16 +214,13 @@ class MetasController extends Controller
             ->whereIn('periodo', ['2017-01','2017-02','2017-03','2017-04','2017-05','2017-06',])
             ->groupBy('REGIONAL','SUCURSAL')
             ->get();      
-          
-
         }
 
         if ($periodo == 'ANUAL')
         {
             $fecha_inicio = $año_actual.'-01-01';
             $fecha_final = $año_actual.'-12-31';
-
-                        $TOTALES =Metas::select(DB::raw("
+            $TOTALES =Metas::select(DB::raw("
             REGIONAL,
             SUM(meta_cotizaciones) AS meta_cotizaciones,
             SUM(meta_test_drive) AS meta_test_drive,
@@ -267,14 +258,10 @@ class MetasController extends Controller
             ->where ('REGIONAL',$regional)
             ->groupBy('REGIONAL','SUCURSAL')
             ->get();      
-          
-
         } 
 
         // dd($fecha_inicio,$fecha_final);
-
         // dd($TOTALES);
-
         
         return view('reportes.metas.index') 
         ->with('TOTALES',$TOTALES)
