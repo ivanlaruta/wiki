@@ -190,16 +190,6 @@
       <div class="clearfix"></div>
       
 
-      <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="x_panel">
-            <div class="title">
-              <h2>RESERVAS <small>  </small></h2>
-
-            </div>
-          </div>
-        </div>
-       </div>
          <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_content animated fadeIn">
@@ -222,7 +212,6 @@
                      <th>DIRECCION</th>
                      <th>TELEFONO</th>
                      <th>CELULAR</th>
-                     
                      <th>MARCA</th> 
                      <th>COD MODELO</th>
                      <th>MODELO</th>  
@@ -233,6 +222,34 @@
                      
                     </tr>
                   </thead>
+                  <tfoot>
+                    
+                  
+                   
+                     <tr>
+                     <th></th> 
+                     <th>NRO RESERVA</th> 
+                    
+                     <th>FECHA RESERVA</th> 
+                     
+                     <th>REGIONAL</th>
+                     <th>SUCURSAL</th> 
+                     <th>VENDEDOR</th>
+                     <th>CLIENTE</th> 
+                     <th>NIT</th>
+                     <th>DIRECCION</th>
+                     <th>TELEFONO</th>
+                     <th>CELULAR</th>
+                     <th>MARCA</th> 
+                     <th>COD MODELO</th>
+                     <th>MODELO</th>  
+                     <th>COD MASTER</th>
+                     <th>MASTER</th> 
+                     <th>AÑO</th> 
+                     <th>CHASSIS</th> 
+                     
+                    </tr>
+                  </tfoot>
                   <tbody>
                   @foreach($detalle as $det)
                     <tr>
@@ -272,12 +289,8 @@
 @section('scripts')
 
 <script>
-
-    $(document).ready(function() {
-         //alert('1');
-        $('#datatable1').DataTable({
-            
-             "language": {
+$(document).ready(function() {
+    $('#datatable1').DataTable( { "language": {
             
               "sProcessing":     "Procesando...",
               "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -287,7 +300,7 @@
               "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
               "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
               "sInfoPostFix":    "",
-              "sSearch":         "Buscar:",
+              "sSearch":         "Buscar en Todo:",
               "sUrl":            "",
               "sInfoThousands":  ",",
               "sLoadingRecords": "Cargando...",
@@ -301,19 +314,44 @@
                   "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
                   "sSortDescending": ": Activar para ordenar la columna de manera descendente"
               },
-
-
-             
-
         },
-       
-        "dom": "Blfrtip",
-   "buttons": [ 'copy', 'excel'],
 
-   "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+        "bLengthChange" : false,
+        // "dom": "Blfrtip",
+        "dom": "Brti",
+        
+       "buttons": [ 'copy', 'excel'],
 
-        });
-    });
+        // "lengthMenu": [[5,10, 25, 50, 100, -1], [5,10, 25, 50, 100, "TODO"]],
+        "lengthMenu": [[-1], ["TODO"]],
+
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select class ="filtro"><option style="background: #fffff;" value="">Todos...</option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+
+             $('.filtro').select2();
+        }
+    } );
+
+   $('.prueba').select2();
+
+} );
 
 </script> 
 @endsection

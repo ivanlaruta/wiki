@@ -34,6 +34,14 @@
         <link href="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.css')}}" rel="stylesheet">
         <link href="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.buttons.css')}}" rel="stylesheet">
         <link href="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.nonblock.css')}}" rel="stylesheet">
+        <!-- Select2 -->
+        <link href="{{asset('bower_components/gentelella/vendors/select2/dist/css/select2.min.css')}}" rel="stylesheet">
+        <!-- Dtatables -->
+        <link href="{{asset('bower_components/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('bower_components/gentelella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('bower_components/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('bower_components/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('bower_components/gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 
 
         <!-- Custom Theme Style -->
@@ -45,6 +53,12 @@
     </head>
 
     <body class="nav-md ">
+    <style type="text/css">
+         tfoot {
+    display: table-header-group;
+    background: #9aadc0;
+  }
+    </style>
         <div class="container body">
             <div class="main_container">
 
@@ -156,7 +170,8 @@
     <!-- jQuery Smart Wizard -->
     <script src="{{asset('bower_components/gentelella/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
 
-
+<!-- Select2 -->
+    <script src="{{asset('bower_components/gentelella/vendors/select2/dist/js/select2.full.min.js')}}"></script>
     
 
     @yield('scripts')

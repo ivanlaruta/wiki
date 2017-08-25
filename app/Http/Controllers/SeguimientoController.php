@@ -88,13 +88,39 @@ class SeguimientoController extends Controller
      */
     public function show($id)
     {
-        $datos_unidad = V_stock_todo::where('CHASIS', $id)->first();
-        $cotizacion = Cotizacion::where('CHASIS', $id)->get();
-        $reserva =Reserva::where('CHASIS', $id)->first();
-        $contrato =DB::select( DB::raw("select S.*,V.nom_vendedor from gtauto.dbo.cpf_vtasokm S JOIN gtauto.dbo.ct_vendedores AS V ON V.cod_vendedor = S.cod_vendedor where chassis= '".$id."'"));
+        $id=ltrim(rtrim($id));
+
+        $datos_unidad = V_stock_todo::where('CHASIS','LIKE', '%'.$id.'%')->first();
+
+        $cotizacion = Cotizacion::where('CHASIS','LIKE', '%'.$id.'%')->get();
+
+        $reserva =Reserva::where('CHASIS','LIKE', '%'.$id.'%')->first();
+
+        $contrato =DB::select( DB::raw("select S.*,V.nom_vendedor from gtauto.dbo.cpf_vtasokm S JOIN gtauto.dbo.ct_vendedores AS V ON V.cod_vendedor = S.cod_vendedor where chassis LIKE '%".$id."%'"));
+
         $factura =Factura::where('CHASIS', $id)->first();
-        $entrega =DB::select( DB::raw("select * from gtauto.dbo.cpf_notaentrega where chassis= '".$id."'"));
-         // dd($entrega);
+
+        $entrega =DB::select( DB::raw("select * from gtauto.dbo.cpf_notaentrega where chassis LIKE '%".$id."%'"));
+
+        $produccion = DB::select( DB::raw("select * from  gtauto.dbo.ct_vehiculos where chassis LIKE '%".$id."%'"));
+
+        $envio = DB::select( DB::raw("
+        select a.*,u.*,o.*,b.*
+        from  gtauto.dbo.cpp_stock0km as a 
+        left join gtauto.dbo.ct_ubicaciones as u ON a.cod_depdestino = u.cod_ubicacion 
+        left join gtauto.dbo.ct_origen as o ON a.cod_deporigen = o.cod_origen
+        left join gtauto.dbo.ct_buques as b ON a.cod_buque = b.cod_buque
+        where chassis LIKE '%".$id."%'
+         "));
+
+        $movimientos = DB::table('gtauto.dbo.VIS_REPORTE_SA_STOCKOM_HISTORIAL_UBICACION')
+        ->select('Ubicacion_Ant','ubicacion_Act','SYSTIME')        
+        ->where('estado','ACTUALIZADO')
+        ->where('chassis',$id)
+        ->orderBy('SYSTIME' )
+        ->get();
+
+        
 
         return view('reportes.seguimiento.detalle')
         ->with('id',$id)
@@ -103,7 +129,10 @@ class SeguimientoController extends Controller
         ->with('reserva',$reserva)
         ->with('contrato',$contrato)
         ->with('factura',$factura)
-        ->with('entrega',$entrega);
+        ->with('entrega',$entrega)
+        ->with('produccion',$produccion)
+        ->with('envio',$envio)
+        ->with('movimientos',$movimientos);
     }
 
     /**

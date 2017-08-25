@@ -189,14 +189,7 @@
       
 
       <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="x_panel">
-            <div class="title">
-              <h2>COTIZACIONES <small>  </small></h2>
-
-            </div>
-          </div>
-        </div>
+        
        </div>
          <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -204,7 +197,7 @@
               <p class="text-muted font-13 m-b-30"></p>
               <div class="table-responsive" {{-- style="max-height: 450px; width: 100%; margin: 0; overflow-y: auto; --}}">
                 <table class="table table-striped jambo_table bulk_action" id="datatable1">
-                  <thead style="">
+                  <thead>
                     <tr>
                      <th></th>
                      <th>NRO COTIZACION</th>
@@ -233,6 +226,33 @@
                      
                     </tr>
                   </thead>
+                  <tfoot>
+            <tr>
+                <th></th>
+                     <th>NRO COTIZACION</th>
+                     <th>FECHA COTIZACION</th>
+                     <th>REGIONAL</th>
+                     <th>SUCURSAL</th>
+                     <th>VENDEDOR</th>
+                     <th>NIT</th>
+                     <th>CLIENTE</th>
+                     
+                     <th>DIRECCION</th>
+                     <th>TELEFONO</th>
+                     <th>CELULAR</th>
+                     <th>MARCA</th>
+                     <th>COD MODELO</th> 
+                     <th>MODELO</th>
+                     <th>MASTER</th>
+                     <th>AÑO</th>
+                     <th>COLOR</th>
+                     <th>CHASIS</th>
+                     <th>PRECIO</th>
+                     <th>MODALIDAD</th>
+
+                     <th>FACTURADO</th>
+            </tr>
+        </tfoot>
                   <tbody>
                   @foreach($detalle as $det)
                     <tr @if ($det->FACTURADO == 'SI') class="success" @endif>
@@ -278,13 +298,11 @@
 @endsection
 @section('scripts')
 
+
 <script>
 
-    $(document).ready(function() {
-         //alert('1');
-        $('#datatable1').DataTable({
-          
-             "language": {
+$(document).ready(function() {
+    $('#datatable1').DataTable( { "language": {
             
               "sProcessing":     "Procesando...",
               "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -294,7 +312,7 @@
               "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
               "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
               "sInfoPostFix":    "",
-              "sSearch":         "Buscar:",
+              "sSearch":         "Buscar en Todo:",
               "sUrl":            "",
               "sInfoThousands":  ",",
               "sLoadingRecords": "Cargando...",
@@ -308,18 +326,105 @@
                   "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
                   "sSortDescending": ": Activar para ordenar la columna de manera descendente"
               },
+        },
+
+        "bLengthChange" : false,
+        // "dom": "Blfrtip",
+        "dom": "Brti",
+        
+       "buttons": [ 'copy', 'excel'],
+
+        // "lengthMenu": [[5,10, 25, 50, 100, -1], [5,10, 25, 50, 100, "TODO"]],
+        "lengthMenu": [[-1], ["TODO"]],
+
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select class ="filtro"><option value="">Todos...</option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+
+             $('.filtro').select2();
+        }
+    } );
+
+} );
+
+
+
+// $(document).ready(function() {
+//     // Setup - add a text input to each footer cell
+//     $('#datatable1 tfoot th').each( function () {
+//         var title = $(this).text();
+//         $(this).html( '<input type="text" placeholder="Filtrar..." />' );
+//     } );
+ 
+//     // DataTable
+//     var table = $('#datatable1').DataTable({
+          
+//              "language": {
+            
+//               "sProcessing":     "Procesando...",
+//               "sLengthMenu":     "Mostrar _MENU_ registros",
+//               "sZeroRecords":    "No se encontraron resultados",
+//               "sEmptyTable":     "Ningún dato disponible en esta tabla",
+//               "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+//               "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+//               "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+//               "sInfoPostFix":    "",
+//               "sSearch":         "Buscar en Todo:",
+//               "sUrl":            "",
+//               "sInfoThousands":  ",",
+//               "sLoadingRecords": "Cargando...",
+//               "oPaginate": {
+//                   "sFirst":    "Primero",
+//                   "sLast":     "Último",
+//                   "sNext":     "Siguiente",
+//                   "sPrevious": "Anterior"
+//               },
+//               "oAria": {
+//                   "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+//                   "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+//               },
 
 
              
 
-        },
-        "dom": "Blfrtip",
-   "buttons": [ 'copy', 'excel'],
+//         },
+//         "dom": "Blfrtip",
+//    "buttons": [ 'copy', 'excel'],
 
-   "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+//    "lengthMenu": [[5,10, 25, 50, 100, -1], [5,10, 25, 50, 100, "TODO"]]
 
-        });
-    });
+//         });
+ 
+//     // Apply the search
+//     table.columns().every( function () {
+//         var that = this;
+ 
+//         $( 'input', this.footer() ).on( 'keyup change', function () {
+//             if ( that.search() !== this.value ) {
+//                 that
+//                     .search( this.value )
+//                     .draw();
+//             }
+//         } );
+//     } );
+// } );
+
 
 </script> 
 @endsection

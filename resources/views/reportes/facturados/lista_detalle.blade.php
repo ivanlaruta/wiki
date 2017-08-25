@@ -188,32 +188,19 @@
          <div class="title_right"></div>
       </div>
       <div class="clearfix"></div>
-      
-
-      <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="x_panel">
-            <div class="title">
-              <h2>FACTURAS <small>  </small></h2>
-
-            </div>
-          </div>
-        </div>
-       </div>
         
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_content animated fadeIn">
               <p class="text-muted font-13 m-b-30"></p>
               <div class="table-responsive" {{-- style="max-height: 450px; width: 100%; margin: 0; overflow-y: auto; --}}">
                 <table class="table table-striped jambo_table bulk_action" id="datatable1">
-                  <thead style="">
+                  <thead>
                     <tr>
                      <tr>
                      <th></th> 
                      <th>NRO FACTURA</th> 
-                     {{-- <th>FECHA CONTRATO</th> --}}
                      <th>FECHA FACTURA</th> 
-                     {{-- <th>FECHA ENTREGA</th> --}}
+
                      <th>REGIONAL</th>
                      <th>SUCURSAL</th> 
                      <th>VENDEDOR</th>
@@ -237,17 +224,46 @@
                      <th>ESTADO</th>
                      <th>REGIONAL ASIGNADA</th>
                      <th>SUCURSAL ASIGNADA</th>
-
                     </tr>
                   </thead>
+                  <tfoot>
+                    <tr>
+                    
+                     <th></th> 
+                     <th>NRO FACTURA</th> 
+                     <th>FECHA FACTURA</th> 
+                     <th>REGIONAL</th>
+                     <th>SUCURSAL</th> 
+                     <th>VENDEDOR</th>
+                     <th>CLIENTE</th> 
+                     <th>NIT</th>
+                     <th>DIRECCION</th>
+                     <th>TELEFONO</th>
+                     <th>CELULAR</th>
+                     <th>MARCA</th> 
+                     <th>COD MODELO</th>
+                     <th>MODELO</th>  
+                     <th>COD MASTER</th>
+                     <th>MASTER</th> 
+                     <th>AÑO</th> 
+                     <th>CHASSIS</th> 
+                     <th>UBICACION UNIDAD</th> 
+                     <th>PRECIO Bs</th>
+                     <th>PRECIO Sus</th>
+                     <th>ESTADO</th>
+                     <th>REGIONAL ASIGNADA</th>
+                     <th>SUCURSAL ASIGNADA</th>
+                    </tr>
+                  </tfoot>
+                  
                   <tbody>
                   @foreach($detalle as $det)
                     <tr>
                      <td>{{$det->ITEM}}</td> 
                      <td>{{$det->NRO_FACTURA}}</td> 
-                      {{-- <td>@if (is_null($det->FECHA_CONTRATO)) CON ADENDA @else {{date('d/m/Y',strtotime($det->FECHA_CONTRATO))}}@endif</td>  --}}
+                      
                       <td><label class="text-success">{{date('d/m/Y',strtotime($det->FECHA_FACTURA))}}</label></td>
-                      {{-- <td> @if (is_null($det->FECHA_ENTREGA)) No Entregado @else {{date('d/m/Y',strtotime($det->FECHA_ENTREGA))}} @endif </td> --}}
+                     
                       <td>{{$det->REGIONAL}}</td> 
                       <td>{{$det->SUCURSAL}}</td> 
                       <td>{{$det->VENDEDOR}}</td> 
@@ -291,13 +307,11 @@
 @endsection
 @section('scripts')
 
+
 <script>
 
-   $(document).ready(function() {
-         //alert('1');
-        $('#datatable1').DataTable({
-          
-             "language": {
+$(document).ready(function() {
+    $('#datatable1').DataTable( { "language": {
             
               "sProcessing":     "Procesando...",
               "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -307,7 +321,7 @@
               "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
               "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
               "sInfoPostFix":    "",
-              "sSearch":         "Buscar:",
+              "sSearch":         "Buscar en Todo:",
               "sUrl":            "",
               "sInfoThousands":  ",",
               "sLoadingRecords": "Cargando...",
@@ -321,17 +335,46 @@
                   "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
                   "sSortDescending": ": Activar para ordenar la columna de manera descendente"
               },
-
         },
 
-     "dom": 'Blfrtip' ,
-   "buttons": [ 'copy','excel'],
+        "bLengthChange" : false,
+        // "dom": "Blfrtip",
+        "dom": "Brti",
+        
+       "buttons": [ 'copy', 'excel'],
 
-   "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "TODOS"]]
+        // "lengthMenu": [[5,10, 25, 50, 100, -1], [5,10, 25, 50, 100, "TODO"]],
+        "lengthMenu": [[-1], ["TODO"]],
 
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select class ="filtro"><option value="">Todos...</option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
  
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
 
-        });
-    });
+             $('.filtro').select2();
+        }
+    } );
+
+   $('.prueba').select2();
+
+} );
+
+
+
 </script> 
 @endsection

@@ -40,9 +40,9 @@
                         </ul>
                     </li>
                     <li role="presentation" class="dropdown">
-                      <a href="" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                      <a  class="info-number" >
                         <i class="fa fa-map-marker"></i>
-                        UBICACION
+                        {{ Auth::user()->id_ubicacion}}
                       </a>
                       
                     </li>
