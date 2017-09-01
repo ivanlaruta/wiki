@@ -48,7 +48,7 @@
                     
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
+                  <div class="x_content table-responsive">
                     <table id="" class="table table-striped table-hover">
                       <thead>
                         <tr>
@@ -87,7 +87,8 @@
                             <span class="label label-danger">ENTREGA</span>
                           @endif
                         </td>
-                        <td><a href="{{ route('seguimiento.show',['id'=>$res->CHASSIS])}}" class="btn btn-round btn-success btn-sm"> Ver detalle</a></td> 
+
+                        <td><a href="{{ route('seguimiento.show',['id'=>str_replace("/", "_", $res->CHASSIS)])}}" class="btn btn-round btn-success btn-sm"> Ver detalle</a></td> 
                        
                                           
                       </tr>

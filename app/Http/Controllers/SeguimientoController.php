@@ -88,6 +88,7 @@ class SeguimientoController extends Controller
      */
     public function show($id)
     {
+        $id = str_replace("_", "/", $id);
         $id=ltrim(rtrim($id));
 
         $datos_unidad = V_stock_todo::where('CHASIS','LIKE', '%'.$id.'%')->first();
@@ -120,7 +121,7 @@ class SeguimientoController extends Controller
         ->orderBy('SYSTIME' )
         ->get();
 
-        
+
 
         return view('reportes.seguimiento.detalle')
         ->with('id',$id)

@@ -15,12 +15,12 @@
             </div>
             <br>
             <div class="clearfix"></div>
-              <div class="col-md-12 col-xs-12">
+              <div class="col-md-12 col-xs-12 animated fadeInUp">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>DATOS GENERALES <small>{{$datos_unidad->TIPO_UNIDAD}}</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-down"></i></a>
+                      <li><a class="collapse-link"><i class="fa fa-chevron-down animated tada infinite"></i></a>
                       </li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
@@ -162,12 +162,12 @@
                 </div>
                 </div>
 
-                <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-6 col-sm-6 col-xs-12 animated fadeInUp">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>HISTORIAL <small> PRODUCCION</small></h2>
+                      <h2> PRODUCCION <small>HISTORIAL</small></h2>
                       <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-down""></i></a>
+                        <li><a class="collapse-link"><i class="fa fa-chevron-down animated tada infinite""></i></a>
                         </li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                         </li>
@@ -293,12 +293,12 @@
                            </div>
 
 
-                           <div class="col-md-6 col-sm-6 col-xs-12">
+                           <div class="col-md-6 col-sm-6 col-xs-12 animated fadeInUp">
                             <div class="x_panel">
                               <div class="x_title">
-                                <h2>HISTORIAL <small> MOVIMIENTOS</small></h2>
+                                <h2> MOVIMIENTOS <small>HISTORIAL</small></h2>
                                 <ul class="nav navbar-right panel_toolbox">
-                                  <li><a class="collapse-link"><i class="fa fa-chevron-down"></i></a>
+                                  <li><a class="collapse-link"><i class="fa fa-chevron-down animated tada infinite"></i></a>
                                   </li>
                                   <li><a class="close-link"><i class="fa fa-close"></i></a>
                                   </li>
@@ -345,10 +345,10 @@
                                </div>
                              </div>
                           
-                           <div class="col-md-6 col-sm-6 col-xs-12">
+                           <div class="col-md-6 col-sm-6 col-xs-12 animated fadeInUp">
                             <div class="x_panel">
                               <div class="x_title">
-                                <h2>HISTORIAL <small> COTIZACIONES</small></h2>
+                                <h2> COTIZACIONES <small>HISTORIAL</small></h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                   <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                   </li>
@@ -359,6 +359,7 @@
                               </div>
                               <div class="x_content">
                                 <ul class="list-unstyled timeline">
+                                @if(sizeof($cotizacion)>0)
                                   @foreach($cotizacion as $cot)
                                   <li>
                                     <div class="block">
@@ -428,16 +429,17 @@
                                        </div>
                                      </li>
                                      @endforeach
+                                     @endif
                                    </ul>
                                  </div>
                                </div>
                              </div>
 
                             
-                           <div class="col-md-6 col-sm-6 col-xs-12">
+                           <div class="col-md-6 col-sm-6 col-xs-12 animated fadeInUp">
                             <div class="x_panel">
                               <div class="x_title">
-                                <h2>HISTORIAL <small> RESERVA - CONTRATO - VENTA</small></h2>
+                                <h2> RESERVA - CONTRATO - VENTA <small>HISTORIAL</small></h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                   <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                   </li>
@@ -467,22 +469,13 @@
                                         </div>
                                         <p class="excerpt">
                                 <ul class="to_do">
+                               
                                   <li>
                                     <p>
-                                      <strong>N° COTIZACION: </strong> {{$cot->NRO_COTIZACION}}</p>
+                                      <strong>COTIZACION ORIGEN: </strong>  @if(sizeof($cotizacion)>0){{$cot->NRO_COTIZACION}}@else LICITACION @endif</p>
                                     </li>
-                                    <li>
-                                      <p>
-                                        <strong>MODALIDAD: </strong> {{$cot->modalidad}}</p>
-                                      </li>
-                                      <li>
-                                        <p>
-                                          <strong>PRECIO: </strong> {{$cot->PRECIO_TOTAL}}</p>
-                                        </li>
-                                        <li>
-                                          <p>
-                                            <strong>DESCUENTO: </strong> {{$cot->montoPorcentajeDescuento}}</p>
-                                          </li>
+
+
                                         
                                           <li>
                                          <p>

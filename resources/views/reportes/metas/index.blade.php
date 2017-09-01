@@ -432,7 +432,7 @@ else
 {
   var set_real_cotizaciones= (real_cotizaciones *100)/meta_cotizaciones;
   var max_real_cotizaciones=100;
-  $(".goal-cotizados").addClass("red bold animated infinite pulse ");
+  $(".goal-cotizados").addClass("red");
 }
 
 
@@ -448,7 +448,7 @@ else
 {
   var set_real_test_drive=(real_test_drive*100)/meta_test_drive;
   var max_real_test_drive=100;
-  $(".goal-test").addClass("red bold animated infinite pulse ");
+  $(".goal-test").addClass("red");
 }
 if(real_reservas>=meta_reservas) 
 {
@@ -460,7 +460,7 @@ else
 {
   var set_real_reservas= (real_reservas *100)/meta_reservas;
   var max_real_reservas=100;
-  $(".goal-reservados").addClass("red bold animated infinite pulse ");
+  $(".goal-reservados").addClass("red");
 }
 
 if(real_facturados>=meta_facturados )
@@ -473,7 +473,7 @@ else
 {
   var set_real_facturados=(real_facturados*100)/meta_facturados;
   var max_real_facturados=100;
-  $(".goal-facturados").addClass("red bold animated infinite pulse ");
+  $(".goal-facturados").addClass("red");
 }
 
 

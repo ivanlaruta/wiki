@@ -338,6 +338,8 @@ $(document).ready(function() {
         },
 
         "bLengthChange" : false,
+        
+        
         // "dom": "Blfrtip",
         "dom": "Brti",
         

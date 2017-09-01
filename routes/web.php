@@ -369,3 +369,11 @@ Route::group(['prefix'=>'metas','middleware'=>'auth'],function(){
 Route::group(['prefix'=>'seguimiento','middleware'=>'auth'],function(){
 	route::resource('seguimiento','SeguimientoController');
 });
+
+Route::group(['prefix'=>'resumen','middleware'=>'auth'],function(){
+	route::resource('resumen','ResumenController');
+});
+
+Route::get('error',function(){
+	abort(404);
+});
