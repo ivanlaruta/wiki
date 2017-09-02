@@ -41,7 +41,11 @@ class ResumenController extends Controller
             ->orderBy('COTIZACIONES', 'desc')
             ->get()->toArray();
 
-           
+            $cotizaciones_por_reg =Cotizacion::select('REGIONAL',DB::raw("COUNT(*) AS COTIZACIONES "))
+            ->where('FECHA_COTIZACION','>',$inicio_año)
+            ->groupBy('REGIONAL')
+            ->orderBy('COTIZACIONES', 'desc')
+            ->get()->toArray(); 
 
             //============================= =======================
 
@@ -57,6 +61,12 @@ class ResumenController extends Controller
             $reservas_por_marca =Reserva::select('MARCA',DB::raw('COUNT(*) AS RESERVADOS'))
             ->where('FECHA_RESERVA','>',$inicio_año)
             ->groupBy('MARCA')
+            ->orderBy('RESERVADOS', 'desc')
+            ->get()->toArray();
+
+            $reservas_por_reg =Reserva::select('REGIONAL',DB::raw('COUNT(*) AS RESERVADOS'))
+            ->where('FECHA_RESERVA','>',$inicio_año)
+            ->groupBy('REGIONAL')
             ->orderBy('RESERVADOS', 'desc')
             ->get()->toArray();
 
@@ -77,19 +87,31 @@ class ResumenController extends Controller
             ->orderBy('FACTURADOS', 'desc')
             ->get()->toArray();
 
+            $facturas_por_reg =Factura::select('REG_ASIGNADA',DB::raw('COUNT(*) AS FACTURADOS'))
+            ->where('FECHA_FACTURA','>',$inicio_año)
+            ->groupBy('REG_ASIGNADA')
+            ->orderBy('FACTURADOS', 'desc')
+            ->get()->toArray();   
+
             //============================= =======================
 
-            return view('reportes.resumen.index')           
+            return view('reportes.resumen.index')      
+
             ->with('cotizaciones',$cotizaciones)
             ->with('total_cotizaciones',$total_cotizaciones)          
             ->with('cotizaciones_por_marca',$cotizaciones_por_marca)          
+            ->with('cotizaciones_por_reg',$cotizaciones_por_reg)  
+
             ->with('reservas',$reservas)
             ->with('total_reservas',$total_reservas)
+            ->with('reservas_por_marca',$reservas_por_marca)
+            ->with('reservas_por_reg',$reservas_por_reg)
+
             ->with('facturas',$facturas)
             ->with('total_facturas',$total_facturas)
-            ->with('reservas_por_marca',$reservas_por_marca)
             ->with('facturas_por_marca',$facturas_por_marca)
-
+            ->with('facturas_por_reg',$facturas_por_reg)
+            
             ->with('año_actual',$año_actual)
             ->with('hoy',$hoy)
             ;

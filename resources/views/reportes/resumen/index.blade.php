@@ -29,48 +29,148 @@
 </style>
         <div class="right_col" role="main">
           <div class="">
-
-          <div class="row tile_count">
-            
-            <div class="col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> COTIZACIONES {{$año_actual}}</span>
-              <div class="count">{{$total_cotizaciones}}</div>
-              <span class="sparkline_cotizaciones" >
-                <canvas width="300" height="30" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-              </span><br>
-              <span class="count_bottom txt_cotiza"><i class="green"><i class="fa fa-sort-asc txt_cotiza"></i></i> </span>
+            <div class="row tile_count">
+              <div class="col-md-3 col-sm-3 col-xs-6 tile_stats_count">
+                <span class="count_top"> COTIZACIONES </span>
+                <div class="count">{{$total_cotizaciones}}</div>
+                <span class="count_bottom">Total gestion: <i class="red">{{$año_actual}} </i></span>             
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6 tile_stats_count">
+                <span class="count_top"> TEST DRIVE </span>
+                <div class="count">0</div>
+                <span class="count_bottom">Total gestion: <i class="red">{{$año_actual}} </i></span>    
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6 tile_stats_count">
+                <span class="count_top"> RESERVAS </span>
+                <div class="count ">{{$total_reservas}}</div>
+                <span class="count_bottom">Total gestion: <i class="red">{{$año_actual}} </i></span>  
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6 tile_stats_count">
+                <span class="count_top"> FACTURAS </span>
+                <div class="count green">{{$total_facturas}}</div>
+                <span class="count_bottom">Total gestion: <i class="red">{{$año_actual}} </i></span>
+              </div>
             </div>
-
-            <div class="col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> TEST DRIVE {{$año_actual}}</span>
-              <div class="count">0</div>
-              <span class="sparkline_test_drive" >
-                <canvas width="300" height="30" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-              </span><br>
-              <span class="count_bottom txt_test_drive"><i class="red"><i class="fa fa-sort-desc"></i></i> </span>
-            </div>
-
-            <div class="col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> RESERVAS {{$año_actual}}</span>
-              <div class="count">{{$total_reservas}}</div>
-              <span class="sparkline_reservas" >
-                <canvas width="300" height="30" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-              </span><br>
-              <span class="count_bottom txt_reservas"><i class="green"><i class="fa fa-sort-asc"></i></i> </span>
-            </div>
-
-            <div class="col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> FACTURAS {{$año_actual}}</span>
-              <div class="count">{{$total_facturas}}</div>
-              <span class="sparkline_facturas" >
-                <canvas width="300" height="30" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-              </span><br>
-              <span class="count_bottom txt_facturas"><i class="green"><i class="fa fa-sort-asc"></i></i> </span>
-            </div>
-          </div>
-
 
             <div class="row">
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR MES <SMALL>COTIZACIONES</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="graph_bar_cotizaciones" style="width:100%; height:200px;"></div>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR MES <SMALL>TEST DRIVE</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="graph_bar_test" style="width:100%; height:200px;"></div>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR MES <SMALL>RESERVAS</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="graph_bar_reservas" style="width:100%; height:200px;"></div>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR MES <SMALL>FACTURAS</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="graph_bar_facturas" style="width:100%; height:200px;"></div>
+                  </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR REGIONAL <SMALL>COTIZACIONES</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="graph_donut_cotiza" style="width:100%; height:200px;"></div>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR REGIONAL <SMALL>TEST DRIVE</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="graph_donut_test" style="width:100%; height:200px;"></div>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR REGIONAL <SMALL>RESERVAS</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="graph_donut_reservas" style="width:100%; height:200px;"></div>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR REGIONAL <SMALL>FACTURAS</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="graph_donut_facturas" style="width:100%; height:200px;"></div>
+                  </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR MARCA <SMALL>COTIZACIONES</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="bar-chart-horizontal-cotiza" width="400" height="250"></canvas>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR MARCA <SMALL>TEST DRIVE</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="bar-chart-horizontal-test" width="400" height="250"></canvas>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR MARCA <SMALL>RESERVAS</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="bar-chart-horizontal-reserva" width="400" height="250"></canvas>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR MARCA <SMALL>FACTURAS</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="bar-chart-horizontal-facturas" width="400" height="250"></canvas>
+                  </div>
+              </div>
+            </div>
+
+            <div class="">
+
             <div class="col-md-3 col-sm-3 col-xs-6">
               <div class="x_panel tile ">
                 <div class="x_title">
@@ -97,9 +197,8 @@
                       <tbody >
                       @for ($i = 0; $i < sizeof($cotizaciones_por_marca); $i++)
                       <tr>
-                        <td><i class="fa fa-square color-{{$i}}"></i> {{$cotizaciones_por_marca[$i]['MARCA']}}</td>                        
+                        <td><i class="fa fa-square color-{{$i}}"></i> {{$cotizaciones_por_marca[$i]['MARCA']}}</td>
                         <td align="right">{{$cotizaciones_por_marca[$i]['COTIZACIONES']}}</td> 
-                       
                       </tr>
                       @endfor
                       </tbody>
@@ -191,8 +290,8 @@
                       <tbody >
                       @for ($i = 0; $i < sizeof($reservas_por_marca); $i++)
                       <tr>
-                       <td><i class="fa fa-square color-{{$i}}"></i> {{$reservas_por_marca[$i]['MARCA']}}</td>                        
-                        <td align="right">{{$reservas_por_marca[$i]['RESERVADOS']}}</td>    
+                      <td><i class="fa fa-square color-{{$i}}"></i> {{$reservas_por_marca[$i]['MARCA']}}</td>                        
+                      <td align="right">{{$reservas_por_marca[$i]['RESERVADOS']}}</td>    
                       </tr>
                       @endfor
                       </tbody>
@@ -281,204 +380,305 @@
 
 <script type="text/javascript">
 
-var values_cotizaciones = [0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0];
+
+function nombreMes(mes) {
+  if(mes == 1){ return 'ENERO';}
+  if(mes == 2){ return 'FEBRERO';}
+  if(mes == 3){ return 'MARZO';}
+  if(mes == 4){ return 'ABRIL';}
+  if(mes == 5){ return 'MAYO';}
+  if(mes == 6){ return 'JUNIO';}
+  if(mes == 7){ return 'JULIO';}
+  if(mes == 8){ return 'AGOSTO';}
+  if(mes == 9){ return 'SEPTIEMBRE';}
+  if(mes == 10){ return 'OCTUBRE';}
+  if(mes == 11){ return 'NOVIEMBE';}
+  if(mes == 12){ return 'DICIEMBRE';}
+}
+
+//======================   BARRAS      =====================================
+//========================================================================
+ //================ BARRA COTIZACIONES ===============================
 var dato_cotizaciones  = <?php echo json_encode($cotizaciones); ?>;
 var len_cotizaciones = dato_cotizaciones.length;
+var data_cotizaciones=[];
 
 for (var i = 0; i < len_cotizaciones; i++) {
-   values_cotizaciones[i]=dato_cotizaciones[i].COTIZACIONES;
+  var oData = {
+    'meses':'',
+    'cotiza':dato_cotizaciones[i].COTIZACIONES
+  };
+
+oData.meses = nombreMes(dato_cotizaciones[i].MES);
+data_cotizaciones.push(oData);
 }
 
-$('.txt_cotiza').text('POR MES');
-  
-$(".sparkline_cotizaciones").sparkline(values_cotizaciones, {
-        type: 'bar',
-        
-        height: '40',
-        barWidth: 10,
-        colorMap: {
-          '0': '#a1a1a1'  
-        },
-        barSpacing: 7,
-        barColor: '#26B99A',
-        chartRangeMin: 12,
-      });
-
-$('.sparkline_cotizaciones').bind('sparklineRegionChange', function(ev) {
-    var sparkline = ev.sparklines[0];
-        var region = sparkline.getCurrentRegionFields();
-        var value = region.y;
-        //console.log(region);
-        if(region[0].offset == 0){mes='ENERO';}
-        if(region[0].offset == 1){mes='FEBRERO';}
-        if(region[0].offset == 2){mes='MARZO';}
-        if(region[0].offset == 3){mes='ABRIL';}
-        if(region[0].offset == 4){mes='MAYO';}
-        if(region[0].offset == 5){mes='JUNIO';}
-        if(region[0].offset == 6){mes='JULIO';}
-        if(region[0].offset == 7){mes='AGOSTO';}
-        if(region[0].offset == 8){mes='SEPTIEMBRE';}
-        if(region[0].offset == 9){mes='OCTUBRE';}
-        if(region[0].offset == 10){mes='NOVIEMBE';}
-        if(region[0].offset == 11){mes='DICIEMBRE';}
-
-    $('.txt_cotiza').text(mes + " : "+region[0].value);
-}).bind('mouseleave', function() {
-    $('.txt_cotiza').text('POR MES');
+Morris.Bar({
+  element: 'graph_bar_cotizaciones',
+  data:data_cotizaciones,
+  xkey: 'meses',
+  ykeys: ['cotiza'],
+  labels: ['Cotizaciones'],
+  barRatio: 0.4,
+  barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+  xLabelAngle: 90,
+  hideHover: 'auto',
+  resize: true
 });
 
+//====================================================================
+ //================ BARRA TEST ===============================
+Morris.Bar({
+          element: 'graph_bar_test',
+          data: [
+          
+          {device: 'ENERO', Tests: 0},
+          {device: 'FEBRERO', Tests: 0},
+          {device: 'MARZO', Tests: 0},
+          {device: 'ABRIL', Tests: 0},
+          {device: 'MAYO', Tests: 0},
+          {device: 'JUNIO', Tests: 0},
+          {device: 'JULIO', Tests: 0},
+          {device: 'AGOSTO', Tests: 0},
+          {device: 'SEPTIEMBRE', Tests: 0},
+          {device: 'OCTUBRE', Tests: 0},
+          {device: 'NOVIEMBE', Tests: 0},
+          {device: 'DICIEMBRE', Tests: 0}
+          ],
+          xkey: 'device',
+          ykeys: ['Tests'],
+          labels: ['Tests'],
+          barRatio: 0.4,
+          barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+          xLabelAngle: 90,
+          hideHover: 'auto',
+          resize: true
+        });
+//========================================================================
 
-
-///////////////////////////////////////////////////////////////
-
-var values_test_drive = [0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0];
-
-
-$('.txt_test_drive').text('POR MES');
-  
-$(".sparkline_test_drive").sparkline(values_test_drive, {
-        type: 'bar',
-        
-        height: '40',
-        barWidth: 10,
-        colorMap: {
-          '0': '#a1a1a1'  
-        },
-        barSpacing: 7,
-        barColor: '#26B99A',
-        chartRangeMin: 12,
-      });
-
-$('.sparkline_test_drive').bind('sparklineRegionChange', function(ev) {
-    var sparkline = ev.sparklines[0];
-        var region = sparkline.getCurrentRegionFields();
-        var value = region.y;
-        //console.log(region);
-        if(region[0].offset == 0){mes='ENERO';}
-        if(region[0].offset == 1){mes='FEBRERO';}
-        if(region[0].offset == 2){mes='MARZO';}
-        if(region[0].offset == 3){mes='ABRIL';}
-        if(region[0].offset == 4){mes='MAYO';}
-        if(region[0].offset == 5){mes='JUNIO';}
-        if(region[0].offset == 6){mes='JULIO';}
-        if(region[0].offset == 7){mes='AGOSTO';}
-        if(region[0].offset == 8){mes='SEPTIEMBRE';}
-        if(region[0].offset == 9){mes='OCTUBRE';}
-        if(region[0].offset == 10){mes='NOVIEMBE';}
-        if(region[0].offset == 11){mes='DICIEMBRE';}
-
-    $('.txt_test_drive').text(mes + " : "+region[0].value);
-}).bind('mouseleave', function() {
-    $('.txt_test_drive').text('POR MES');
-});
-
-
-///////////////////////////////////////////////////////////////
-
-
-
-///////////////////////////////////////////////////////////////
-
-var values_reservas = [0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0];
-
+ //================ BARRA RESERVAS ===============================
 var dato_reservas  = <?php echo json_encode($reservas); ?>;
 var len_reservas = dato_reservas.length;
+var data_reservas=[];
 
 for (var i = 0; i < len_reservas; i++) {
-   values_reservas[i]=dato_reservas[i].RESERVADOS;
+  var oData = {
+    'meses':'',
+    'res':dato_reservas[i].RESERVADOS
+  };
+
+oData.meses = nombreMes(dato_reservas[i].MES);
+data_reservas.push(oData);
 }
 
-$('.txt_reservas').text('POR MES');
-  
-$(".sparkline_reservas").sparkline(values_reservas, {
-        type: 'bar',
-        
-        height: '40',
-        barWidth: 10,
-        colorMap: {
-          '0': '#a1a1a1'  
-        },
-        barSpacing: 7,
-        barColor: '#26B99A',
-        chartRangeMin: 12,
-      });
-
-$('.sparkline_reservas').bind('sparklineRegionChange', function(ev) {
-    var sparkline = ev.sparklines[0];
-        var region = sparkline.getCurrentRegionFields();
-        var value = region.y;
-        //console.log(region);
-        if(region[0].offset == 0){mes='ENERO';}
-        if(region[0].offset == 1){mes='FEBRERO';}
-        if(region[0].offset == 2){mes='MARZO';}
-        if(region[0].offset == 3){mes='ABRIL';}
-        if(region[0].offset == 4){mes='MAYO';}
-        if(region[0].offset == 5){mes='JUNIO';}
-        if(region[0].offset == 6){mes='JULIO';}
-        if(region[0].offset == 7){mes='AGOSTO';}
-        if(region[0].offset == 8){mes='SEPTIEMBRE';}
-        if(region[0].offset == 9){mes='OCTUBRE';}
-        if(region[0].offset == 10){mes='NOVIEMBE';}
-        if(region[0].offset == 11){mes='DICIEMBRE';}
-
-    $('.txt_reservas').text(mes + " : "+region[0].value);
-}).bind('mouseleave', function() {
-    $('.txt_reservas').text('POR MES');
+Morris.Bar({
+  element: 'graph_bar_reservas',
+  data:data_reservas,
+  xkey: 'meses',
+  ykeys: ['res'],
+  labels: ['Reservas'],
+  barRatio: 0.4,
+  barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+  xLabelAngle: 90,
+  hideHover: 'auto',
+  resize: true
 });
+//========================================================================
+
+ //================ BARRA FACTURAS ===============================
+var dato_facturas  = <?php echo json_encode($facturas); ?>;
+var len_facturas = dato_facturas.length;
+var data_facturas=[];
+
+for (var i = 0; i < len_facturas; i++) {
+  var oData = {
+    'meses':'',
+    'res':dato_facturas[i].FACTURADOS
+  };
+
+oData.meses = nombreMes(dato_facturas[i].MES);
+data_facturas.push(oData);
+}
+
+Morris.Bar({
+  element: 'graph_bar_facturas',
+  data:data_facturas,
+  xkey: 'meses',
+  ykeys: ['res'],
+  labels: ['Facturas'],
+  barRatio: 0.4,
+  barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+  xLabelAngle: 90,
+  hideHover: 'auto',
+  resize: true
+});
+//========================================================================
+//========================================================================
 
 
+//======================   DONAS      =====================================
+//========================================================================
+//===================== DONA COTIZACIONES ================================
+
+var dato_cot_reg  = <?php echo json_encode($cotizaciones_por_reg); ?>;
+var data_cot_reg=[];
+for (var i = 0; i < dato_cot_reg.length; i++) 
+{
+  var oData = {'label':dato_cot_reg[i].REGIONAL, 'value':dato_cot_reg[i].COTIZACIONES };
+  data_cot_reg.push(oData);
+}
+
+Morris.Donut({
+          element: 'graph_donut_cotiza',
+          data: data_cot_reg,
+          colors: ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
+          
+          resize: true
+        });
+//========================================================================
+
+//===================== DONA RESERVAS ================================
+
+var dato_res_reg  = <?php echo json_encode($reservas_por_reg); ?>;
+var data_res_reg=[];
+for (var i = 0; i < dato_res_reg.length; i++) 
+{
+  var oData = {'label':dato_res_reg[i].REGIONAL, 'value':dato_res_reg[i].RESERVADOS };
+  data_res_reg.push(oData);
+}
+
+Morris.Donut({
+          element: 'graph_donut_reservas',
+          data: data_res_reg,
+          colors: ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
+          
+          resize: true
+        });
+//========================================================================
+
+//===================== DONA FACTURAS ================================
+
+var dato_fac_reg  = <?php echo json_encode($facturas_por_reg); ?>;
+var data_fac_reg=[];
+for (var i = 0; i < dato_fac_reg.length; i++) 
+{
+  var oData = {'label':dato_fac_reg[i].REG_ASIGNADA, 'value':dato_fac_reg[i].FACTURADOS };
+  data_fac_reg.push(oData);
+}
+
+Morris.Donut({
+          element: 'graph_donut_facturas',
+          data: data_fac_reg,
+          colors: ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
+          
+          resize: true
+        });
+//========================================================================
 ///////////////////////////////////////////////////////////////
 
 
-var values_facturas = [0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0];
+//====================  BARRAS HORISONTALES  ================================
+//========================================================================
+//===================== BARRA H COTIZA ================================
+var label_cotiza = [];
+var data_cotiza = [];
 
-var dato_facturas  = <?php echo json_encode($facturas); ?>;
-var len_facturas = dato_facturas.length;
+var datos_cotiza_marca  = <?php echo json_encode($cotizaciones_por_marca); ?>;
 
-for (var i = 0; i < len_facturas; i++) {
-   values_facturas[i]=dato_facturas[i].FACTURADOS;
+for (var i = 0; i < datos_cotiza_marca.length; i++) {
+   label_cotiza[i]=datos_cotiza_marca[i].MARCA.trim();
+   data_cotiza[i]=datos_cotiza_marca[i].COTIZACIONES;
 }
 
-$('.txt_facturas').text('POR MES');
-  
-$(".sparkline_facturas").sparkline(values_facturas, {
-        type: 'bar',
-        
-        height: '40',
-        barWidth: 10,
-        colorMap: {
-          '0': '#a1a1a1'  
-        },
-        barSpacing: 7,
-        barColor: '#26B99A',
-        chartRangeMin: 12,
-      });
-
-$('.sparkline_facturas').bind('sparklineRegionChange', function(ev) {
-    var sparkline = ev.sparklines[0];
-        var region = sparkline.getCurrentRegionFields();
-        var value = region.y;
-        //console.log(region);
-        if(region[0].offset == 0){mes='ENERO';}
-        if(region[0].offset == 1){mes='FEBRERO';}
-        if(region[0].offset == 2){mes='MARZO';}
-        if(region[0].offset == 3){mes='ABRIL';}
-        if(region[0].offset == 4){mes='MAYO';}
-        if(region[0].offset == 5){mes='JUNIO';}
-        if(region[0].offset == 6){mes='JULIO';}
-        if(region[0].offset == 7){mes='AGOSTO';}
-        if(region[0].offset == 8){mes='SEPTIEMBRE';}
-        if(region[0].offset == 9){mes='OCTUBRE';}
-        if(region[0].offset == 10){mes='NOVIEMBE';}
-        if(region[0].offset == 11){mes='DICIEMBRE';}
-
-    $('.txt_facturas').text(mes + " : "+region[0].value);
-}).bind('mouseleave', function() {
-    $('.txt_facturas').text('POR MES');
+new Chart(document.getElementById("bar-chart-horizontal-cotiza"), {
+    type: 'horizontalBar',
+    data: {
+      labels: label_cotiza,
+      datasets: [
+        {
+          label: "Cotizaciones: ",
+          backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
+          data: data_cotiza
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: false
+      }
+    }
 });
+//========================================================================
+
+//===================== BARRA H RESERVAS ================================
+var label_reserva = [];
+var data_reserva = [];
+
+var datos_reserva_marca  = <?php echo json_encode($reservas_por_marca); ?>;
+
+for (var i = 0; i < datos_reserva_marca.length; i++) {
+   label_reserva[i]=datos_reserva_marca[i].MARCA.trim();
+   data_reserva[i]=datos_reserva_marca[i].RESERVADOS;
+}
+
+new Chart(document.getElementById("bar-chart-horizontal-reserva"), {
+    type: 'horizontalBar',
+    data: {
+      labels: label_reserva,
+      datasets: [
+        {
+          label: "Cotizaciones: ",
+          backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
+          data: data_reserva
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: false
+      }
+    }
+});
+//========================================================================
+
+//===================== BARRA H FACTURAS ================================
+var label_facturas = [];
+var data_facturas = [];
+
+var datos_facturas_marca  = <?php echo json_encode($facturas_por_marca); ?>;
+
+for (var i = 0; i < datos_facturas_marca.length; i++) {
+   label_facturas[i]=datos_facturas_marca[i].MARCA.trim();
+   data_facturas[i]=datos_facturas_marca[i].FACTURADOS;
+}
+
+new Chart(document.getElementById("bar-chart-horizontal-facturas"), {
+    type: 'horizontalBar',
+    data: {
+      labels: label_facturas,
+      datasets: [
+        {
+          label: "Cotizaciones: ",
+          backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
+          data: data_facturas
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: false
+      }
+    }
+});
+//========================================================================
 
 
-/////////////////////////////////////////////////////////////////
+
+
+
 
 var values_reservas = [0, 0, 0, 0, 0, 0];
 var values_data = [0, 0, 0, 0, 0, 0];
@@ -491,16 +691,13 @@ for (var i = 0; i < len_reservas; i++) {
    values_data[i]=reservas[i].COTIZACIONES;
 }
 
-
 new Chart(document.getElementById("doughnut-chart"), {
     type: 'doughnut',
     data: {
       labels: values_reservas,
       datasets: [
         {
-          
           backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8fc4c7", "#dcd895"],
-
           data: values_data
         }
       ]
@@ -514,7 +711,6 @@ new Chart(document.getElementById("doughnut-chart"), {
     }
 });
 
-
 /////////////////////////////////////////////////////////////////
 
 var values_test = [0, 0, 0, 0, 0, 0];
@@ -526,9 +722,7 @@ new Chart(document.getElementById("doughnut-chart-test"), {
       labels: values_test,
       datasets: [
         {
-          
           backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8fc4c7", "#dcd895"],
-
           data: values_data_test
         }
       ]
@@ -615,6 +809,105 @@ new Chart(document.getElementById("doughnut-chart-facturas"), {
     }
 });
 
+
+
+
+
+
+// var values_test_drive = [0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0];
+
+
+// $('.txt_test_drive').text('POR MES');
+  
+// $(".sparkline_test_drive").sparkline(values_test_drive, {
+//         type: 'bar',
+        
+//         height: '35',
+//         barWidth: 15,
+//         colorMap: {
+//           '0': '#ff000c'  
+//         },
+//         barSpacing: 2,
+//         barColor: '#26B99A',
+//         chartRangeMin: 12,
+//       });
+
+// $('.sparkline_test_drive').bind('sparklineRegionChange', function(ev) {
+//     var sparkline = ev.sparklines[0];
+//         var region = sparkline.getCurrentRegionFields();
+//         var value = region.y;
+//         //console.log(region);
+//         if(region[0].offset == 0){mes='ENERO';}
+//         if(region[0].offset == 1){mes='FEBRERO';}
+//         if(region[0].offset == 2){mes='MARZO';}
+//         if(region[0].offset == 3){mes='ABRIL';}
+//         if(region[0].offset == 4){mes='MAYO';}
+//         if(region[0].offset == 5){mes='JUNIO';}
+//         if(region[0].offset == 6){mes='JULIO';}
+//         if(region[0].offset == 7){mes='AGOSTO';}
+//         if(region[0].offset == 8){mes='SEPTIEMBRE';}
+//         if(region[0].offset == 9){mes='OCTUBRE';}
+//         if(region[0].offset == 10){mes='NOVIEMBE';}
+//         if(region[0].offset == 11){mes='DICIEMBRE';}
+
+//     $('.txt_test_drive').text(mes + " : "+region[0].value);
+// }).bind('mouseleave', function() {
+//     $('.txt_test_drive').text('POR MES');
+// });
+
+
+///////////////////////////////////////////////////////////////
+
+
+
+///////////////////////////////////////////////////////////////
+
+// var values_reservas = [0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0];
+
+// var dato_reservas  = <?php echo json_encode($reservas); ?>;
+// var len_reservas = dato_reservas.length;
+
+// for (var i = 0; i < len_reservas; i++) {
+//    values_reservas[i]=dato_reservas[i].RESERVADOS;
+// }
+
+// $('.txt_reservas').text('POR MES');
+  
+// $(".sparkline_reservas").sparkline(values_reservas, {
+//         type: 'bar',
+        
+//         height: '35',
+//         barWidth: 15,
+//         colorMap: {
+//           '0': '#ff000c'  
+//         },
+//         barSpacing: 2,
+//         barColor: '#26B99A',
+//         chartRangeMin: 12,
+//       });
+
+// $('.sparkline_reservas').bind('sparklineRegionChange', function(ev) {
+//     var sparkline = ev.sparklines[0];
+//         var region = sparkline.getCurrentRegionFields();
+//         var value = region.y;
+//         //console.log(region);
+//         if(region[0].offset == 0){mes='ENERO';}
+//         if(region[0].offset == 1){mes='FEBRERO';}
+//         if(region[0].offset == 2){mes='MARZO';}
+//         if(region[0].offset == 3){mes='ABRIL';}
+//         if(region[0].offset == 4){mes='MAYO';}
+//         if(region[0].offset == 5){mes='JUNIO';}
+//         if(region[0].offset == 6){mes='JULIO';}
+//         if(region[0].offset == 7){mes='AGOSTO';}
+//         if(region[0].offset == 8){mes='SEPTIEMBRE';}
+//         if(region[0].offset == 9){mes='OCTUBRE';}
+//         if(region[0].offset == 10){mes='NOVIEMBE';}
+//         if(region[0].offset == 11){mes='DICIEMBRE';}
+
+//     $('.txt_reservas').text(mes + " : "+region[0].value);
+// }).bind('mouseleave', function() {
+//     $('.txt_reservas').text('POR MES');
+// });
 
 
 
