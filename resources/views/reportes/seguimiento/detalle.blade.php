@@ -2,7 +2,180 @@
 
 @section('content')
 <style type="text/css">
-
+/* Timeline */
+.timeline2,
+.timeline2-horizontal {
+  list-style: none;
+  padding: 20px;
+  position: relative;
+}
+.timeline2:before {
+  top: 40px;
+  bottom: 0;
+  position: absolute;
+  content: " ";
+  width: 3px;
+  background-color: #eeeeee;
+  left: 50%;
+  margin-left: -1.5px;
+}
+.timeline2 .timeline2-item {
+  margin-bottom: 20px;
+  position: relative;
+}
+.timeline2 .timeline2-item:before,
+.timeline2 .timeline2-item:after {
+  content: "";
+  display: table;
+}
+.timeline2 .timeline2-item:after {
+  clear: both;
+}
+.timeline2 .timeline2-item .timeline2-badge {
+  color: #fff;
+  width: 54px;
+  height: 54px;
+  line-height: 52px;
+  font-size: 22px;
+  text-align: center;
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  margin-left: -25px;
+  background-color: #7c7c7c;
+  border: 3px solid #ffffff;
+  z-index: 100;
+  border-top-right-radius: 50%;
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+.timeline2 .timeline2-item .timeline2-badge i,
+.timeline2 .timeline2-item .timeline2-badge .fa,
+.timeline2 .timeline2-item .timeline2-badge .glyphicon {
+  top: 2px;
+  left: 0px;
+}
+.timeline2 .timeline2-item .timeline2-badge.green {
+  background-color: #26b99a;
+}
+.timeline2 .timeline2-item .timeline2-badge.primary {
+  background-color: #1f9eba;
+}
+.timeline2 .timeline2-item .timeline2-badge.info {
+  background-color: #5bc0de;
+}
+.timeline2 .timeline2-item .timeline2-badge.success {
+  background-color: #59ba1f;
+}
+.timeline2 .timeline2-item .timeline2-badge.warning {
+  background-color: #d1bd10;
+}
+.timeline2 .timeline2-item .timeline2-badge.danger {
+  background-color: #ba1f1f;
+}
+.timeline2 .timeline2-item .timeline2-panel {
+  position: relative;
+  width: 46%;
+  float: left;
+  right: 16px;
+  border: 1px solid #c0c0c0;
+  background: #ffffff;
+  border-radius: 2px;
+  padding: 20px;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}
+.timeline2 .timeline2-item .timeline2-panel:before {
+  position: absolute;
+  top: 26px;
+  right: -16px;
+  display: inline-block;
+  border-top: 16px solid transparent;
+  border-left: 16px solid #c0c0c0;
+  border-right: 0 solid #c0c0c0;
+  border-bottom: 16px solid transparent;
+  content: " ";
+}
+.timeline2 .timeline2-item .timeline2-panel .timeline2-title {
+  margin-top: 0;
+  color: inherit;
+}
+.timeline2 .timeline2-item .timeline2-panel .timeline2-body > p,
+.timeline2 .timeline2-item .timeline2-panel .timeline2-body > ul {
+  margin-bottom: 0;
+}
+.timeline2 .timeline2-item .timeline2-panel .timeline2-body > p + p {
+  margin-top: 5px;
+}
+.timeline2 .timeline2-item:last-child:nth-child(even) {
+  float: right;
+}
+.timeline2 .timeline2-item:nth-child(even) .timeline2-panel {
+  float: right;
+  left: 16px;
+}
+.timeline2 .timeline2-item:nth-child(even) .timeline2-panel:before {
+  border-left-width: 0;
+  border-right-width: 14px;
+  left: -14px;
+  right: auto;
+}
+.timeline2-horizontal {
+  list-style: none;
+  position: relative;
+  padding: 20px 0px 20px 0px;
+  display: inline-block;
+}
+.timeline2-horizontal:before {
+  height: 3px;
+  top: auto;
+  bottom: 26px;
+  left: 56px;
+  right: 0;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.timeline2-horizontal .timeline2-item {
+  display: table-cell;
+  height: 280px;
+  width: 10%;
+  min-width: 220px;
+  float: none !important;
+  padding-left: 0px;
+  padding-right: 20px;
+  margin: 0 auto;
+  vertical-align: bottom;
+}
+.timeline2-horizontal .timeline2-item .timeline2-panel {
+  top: auto;
+  bottom: 64px;
+  display: inline-block;
+  float: none !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.timeline2-horizontal .timeline2-item .timeline2-panel:before {
+  top: auto;
+  bottom: -16px;
+  left: 28px !important;
+  right: auto;
+  border-right: 16px solid transparent !important;
+  border-top: 16px solid #c0c0c0 !important;
+  border-bottom: 0 solid #c0c0c0 !important;
+  border-left: 16px solid transparent !important;
+}
+.timeline2-horizontal .timeline2-item:before,
+.timeline2-horizontal .timeline2-item:after {
+  display: none;
+}
+.timeline2-horizontal .timeline2-item .timeline2-badge {
+  top: auto;
+  bottom: 0px;
+  left: 43px;
+}
   
 
 </style>
@@ -15,6 +188,7 @@
             </div>
             <br>
             <div class="clearfix"></div>
+
               <div class="col-md-12 col-xs-12 animated fadeInUp">
                 <div class="x_panel">
                   <div class="x_title">
@@ -685,9 +859,105 @@
                              </div>
   
             
-          </div>
-          <div class="clearfix"></div>
-        </div>
+
+                  <div class="col-md-12 col-xs-12 animated fadeInUp">
+                    <div class="x_panel">
+                      <div class="x_title">
+                        <h2>CONTROL DE TIEMPOS <small>LINEA  DE TIEMPO</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                          <li><a class="collapse-link"><i class="fa fa-chevron-up animated tada infinite"></i></a>
+                          </li>
+                          <li><a class="close-link"><i class="fa fa-close"></i></a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="x_content" >
+                     
+                       
+                        <div style="display:inline-block;width:100%;overflow-y:auto;">
+                        <ul class="timeline2 timeline2-horizontal">
+                          <li class="timeline2-item">
+                            <div class="timeline2-badge  green"><i class="glyphicon glyphicon-check"></i></div>
+                            <div class="timeline2-panel">
+                              <div class="timeline2-heading">
+                                <h4 class="timeline2-title">COTIZACION</h4>
+                                <p><small class="text-muted"><i class="glyphicon glyphicon-time green"></i> aqui la fecha</small></p>
+                              </div>
+                              <div class="timeline2-body">
+                                <p>asd</p>
+                                <p>asd</p>
+                                <p>asd</p>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="timeline2-item">
+                            <div class="timeline2-badge  green"><i class="glyphicon glyphicon-check "></i></div>
+                            <div class="timeline2-panel">
+                              <div class="timeline2-heading">
+                                <h4 class="timeline2-title">RESERVA</h4>
+                                <p><small class="text-muted"><i class="glyphicon glyphicon-time green"></i> aqui la fecha</small></p>
+                              </div>
+                              <div class="timeline2-body">
+                                <p>asd</p>
+                                <p>asd</p>
+                                <p>asd</p>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="timeline2-item">
+                            <div class="timeline2-badge  green"><i class="glyphicon glyphicon-check"></i></div>
+                            <div class="timeline2-panel">
+                              <div class="timeline2-heading">
+                                <h4 class="timeline2-title">CONTRATO</h4>
+                                <p><small class="text-muted"><i class="glyphicon glyphicon-time green"></i> aqui la fecha</small></p>
+                              </div>
+                              <div class="timeline2-body">
+                                <p>asd</p>
+                                <p>asd</p>
+                                <p>asd</p>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="timeline2-item">
+                            <div class="timeline2-badge  green"><i class="glyphicon glyphicon-check"></i></div>
+                            <div class="timeline2-panel">
+                              <div class="timeline2-heading">
+                                <h4 class="timeline2-title">FACTURA</h4>
+                                <p><small class="text-muted"><i class="glyphicon glyphicon-time green"></i> aqui la fecha</small></p>
+                              </div>
+                              <div class="timeline2-body">
+                                <p>asd</p>
+                                <p>asd</p>
+                                <p>asd</p>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="timeline2-item">
+                            <div class="timeline2-badge  green"><i class="glyphicon glyphicon-check"></i></div>
+                            <div class="timeline2-panel">
+                              <div class="timeline2-heading">
+                                <h4 class="timeline2-title">ENTREGA</h4>
+                                <p><small class="text-muted"><i class="glyphicon glyphicon-time green"></i> aqui la fecha</small></p>
+                              </div>
+                              <div class="timeline2-body">
+                                <p>asd</p>
+                                <p>asd</p>
+                                <p>asd</p>
+                              </div>
+                            </div>
+                          </li>
+                          
+                        </ul>
+                      </div>
+                    
+                    </div>
+                  </div>
+                </div>
+
+                <div class="clearfix"></div>
+  </div>
+</div>
         
 
 

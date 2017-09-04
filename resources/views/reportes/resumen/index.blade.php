@@ -377,7 +377,7 @@ Morris.Bar({
   ykeys: ['cotiza'],
   labels: ['Cotizaciones'],
   barRatio: 0.4,
-  barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+  barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
   xLabelAngle: 90,
   hideHover: 'auto',
   resize: true
@@ -406,7 +406,7 @@ Morris.Bar({
           ykeys: ['Tests'],
           labels: ['Tests'],
           barRatio: 0.4,
-          barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+          barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
           xLabelAngle: 90,
           hideHover: 'auto',
           resize: true
@@ -435,7 +435,7 @@ Morris.Bar({
   ykeys: ['res'],
   labels: ['Reservas'],
   barRatio: 0.4,
-  barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+  barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
   xLabelAngle: 90,
   hideHover: 'auto',
   resize: true
@@ -464,7 +464,7 @@ Morris.Bar({
   ykeys: ['res'],
   labels: ['Facturas'],
   barRatio: 0.4,
-  barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+  barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
   xLabelAngle: 90,
   hideHover: 'auto',
   resize: true

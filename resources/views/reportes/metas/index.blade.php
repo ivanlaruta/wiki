@@ -172,6 +172,9 @@
       </div>
     </div>    
 
+
+
+
     <div class="row">
 
       @foreach($SUCURSALES as $suc)
