@@ -39,8 +39,6 @@ class MetasController extends Controller
             else{$periodo='2017-0'.$mes_act;}
         }
 
-
-
         if ($periodo == '2017-01') { $desc_periodo='ENERO'; }
         if ($periodo == '2017-02') { $desc_periodo='FEBRERO'; }
         if ($periodo == '2017-03') { $desc_periodo='MARZO'; }
@@ -262,7 +260,6 @@ class MetasController extends Controller
 
         // dd($fecha_inicio,$fecha_final);
         // dd($TOTALES);
-        
         return view('reportes.metas.index') 
         ->with('TOTALES',$TOTALES)
         ->with('SUCURSALES',$SUCURSALES)
@@ -278,8 +275,6 @@ class MetasController extends Controller
         ->with('fecha_final',$fecha_final)
         ->with('desc_periodo',$desc_periodo)
         ;
-     
     }
-
 
 }

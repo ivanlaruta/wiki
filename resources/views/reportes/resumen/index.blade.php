@@ -2,29 +2,41 @@
 
 @section('content')
 <style type="text/css">
+.table .progress {
+margin-bottom: 0px;
+}
+
   .color-0{
-    color: #3e95cd;
+    color: #26B99A;
+    background: #26B99A;
   }
   .color-1{
-    color: #8e5ea2;
+    color: #3498DB;
+    background: #3498DB;
   }
   .color-2{
-    color: #3cba9f;
+    color: #34495E;
+    background: #34495E;
   }
   .color-3{
-    color: #e8c3b9;
+    color: #ACADAC;
+    background: #ACADAC;
   }
   .color-4{
-    color: #c45850;
+    color: #145d66;
+    background: #145d66;
   }
   .color-5{
-    color: #8fc4c7;
+    color: #4b3a52;
+    background: #4b3a52;
   }
   .color-6{
-    color: #dcd895;
+    color: #455c73;
+    background: #455c73;
   }
   .color-7{
     color: #8e5ea2;
+    background: #8e5ea2;
   }
 </style>
         <div class="right_col" role="main">
@@ -91,6 +103,8 @@
               </div>
             </div>
 
+            <div class="ln_solid"></div>
+
             <div class="row">
               <div class="col-md-3 col-sm-3 col-xs-6">
                   <div class="x_title">
@@ -130,6 +144,8 @@
               </div>
             </div>
 
+            <div class="ln_solid"></div>
+
             <div class="row">
               <div class="col-md-3 col-sm-3 col-xs-6">
                   <div class="x_title">
@@ -137,7 +153,118 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <canvas id="bar-chart-horizontal-cotiza" width="400" height="250"></canvas>
+                    <canvas id="polar-chart-cotiza" width="200" height="200"></canvas>
+                      <div class="col-xs-12 bg-white progress_summary">
+                        @for ($i = 0; $i < sizeof($cotizaciones_por_marca); $i++)
+                        <?php 
+                           $max = $cotizaciones_por_marca[0]['COTIZACIONES'];
+                           $val = intval(($cotizaciones_por_marca[$i]['COTIZACIONES'] *100) /$max);  
+                        ?>  
+                        <div class="row">
+                          <div class="col-xs-4">
+                            <span>{{$cotizaciones_por_marca[$i]['MARCA']}}</span>
+                          </div>
+                          <div class="col-xs-5">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar color-{{$i}}" role="progressbar" data-transitiongoal="{{$val}}"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-3 more_info">
+                            <span>{{$cotizaciones_por_marca[$i]['COTIZACIONES']}}</span>
+                          </div>
+                        </div>
+                        @endfor
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR MARCA <SMALL>TEST DRIVE</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="polar-chart-test" width="200" height="200"></canvas>
+                    {{-- <canvas id="bar-chart-horizontal-test" width="200" height="200"></canvas> --}}
+                    <div class="col-xs-12 bg-white progress_summary"></div>
+                  </div>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR MARCA <SMALL>RESERVAS</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="polar-chart-reserva" width="200" height="200"></canvas>
+                    {{-- <canvas id="bar-chart-horizontal-reserva" width="200" height="200"></canvas> --}}
+                    <div class="col-xs-12 bg-white progress_summary">
+                        @for ($i = 0; $i < sizeof($reservas_por_marca); $i++)
+                        <?php 
+                           $max = $reservas_por_marca[0]['RESERVADOS'];
+                           $val = intval(($reservas_por_marca[$i]['RESERVADOS'] *100) /$max);  
+                        ?>  
+                        <div class="row">
+                          <div class="col-xs-4">
+                            <span>{{$reservas_por_marca[$i]['MARCA']}}</span>
+                          </div>
+                          <div class="col-xs-5">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar color-{{$i}}" role="progressbar" data-transitiongoal="{{$val}}"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-3 more_info">
+                            <span>{{$reservas_por_marca[$i]['RESERVADOS']}}</span>
+                          </div>
+                        </div>
+                        @endfor
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR MARCA <SMALL>FACTURAS</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="polar-chart-factura" width="200" height="200"></canvas>
+                    {{-- <canvas id="bar-chart-horizontal-facturas" width="200" height="200"></canvas> --}}
+                    <div class="col-xs-12 bg-white progress_summary">
+                        @for ($i = 0; $i < sizeof($facturas_por_marca); $i++)
+                        <?php 
+                           $max = $facturas_por_marca[0]['FACTURADOS'];
+                           $val = intval(($facturas_por_marca[$i]['FACTURADOS'] *100) /$max);  
+                        ?>  
+                        <div class="row">
+                          <div class="col-xs-4">
+                            <span>{{$facturas_por_marca[$i]['MARCA']}}</span>
+                          </div>
+                          <div class="col-xs-5">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar color-{{$i}}" role="progressbar" data-transitiongoal="{{$val}}"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-3 more_info">
+                            <span>{{$facturas_por_marca[$i]['FACTURADOS']}}</span>
+                          </div>
+                        </div>
+                        @endfor
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+{{--             <div class="ln_solid"></div>
+
+            <div class="row">
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <h2>POR MARCA <SMALL>COTIZACIONES</SMALL></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    
                   </div>
               </div>
               <div class="col-md-3 col-sm-3 col-xs-6">
@@ -146,7 +273,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <canvas id="bar-chart-horizontal-test" width="400" height="250"></canvas>
+                    
                   </div>
               </div>
               <div class="col-md-3 col-sm-3 col-xs-6">
@@ -155,7 +282,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <canvas id="bar-chart-horizontal-reserva" width="400" height="250"></canvas>
+                    
                   </div>
               </div>
               <div class="col-md-3 col-sm-3 col-xs-6">
@@ -164,183 +291,13 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <canvas id="bar-chart-horizontal-facturas" width="400" height="250"></canvas>
+                    
                   </div>
               </div>
-            </div>
-
-            <div class="">
-
-            <div class="col-md-3 col-sm-3 col-xs-6">
-              <div class="x_panel tile ">
-                <div class="x_title">
-                  <h2>COTIZACIONES</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content" align="center">
-                <canvas class="doughnut-chart" id="doughnut-chart" ></canvas>
-                  <table class="table-striped table-hover" style="width:100%">
-                    <thead>
-                        <tr>
-                          
-                          <th>MARCA</th>
-                          <th style="text-align: right;">COTIZACIONES</th>
-                        </tr>
-                      </thead>
-                      <tbody >
-                      @for ($i = 0; $i < sizeof($cotizaciones_por_marca); $i++)
-                      <tr>
-                        <td><i class="fa fa-square color-{{$i}}"></i> {{$cotizaciones_por_marca[$i]['MARCA']}}</td>
-                        <td align="right">{{$cotizaciones_por_marca[$i]['COTIZACIONES']}}</td> 
-                      </tr>
-                      @endfor
-                      </tbody>
-
-                  </table>
-                </div>
-              </div>
-            </div>
-            
-
-            <div class="col-md-3 col-sm-3 col-xs-6">
-              <div class="x_panel tile ">
-                <div class="x_title">
-                  <h2>TEST DRIVE</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content" align="center">
-                <canvas class="doughnut-chart-test" id="doughnut-chart-test" ></canvas>
-                  <table class="table-striped table-hover" style="width:100%">
-                    <thead>
-                        <tr>
-                          <th>MARCA</th>
-                          <th style="text-align: right;">TEST's</th>
-                        </tr>
-                      </thead>
-                      <tbody >
-                      <tr>
-
-                        <td>TOYOTA</td>                        
-                        <td align="right">0</td>                        
-                      </tr>
-                      <tr>
-                        <td>HINO</td>                        
-                        <td align="right">0</td>                        
-                      </tr>
-                      <tr>
-                        <td>YAMAHA</td>                        
-                        <td align="right">0</td>                        
-                      </tr>
-                      <tr>
-                        <td>LEXUS</td>                        
-                        <td align="right">0</td>                        
-                      </tr>
-                      <tr>
-                        <td>KUBOTA</td>                        
-                        <td align="right">0</td>                        
-                      </tr>
-                      <tr>
-                        <td>DAIHATSU</td>                        
-                        <td align="right">0</td>                        
-                      </tr>
-                      </tbody>
-
-                  </table>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-md-3 col-sm-3 col-xs-6">
-              <div class="x_panel tile ">
-                <div class="x_title">
-                  <h2>RESERVAS</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content" align="center">
-                <canvas class="doughnut-chart" id="doughnut-chart-reservas" ></canvas>
-                  <table class="table-striped table-hover" style="width:100%">
-                    <thead>
-                        <tr>
-                          <th>MARCA</th>
-                          <th style="text-align: right;">RESERVAS</th>
-                        </tr>
-                      </thead>
-                      <tbody >
-                      @for ($i = 0; $i < sizeof($reservas_por_marca); $i++)
-                      <tr>
-                      <td><i class="fa fa-square color-{{$i}}"></i> {{$reservas_por_marca[$i]['MARCA']}}</td>                        
-                      <td align="right">{{$reservas_por_marca[$i]['RESERVADOS']}}</td>    
-                      </tr>
-                      @endfor
-                      </tbody>
-
-                  </table>
-                </div>
-              </div>
-            </div>
+            </div> --}}
 
 
 
-            <div class="col-md-3 col-sm-3 col-xs-6">
-              <div class="x_panel tile ">
-                <div class="x_title">
-                  <h2>FACTURAS</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content" align="center">
-                <canvas class="doughnut-chart" id="doughnut-chart-facturas" ></canvas>
-                  <table class="table-striped table-hover" style="width:100%">
-                    <thead>
-                        <tr>
-                          <th>MARCA</th>
-                          <th style="text-align: right;">FACTURAS</th>
-                        </tr>
-                      </thead>
-                      <tbody >
-                       @for ($i = 0; $i < sizeof($facturas_por_marca); $i++)
-                      <tr>
-                       <td><i class="fa fa-square color-{{$i}}"></i> {{$facturas_por_marca[$i]['MARCA']}}</td>                        
-                        <td align="right">{{$facturas_por_marca[$i]['FACTURADOS']}}</td>   
-                      </tr>
-                      @endfor
-                      </tbody>
-
-                  </table>
-                </div>
-              </div>
-            </div>
-
-
-            </div>
             <br/>
           </div>
         </div>
@@ -577,9 +534,110 @@ Morris.Donut({
 ///////////////////////////////////////////////////////////////
 
 
-//====================  BARRAS HORISONTALES  ================================
-//========================================================================
-//===================== BARRA H COTIZA ================================
+// //====================  BARRAS HORISONTALES  ================================
+// //========================================================================
+// //===================== BARRA H COTIZA ================================
+// var label_cotiza = [];
+// var data_cotiza = [];
+
+// var datos_cotiza_marca  = <?php echo json_encode($cotizaciones_por_marca); ?>;
+
+// for (var i = 0; i < datos_cotiza_marca.length; i++) {
+//    label_cotiza[i]=datos_cotiza_marca[i].MARCA.trim();
+//    data_cotiza[i]=datos_cotiza_marca[i].COTIZACIONES;
+// }
+
+// new Chart(document.getElementById("bar-chart-horizontal-cotiza"), {
+//     type: 'horizontalBar',
+//     data: {
+//       labels: label_cotiza,
+//       datasets: [
+//         {
+//           label: "Cotizaciones: ",
+//           backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
+//           data: data_cotiza
+//         }
+//       ]
+//     },
+//     options: {
+//       legend: { display: false },
+//       title: {
+//         display: false
+//       }
+//     }
+// });
+// //========================================================================
+
+// //===================== BARRA H RESERVAS ================================
+// var label_reserva = [];
+// var data_reserva = [];
+
+// var datos_reserva_marca  = <?php echo json_encode($reservas_por_marca); ?>;
+
+// for (var i = 0; i < datos_reserva_marca.length; i++) {
+//    label_reserva[i]=datos_reserva_marca[i].MARCA.trim();
+//    data_reserva[i]=datos_reserva_marca[i].RESERVADOS;
+// }
+
+// new Chart(document.getElementById("bar-chart-horizontal-reserva"), {
+//     type: 'horizontalBar',
+//     data: {
+//       labels: label_reserva,
+//       datasets: [
+//         {
+//           label: "Cotizaciones: ",
+//           backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
+//           data: data_reserva
+//         }
+//       ]
+//     },
+//     options: {
+//       legend: { display: false },
+//       title: {
+//         display: false
+//       }
+//     }
+// });
+// //========================================================================
+
+// //===================== BARRA H FACTURAS ================================
+// var label_facturas = [];
+// var data_facturas = [];
+
+// var datos_facturas_marca  = <?php echo json_encode($facturas_por_marca); ?>;
+
+// for (var i = 0; i < datos_facturas_marca.length; i++) {
+//    label_facturas[i]=datos_facturas_marca[i].MARCA.trim();
+//    data_facturas[i]=datos_facturas_marca[i].FACTURADOS;
+// }
+
+// new Chart(document.getElementById("bar-chart-horizontal-facturas"), {
+//     type: 'horizontalBar',
+//     data: {
+//       labels: label_facturas,
+//       datasets: [
+//         {
+//           label: "Cotizaciones: ",
+//           backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
+//           data: data_facturas
+//         }
+//       ]
+//     },
+//     options: {
+//       legend: { display: false },
+//       title: {
+//         display: false
+//       }
+//     }
+// });
+// //========================================================================
+
+
+
+//====================  pie   =======================================
+//=====================================================================
+//===================== pie  COTIZA ================================
+
 var label_cotiza = [];
 var data_cotiza = [];
 
@@ -590,8 +648,8 @@ for (var i = 0; i < datos_cotiza_marca.length; i++) {
    data_cotiza[i]=datos_cotiza_marca[i].COTIZACIONES;
 }
 
-new Chart(document.getElementById("bar-chart-horizontal-cotiza"), {
-    type: 'horizontalBar',
+new Chart(document.getElementById("polar-chart-cotiza"), {
+    type: 'pie',
     data: {
       labels: label_cotiza,
       datasets: [
@@ -602,16 +660,15 @@ new Chart(document.getElementById("bar-chart-horizontal-cotiza"), {
         }
       ]
     },
-    options: {
-      legend: { display: false },
+   options: {
       title: {
-        display: false
+        display: true
       }
     }
 });
 //========================================================================
 
-//===================== BARRA H RESERVAS ================================
+//===================== pie RESERVAS ================================
 var label_reserva = [];
 var data_reserva = [];
 
@@ -622,8 +679,8 @@ for (var i = 0; i < datos_reserva_marca.length; i++) {
    data_reserva[i]=datos_reserva_marca[i].RESERVADOS;
 }
 
-new Chart(document.getElementById("bar-chart-horizontal-reserva"), {
-    type: 'horizontalBar',
+new Chart(document.getElementById("polar-chart-reserva"), {
+    type: 'pie',
     data: {
       labels: label_reserva,
       datasets: [
@@ -635,15 +692,14 @@ new Chart(document.getElementById("bar-chart-horizontal-reserva"), {
       ]
     },
     options: {
-      legend: { display: false },
       title: {
-        display: false
+        display: true
       }
     }
 });
 //========================================================================
 
-//===================== BARRA H FACTURAS ================================
+//===================== pie FACTURAS ================================
 var label_facturas = [];
 var data_facturas = [];
 
@@ -654,8 +710,8 @@ for (var i = 0; i < datos_facturas_marca.length; i++) {
    data_facturas[i]=datos_facturas_marca[i].FACTURADOS;
 }
 
-new Chart(document.getElementById("bar-chart-horizontal-facturas"), {
-    type: 'horizontalBar',
+new Chart(document.getElementById("polar-chart-factura"), {
+    type: 'pie',
     data: {
       labels: label_facturas,
       datasets: [
@@ -667,9 +723,8 @@ new Chart(document.getElementById("bar-chart-horizontal-facturas"), {
       ]
     },
     options: {
-      legend: { display: false },
       title: {
-        display: false
+        display: true
       }
     }
 });
@@ -679,185 +734,41 @@ new Chart(document.getElementById("bar-chart-horizontal-facturas"), {
 
 
 
-
-var values_reservas = [0, 0, 0, 0, 0, 0];
-var values_data = [0, 0, 0, 0, 0, 0];
-
-var reservas  = <?php echo json_encode($cotizaciones_por_marca); ?>;
-var len_reservas = reservas.length;
-
-for (var i = 0; i < len_reservas; i++) {
-   values_reservas[i]=reservas[i].MARCA.trim();
-   values_data[i]=reservas[i].COTIZACIONES;
-}
-
-new Chart(document.getElementById("doughnut-chart"), {
-    type: 'doughnut',
-    data: {
-      labels: values_reservas,
-      datasets: [
-        {
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8fc4c7", "#dcd895"],
-          data: values_data
-        }
-      ]
-    },
-    options: {
-      legend: false, 
-      resposive:true,
-      title: {
-        display: false,
-      }
-    }
-});
-
 /////////////////////////////////////////////////////////////////
 
-var values_test = [0, 0, 0, 0, 0, 0];
-var values_data_test = [0, 0, 0, 0, 0, 0];
+// var values_marcas_fact = [0, 0, 0, 0, 0, 0];
+// var values_data_fact = [0, 0, 0, 0, 0, 0];
 
-new Chart(document.getElementById("doughnut-chart-test"), {
-    type: 'doughnut',
-    data: {
-      labels: values_test,
-      datasets: [
-        {
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8fc4c7", "#dcd895"],
-          data: values_data_test
-        }
-      ]
-    },
-    options: {
-      legend: false, 
-      resposive:true,
-      title: {
-        display: false,
-      }
-    }
-});
+// var marcas_fact  = <?php echo json_encode($facturas_por_marca); ?>;
+// var len_marcas_fact = marcas_fact.length;
+
+// for (var i = 0; i < len_marcas_fact; i++) {
+//    values_marcas_fact[i]=marcas_fact[i].MARCA.trim();
+//    values_data_fact[i]=marcas_fact[i].FACTURADOS;
+// }
 
 
-/////////////////////////////////////////////////////////////////
-
-var values_marcas_res = [0, 0, 0, 0, 0, 0];
-var values_data_res = [0, 0, 0, 0, 0, 0];
-
-var marcas_res  = <?php echo json_encode($reservas_por_marca); ?>;
-var len_marcas_res = marcas_res.length;
-
-for (var i = 0; i < len_marcas_res; i++) {
-   values_marcas_res[i]=marcas_res[i].MARCA.trim();
-   values_data_res[i]=marcas_res[i].RESERVADOS;
-}
-
-
-new Chart(document.getElementById("doughnut-chart-reservas"), {
-    type: 'doughnut',
-    data: {
-      labels: values_marcas_res,
-      datasets: [
-        {
+// new Chart(document.getElementById("doughnut-chart-facturas"), {
+//     type: 'doughnut',
+//     data: {
+//       labels: values_marcas_fact,
+//       datasets: [
+//         {
           
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8fc4c7", "#dcd895"],
+//           backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8fc4c7", "#dcd895"],
 
-          data: values_data_res
-        }
-      ]
-    },
-    options: {
-      legend: false, 
-      resposive:true,
-      title: {
-        display: false,
-      }
-    }
-});
-
-/////////////////////////////////////////////////////////////////
-
-var values_marcas_fact = [0, 0, 0, 0, 0, 0];
-var values_data_fact = [0, 0, 0, 0, 0, 0];
-
-var marcas_fact  = <?php echo json_encode($facturas_por_marca); ?>;
-var len_marcas_fact = marcas_fact.length;
-
-for (var i = 0; i < len_marcas_fact; i++) {
-   values_marcas_fact[i]=marcas_fact[i].MARCA.trim();
-   values_data_fact[i]=marcas_fact[i].FACTURADOS;
-}
-
-
-new Chart(document.getElementById("doughnut-chart-facturas"), {
-    type: 'doughnut',
-    data: {
-      labels: values_marcas_fact,
-      datasets: [
-        {
-          
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8fc4c7", "#dcd895"],
-
-          data: values_data_fact
-        }
-      ]
-    },
-    options: {
-      legend: false, 
-      resposive:true,
-      title: {
-        display: false,
-      }
-    }
-});
-
-
-
-
-
-
-// var values_test_drive = [0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0];
-
-
-// $('.txt_test_drive').text('POR MES');
-  
-// $(".sparkline_test_drive").sparkline(values_test_drive, {
-//         type: 'bar',
-        
-//         height: '35',
-//         barWidth: 15,
-//         colorMap: {
-//           '0': '#ff000c'  
-//         },
-//         barSpacing: 2,
-//         barColor: '#26B99A',
-//         chartRangeMin: 12,
-//       });
-
-// $('.sparkline_test_drive').bind('sparklineRegionChange', function(ev) {
-//     var sparkline = ev.sparklines[0];
-//         var region = sparkline.getCurrentRegionFields();
-//         var value = region.y;
-//         //console.log(region);
-//         if(region[0].offset == 0){mes='ENERO';}
-//         if(region[0].offset == 1){mes='FEBRERO';}
-//         if(region[0].offset == 2){mes='MARZO';}
-//         if(region[0].offset == 3){mes='ABRIL';}
-//         if(region[0].offset == 4){mes='MAYO';}
-//         if(region[0].offset == 5){mes='JUNIO';}
-//         if(region[0].offset == 6){mes='JULIO';}
-//         if(region[0].offset == 7){mes='AGOSTO';}
-//         if(region[0].offset == 8){mes='SEPTIEMBRE';}
-//         if(region[0].offset == 9){mes='OCTUBRE';}
-//         if(region[0].offset == 10){mes='NOVIEMBE';}
-//         if(region[0].offset == 11){mes='DICIEMBRE';}
-
-//     $('.txt_test_drive').text(mes + " : "+region[0].value);
-// }).bind('mouseleave', function() {
-//     $('.txt_test_drive').text('POR MES');
+//           data: values_data_fact
+//         }
+//       ]
+//     },
+//     options: {
+//       legend: false, 
+//       resposive:true,
+//       title: {
+//         display: false,
+//       }
+//     }
 // });
-
-
-///////////////////////////////////////////////////////////////
-
 
 
 ///////////////////////////////////////////////////////////////
