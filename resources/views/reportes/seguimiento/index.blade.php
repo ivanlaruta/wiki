@@ -78,19 +78,23 @@
                             <span class="label label-primary">RESERVA</span>
                           @endif
                           @if($res->CONTRATO>0)
-                            <span class="label label-success">CONTRATO</span>
+                            <span class="label label-danger">CONTRATO</span>
+                          @endif
+                          
+                          @if($res->ADENDA>0 && $res->CONTRATO==0 )
+                          <span class="label label-danger">CONTRATO ANULADO</span>
+                            <span class="label label-success">ADENDA</span>
                           @endif
                           @if($res->FACTURA>0)
                             <span class="label label-info">FACTURA</span>
                           @endif
                           @if($res->ENTREGA>0)
-                            <span class="label label-danger">ENTREGA</span>
+                            <span class="label label-warning">ENTREGA</span>
                           @endif
                         </td>
 
                         <td><a href="{{ route('seguimiento.show',['id'=>str_replace("/", "_", $res->CHASSIS)])}}" class="btn btn-round btn-success btn-sm"> Ver detalle</a></td> 
-                       
-                                          
+                                            
                       </tr>
                       @endforeach
                       </tbody>

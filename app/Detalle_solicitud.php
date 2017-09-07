@@ -27,4 +27,8 @@ class Detalle_solicitud extends Model
     {
         return $this->belongsTo('App\Marca','cod_marca');
     }
+    public function solicitud()
+    {
+        return $this->belongsTo('App\Solicitud','id_solicitud');
+    }
 }

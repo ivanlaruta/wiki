@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DateTime;
 use DB;
 use App\V_stock_todo;
 use App\Cotizacion;
@@ -11,11 +12,7 @@ use App\Factura;
 
 class SeguimientoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(request $request)
     {
         $chassis=$request->chassis;
@@ -33,6 +30,8 @@ class SeguimientoController extends Controller
                 (select COUNT (c.chasis) as expr1 from gtauto.dbo.Cotizador c where c.chasis = qw.chassis) as COTIZACION,
                 (select COUNT (r.chassis) as expr1 from gtauto.dbo.cpf_resvehokm R where r.chassis = qw.chassis and r.cod_docum='rvehokma' and r.nro_contrato='1' and r.cod_estado='R') as RESERVA,
                 (select COUNT (co.chassis) as expr1 from gtauto.dbo.cpf_vtasokm co where co.chassis = qw.chassis) as CONTRATO,
+  
+                (select COUNT (ad.chassis) as expr1 from gtauto.dbo.cpf_adendaokm ad where ad.chassis_aux1 = qw.chassis) as ADENDA,
                 (select COUNT (f.chassis) as expr1 from gtauto.dbo.cpf_facturas f where f.chassis = qw.chassis) as FACTURA,
                 (select COUNT (n.chassis) as expr1 from gtauto.dbo.cpf_notaentrega n where n.chassis = qw.chassis) as ENTREGA,
                 RTRIM(b.descripcion) AS MODELOS, 
@@ -59,33 +58,6 @@ class SeguimientoController extends Controller
         ->with('chassis',$chassis);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $id = str_replace("_", "/", $id);
@@ -93,17 +65,41 @@ class SeguimientoController extends Controller
 
         $datos_unidad = V_stock_todo::where('CHASIS','LIKE', '%'.$id.'%')->first();
 
-        $cotizacion = Cotizacion::where('CHASIS','LIKE', '%'.$id.'%')->get();
+        $movimientos = DB::table('gtauto.dbo.VIS_REPORTE_SA_STOCKOM_HISTORIAL_UBICACION')
+        ->select('Ubicacion_Ant','ubicacion_Act','SYSTIME')        
+        ->where('estado','ACTUALIZADO')
+        ->where('chassis',$id)
+        ->orderBy('SYSTIME' )
+        ->get();
 
+        $produccion = DB::select( DB::raw("select * from  gtauto.dbo.ct_vehiculos where chassis LIKE '%".$id."%'"));
+
+        $cotizacion = Cotizacion::where('CHASIS','LIKE', '%'.$id.'%')
+                        ->orderBy('FECHA_COTIZACION','DESC')
+                        ->first();
+        //dd($cotizacion);
         $reserva =Reserva::where('CHASIS','LIKE', '%'.$id.'%')->first();
 
-        $contrato =DB::select( DB::raw("select S.*,V.nom_vendedor from gtauto.dbo.cpf_vtasokm S JOIN gtauto.dbo.ct_vendedores AS V ON V.cod_vendedor = S.cod_vendedor where chassis LIKE '%".$id."%'"));
+        $contrato =DB::select( DB::raw("select S.*,V.nom_vendedor from gtauto.dbo.cpf_vtasokm S JOIN gtauto.dbo.ct_vendedores AS V ON V.cod_vendedor = S.cod_vendedor where chassis = '".$id."'"));
+
+        $adenda =DB::select( DB::raw("select  top 1 * from gtauto.dbo.cpf_adendaokm where chassis_aux1 LIKE '%".$id."%' order by fecha_mod DESC"));
+        
+        if ( sizeof($adenda)>0)
+        {
+            $nro_ventas=rtrim($adenda[0]->nro_ventas);
+
+            $contrato_an =DB::select( DB::raw("
+                select S.*,V.nom_vendedor 
+                from gtauto.dbo.cpf_vtasokm S JOIN gtauto.dbo.ct_vendedores AS V ON V.cod_vendedor = S.cod_vendedor 
+                AND nro_docum = '".$nro_ventas."' order by fecha_mod desc "));
+        }
+        else{ 
+            $contrato_an = [];
+        }
 
         $factura =Factura::where('CHASIS', $id)->first();
 
-        $entrega =DB::select( DB::raw("select * from gtauto.dbo.cpf_notaentrega where chassis LIKE '%".$id."%'"));
-
-        $produccion = DB::select( DB::raw("select * from  gtauto.dbo.ct_vehiculos where chassis LIKE '%".$id."%'"));
+        $entrega =DB::select( DB::raw("select  * from gtauto.dbo.cpf_notaentrega where chassis LIKE '%".$id."%'"));
 
         $envio = DB::select( DB::raw("
         select a.*,u.*,o.*,b.*
@@ -114,14 +110,64 @@ class SeguimientoController extends Controller
         where chassis LIKE '%".$id."%'
          "));
 
-        $movimientos = DB::table('gtauto.dbo.VIS_REPORTE_SA_STOCKOM_HISTORIAL_UBICACION')
-        ->select('Ubicacion_Ant','ubicacion_Act','SYSTIME')        
-        ->where('estado','ACTUALIZADO')
-        ->where('chassis',$id)
-        ->orderBy('SYSTIME' )
-        ->get();
+        if ( sizeof($cotizacion)>0 && sizeof($reserva)>0)
+        {
+            $datetime1 = new DateTime($cotizacion->FECHA_COTIZACION);
+            $datetime2 = new DateTime($reserva->FECHA_RESERVA);
+            $interval = $datetime1->diff($datetime2);
+            $dias_reserva = $interval->format('%R%a dias');
+        }else{ $dias_reserva = 'Sin dato';}
 
+        if ( sizeof($reserva)>0 && sizeof($contrato)>0)
+        {
+            $datetime1 = new DateTime($reserva->FECHA_RESERVA);
+            $datetime2 = new DateTime(date('Y-m-d',strtotime($contrato[0]->fecha_mod)));
+            $interval = $datetime1->diff($datetime2);
+            $dias_contrato = $interval->format('%R%a dias');
+        }else{ $dias_contrato = 'Sin dato';}
 
+        if ( sizeof($contrato)==0 && sizeof($reserva)>0 && sizeof($contrato_an)>0)
+        {
+            $datetime1 = new DateTime($reserva->FECHA_RESERVA);
+            $datetime2 = new DateTime(date('Y-m-d',strtotime($contrato_an[0]->fecha_mod)));
+            $interval = $datetime1->diff($datetime2);
+            $dias_contrato_an = $interval->format('%R%a dias');
+        }else{ $dias_contrato_an = 'Sin dato';}
+
+        if ( sizeof($contrato)==0 && sizeof($contrato_an)>0 && sizeof($adenda)>0 )
+        {
+            $datetime1 = new DateTime($reserva->FECHA_RESERVA);
+            $datetime2 = new DateTime(date('Y-m-d',strtotime($adenda[0]->fecha_mod)));
+            $interval = $datetime1->diff($datetime2);
+            $dias_adenda = $interval->format('%R%a dias');
+        }else{ $dias_adenda = 'Sin dato';}
+
+        if ( sizeof($contrato)==0 && sizeof($adenda)>0 && sizeof($factura)>0 )
+        {
+            $datetime1 = new DateTime(date('Y-m-d',strtotime($adenda[0]->fecha_mod)));
+            $datetime2 = new DateTime($factura->FECHA_FACTURA);
+            $interval = $datetime1->diff($datetime2);
+            $dias_factura = $interval->format('%R%a dias');
+        }
+        else
+        { 
+            if ( sizeof($contrato)>0 && sizeof($factura)>0 )
+            {
+                $datetime1 = new DateTime(date('Y-m-d',strtotime($contrato[0]->fecha_mod)));
+                $datetime2 = new DateTime($factura->FECHA_FACTURA);
+                $interval = $datetime1->diff($datetime2);
+                $dias_factura = $interval->format('%R%a dias');
+            }else{ $dias_factura = 'Sin dato';}
+        }
+        if ( sizeof($entrega)>0 && sizeof($factura)>0 )
+        {
+            $datetime1 = new DateTime($factura->FECHA_FACTURA);
+            $datetime2 = new DateTime(date('Y-m-d',strtotime($entrega[0]->fecha_mod)));
+            $interval = $datetime1->diff($datetime2);
+            $dias_entrega = $interval->format('%R%a dias');
+        }else{ $dias_entrega = 'Sin dato';}
+
+        $dias_total = $dias_reserva+$dias_contrato+$dias_contrato_an+$dias_adenda+$dias_factura+$dias_entrega +1;
 
         return view('reportes.seguimiento.detalle')
         ->with('id',$id)
@@ -133,40 +179,15 @@ class SeguimientoController extends Controller
         ->with('entrega',$entrega)
         ->with('produccion',$produccion)
         ->with('envio',$envio)
-        ->with('movimientos',$movimientos);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        ->with('movimientos',$movimientos)
+        ->with('adenda',$adenda)
+        ->with('contrato_an',$contrato_an)
+        ->with('dias_reserva',$dias_reserva)
+        ->with('dias_contrato',$dias_contrato)
+        ->with('dias_contrato_an',$dias_contrato_an)
+        ->with('dias_adenda',$dias_adenda)
+        ->with('dias_factura',$dias_factura)
+        ->with('dias_entrega',$dias_entrega)
+        ->with('dias_total',$dias_total);
     }
 }

@@ -15,4 +15,9 @@ class Solicitud extends Model
     protected $dates =['fecha_creacion','fecha_modificacion','fecha_enviado','fecha_aprovado','fecha_envio','fecha_entrega_estimada','fecha_entrega'];
     protected $dateFormat = 'Ymd';
     public $timestamps = true;
+
+    public function detalles()
+    {
+        return $this->hasMany('App\Detalle_solicitud','id_solicitud');
+    }
 }

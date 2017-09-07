@@ -2,6 +2,7 @@
 
 @section('content')
 <style type="text/css">
+
 /* Timeline */
 .timeline2,
 .timeline2-horizontal {
@@ -15,7 +16,7 @@
   position: absolute;
   content: " ";
   width: 3px;
-  background-color: #eeeeee;
+  background-color: #adc2b7;
   left: 50%;
   margin-left: -1.5px;
 }
@@ -42,7 +43,7 @@
   top: 18px;
   left: 50%;
   margin-left: -25px;
-  background-color: #7c7c7c;
+  background-color: #2A3F54 ;
   border: 3px solid #ffffff;
   z-index: 100;
   border-top-right-radius: 50%;
@@ -56,6 +57,30 @@
   top: 2px;
   left: 0px;
 }
+
+
+.timeline2 .timeline2-item .timeline2-badge2 {
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #fff;
+    width: 115px;
+    height: 35px;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    margin-left: -25px;
+    background-color: #e97e7e;
+    border: 3px solid #ffffff;
+    z-index: 100;
+  
+}
+
+
+
 .timeline2 .timeline2-item .timeline2-badge.green {
   background-color: #26b99a;
 }
@@ -86,6 +111,7 @@
   -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
 }
+
 .timeline2 .timeline2-item .timeline2-panel:before {
   position: absolute;
   top: 26px;
@@ -138,9 +164,9 @@
 }
 .timeline2-horizontal .timeline2-item {
   display: table-cell;
-  height: 280px;
-  width: 10%;
-  min-width: 220px;
+  height: 260px;
+  
+  min-width: 350px;
   float: none !important;
   padding-left: 0px;
   padding-right: 20px;
@@ -157,14 +183,15 @@
   width: 100%;
   margin-bottom: 20px;
 }
+/* aqui el triangulito de abajop*/
 .timeline2-horizontal .timeline2-item .timeline2-panel:before {
   top: auto;
   bottom: -16px;
-  left: 28px !important;
+  left: 30px !important;
   right: auto;
   border-right: 16px solid transparent !important;
-  border-top: 16px solid #c0c0c0 !important;
-  border-bottom: 0 solid #c0c0c0 !important;
+  border-top: 16px solid #cbcdcd !important;
+  border-bottom: 0 solid #cbcdcd !important;
   border-left: 16px solid transparent !important;
 }
 .timeline2-horizontal .timeline2-item:before,
@@ -174,7 +201,12 @@
 .timeline2-horizontal .timeline2-item .timeline2-badge {
   top: auto;
   bottom: 0px;
-  left: 43px;
+  left: 45px;
+}
+.timeline2-horizontal .timeline2-item .timeline2-badge2 {
+  top: auto;
+  bottom: 11px;
+  left: -43px;
 }
   
 
@@ -519,351 +551,16 @@
                                </div>
                              </div>
                           
-                           <div class="col-md-6 col-sm-6 col-xs-12 animated fadeInUp">
-                            <div class="x_panel">
-                              <div class="x_title">
-                                <h2> COTIZACIONES <small>HISTORIAL</small></h2>
-                                <ul class="nav navbar-right panel_toolbox">
-                                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                  </li>
-                                  <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                  </li>
-                                </ul>
-                                <div class="clearfix"></div>
-                              </div>
-                              <div class="x_content">
-                                <ul class="list-unstyled timeline">
-                                @if(sizeof($cotizacion)>0)
-                                  @foreach($cotizacion as $cot)
-                                  <li>
-                                    <div class="block">
-                                      <div class="tags">
-                                        <a href="" class="tag">
-                                          <span class="coti"><strong>{{date('Y-m-d',strtotime($cot->FECHA_COTIZACION))}}</strong></span>
-                                        </a>
-                                      </div>
-                                      <div class="block_content">
-                                        <h2 class="title">
-                                          <a>COTIZACION </a>
-                                        </h2>
-                                        <div class="byline">
-                                          <span>{{$cot->FECHA_COTIZACION}}</span> cotizado por <a>{{$cot->VENDEDOR}}</a> en <a>{{$cot->SUCURSAL}} - {{$cot->REGIONAL}}</a>
-                                        </div>
-                                        <p class="excerpt">
-                                <ul class="to_do">
-                                  <li>
-                                    <p>
-                                      <strong>N° COTIZACION: </strong> {{$cot->NRO_COTIZACION}}</p>
-                                    </li>
-                                    <li>
-                                      <p>
-                                        <strong>MODALIDAD: </strong> {{$cot->modalidad}}</p>
-                                      </li>
-                                      <li>
-                                        <p>
-                                          <strong>PRECIO: </strong> {{$cot->PRECIO_TOTAL}}</p>
-                                        </li>
-                                        <li>
-                                          <p>
-                                            <strong>DESCUENTO: </strong> {{$cot->montoPorcentajeDescuento}}</p>
-                                          </li>
-
-                                        
-                                          <li>
-                                            <p>
-                                              <strong>CLIENTE: </strong> {{$cot->CLIENTE}}</p>
-                                            </li>
-                                            <li>
-                                              <p>
-                                                <strong>TIPO: </strong> {{$cot->TIPO_CLIENTE}}</p>
-                                              </li>
-                                              <li>
-                                                <p>
-                                                  <strong>CI: </strong> {{$cot->ci}}</p>
-                                                </li>
-                                                <li>
-                                                  <p>
-                                                    <strong>NIT: </strong> {{$cot->NIT}}</p>
-                                                  </li>
-                                                  <li>
-                                                    <p>
-                                                      <strong>DIRECCION: </strong> {{$cot->DIRECCION}}</p>
-                                                    </li>
-                                                    <li>
-                                                      <p>
-                                                        <strong>TELEFONO: </strong> {{$cot->TELEFONO}}</p>
-                                                      </li>
-                                                      <li>
-                                                        <p>
-                                                          <strong>CELULAR: </strong> {{$cot->CELULAR}}</p>
-                                                        </li>
-                                                      </ul>
-                                                </p>
-                                         </div>
-                                       </div>
-                                     </li>
-                                     @endforeach
-                                     @endif
-                                   </ul>
-                                 </div>
-                               </div>
-                             </div>
-
-                            
-                           <div class="col-md-6 col-sm-6 col-xs-12 animated fadeInUp">
-                            <div class="x_panel">
-                              <div class="x_title">
-                                <h2> RESERVA - CONTRATO - VENTA <small>HISTORIAL</small></h2>
-                                <ul class="nav navbar-right panel_toolbox">
-                                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                  </li>
-                                  <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                  </li>
-                                </ul>
-                                <div class="clearfix"></div>
-                              </div>
-                              <div class="x_content">
-                               <ul class="list-unstyled timeline">
-                              @if(!empty($reserva))
-                               
-                                  
-                                  <li>
-                                    <div class="block">
-                                      <div class="tags">
-                                        <a href="" class="tag">
-                                          <span class="coti"><strong>{{date('Y-m-d',strtotime($reserva->FECHA_RESERVA))}}</strong></span>
-                                        </a>
-                                      </div>
-                                      <div class="block_content">
-                                        <h2 class="title">
-                                          <a>RESERVA </a>
-                                        </h2>
-                                        <div class="byline">
-                                          <span>{{$reserva->FECHA_RESERVA}}</span> reservado por <a>{{$reserva->VENDEDOR}}</a> en <a>{{$reserva->SUCURSAL}} - {{$reserva->REGIONAL}}</a>
-                                        </div>
-                                        <p class="excerpt">
-                                <ul class="to_do">
-                               
-                                  <li>
-                                    <p>
-                                      <strong>COTIZACION ORIGEN: </strong>  @if(sizeof($cotizacion)>0){{$cot->NRO_COTIZACION}}@else LICITACION @endif</p>
-                                    </li>
-
-
-                                        
-                                          <li>
-                                         <p>
-                                           <strong>N° RESERVA: </strong> {{$reserva->nro_docum}}</p>
-                                       </li>
-                                       <li>
-                                         <p>
-                                           <strong>UBICACION_UNIDAD: </strong> {{$reserva->UBICACION_UNIDAD}}</p>
-                                       </li>
-                                       <li>
-                                         <p>
-                                           <strong>LIBERADO: </strong> {{$reserva->LIBERADO}}</p>
-                                       </li>
-                                       <li>
-                                         <p>
-                                           <strong>NACIONALIZADO: </strong> {{$reserva->NACIONALIZADO}}</p>
-                                       </li>
-                                        <li>
-                                         <p>
-                                           <strong>CLIENTE: </strong> {{$reserva->CLIENTE}}</p>
-                                       </li>
-                                       <li>
-                                         <p>
-                                           <strong>BANCO: </strong> {{$reserva->nom_banco}}</p>
-                                       </li>
-                                       <li>
-                                         <p>
-                                           <strong>PRECIO: </strong> {{$reserva->Precio_actual}}</p>
-                                       </li>
-                                       <li>
-                                         <p>
-                                           <strong>TIPO: </strong> {{$reserva->tipo_venta}}</p>
-                                       </li>
-                                                      </ul>
-                                                </p>
-                                         </div>
-                                       </div>
-                                     </li>
-                                     
-                                   
-                                   @else
-                                    Sin reserva aprobada
-                                   @endif
-
-                                   @if(sizeof($contrato)>0)
-                               
-                                  
-                                  <li>
-                                    <div class="block">
-                                      <div class="tags">
-                                        <a href="" class="tag">
-                                          <span class="coti"><strong>{{date('Y-m-d',strtotime($contrato[0]->fec_doc))}}</strong></span>
-                                        </a>
-                                      </div>
-                                      <div class="block_content">
-                                        <h2 class="title">
-                                          <a>CONTRATO </a>
-                                        </h2>
-                                        <div class="byline">
-                                          <span>{{date('Y-m-d',strtotime($contrato[0]->fec_doc))}}</span> Contrato realizado por <a>{{$contrato[0]->nom_vendedor}}</a> 
-                                        </div>
-                                        <p class="excerpt">
-                                <ul class="to_do">
-
-                                     <li>
-                                         <p>
-                                           <strong>N° CONTRATO: </strong> {{$contrato[0]->nro_docum}}</p>
-                                       </li>
-
-                                       <li>
-                                         <p>
-                                           <strong>CLIENTE: </strong> {{$contrato[0]->nom_tit}}</p>
-                                       </li>
-                                       <li>
-                                         <p>
-                                           <strong>PRECIO: </strong> {{$contrato[0]->precio_total}}</p>
-                                       </li>
-                                                      </ul>
-                                                </p>
-                                         </div>
-                                       </div>
-                                     </li>
-                                     
-                                  
-                                   @else
-                                    <br>Sin Contrato
-                                   @endif
-
-
-                                  @if(!empty($factura))
-
-                                  <li>
-                                    <div class="block">
-                                      <div class="tags">
-                                        <a href="" class="tag">
-                                          <span class="coti"><strong>{{date('Y-m-d',strtotime($factura->FECHA_FACTURA))}}</strong></span>
-                                        </a>
-                                      </div>
-                                      <div class="block_content">
-                                        <h2 class="title">
-                                          <a>FACTURA </a>
-                                        </h2>
-                                        <div class="byline">
-                                          <span>{{date('Y-m-d',strtotime($factura->FECHA_FACTURA))}}</span> facturado por <a>{{$factura->VENDEDOR}}</a> en <a>{{$factura->SUCURSAL}} - {{$factura->REGIONAL}}</a>
-                                        </div>
-                                        <p class="excerpt">
-                                <ul class="to_do">
-                                  
-                                     <li>
-                                         <p>
-                                           <strong>N° FACTURA: </strong> {{$factura->NRO_FACTURA}}</p>
-                                       </li>
-                                       <li>
-                                         <p>
-                                           <strong>UBICACION_UNIDAD: </strong> {{$factura->UBICACION_UNIDAD}}</p>
-                                       </li>
-                                       <li>
-                                         <p>
-                                           <strong>LIBERADO: </strong> {{$factura->LIBERADO}}</p>
-                                       </li>
-                                       <li>
-                                         <p>
-                                           <strong>NACIONALIZADO: </strong> {{$factura->NACIONALIZADO}}</p>
-                                       </li>
-
-                                       <li>
-                                         <p>
-                                           <strong>COD TIT: </strong> {{$factura->COD_TIT}}</p>
-                                       </li>
-                                       
-                                       <li>
-                                         <p>
-                                           <strong>NIT: </strong> {{$factura->NIT}}</p>
-                                       </li>
-                                       
-                                       <li>
-                                         <p>
-                                           <strong>CLIENTE: </strong> {{$factura->CLIENTE}}</p>
-                                       </li>
-                                       
-                                       <li>
-                                         <p>
-                                           <strong>PRECIO: </strong> {{$factura->PRECIO}}</p>
-                                       </li>
-                                       
-                                     
-                                       
-                                     
-                                     
-                                </ul>
-                                                </p>
-                                         </div>
-                                       </div>
-                                     </li>
-                                     
-                                   
-                                   @else
-                                    <br>No facturado
-                                   @endif
-
-
-                                   @if(sizeof($entrega)>0)
-                               
-                                  
-                                  <li>
-                                    <div class="block">
-                                      <div class="tags">
-                                        <a href="" class="tag">
-                                          <span class="coti"><strong>{{date('Y-m-d',strtotime($entrega[0]->fecha_mod))}}</strong></span>
-                                        </a>
-                                      </div>
-                                      <div class="block_content">
-                                        <h2 class="title">
-                                          <a>ENTREGA </a>
-                                        </h2>
-                                        <div class="byline">
-                                          <span  style="font-weight: bold;">{{date('Y-m-d',strtotime($entrega[0]->fecha_mod))}}</span> entregado en <a>{{$entrega[0]->nom_deposito}}</a> 
-                                        </div>
-                                        <p class="excerpt">
-                                <ul class="to_do">
-                                <li>
-                                         <p>
-                                           <strong>N° DOC: </strong> {{$entrega[0]->nro_docum}}</p>
-                                       </li>
-                                       
-                                       
-                                     
-                                     
-                                       <li>
-                                         <p>
-                                           <strong>CLIENTE: </strong> {{$entrega[0]->nom_tit}}</p>
-                                       </li>
-                                       </ul>
-                                                </p>
-                                         </div>
-                                       </div>
-                                     </li>
-                                     
-                                  
-                                   @else
-                                    <br>No Entregado
-                                   @endif
-
-                                   </ul>
-                                 </div>
-                               </div>
-                             </div>
-  
-            
+                           
 
                   <div class="col-md-12 col-xs-12 animated fadeInUp">
                     <div class="x_panel">
                       <div class="x_title">
-                        <h2>CONTROL DE TIEMPOS <small>LINEA  DE TIEMPO</small></h2>
+                        <h2>ACCIONES 
+                        @if(sizeof($cotizacion)>0)
+                        <small>TIEMPO DE PROCESO : {{$dias_total}} @if($dias_total>1) dias @else dia @endif </small>
+                        @endif
+                        </h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up animated tada infinite"></i></a>
                           </li>
@@ -873,89 +570,419 @@
                         <div class="clearfix"></div>
                       </div>
                       <div class="x_content" >
-                     
-                       
                         <div style="display:inline-block;width:100%;overflow-y:auto;">
                         <ul class="timeline2 timeline2-horizontal">
+
+                          @if(sizeof($cotizacion)>0)
                           <li class="timeline2-item">
-                            <div class="timeline2-badge  green"><i class="glyphicon glyphicon-check"></i></div>
-                            <div class="timeline2-panel">
-                              <div class="timeline2-heading">
-                                <h4 class="timeline2-title">COTIZACION</h4>
-                                <p><small class="text-muted"><i class="glyphicon glyphicon-time green"></i> aqui la fecha</small></p>
-                              </div>
-                              <div class="timeline2-body">
-                                <p>asd</p>
-                                <p>asd</p>
-                                <p>asd</p>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="timeline2-item">
-                            <div class="timeline2-badge  green"><i class="glyphicon glyphicon-check "></i></div>
-                            <div class="timeline2-panel">
-                              <div class="timeline2-heading">
-                                <h4 class="timeline2-title">RESERVA</h4>
-                                <p><small class="text-muted"><i class="glyphicon glyphicon-time green"></i> aqui la fecha</small></p>
-                              </div>
-                              <div class="timeline2-body">
-                                <p>asd</p>
-                                <p>asd</p>
-                                <p>asd</p>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="timeline2-item">
-                            <div class="timeline2-badge  green"><i class="glyphicon glyphicon-check"></i></div>
-                            <div class="timeline2-panel">
-                              <div class="timeline2-heading">
-                                <h4 class="timeline2-title">CONTRATO</h4>
-                                <p><small class="text-muted"><i class="glyphicon glyphicon-time green"></i> aqui la fecha</small></p>
-                              </div>
-                              <div class="timeline2-body">
-                                <p>asd</p>
-                                <p>asd</p>
-                                <p>asd</p>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="timeline2-item">
-                            <div class="timeline2-badge  green"><i class="glyphicon glyphicon-check"></i></div>
-                            <div class="timeline2-panel">
-                              <div class="timeline2-heading">
-                                <h4 class="timeline2-title">FACTURA</h4>
-                                <p><small class="text-muted"><i class="glyphicon glyphicon-time green"></i> aqui la fecha</small></p>
-                              </div>
-                              <div class="timeline2-body">
-                                <p>asd</p>
-                                <p>asd</p>
-                                <p>asd</p>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="timeline2-item">
-                            <div class="timeline2-badge  green"><i class="glyphicon glyphicon-check"></i></div>
-                            <div class="timeline2-panel">
-                              <div class="timeline2-heading">
-                                <h4 class="timeline2-title">ENTREGA</h4>
-                                <p><small class="text-muted"><i class="glyphicon glyphicon-time green"></i> aqui la fecha</small></p>
-                              </div>
-                              <div class="timeline2-body">
-                                <p>asd</p>
-                                <p>asd</p>
-                                <p>asd</p>
-                              </div>
-                            </div>
-                          </li>
                           
+                            <a  data-toggle="modal" href="#myModal_cotiza"><div class="timeline2-badge green prueba"><i class="fa fa-plus " style="color: #fff;"></i></div></a>
+                            
+                            <div class="timeline2-panel">
+                              <div class="timeline2-heading">
+                                <h4 class="timeline2-title">COTIZACION  <small class="pull-right red"><i class="fa fa-calendar "></i> {{$cotizacion->FECHA_COTIZACION}}</small></h4>
+                                <p><small class="text-muted pull-right"><i class="fa fa-user "></i> Por: {{$cotizacion->VENDEDOR}}</small></p>
+                                <br>
+                                <p><small class="text-muted pull-right"><i class="fa fa-map-marker"></i> {{$cotizacion->SUCURSAL}} - {{$cotizacion->REGIONAL}}</small></p>
+                              </div>
+                              <div class="ln_solid"></div>
+                              <div class="timeline2-body text-center">
+                                <p><small>N° Cotizacion:</small><strong> {{$cotizacion->NRO_COTIZACION}}</strong></p>
+                                <p><small>Cliente:</small><strong> {{$cotizacion->CLIENTE}}</strong></p>
+                            </div>
+                          </li>
+                          @endif
+
+                          @if(sizeof($reserva)>0)
+                          <li class="timeline2-item">
+                          <div class="timeline2-badge2 "><i class="fa fa-clock-o "></i> {{$dias_reserva}}</div>
+                            <a  data-toggle="modal" href="#myModal_reserva"><div class="timeline2-badge green prueba"><i class="fa fa-plus " style="color: #fff;"></i></div></a>
+                            
+                            <div class="timeline2-panel">
+                              <div class="timeline2-heading">
+                                <h4 class="timeline2-title">RESERVA  <small class="pull-right red"><i class="fa fa-calendar "></i> {{$reserva->FECHA_RESERVA}}</small></h4>
+                                <p><small class="text-muted pull-right"><i class="fa fa-user "></i> Por: {{$reserva->VENDEDOR}}</small></p>
+                                <br>
+                                <p><small class="text-muted pull-right"><i class="fa fa-map-marker"></i> {{$reserva->SUCURSAL}} - {{$reserva->REGIONAL}}</small></p>
+                              </div>
+                              <div class="ln_solid"></div>
+                              <div class="timeline2-body text-center">
+                                <p><small>N° Reseerva:</small><strong> {{$reserva->nro_docum}}</strong></p>
+                                <p><small>Cliente:</small><strong> {{$reserva->CLIENTE}}</strong></p>
+                            </div>
+                          </li>
+                          @endif
+                            
+                          @if(sizeof($contrato)>0)
+                          <li class="timeline2-item">
+                          <div class="timeline2-badge2 "><i class="fa fa-clock-o "></i> {{$dias_contrato}}</div>
+                            <a  data-toggle="modal" href="#myModal_contrato"><div class="timeline2-badge green prueba"><i class="fa fa-plus " style="color: #fff;"></i></div></a>
+                            <div class="timeline2-panel">
+                              <div class="timeline2-heading">
+                                <h4 class="timeline2-title">CONTRATO  <small class="pull-right red"><i class="fa fa-calendar "></i> {{date('Y-m-d',strtotime($contrato[0]->fecha_mod))}}</small></h4>
+                                <p><small class="text-muted pull-right"><i class="fa fa-user "></i> Por: {{$contrato[0]->nom_vendedor}}</small></p>
+                                <br>
+                                <p><small class="text-muted pull-right"><i class="fa fa-map-marker"></i> {{$reserva->SUCURSAL}} - {{$reserva->REGIONAL}}</small></p>
+                              </div>
+                              <div class="ln_solid"></div>
+                              <div class="timeline2-body text-center">
+                                <p><small>N° Contrato:</small><strong> {{$contrato[0]->nro_docum}}</strong></p>
+                                <p><small>Cliente:</small><strong> {{$contrato[0]->nom_tit}}</strong></p>
+                            </div>
+                          </li>
+                          @endif
+ 
+                          @if(sizeof($contrato_an)>0 && sizeof($contrato)==0)
+                          <li class="timeline2-item">
+                          <div class="timeline2-badge2 "><i class="fa fa-clock-o "></i> {{$dias_contrato_an}}</div>
+                            <a  data-toggle="modal" href="#myModal_contrato_an"><div class="timeline2-badge green prueba"><i class="fa fa-plus " style="color: #fff;"></i></div></a>
+                            <div class="timeline2-panel" style="    background: #fef7f7;">
+                              <div class="timeline2-heading">
+                                <h4 class="timeline2-title">CONTRATO ANULADO <small class="pull-right red"><i class="fa fa-calendar "></i> {{date('Y-m-d',strtotime($contrato_an[0]->fecha_mod))}}</small></h4>
+                                <p><small class="text-muted pull-right"><i class="fa fa-user "></i> Por: {{$contrato_an[0]->nom_vendedor}}</small></p>
+                                <br>
+                              </div>
+                              <div class="ln_solid"></div>
+                              <div class="timeline2-body text-center">
+                                <p><small>N° Contrato:</small><strong> {{$contrato_an[0]->nro_docum}}</strong></p>
+                                <p><small>Cliente:</small><strong> {{$contrato_an[0]->nom_tit}}</strong></p>
+                            </div>
+                          </li>
+                          @endif
+
+                          @if(sizeof($adenda)>0 && sizeof($contrato)==0)
+                          <li class="timeline2-item">
+                          <div class="timeline2-badge2 "><i class="fa fa-clock-o "></i> {{$dias_adenda}}</div>
+                            <a  data-toggle="modal" href="#myModal_adenda"><div class="timeline2-badge green prueba"><i class="fa fa-plus " style="color: #fff;"></i></div></a>
+                            <div class="timeline2-panel" style=" background: #f2fffa;">
+                              <div class="timeline2-heading">
+                                <h4 class="timeline2-title">ADENDA <small class="pull-right red"><i class="fa fa-calendar "></i> {{date('Y-m-d',strtotime($adenda[0]->fecha_mod))}}</small></h4>
+                                <p><small class="text-muted pull-right"><i class="fa fa-user "></i> Por: {{$adenda[0]->usuario_mod}}</small></p>
+                                <br>
+                              </div>
+                              <div class="ln_solid"></div>
+                              <div class="timeline2-body text-center">
+                                <p><small>N° Adenda:</small><strong> {{$adenda[0]->nro_docum}}</strong></p>
+                                <p><small>Cliente:</small><strong> {{$adenda[0]->nom_tit}}</strong></p>
+                            </div>
+                          </li>
+                          @endif
+
+                          @if(sizeof($factura)>0)
+                          <li class="timeline2-item">
+                          <div class="timeline2-badge2 "><i class="fa fa-clock-o "></i> {{$dias_factura}}</div>
+                            <a  data-toggle="modal" href="#myModal_factura"><div class="timeline2-badge green prueba"><i class="fa fa-plus " style="color: #fff;"></i></div></a>
+                            <div class="timeline2-panel">
+                              <div class="timeline2-heading">
+                                <h4 class="timeline2-title">FACTURA  <small class="pull-right red"><i class="fa fa-calendar "></i> {{date('Y-m-d',strtotime($factura->FECHA_FACTURA))}}</small></h4>
+                                <p><small class="text-muted pull-right"><i class="fa fa-user "></i> Por: {{$factura->VENDEDOR}}</small></p>
+                                <br>
+                                <p><small class="text-muted pull-right"><i class="fa fa-map-marker"></i> {{$factura->SUCURSAL}} - {{$factura->REGIONAL}}</small></p>
+                              </div>
+                              <div class="ln_solid"></div>
+                              <div class="timeline2-body text-center">
+                                <p><small>N° factura:</small><strong> {{$factura->NRO_FACTURA}}</strong></p>
+                                <p><small>Cliente:</small><strong> {{$factura->CLIENTE}}</strong></p>
+                            </div>
+                          </li>
+                          @endif
+
+                          @if(sizeof($entrega)>0)
+                          <li class="timeline2-item">
+                          <div class="timeline2-badge2 "><i class="fa fa-clock-o "></i> {{$dias_entrega}}</div>
+                            <a  data-toggle="modal" href="#myModal_entrega"><div class="timeline2-badge green prueba"><i class="fa fa-plus " style="color: #fff;"></i></div></a>
+                            <div class="timeline2-panel">
+                              <div class="timeline2-heading">
+                                <h4 class="timeline2-title">NOTA ENTREGA  <small class="pull-right red"><i class="fa fa-calendar "></i> {{date('Y-m-d',strtotime($entrega[0]->fecha_mod))}}</small></h4>
+                                <p><small class="text-muted pull-right"><i class="fa fa-user "></i> Por: {{$factura->VENDEDOR}}</small></p>
+                                <br>
+                                <p><small class="text-muted pull-right"><i class="fa fa-map-marker"></i> {{$entrega[0]->nom_deposito}}</small></p>
+                              </div>
+                              <div class="ln_solid"></div>
+                              <div class="timeline2-body text-center">
+                                <p><small>N° entrega:</small><strong> {{$entrega[0]->nro_docum}}</strong></p>
+                                <p><small>Cliente:</small><strong> {{$entrega[0]->nom_tit}}</strong></p>
+                            </div>
+                          </li>
+                          @endif
                         </ul>
                       </div>
-                    
                     </div>
                   </div>
                 </div>
 
                 <div class="clearfix"></div>
+
+
+  <!-- =============================    MODALES   ====================================  -->
+
+  <div class="modal fade" id="myModal_cotiza" role="dialog">
+    <div class="modal-dialog">   
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">COTIZACION</h4>
+        </div>
+
+        <div class="modal-body">
+        @if(sizeof($cotizacion)>0)
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">FECHA COTIZACION:</strong>
+            <span class="col-md-6">{{$cotizacion->FECHA_COTIZACION}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">N° COTIZACION:</strong>
+            <span class="col-md-6">{{$cotizacion->NRO_COTIZACION}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">VENDEDOR:</strong>
+            <span class="col-md-6">{{$cotizacion->VENDEDOR}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">SUCURSAL:</strong>
+            <span class="col-md-6">{{$cotizacion->SUCURSAL}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">REGIONAL:</strong>
+            <span class="col-md-6">{{$cotizacion->REGIONAL}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">CLIENTE:</strong>
+            <span class="col-md-6">{{$cotizacion->CLIENTE}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">MODALIDAD: </strong>
+            <span class="col-md-6">{{$cotizacion->modalidad}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">PRECIO: </strong>
+            <span class="col-md-6">{{$cotizacion->PRECIO_TOTAL}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">DESCUENTO: </strong>
+            <span class="col-md-6">{{$cotizacion->montoPorcentajeDescuento}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">TIPO: </strong>
+            <span class="col-md-6">{{$cotizacion->TIPO_CLIENTE}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">CI: </strong>
+            <span class="col-md-6">{{$cotizacion->ci}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">NIT: </strong>
+            <span class="col-md-6">{{$cotizacion->NIT}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">DIRECCION: </strong>
+            <span class="col-md-6">{{$cotizacion->DIRECCION}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">TELEFONO: </strong>
+            <span class="col-md-6">{{$cotizacion->TELEFONO}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">CELULAR: </strong>
+            <span class="col-md-6">{{$cotizacion->CELULAR}}</span>
+          </div>
+        @endif 
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModal_reserva" role="dialog">
+    <div class="modal-dialog">   
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">RESERVA</h4>
+        </div>
+        <div class="modal-body">
+        @if(sizeof($reserva)>0)
+
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">FECHA RESERVA: </strong> 
+            <span class="col-md-6">{{$reserva->FECHA_RESERVA}}</span>
+          </div>                                      
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">VENDEDOR: </strong> 
+            <span class="col-md-6">{{$reserva->VENDEDOR}}</span>
+          </div>                                      
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">SUCURSAL: </strong> 
+            <span class="col-md-6">{{$reserva->SUCURSAL}}</span>
+          </div>                                      
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">REGIONAL: </strong> 
+            <span class="col-md-6">{{$reserva->REGIONAL}}</span>
+          </div>                                      
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">N° RESERVA: </strong> 
+            <span class="col-md-6">{{$reserva->nro_docum}}</span>
+          </div>                                      
+           <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">UBICACION_UNIDAD: </strong> 
+            <span class="col-md-6">{{$reserva->UBICACION_UNIDAD}}</span>
+          </div>      
+           <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">LIBERADO: </strong> 
+            <span class="col-md-6">{{$reserva->LIBERADO}}</span>
+          </div>      
+           <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">NACIONALIZADO: </strong> 
+            <span class="col-md-6">{{$reserva->NACIONALIZADO}}</span>
+          </div>       
+           <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">CLIENTE: </strong> 
+            <span class="col-md-6">{{$reserva->CLIENTE}}</span>
+          </div>      
+           <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">BANCO: </strong> 
+            <span class="col-md-6">{{$reserva->nom_banco}}</span>
+          </div>       
+           <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">PRECIO: </strong> 
+            <span class="col-md-6">{{$reserva->Precio_actual}}</span>
+          </div>       
+           <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">TIPO: </strong> 
+            <span class="col-md-6">{{$reserva->tipo_venta}}</span>
+          </div>    
+
+        @endif 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModal_contrato" role="dialog">
+    <div class="modal-dialog">   
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">CONTRATO</h4>
+        </div>
+        <div class="modal-body">
+        @if(sizeof($contrato)>0)                                   
+          
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">FECHA CONTRATO</strong>
+            <span class="col-md-6">{{date('Y-m-d',strtotime($contrato[0]->fecha_mod))}}</span>
+          </div>                                      
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">VENDEDOR</strong>
+            <span class="col-md-6">{{$contrato[0]->nom_vendedor}}</span>
+          </div>                                      
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">N° CONTRATO: </strong>
+            <span class="col-md-6"> {{$contrato[0]->nro_docum}}</p></span>
+          </div>                                      
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">CLIENTE: </strong>
+            <span class="col-md-6"> {{$contrato[0]->nom_tit}}</p></span>
+          </div>                                      
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">PRECIO: </strong>
+            <span class="col-md-6"> {{$contrato[0]->precio_total}}</p></span>
+          </div>                                      
+
+        @endif 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModal_factura" role="dialog">
+    <div class="modal-dialog">   
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">FACTURA</h4>
+        </div>
+        <div class="modal-body">
+        @if(sizeof($factura)>0)                                    
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">N° FACTURA: </strong> 
+            <span class="col-md-6"> {{$factura->NRO_FACTURA}}</span>
+          </div>                                                                              
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">COD TIT: </strong> 
+            <span class="col-md-6"> {{$factura->COD_TIT}}</span>
+          </div>                                                                                                  
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">NIT: </strong> 
+            <span class="col-md-6"> {{$factura->NIT}}</span>
+          </div>                                                                                                         
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">CLIENTE: </strong> 
+            <span class="col-md-6"> {{$factura->CLIENTE}}</span>
+          </div>                                      
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">PRECIO: </strong> 
+            <span class="col-md-6"> {{$factura->PRECIO}}</span>
+          </div>                                                                                                         
+                                     
+        @endif 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModal_entrega" role="dialog">
+    <div class="modal-dialog">   
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">NOTA DE ENTREGA</h4>
+        </div>
+        <div class="modal-body">
+        @if(sizeof($entrega)>0)           
+
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">FECHA NOTA ENTREGA:</strong> 
+            <span class="col-md-6">{{date('Y-m-d',strtotime($entrega[0]->fecha_mod))}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">N° ENTREGA:</strong> 
+            <span class="col-md-6"> {{$entrega[0]->nro_docum}}</span>
+          </div>
+          <div class="row">
+            <strong class="col-md-4 col-lg-offset-1">CLIENTE:</strong> 
+            <span class="col-md-6"> {{$entrega[0]->nom_tit}}</span>
+          </div>           
+        @endif 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{-- ===================================  * FIN MODALES*   ===================================================== --}}
+
+
   </div>
 </div>
         
@@ -967,6 +994,10 @@
 @section('scripts')
 
 <script type="text/javascript">
-
+$(".prueba").hover(function() {
+    $(this).addClass("animated tada infinite");
+}, function() {
+    $(this).removeClass("animated tada infinite");
+});
 </script>
 @endsection
