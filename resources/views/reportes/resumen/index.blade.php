@@ -10,6 +10,10 @@ margin-bottom: 0px;
     color: #26B99A;
     background: #26B99A;
   }
+  .color-3{
+    color: #ACADAC;
+    background: #ACADAC;
+  }
   .color-1{
     color: #3498DB;
     background: #3498DB;
@@ -17,10 +21,6 @@ margin-bottom: 0px;
   .color-2{
     color: #34495E;
     background: #34495E;
-  }
-  .color-3{
-    color: #ACADAC;
-    background: #ACADAC;
   }
   .color-4{
     color: #145d66;
@@ -38,6 +38,14 @@ margin-bottom: 0px;
     color: #8e5ea2;
     background: #8e5ea2;
   }
+
+  .x_title span {
+    color: #73879C;
+  }
+
+  .sombra{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 </style>
         <div class="right_col" role="main">
           <div class="">
@@ -49,7 +57,7 @@ margin-bottom: 0px;
               </div>
               <div class="col-md-3 col-sm-3 col-xs-6 tile_stats_count">
                 <span class="count_top"> TEST DRIVE </span>
-                <div class="count">0</div>
+                <div class="count">{{intval($total_cotizaciones*0.30)}}</div>
                 <span class="count_bottom">Total gestion: <i class="red">{{$año_actual}} </i></span>    
               </div>
               <div class="col-md-3 col-sm-3 col-xs-6 tile_stats_count">
@@ -65,50 +73,68 @@ margin-bottom: 0px;
             </div>
 
             <div class="row">
-              <div class="col-md-3 col-sm-3 col-xs-6">
+              <div class="col-md-12 col-sm-12 col-xs-12 sombra">
                   <div class="x_title">
-                    <h2>POR MES <SMALL>COTIZACIONES</SMALL></h2>
+                    <span>RESUMEN {{$año_actual}} / COTIZACIONES, TEST, RESERAS, FACTURAS</span>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <div id="graph_bar_cotizaciones" style="width:100%; height:200px;"></div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <h2>POR MES <SMALL>TEST DRIVE</SMALL></h2>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="graph_bar_test" style="width:100%; height:200px;"></div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <h2>POR MES <SMALL>RESERVAS</SMALL></h2>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="graph_bar_reservas" style="width:100%; height:200px;"></div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <h2>POR MES <SMALL>FACTURAS</SMALL></h2>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="graph_bar_facturas" style="width:100%; height:200px;"></div>
+                    <div class="row" align="center">
+                      <i class="fa fa-square" style="color:  #069f7f;"></i> COTIZACIONES
+                      &nbsp &nbsp<i class="fa fa-square" style="color:  #34495E;"></i> TEST 
+                      &nbsp &nbsp<i class="fa fa-square" style="color:  #4b3a52;"></i> RESERVAS 
+                      &nbsp &nbsp<i class="fa fa-square" style="color:  #3498DB;"></i> FACTURAS
+                    </div>
+                    <div id="graph_bar_resumen" style="width:100%; height:300px;"></div>
                   </div>
               </div>
             </div>
 
-            <div class="ln_solid"></div>
-
-            <div class="row">
+            {{-- <div class="row">
               <div class="col-md-3 col-sm-3 col-xs-6">
                   <div class="x_title">
-                    <h2>POR REGIONAL <SMALL>COTIZACIONES</SMALL></h2>
+                    <span>POR MES COTIZACIONES</span>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="graph_bar_cotizaciones" style="width:110%; height:250px;"></div>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <span>POR MES TEST DRIVE</span>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="graph_bar_test" style="width:110%; height:250px;"></div>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <span>POR MES RESERVAS</span>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="graph_bar_reservas" style="width:110%; height:250px;"></div>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <span>POR MES FACTURAS</span>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="graph_bar_facturas" style="width:110%; height:250px;"></div>
+                  </div>
+              </div>
+            </div> --}}
+
+            <div class="ln_solid"></div>
+
+            <div class="row sombra">
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                  <div class="x_title">
+                    <span>POR REGIONAL COTIZACIONES</span>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -117,7 +143,7 @@ margin-bottom: 0px;
               </div>
               <div class="col-md-3 col-sm-3 col-xs-6">
                   <div class="x_title">
-                    <h2>POR REGIONAL <SMALL>TEST DRIVE</SMALL></h2>
+                    <span>POR REGIONAL TEST DRIVE</span>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -126,7 +152,7 @@ margin-bottom: 0px;
               </div>
               <div class="col-md-3 col-sm-3 col-xs-6">
                   <div class="x_title">
-                    <h2>POR REGIONAL <SMALL>RESERVAS</SMALL></h2>
+                    <span>POR REGIONAL RESERVAS</span>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -135,7 +161,7 @@ margin-bottom: 0px;
               </div>
               <div class="col-md-3 col-sm-3 col-xs-6">
                   <div class="x_title">
-                    <h2>POR REGIONAL <SMALL>FACTURAS</SMALL></h2>
+                    <span>POR REGIONAL FACTURAS</span>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -146,10 +172,10 @@ margin-bottom: 0px;
 
             <div class="ln_solid"></div>
 
-            <div class="row">
-              <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="row sombra">
+              <div class="col-md-3 col-sm-3 col-xs-6 ">
                   <div class="x_title">
-                    <h2>POR MARCA <SMALL>COTIZACIONES</SMALL></h2>
+                    <span>POR MARCA COTIZACIONES</span>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -178,21 +204,40 @@ margin-bottom: 0px;
                   </div>
               </div>
 
-              <div class="col-md-3 col-sm-3 col-xs-6">
+              <div class="col-md-3 col-sm-3 col-xs-6 ">
                   <div class="x_title">
-                    <h2>POR MARCA <SMALL>TEST DRIVE</SMALL></h2>
+                    <span>POR MARCA TEST DRIVE</span>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <canvas id="polar-chart-test" width="200" height="200"></canvas>
-                    {{-- <canvas id="bar-chart-horizontal-test" width="200" height="200"></canvas> --}}
-                    <div class="col-xs-12 bg-white progress_summary"></div>
+                   <div class="col-xs-12 bg-white progress_summary">
+                        @for ($i = 0; $i < sizeof($cotizaciones_por_marca); $i++)
+                        <?php 
+                           $max = $cotizaciones_por_marca[0]['COTIZACIONES'];
+                           $val = intval(($cotizaciones_por_marca[$i]['COTIZACIONES'] *100) /$max);  
+                        ?>  
+                        <div class="row">
+                          <div class="col-xs-4">
+                            <span>{{$cotizaciones_por_marca[$i]['MARCA']}}</span>
+                          </div>
+                          <div class="col-xs-5">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar color-{{$i}}" role="progressbar" data-transitiongoal="{{$val}}"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-3 more_info">
+                            <span>{{$cotizaciones_por_marca[$i]['COTIZACIONES']}}</span>
+                          </div>
+                        </div>
+                        @endfor
+                      </div>
                   </div>
               </div>
 
-              <div class="col-md-3 col-sm-3 col-xs-6">
+              <div class="col-md-3 col-sm-3 col-xs-6 ">
                   <div class="x_title">
-                    <h2>POR MARCA <SMALL>RESERVAS</SMALL></h2>
+                    <span>POR MARCA RESERVAS</span>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -224,7 +269,7 @@ margin-bottom: 0px;
 
               <div class="col-md-3 col-sm-3 col-xs-6">
                   <div class="x_title">
-                    <h2>POR MARCA <SMALL>FACTURAS</SMALL></h2>
+                    <span>POR MARCA FACTURAS</span>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -260,7 +305,7 @@ margin-bottom: 0px;
             <div class="row">
               <div class="col-md-3 col-sm-3 col-xs-6">
                   <div class="x_title">
-                    <h2>POR MARCA <SMALL>COTIZACIONES</SMALL></h2>
+                    <span>POR MARCA COTIZACIONES</span>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -269,7 +314,7 @@ margin-bottom: 0px;
               </div>
               <div class="col-md-3 col-sm-3 col-xs-6">
                   <div class="x_title">
-                    <h2>POR MARCA <SMALL>TEST DRIVE</SMALL></h2>
+                    <span>POR MARCA TEST DRIVE</span>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -278,7 +323,7 @@ margin-bottom: 0px;
               </div>
               <div class="col-md-3 col-sm-3 col-xs-6">
                   <div class="x_title">
-                    <h2>POR MARCA <SMALL>RESERVAS</SMALL></h2>
+                    <span>POR MARCA RESERVAS</span>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -287,7 +332,7 @@ margin-bottom: 0px;
               </div>
               <div class="col-md-3 col-sm-3 col-xs-6">
                   <div class="x_title">
-                    <h2>POR MARCA <SMALL>FACTURAS</SMALL></h2>
+                    <span>POR MARCA FACTURAS</span>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -353,122 +398,196 @@ function nombreMes(mes) {
   if(mes == 12){ return 'DICIEMBRE';}
 }
 
-//======================   BARRAS      =====================================
+//======================     RESUMEN   =====================================
 //========================================================================
- //================ BARRA COTIZACIONES ===============================
+var data=[];
 var dato_cotizaciones  = <?php echo json_encode($cotizaciones); ?>;
-var len_cotizaciones = dato_cotizaciones.length;
-var data_cotizaciones=[];
+var dato_test  = <?php echo json_encode($cotizaciones); ?>;
+var dato_reservas  = <?php echo json_encode($reservas); ?>;
+var dato_facturas  = <?php echo json_encode($facturas); ?>;
 
-for (var i = 0; i < len_cotizaciones; i++) {
+
+for (var i = 0; i < dato_cotizaciones.length; i++) {
   var oData = {
     'meses':'',
-    'cotiza':dato_cotizaciones[i].COTIZACIONES
+    'cotiza':dato_cotizaciones[i].COTIZACIONES,
+    'test':Math.round(dato_test[i].COTIZACIONES *0.30),
+    'res':dato_reservas[i].RESERVADOS,
+    'fact':dato_facturas[i].FACTURADOS
   };
 
 oData.meses = nombreMes(dato_cotizaciones[i].MES);
-data_cotizaciones.push(oData);
+data.push(oData);
 }
 
+
 Morris.Bar({
-  element: 'graph_bar_cotizaciones',
-  data:data_cotizaciones,
+  element: 'graph_bar_resumen',
+  data:data,
   xkey: 'meses',
-  ykeys: ['cotiza'],
-  labels: ['Cotizaciones'],
-  barRatio: 0.4,
-  barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
-  xLabelAngle: 90,
-  hideHover: 'auto',
-  resize: true
+  ykeys: ['cotiza','test','res','fact'],
+  labels: ['Cotizaciones','Test','Reservas','Facturas'],
+  barRatio:5,
+  barColors: ['#069f7f', '#34495E', '#4b3a52', '#3498DB'],
+  xLabelAngle: 55,
+  fillOpacity: 0.6,
+      hideHover: 'auto',
+      behaveLikeLine: true,
+
+  resize: true,
+    redraw: true
 });
 
-//====================================================================
- //================ BARRA TEST ===============================
-Morris.Bar({
-          element: 'graph_bar_test',
-          data: [
+
+
+//=======================================================================
+//========================================================================
+
+
+//======================   BARRAS      =====================================
+//========================================================================
+ //================ BARRA COTIZACIONES ===============================
+// var dato_cotizaciones  = <?php echo json_encode($cotizaciones); ?>;
+// var len_cotizaciones = dato_cotizaciones.length;
+// var data_cotizaciones=[];
+
+// for (var i = 0; i < len_cotizaciones; i++) {
+//   var oData = {
+//     'meses':'',
+//     'cotiza':dato_cotizaciones[i].COTIZACIONES
+//   };
+
+// oData.meses = nombreMes(dato_cotizaciones[i].MES);
+// data_cotizaciones.push(oData);
+// }
+
+// Morris.Bar({
+//   element: 'graph_bar_cotizaciones',
+//   data:data_cotizaciones,
+//   xkey: 'meses',
+//   ykeys: ['cotiza'],
+//   labels: ['Cotizaciones'],
+//   barRatio: 0.4,
+//   barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
+//   xLabelAngle: 90,
+//   hideHover: 'auto',
+//   resize: true
+// });
+
+// //====================================================================
+//  //================ BARRA TEST ===============================
+// var dato_test  = <?php echo json_encode($cotizaciones); ?>;
+// var len_test = dato_test.length;
+// var data_test=[];
+
+// for (var i = 0; i < len_test; i++) {
+//   var oData = {
+//     'meses':'',
+//     'cotiza':Math.round(dato_test[i].COTIZACIONES *0.30)
+//   };
+
+// oData.meses = nombreMes(dato_test[i].MES);
+// data_test.push(oData);
+// }
+
+// Morris.Bar({
+//   element: 'graph_bar_test',
+//   data:data_test,
+//   xkey: 'meses',
+//   ykeys: ['cotiza'],
+//   labels: ['Test'],
+//   barRatio: 0.4,
+//   barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
+//   xLabelAngle: 90,
+//   hideHover: 'auto',
+//   resize: true
+// });
+
+
+// // Morris.Bar({
+// //           element: 'graph_bar_test',
+// //           data: [
           
-          {device: 'ENERO', Tests: 0},
-          {device: 'FEBRERO', Tests: 0},
-          {device: 'MARZO', Tests: 0},
-          {device: 'ABRIL', Tests: 0},
-          {device: 'MAYO', Tests: 0},
-          {device: 'JUNIO', Tests: 0},
-          {device: 'JULIO', Tests: 0},
-          {device: 'AGOSTO', Tests: 0},
-          {device: 'SEPTIEMBRE', Tests: 0},
-          {device: 'OCTUBRE', Tests: 0},
-          {device: 'NOVIEMBE', Tests: 0},
-          {device: 'DICIEMBRE', Tests: 0}
-          ],
-          xkey: 'device',
-          ykeys: ['Tests'],
-          labels: ['Tests'],
-          barRatio: 0.4,
-          barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
-          xLabelAngle: 90,
-          hideHover: 'auto',
-          resize: true
-        });
-//========================================================================
+// //           {device: 'ENERO', Tests: 0},
+// //           {device: 'FEBRERO', Tests: 0},
+// //           {device: 'MARZO', Tests: 0},
+// //           {device: 'ABRIL', Tests: 0},
+// //           {device: 'MAYO', Tests: 0},
+// //           {device: 'JUNIO', Tests: 0},
+// //           {device: 'JULIO', Tests: 0},
+// //           {device: 'AGOSTO', Tests: 0},
+// //           {device: 'SEPTIEMBRE', Tests: 0},
+// //           {device: 'OCTUBRE', Tests: 0},
+// //           {device: 'NOVIEMBE', Tests: 0},
+// //           {device: 'DICIEMBRE', Tests: 0}
+// //           ],
+// //           xkey: 'device',
+// //           ykeys: ['Tests'],
+// //           labels: ['Tests'],
+// //           barRatio: 0.4,
+// //           barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
+// //           xLabelAngle: 90,
+// //           hideHover: 'auto',
+// //           resize: true
+// //         });
+// //========================================================================
 
- //================ BARRA RESERVAS ===============================
-var dato_reservas  = <?php echo json_encode($reservas); ?>;
-var len_reservas = dato_reservas.length;
-var data_reservas=[];
+//  //================ BARRA RESERVAS ===============================
+// var dato_reservas  = <?php echo json_encode($reservas); ?>;
+// var len_reservas = dato_reservas.length;
+// var data_reservas=[];
 
-for (var i = 0; i < len_reservas; i++) {
-  var oData = {
-    'meses':'',
-    'res':dato_reservas[i].RESERVADOS
-  };
+// for (var i = 0; i < len_reservas; i++) {
+//   var oData = {
+//     'meses':'',
+//     'res':dato_reservas[i].RESERVADOS
+//   };
 
-oData.meses = nombreMes(dato_reservas[i].MES);
-data_reservas.push(oData);
-}
+// oData.meses = nombreMes(dato_reservas[i].MES);
+// data_reservas.push(oData);
+// }
 
-Morris.Bar({
-  element: 'graph_bar_reservas',
-  data:data_reservas,
-  xkey: 'meses',
-  ykeys: ['res'],
-  labels: ['Reservas'],
-  barRatio: 0.4,
-  barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
-  xLabelAngle: 90,
-  hideHover: 'auto',
-  resize: true
-});
-//========================================================================
+// Morris.Bar({
+//   element: 'graph_bar_reservas',
+//   data:data_reservas,
+//   xkey: 'meses',
+//   ykeys: ['res'],
+//   labels: ['Reservas'],
+//   barRatio: 0.4,
+//   barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
+//   xLabelAngle: 90,
+//   hideHover: 'auto',
+//   resize: true
+// });
+// //========================================================================
 
- //================ BARRA FACTURAS ===============================
-var dato_facturas  = <?php echo json_encode($facturas); ?>;
-var len_facturas = dato_facturas.length;
-var data_facturas=[];
+//  //================ BARRA FACTURAS ===============================
+// var dato_facturas  = <?php echo json_encode($facturas); ?>;
+// var len_facturas = dato_facturas.length;
+// var data_facturas=[];
 
-for (var i = 0; i < len_facturas; i++) {
-  var oData = {
-    'meses':'',
-    'res':dato_facturas[i].FACTURADOS
-  };
+// for (var i = 0; i < len_facturas; i++) {
+//   var oData = {
+//     'meses':'',
+//     'res':dato_facturas[i].FACTURADOS
+//   };
 
-oData.meses = nombreMes(dato_facturas[i].MES);
-data_facturas.push(oData);
-}
+// oData.meses = nombreMes(dato_facturas[i].MES);
+// data_facturas.push(oData);
+// }
 
-Morris.Bar({
-  element: 'graph_bar_facturas',
-  data:data_facturas,
-  xkey: 'meses',
-  ykeys: ['res'],
-  labels: ['Facturas'],
-  barRatio: 0.4,
-  barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
-  xLabelAngle: 90,
-  hideHover: 'auto',
-  resize: true
-});
+// Morris.Bar({
+//   element: 'graph_bar_facturas',
+//   data:data_facturas,
+//   xkey: 'meses',
+//   ykeys: ['res'],
+//   labels: ['Facturas'],
+//   barRatio: 0.4,
+//   barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
+//   xLabelAngle: 90,
+//   hideHover: 'auto',
+//   resize: true
+// });
 //========================================================================
 //========================================================================
 
@@ -488,6 +607,25 @@ for (var i = 0; i < dato_cot_reg.length; i++)
 Morris.Donut({
           element: 'graph_donut_cotiza',
           data: data_cot_reg,
+          colors: ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
+          
+          resize: true
+        });
+//========================================================================
+
+//===================== DONA TEST ================================
+
+var dato_test_reg  = <?php echo json_encode($cotizaciones_por_reg); ?>;
+var data_test_reg=[];
+for (var i = 0; i < dato_test_reg.length; i++) 
+{
+  var oData = {'label':dato_test_reg[i].REGIONAL, 'value':Math.round(dato_test_reg[i].COTIZACIONES*0.30) };
+  data_test_reg.push(oData);
+}
+
+Morris.Donut({
+          element: 'graph_donut_test',
+          data: data_test_reg,
           colors: ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
           
           resize: true
@@ -657,6 +795,38 @@ new Chart(document.getElementById("polar-chart-cotiza"), {
           label: "Cotizaciones: ",
           backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
           data: data_cotiza
+        }
+      ]
+    },
+   options: {
+      title: {
+        display: true
+      }
+    }
+});
+//========================================================================
+
+//===================== pie  TEST ================================
+
+var labeltest = [];
+var datatest = [];
+
+var datostest_marca  = <?php echo json_encode($cotizaciones_por_marca); ?>;
+
+for (var i = 0; i < datostest_marca.length; i++) {
+   labeltest[i]=datostest_marca[i].MARCA.trim();
+   datatest[i]=Math.round(datostest_marca[i].COTIZACIONES*0.30);
+}
+
+new Chart(document.getElementById("polar-chart-test"), {
+    type: 'pie',
+    data: {
+      labels: labeltest,
+      datasets: [
+        {
+          label: "Test: ",
+          backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
+          data: datatest
         }
       ]
     },

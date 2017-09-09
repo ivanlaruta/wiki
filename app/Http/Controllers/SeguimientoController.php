@@ -110,6 +110,16 @@ class SeguimientoController extends Controller
         where chassis LIKE '%".$id."%'
          "));
 
+        $cod_b = DB::select( DB::raw("
+        select TOP 1 m.* , u.*,ub.*
+        FROM  CODIGO_BARRAS.dbo.MOVIMIENTOS as m
+        join CODIGO_BARRAS.dbo.USUARIOS as u ON u.USUARIO = m.USUARIO_REGISTRO
+        join CODIGO_BARRAS.dbo.UBICACIONES as ub ON ub.COD_UBICACION = m.COD_SUC_ORIGEN
+        where m.DATO_SCANEO LIKE '%".$id."%'
+        AND m.MOVIMIENTO = '5'
+        ORDER BY m.FECHA_HORA_SCANEO DESC
+         "));
+
         if ( sizeof($cotizacion)>0 && sizeof($reserva)>0)
         {
             $datetime1 = new DateTime($cotizacion->FECHA_COTIZACION);
@@ -126,13 +136,13 @@ class SeguimientoController extends Controller
             $dias_contrato = $interval->format('%R%a dias');
         }else{ $dias_contrato = 'Sin dato';}
 
-        if ( sizeof($contrato)==0 && sizeof($reserva)>0 && sizeof($contrato_an)>0)
-        {
-            $datetime1 = new DateTime($reserva->FECHA_RESERVA);
-            $datetime2 = new DateTime(date('Y-m-d',strtotime($contrato_an[0]->fecha_mod)));
-            $interval = $datetime1->diff($datetime2);
-            $dias_contrato_an = $interval->format('%R%a dias');
-        }else{ $dias_contrato_an = 'Sin dato';}
+        // if ( sizeof($contrato)==0 && sizeof($reserva)>0 && sizeof($contrato_an)>0)
+        // {
+        //     $datetime1 = new DateTime($reserva->FECHA_RESERVA);
+        //     $datetime2 = new DateTime(date('Y-m-d',strtotime($contrato_an[0]->fecha_mod)));
+        //     $interval = $datetime1->diff($datetime2);
+        //     $dias_contrato_an = $interval->format('%R%a dias');
+        // }else{ $dias_contrato_an = 'Sin dato';}
 
         if ( sizeof($contrato)==0 && sizeof($contrato_an)>0 && sizeof($adenda)>0 )
         {
@@ -167,7 +177,15 @@ class SeguimientoController extends Controller
             $dias_entrega = $interval->format('%R%a dias');
         }else{ $dias_entrega = 'Sin dato';}
 
-        $dias_total = $dias_reserva+$dias_contrato+$dias_contrato_an+$dias_adenda+$dias_factura+$dias_entrega +1;
+        if ( sizeof($entrega)>0 && sizeof($cod_b)>0 )
+        {
+            $datetime1 = new DateTime(date('Y-m-d',strtotime($entrega[0]->fecha_mod)));
+            $datetime2 = new DateTime(date('Y-m-d',strtotime($cod_b[0]->FECHA_HORA_SCANEO)));
+            $interval = $datetime1->diff($datetime2);
+            $dias_cod_b = $interval->format('%R%a dias');
+        }else{ $dias_cod_b = 'Sin dato';}
+
+        $dias_total = $dias_reserva+$dias_contrato+$dias_adenda+$dias_factura+$dias_entrega +$dias_cod_b+1;
 
         return view('reportes.seguimiento.detalle')
         ->with('id',$id)
@@ -184,10 +202,12 @@ class SeguimientoController extends Controller
         ->with('contrato_an',$contrato_an)
         ->with('dias_reserva',$dias_reserva)
         ->with('dias_contrato',$dias_contrato)
-        ->with('dias_contrato_an',$dias_contrato_an)
+        // ->with('dias_contrato_an',$dias_contrato_an)
         ->with('dias_adenda',$dias_adenda)
         ->with('dias_factura',$dias_factura)
         ->with('dias_entrega',$dias_entrega)
-        ->with('dias_total',$dias_total);
+        ->with('dias_total',$dias_total)
+        ->with('dias_cod_b',$dias_cod_b)
+        ->with('cod_b',$cod_b);
     }
 }

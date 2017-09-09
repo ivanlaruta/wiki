@@ -72,24 +72,24 @@
                         <td>{{$res->CHASSIS}}</td> 
                         <td>
                           @if($res->COTIZACION>0)
-                            <span class="label label-default">COTIZACION</span>
+                            <span class="label label-primary">COTIZACION<i class="fa fa-check"></i></span>
                           @endif
                           @if($res->RESERVA>0)
-                            <span class="label label-primary">RESERVA</span>
+                            <span class="label label-primary">RESERVA<i class="fa fa-check"></i></span>
                           @endif
                           @if($res->CONTRATO>0)
-                            <span class="label label-danger">CONTRATO</span>
+                            <span class="label label-primary">CONTRATO<i class="fa fa-check"></i></span>
                           @endif
                           
                           @if($res->ADENDA>0 && $res->CONTRATO==0 )
-                          <span class="label label-danger">CONTRATO ANULADO</span>
-                            <span class="label label-success">ADENDA</span>
+                          <span class="label label-primary">CONTRATO ANULADO<i class="fa fa-check"></i></span>
+                            <span class="label label-primary">ADENDA<i class="fa fa-check"></i></span>
                           @endif
                           @if($res->FACTURA>0)
-                            <span class="label label-info">FACTURA</span>
+                            <span class="label label-primary">FACTURA<i class="fa fa-check"></i></span>
                           @endif
                           @if($res->ENTREGA>0)
-                            <span class="label label-warning">ENTREGA</span>
+                            <span class="label label-primary">NOTA DE ENTREGA<i class="fa fa-check"></i></span>
                           @endif
                         </td>
 
