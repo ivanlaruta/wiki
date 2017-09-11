@@ -74,11 +74,21 @@ class SeguimientoController extends Controller
 
         $produccion = DB::select( DB::raw("select * from  gtauto.dbo.ct_vehiculos where chassis LIKE '%".$id."%'"));
 
-        $cotizacion = Cotizacion::where('CHASIS','LIKE', '%'.$id.'%')
+        $reserva =Reserva::where('CHASIS','LIKE', '%'.$id.'%')->first();
+
+        if(sizeof($reserva)>0)
+        {
+            $nro_cot=rtrim($reserva->NRO_COTIZACION);
+            $cotizacion = Cotizacion::where('CHASIS','LIKE', '%'.$id.'%')
+                        ->where('NRO_COTIZACION',$nro_cot)
+                        ->first();
+        }
+        else
+        {
+            $cotizacion = Cotizacion::where('CHASIS','LIKE', '%'.$id.'%')
                         ->orderBy('FECHA_COTIZACION','DESC')
                         ->first();
-        //dd($cotizacion);
-        $reserva =Reserva::where('CHASIS','LIKE', '%'.$id.'%')->first();
+        }
 
         $contrato =DB::select( DB::raw("select S.*,V.nom_vendedor from gtauto.dbo.cpf_vtasokm S JOIN gtauto.dbo.ct_vendedores AS V ON V.cod_vendedor = S.cod_vendedor where chassis = '".$id."'"));
 
@@ -185,8 +195,8 @@ class SeguimientoController extends Controller
             $dias_cod_b = $interval->format('%R%a dias');
         }else{ $dias_cod_b = 'Sin dato';}
 
-        $dias_total = $dias_reserva+$dias_contrato+$dias_adenda+$dias_factura+$dias_entrega +$dias_cod_b+1;
-
+        $dias_total = $dias_reserva+$dias_contrato+$dias_adenda+$dias_factura+$dias_entrega +$dias_cod_b;
+        if($dias_total == 0){$dias_total++;}
         return view('reportes.seguimiento.detalle')
         ->with('id',$id)
         ->with('datos_unidad',$datos_unidad)
