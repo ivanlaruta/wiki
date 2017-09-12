@@ -377,3 +377,44 @@ Route::group(['prefix'=>'resumen','middleware'=>'auth'],function(){
 Route::get('error',function(){
 	abort(404);
 });
+
+
+Route::group(['prefix'=>'contratos','middleware'=>'auth'],function(){
+
+	route::get('contratos/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/dashboard',[
+		'uses' =>'ContratosController@dashboard',
+		'as'   =>	'contratos.dashboard'
+	]);
+	route::get('contratos/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/{master}/{chassis}/{vendedor}/{nro_contrato}/{cliente}/lista_detalle',[
+		'uses' =>'ContratosController@lista_detalle',
+		'as'   =>	'contratos.lista_detalle'
+	]);
+	route::get('contratos/busqueda',[
+		'uses' =>'ContratosController@busqueda',
+		'as'   =>	'contratos.busqueda'
+	]);
+	route::get('contratos/buscador',[
+		'uses' =>'ContratosController@buscador',
+		'as'   =>	'contratos.buscador'
+	]);
+});
+
+Route::group(['prefix'=>'notas','middleware'=>'auth'],function(){
+
+	route::get('notas/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/dashboard',[
+		'uses' =>'NotasController@dashboard',
+		'as'   =>	'notas.dashboard'
+	]);
+	route::get('notas/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/{master}/{chassis}/{vendedor}/{nro_nota}/{cliente}/lista_detalle',[
+		'uses' =>'NotasController@lista_detalle',
+		'as'   =>	'notas.lista_detalle'
+	]);
+	route::get('notas/busqueda',[
+		'uses' =>'NotasController@busqueda',
+		'as'   =>	'notas.busqueda'
+	]);
+	route::get('notas/buscador',[
+		'uses' =>'NotasController@buscador',
+		'as'   =>	'notas.buscador'
+	]);
+});

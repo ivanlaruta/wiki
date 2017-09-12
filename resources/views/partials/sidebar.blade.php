@@ -44,7 +44,11 @@
                                             
                       <li><a  href="{{ route('reservados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Reservas</a></li> 
 
+                      <li><a  href="{{ route('contratos.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Contratos</a></li> 
+                      
                       <li><a  href="{{ route('facturados.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Facturas</a></li> 
+                      
+                      <li><a  href="{{ route('notas.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Notas de entrega</a></li> 
                       
                        <li><a href="{{ route('metas.index',['periodo'=>'0','marca'=>'0','regional'=>'0','sucursal'=>'0'])}}">Metas</a></li>
 
