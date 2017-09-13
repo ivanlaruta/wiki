@@ -27,8 +27,7 @@
         <link href="{{asset('bower_components/gentelella/vendors/starrr/dist/starrr.css')}}" rel="stylesheet">
         <!-- bootstrap-daterangepicker -->
         <link href="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
-        <!-- iCheck -->
-        <link href="{{asset('bower_components/gentelella/vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
+        
 
         <!-- PNotify -->
         <link href="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.css')}}" rel="stylesheet">
@@ -36,6 +35,18 @@
         <link href="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.nonblock.css')}}" rel="stylesheet">
         <!-- Select2 -->
         <link href="{{asset('bower_components/gentelella/vendors/select2/dist/css/select2.min.css')}}" rel="stylesheet">
+        
+        <!-- bootstrap-daterangepicker -->
+        <link href="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+        <!-- Ion.RangeSlider -->
+        <link href="{{asset('bower_components/gentelella/vendors/normalize-css/normalize.css')}}" rel="stylesheet">
+        <link href="{{asset('bower_components/gentelella/vendors/ion.rangeSlider/css/ion.rangeSlider.css')}}" rel="stylesheet">
+        <link href="{{asset('bower_components/gentelella/vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css')}}" rel="stylesheet">
+        <!-- Bootstrap Colorpicker -->
+        <link href="{{asset('bower_components/gentelella/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css')}}" rel="stylesheet">
+
+        <link href="{{asset('bower_components/gentelella/vendors/cropper/dist/cropper.min.css')}}" rel="stylesheet">
+
         <!-- Dtatables -->
         <link href="{{asset('bower_components/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{asset('bower_components/gentelella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
@@ -125,9 +136,20 @@
         <!-- DateJS -->
         <script src="{{asset('bower_components/gentelella/vendors/DateJS/build/date.js')}}"></script>
 
-       
-    <!-- iCheck -->
     
+    <!-- bootstrap-daterangepicker -->
+    <script src="{{asset('bower_components/gentelella/vendors/moment/min/moment.min.js')}}"></script>
+    <script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+    <!-- Ion.RangeSlider -->
+    <script src="{{asset('bower_components/gentelella/vendors/ion.rangeSlider/js/ion.rangeSlider.min.js')}}"></script>
+    <!-- Bootstrap Colorpicker -->
+    <script src="{{asset('bower_components/gentelella/vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')}}"></script>
+    <!-- jquery.inputmask -->
+    <script src="{{asset('bower_components/gentelella/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>
+    <!-- jQuery Knob -->
+    <script src="{{asset('bower_components/gentelella/vendors/jquery-knob/dist/jquery.knob.min.js')}}"></script>
+    <!-- Cropper -->
+    <script src="{{asset('bower_components/gentelella/vendors/cropper/dist/cropper.min.js')}}"></script>
 
     <!-- PNotify -->
     <script src="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.js')}}"></script>
@@ -152,8 +174,6 @@
     <script src="{{asset('bower_components/gentelella/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{asset('bower_components/gentelella/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
 
-
-    
     <!-- Switchery -->
     <script src="{{asset('bower_components/gentelella/vendors/switchery/dist/switchery.min.js')}}"></script>
     <!-- Select2 -->
@@ -170,20 +190,20 @@
     <!-- jQuery Smart Wizard -->
     <script src="{{asset('bower_components/gentelella/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
 
-<!-- Select2 -->
+    <!-- Select2 -->
     <script src="{{asset('bower_components/gentelella/vendors/select2/dist/js/select2.full.min.js')}}"></script>
     
 
-    @yield('scripts')
-<!-- Custom Theme Scripts -->
-    {{--     <script src="{{asset('bower_components/gentelella/build/js/custom.min.js')}}"></script> --}}   
-    
 
 
     <script src="{{asset('js/custom.js')}}"></script>
 
+    @yield('scripts')
 
 
+
+    <!-- Custom Theme Scripts -->
+    {{--     <script src="{{asset('bower_components/gentelella/build/js/custom.min.js')}}"></script> --}}   
     {{-- alertas --}}
     @if(!session('mensaje')==null)
 

@@ -9,7 +9,7 @@
       <div class="title">
         <h3>
 
-          <a href="{{ route('contratos.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}">CONTRATOS {{date ("Y")}} </a>  / BUSQUEDA AVANZADA
+          <a href="{{ route('notas.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}">NOTAS {{date ("Y")}} </a>  / BUSQUEDA AVANZADA
 
         </h3>
       </div>
@@ -44,8 +44,8 @@
                   <div class="">
                     <ul class="to_do">
                       <li>
-                        <a href="#" class="check_contrato_des " ><i class="fa fa-square-o fa-2x "> </i> Nro contrato</a> 
-                        <a href="#" class="check_contrato_act green" ><i class="fa fa-check-square fa-2x "> </i> Nro contrato</a> 
+                        <a href="#" class="check_nota_des " ><i class="fa fa-square-o fa-2x "> </i> Nro nota</a> 
+                        <a href="#" class="check_nota_act green" ><i class="fa fa-check-square fa-2x "> </i> Nro nota</a> 
                          
                       </li>
                       <li>
@@ -114,12 +114,12 @@
                 <div class="x_content">
 
                   <br />
-                  {!! Form::open (['route' => 'contratos.buscador','method' => 'GET','class' => 'form-horizontal form-label-left'])!!}
+                  {!! Form::open (['route' => 'notas.buscador','method' => 'GET','class' => 'form-horizontal form-label-left'])!!}
 
-                    <div class="form-group nro_contrato">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >Nro contrato </label>
+                    <div class="form-group nro_nota">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >Nro nota </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        {!! Form::text('nro_contrato', null,['class'=> 'form-control' , 'id' => 'nro_contrato'])!!}
+                        {!! Form::text('nro_nota', null,['class'=> 'form-control' , 'id' => 'nro_nota'])!!}
                       </div>
                     </div>
 
@@ -227,7 +227,7 @@
 
 
   <script type="text/javascript">
-    $(".nro_contrato").hide();
+    $(".nro_nota").hide();
     $(".fecha").hide();
     $(".regional").hide();
     $(".sucursal").hide();
@@ -240,7 +240,7 @@
     $("#bandera").hide();
 
 
-    $(".check_contrato_act").hide();
+    $(".check_nota_act").hide();
     $(".check_fecha_act").hide();
     $(".check_regional_act").hide();
     $(".check_sucursal_act").hide();
@@ -251,7 +251,7 @@
     $(".check_modelo_act").hide();
     $(".check_marca_act").hide();
 
-    document.getElementById("nro_contrato").value = null;
+    document.getElementById("nro_nota").value = null;
     //document.getElementById("fecha").value = null;
     document.getElementById("regional").value = null;
     document.getElementById("sucursal").value = null;
@@ -266,17 +266,17 @@
   $(document).ready(function($) {
 ////////////////////////////////////////////////
     //activa
-    $(".check_contrato_des").click(function() {
-      $(".nro_contrato").show();
-      $(".check_contrato_act").show();
-    $(".check_contrato_des").hide();
+    $(".check_nota_des").click(function() {
+      $(".nro_nota").show();
+      $(".check_nota_act").show();
+    $(".check_nota_des").hide();
     });
     //desactiva
-    $(".check_contrato_act").click(function() {
-      $(".nro_contrato").hide();
-      $(".check_contrato_des").show();
-    $(".check_contrato_act").hide();
-    document.getElementById("nro_contrato").value = null;
+    $(".check_nota_act").click(function() {
+      $(".nro_nota").hide();
+      $(".check_nota_des").show();
+    $(".check_nota_act").hide();
+    document.getElementById("nro_nota").value = null;
     });
 ////////////////////////////////////////////////
     //activa

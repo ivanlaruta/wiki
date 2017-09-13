@@ -58,9 +58,7 @@
 
                  {{--  <li><a><i class="fa fa-dashboard"></i> Indicadores <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      
-                     
-                      
+                  
                     </ul>
                   </li> --}}
                   <li><a><i class="fa fa-car"></i> Stock <span class="fa fa-chevron-down"></span></a>
@@ -71,13 +69,20 @@
                       <li><a  href="{{ route('alerta_vehiculos.index')}}"> Vehiculos estacionados</a>  </li> 
                     </ul>
                   </li>
+
+                  <li><a><i class="fa fa-sliders"></i> Vehiculos Usados <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{ route('usados.index')}}">Unidades</a></li>
+                    </ul>
+                  </li>
+
                   @if(Auth::user()->rol=='1' || Auth::user()->rol=='2' || Auth::user()->rol=='3')
                   <li><a><i class="fa fa-table"></i> Solicitudes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       
                       {{-- <li><a href="{{ route('solicitudes.index_espera')}}">En espera de aprobacion</a></li>
                       <li><a href="{{ route('solicitudes.index_aprobados')}}">Aprobados</a></li> --}}
-                      <li><a href="{{ route('principal.index')}}">Reporte</a></li>
+                      {{-- <li><a href="{{ route('principal.index')}}">Reporte</a></li> --}}
                       <li><a href="{{ route('solicitudes.index')}}">Lista de solicitudes</a></li>
                       <li><a href="{{ route('solicitudes.create')}}">Crear solicitud</a></li>
                     </ul>
@@ -104,6 +109,8 @@
                   
                   <li><a><i class="fa fa-cogs"></i> Administracion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                      <li><a href="#">Usuarios</a></li>
+                    
                       <li><a href="{{ route('stocks.index')}}">Asignacion de Stock a regionales</a></li>
                     </ul>
                   </li>

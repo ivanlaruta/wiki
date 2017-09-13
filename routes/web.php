@@ -418,3 +418,11 @@ Route::group(['prefix'=>'notas','middleware'=>'auth'],function(){
 		'as'   =>	'notas.buscador'
 	]);
 });
+
+
+
+Route::group(['prefix'=>'usados','middleware'=>'auth'],function(){
+	
+	route::resource('usados','UsadosController');
+
+});
