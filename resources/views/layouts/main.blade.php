@@ -28,7 +28,7 @@
         <!-- bootstrap-daterangepicker -->
         <link href="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
         
-
+        
         <!-- PNotify -->
         <link href="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.css')}}" rel="stylesheet">
         <link href="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.buttons.css')}}" rel="stylesheet">
@@ -36,6 +36,11 @@
         <!-- Select2 -->
         <link href="{{asset('bower_components/gentelella/vendors/select2/dist/css/select2.min.css')}}" rel="stylesheet">
         
+        <!-- iCheck -->
+    <link href="{{asset('bower_components/gentelella/vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="{{asset('bower_components/gentelella/vendors/google-code-prettify/bin/prettify.min.css')}}" rel="stylesheet">
+
         <!-- bootstrap-daterangepicker -->
         <link href="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
         <!-- Ion.RangeSlider -->
@@ -83,7 +88,6 @@
                 <!-- /top navigation -->
 
                 <!-- page content -->
-
 
 
                 @yield('content')
@@ -137,66 +141,80 @@
         <script src="{{asset('bower_components/gentelella/vendors/DateJS/build/date.js')}}"></script>
 
     
-    <!-- bootstrap-daterangepicker -->
-    <script src="{{asset('bower_components/gentelella/vendors/moment/min/moment.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
-    <!-- Ion.RangeSlider -->
-    <script src="{{asset('bower_components/gentelella/vendors/ion.rangeSlider/js/ion.rangeSlider.min.js')}}"></script>
-    <!-- Bootstrap Colorpicker -->
-    <script src="{{asset('bower_components/gentelella/vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')}}"></script>
-    <!-- jquery.inputmask -->
-    <script src="{{asset('bower_components/gentelella/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>
-    <!-- jQuery Knob -->
-    <script src="{{asset('bower_components/gentelella/vendors/jquery-knob/dist/jquery.knob.min.js')}}"></script>
-    <!-- Cropper -->
-    <script src="{{asset('bower_components/gentelella/vendors/cropper/dist/cropper.min.js')}}"></script>
+        <!-- bootstrap-daterangepicker -->
+        <script src="{{asset('bower_components/gentelella/vendors/moment/min/moment.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+        <!-- Ion.RangeSlider -->
+        <script src="{{asset('bower_components/gentelella/vendors/ion.rangeSlider/js/ion.rangeSlider.min.js')}}"></script>
+        <!-- Bootstrap Colorpicker -->
+        <script src="{{asset('bower_components/gentelella/vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')}}"></script>
+        <!-- jquery.inputmask -->
+        <script src="{{asset('bower_components/gentelella/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>
+        <!-- jQuery Knob -->
+        <script src="{{asset('bower_components/gentelella/vendors/jquery-knob/dist/jquery.knob.min.js')}}"></script>
+        <!-- Cropper -->
+        {{-- <script src="{{asset('bower_components/gentelella/vendors/cropper/dist/cropper.min.js')}}"></script> --}}
 
-    <!-- PNotify -->
-    <script src="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.buttons.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.nonblock.js')}}"></script>
+        <!-- PNotify -->
+        <script src="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.buttons.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/pnotify/dist/pnotify.nonblock.js')}}"></script>
 
 
-    <!-- Datatables -->
-    <script src="{{asset('bower_components/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/datatables.net-scroller/js/dataTables.scroller.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/jszip/dist/jszip.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
+        <!-- Datatables -->
+        <script src="{{asset('bower_components/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/datatables.net-scroller/js/dataTables.scroller.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/jszip/dist/jszip.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
 
-    <!-- Switchery -->
-    <script src="{{asset('bower_components/gentelella/vendors/switchery/dist/switchery.min.js')}}"></script>
-    <!-- Select2 -->
-    <script src="{{asset('bower_components/gentelella/vendors/select2/dist/js/select2.full.min.js')}}"></script>
-    <!-- Parsley -->
-    {{-- <script src="{{asset('bower_components/gentelella/vendors/parsleyjs/dist/parsley.min.js')}}"></script> --}}
-    <!-- Autosize -->
-    <script src="{{asset('bower_components/gentelella/vendors/autosize/dist/autosize.min.js')}}"></script>
-
-    <!-- ECharts -->
-    <script src="{{asset('bower_components/gentelella/vendors/echarts/dist/echarts.min.js')}}"></script>
-    <script src="{{asset('bower_components/gentelella/vendors/echarts/map/js/world.js')}}"></script>
-
-    <!-- jQuery Smart Wizard -->
-    <script src="{{asset('bower_components/gentelella/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
-
-    <!-- Select2 -->
-    <script src="{{asset('bower_components/gentelella/vendors/select2/dist/js/select2.full.min.js')}}"></script>
+        <!-- Switchery -->
+        <script src="{{asset('bower_components/gentelella/vendors/switchery/dist/switchery.min.js')}}"></script>
+        <!-- Select2 -->
+        <script src="{{asset('bower_components/gentelella/vendors/select2/dist/js/select2.full.min.js')}}"></script>
+        <!-- iCheck -->
+        <script src="{{asset('bower_components/gentelella/vendors/iCheck/icheck.min.js')}}"></script>
+        <!-- bootstrap-daterangepicker -->
+        <script src="{{asset('bower_components/gentelella/vendors/moment/min/moment.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+        <!-- bootstrap-wysiwyg -->
+        <script src="{{asset('bower_components/gentelella/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/jquery.hotkeys/jquery.hotkeys.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/google-code-prettify/src/prettify.js')}}"></script>
+        <!-- jQuery Tags Input -->
+        <script src="{{asset('bower_components/gentelella/vendors/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
     
+        <!-- Parsley -->
+        <script src="{{asset('bower_components/gentelella/vendors/parsleyjs/dist/parsley.min.js')}}"></script>
+
+        {{-- <script src="{{asset('bower_components/gentelella/vendors/parsleyjs/dist/parsley.min.js')}}"></script> --}}
+        <!-- Autosize -->
+        <script src="{{asset('bower_components/gentelella/vendors/autosize/dist/autosize.min.js')}}"></script>
+
+        <!-- ECharts -->
+        <script src="{{asset('bower_components/gentelella/vendors/echarts/dist/echarts.min.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/echarts/map/js/world.js')}}"></script>
+
+        <!-- jQuery Smart Wizard -->
+        <script src="{{asset('bower_components/gentelella/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
+
+        <!-- Select2 -->
+        <script src="{{asset('bower_components/gentelella/vendors/select2/dist/js/select2.full.min.js')}}"></script>
+        
 
 
 
-    <script src="{{asset('js/custom.js')}}"></script>
+        <script src="{{asset('js/custom.js')}}"></script>
 
     @yield('scripts')
 

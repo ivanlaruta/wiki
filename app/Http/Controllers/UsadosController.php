@@ -23,7 +23,7 @@ class UsadosController extends Controller
      */
     public function create()
     {
-        //
+        return view('usados.reporte.detalle');
     }
 
     /**
@@ -34,7 +34,7 @@ class UsadosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
     }
 
     /**
@@ -45,7 +45,7 @@ class UsadosController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

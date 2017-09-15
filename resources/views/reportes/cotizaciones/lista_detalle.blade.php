@@ -207,7 +207,6 @@
                      <th>VENDEDOR</th>
                      <th>NIT</th>
                      <th>CLIENTE</th>
-                     
                      <th>DIRECCION</th>
                      <th>TELEFONO</th>
                      <th>CELULAR</th>
@@ -236,7 +235,6 @@
                      <th>VENDEDOR</th>
                      <th>NIT</th>
                      <th>CLIENTE</th>
-                     
                      <th>DIRECCION</th>
                      <th>TELEFONO</th>
                      <th>CELULAR</th>

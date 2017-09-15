@@ -11,147 +11,115 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Form advanced</h3>
+                <h3><a href="{{ route('usados.index')}}">VEHICULOS USADOS</a></h3>
               </div>
-
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
+             
             </div>
 
             <div class="clearfix"></div>
 
             <div class="row">
               <!-- form input knob -->
-              <div class="col-md-12">
+              <div class="col-md-4">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Filtros</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
+                    
+                      <div class="pull-right" >
+                         <a href="#" class="btn btn-success btn-sm" >
+                          <span class="fa fa-arrow-circle-right"  ></span> <small> BUSCAR</small>
+                        </a>
+                      </div>
+                      <div class="clearfix" ></div>
                   </div>
                   <div class="x_content">
-                    <div class="col-md-3">
-                      <p>TIPO DE VEHICULO</p>
-                      <div class="col-md-9 col-sm-9 col-xs-12">
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="flat"> Camioneta
-                          </label>
-                        </div>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="flat"> vechiculo
-                          </label>
-                        </div>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="flat"> camion
-                          </label>
-                        </div>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="flat"> Motocicleta
-                          </label>
-                        </div>
+                    <div class="col-md-12">
+                      <div class="row">
+                        <p>TIPO DE VEHICULO</p>
+                        <br>
+                          <div class="">
+                            <label>
+                              <input type="checkbox" class="js-switch" checked="checked" /> INO
+                            </label>
+                          </div>
+                          <div class="">
+                            <label>
+                              <input type="checkbox" class="js-switch" checked="checked" /> VEHICULOS
+                            </label>
+                          </div>
+                          <div class="">
+                            <label>
+                              <input type="checkbox" class="js-switch" checked="checked" /> VOLVO
+                            </label>
+                          </div>
+                          <div class="">
+                            <label>
+                              <input type="checkbox" class="js-switch" checked="checked" /> YAMAHA
+                            </label>
+                          </div>
+                          {{-- <div class="">
+                            <label>
+                              <input type="checkbox" class="js-switch" checked="checked" /> Disabled Checked
+                            </label>
+                          </div> --}}
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <p>AÑO MODELO</p>
+                        <br>
+                          <div class="">
+                            <label >
+                              Entre : <input type="number" style="width: 90px;" value="2013" min="2013" max="2018" /> 
+                              Y : <input type="number" style="width: 90px;" value="2018" min="2013" max="2018" /> 
+                            </label>
+                          </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <p>PRECIO ($us)</p>
+                        <br>
+                          <div class="">
+                            <label >
+                              Entre : <input type="number" style="width: 90px;" value="23000" min="23000" max="105000"/> 
+                              Y : <input type="number" style="width: 90px;" value="105000" min="23000" max="105000"/> 
+                            </label>
+                          </div>
                       </div>
                     </div>
 
-                   <div class="col-md-3">
-                      <p>AÑO MODELO</p>
-                      <div class="col-md-9 col-sm-9 col-xs-12">
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="flat"> 2015
-                          </label>
-                        </div>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="flat"> 2016
-                          </label>
-                        </div>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="flat"> 2017
-                          </label>
-                        </div>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="flat"> 2018
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <p>PRECIO</p>
-                      <input type="text" id="example_id" name="example_name" value="" />
-                    </div>
-                    <div class="clearfix"></div>
-                   
-                    <hr>
-                    <div class="col-md-12" align="center" style="align-content: center;">
-                      <a href="#"><span class="btn btn-default"> BUSCAR</span></a>
-                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-
-            <div class="row">
-              <div class="col-md-12">
+           
+              <div class="col-md-8">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Resultado de busqueda</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
+                    <h2>Resultado de busqueda (105)</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                      <div class="table-responsive">
-                        <table class=" table table-striped">
-                          <tr>
-                            <th>Tipo vehiculo</th>
-                            <th>Año modelo</th>
-                            <th>Precio</th>
-                          </tr>
-                          <tr>
-                            <td>Jill</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                          </tr>
-                          <tr>
-                            <td>Eve</td>
-                            <td>Jackson</td>
-                            <td>94</td>
-                          </tr>
-                        </table>
+                    @for ($i = 0; $i < 105; $i++)
+                    <div class="col-md-3">
+                      <div class="thumbnail" style="height: 200px;">
+                        <div class="image view view-first">
+                          {{-- <img src="/images/media.jpg"> --}}
+                          {{-- <img src="{{ asset('images/1.jpg') }}" alt="image" style="width: 100%; display: block;"> --}}
+                          <img style="width: 100%; " src="{{ asset('images/1.jpg') }}" alt="image" />
+                          {{-- <img src="images/media.jpg" alt="image" style="width: 100%; display: block;" /> --}}
+                        </div>
+                        <div class="caption" align="center">
+                          <p>Hilux 2016</p>
+                          <a href="{{route('usados.create')}}">Ver detalle <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
                       </div>
-          
+                    </div>
+                    @endfor
                   </div>
                 </div>
               </div>
             </div>
-
-          
         </div>
+      </div>
 
 @endsection
 
