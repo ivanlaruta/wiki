@@ -36,27 +36,28 @@
                     <div class="col-md-12">
                       <div class="row">
                         <p>TIPO DE VEHICULO</p>
+                        <h4 class="panel-title" >TOYOTA</h4>
                         <br>
                           <div class="">
                             <label>
-                              <input type="checkbox" class="js-switch" checked="checked" /> INO
+                              <input type="checkbox" class="js-switch" checked="checked" /> VEHICULO
                             </label>
                           </div>
                           <div class="">
                             <label>
-                              <input type="checkbox" class="js-switch" checked="checked" /> VEHICULOS
+                              <input type="checkbox" class="js-switch" checked="checked" /> VAGONETA
                             </label>
                           </div>
                           <div class="">
                             <label>
-                              <input type="checkbox" class="js-switch" checked="checked" /> VOLVO
+                              <input type="checkbox" class="js-switch" checked="checked" /> CAMIONETA
                             </label>
                           </div>
-                          <div class="">
+                         {{--  <div class="">
                             <label>
                               <input type="checkbox" class="js-switch" checked="checked" /> YAMAHA
                             </label>
-                          </div>
+                          </div> --}}
                           {{-- <div class="">
                             <label>
                               <input type="checkbox" class="js-switch" checked="checked" /> Disabled Checked

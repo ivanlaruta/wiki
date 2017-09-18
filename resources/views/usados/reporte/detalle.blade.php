@@ -52,9 +52,6 @@
                           <h1 class="price">$ 35000</h1>
                       </div>
 
-                     
-
-
                     <!-- start accordion -->
                     <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
                       <div class="panel">

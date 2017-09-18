@@ -69,7 +69,7 @@ class SeguimientoController extends Controller
         ->select('Ubicacion_Ant','ubicacion_Act','SYSTIME')        
         ->where('estado','ACTUALIZADO')
         ->where('chassis',$id)
-        ->orderBy('SYSTIME' )
+        ->orderBy('SYSTIME' ) 
         ->get();
 
         $produccion = DB::select( DB::raw("select * from  gtauto.dbo.ct_vehiculos where chassis LIKE '%".$id."%'"));
@@ -153,6 +153,7 @@ class SeguimientoController extends Controller
         //     $interval = $datetime1->diff($datetime2);
         //     $dias_contrato_an = $interval->format('%R%a dias');
         // }else{ $dias_contrato_an = 'Sin dato';}
+       
 
         if ( sizeof($contrato)==0 && sizeof($contrato_an)>0 && sizeof($adenda)>0 )
         {
@@ -161,7 +162,7 @@ class SeguimientoController extends Controller
             $interval = $datetime1->diff($datetime2);
             $dias_adenda = $interval->format('%R%a dias');
         }else{ $dias_adenda = 'Sin dato';}
-
+        
         if ( sizeof($contrato)==0 && sizeof($adenda)>0 && sizeof($factura)>0 )
         {
             $datetime1 = new DateTime(date('Y-m-d',strtotime($adenda[0]->fecha_mod)));
@@ -197,6 +198,7 @@ class SeguimientoController extends Controller
 
         $dias_total = $dias_reserva+$dias_contrato+$dias_adenda+$dias_factura+$dias_entrega +$dias_cod_b;
         if($dias_total == 0){$dias_total++;}
+
         return view('reportes.seguimiento.detalle')
         ->with('id',$id)
         ->with('datos_unidad',$datos_unidad)

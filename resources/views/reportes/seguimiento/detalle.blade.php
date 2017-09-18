@@ -636,9 +636,8 @@
 
                 @if(sizeof($reserva)>0)
                 <li class="timeline2-item">
-                @if($reserva->tipo_venta=='LICITACION')<div class="timeline2-badge2 "><i class="fa fa-clock-o "></i> {{$dias_reserva}}</div>@endif
+                @if($reserva->tipo_venta!='LICITACION')<div class="timeline2-badge2 "><i class="fa fa-clock-o "></i> {{$dias_reserva}}</div>@endif
                   <a  data-toggle="modal" href="#myModal_reserva"><div class="timeline2-badge green prueba"><i class="fa fa-plus " style="color: #fff;"></i></div></a>
-                  
                   <div class="timeline2-panel">
                     <div class="timeline2-heading">
                       <h4 class="timeline2-title">RESERVA  <small class="pull-right red"><i class="fa fa-calendar "></i> {{$reserva->FECHA_RESERVA}}</small></h4>
@@ -663,7 +662,7 @@
                       <h4 class="timeline2-title">CONTRATO  <small class="pull-right red"><i class="fa fa-calendar "></i> {{date('Y-m-d',strtotime($contrato[0]->fecha_mod))}}</small></h4>
                       <p><small class="text-muted pull-right"><i class="fa fa-user "></i> Vendedor: {{strtoupper($contrato[0]->nom_vendedor)}}</small></p>
                       <br>
-                      <p><small class="text-muted pull-right"><i class="fa fa-map-marker"></i> {{$reserva->SUCURSAL}} - {{$reserva->REGIONAL}}</small></p>
+                      @if(sizeof($reserva)>0)<p><small class="text-muted pull-right"><i class="fa fa-map-marker"></i> {{$reserva->SUCURSAL}} - {{$reserva->REGIONAL}}</small></p>@endif
                     </div>
                     <div class="ln_solid"></div>
                     <div class="timeline2-body text-center">
@@ -735,7 +734,7 @@
                   <div class="timeline2-panel">
                     <div class="timeline2-heading">
                       <h4 class="timeline2-title">NOTA ENTREGA  <small class="pull-right red"><i class="fa fa-calendar "></i> {{date('Y-m-d',strtotime($entrega[0]->fecha_mod))}}</small></h4>
-                      <p><small class="text-muted pull-right"><i class="fa fa-user "></i> Vendedor: {{strtoupper($factura->VENDEDOR)}}</small></p>
+                      @if(sizeof($factura)>0)<p><small class="text-muted pull-right"><i class="fa fa-user "></i> Vendedor: {{strtoupper($factura->VENDEDOR)}}</small></p>@endif
                       <br>
                       <p><small class="text-muted pull-right"><i class="fa fa-map-marker"></i> {{$entrega[0]->nom_deposito}} </small></p>
                     </div>
