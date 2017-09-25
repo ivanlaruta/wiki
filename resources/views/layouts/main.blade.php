@@ -60,6 +60,8 @@
         <link href="{{asset('bower_components/gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 
 
+        <link href="{{asset('bower_components/c3/c3.css')}}" rel="stylesheet">
+        
         <!-- Custom Theme Style -->
         <link href="{{asset('bower_components/gentelella/build/css/custom.min.css')}}" rel="stylesheet">
 

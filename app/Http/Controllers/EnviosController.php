@@ -49,7 +49,7 @@ class EnviosController extends Controller
     }
 
     public function detalle_envio(Request $request, $id)
-    {         
+    {          
         $envio =Envios_realizados::find($id);
         $idd=$id;
         $solicitud = Solicitud::find($envio->id_solicitud);

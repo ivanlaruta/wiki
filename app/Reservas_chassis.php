@@ -14,8 +14,12 @@ class Reservas_chassis extends Model
     protected $dateFormat = 'Ymd H:i:s';
     public $timestamps = true;
 
-    public function vehiculo()
+    public function vehiculo() 
     {
-    	return $this->belongsTo('App\V_stock_gtauto','chassis');
+        return $this->belongsTo('App\V_stock_gtauto','chassis');
+    }
+    public function vehiculo22() 
+    {
+    	return $this->belongsTo('App\V_stock_todo','chassis');
     }
 }

@@ -1,6 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
+<link href="/path/to/c3.css" rel="stylesheet">
+
+
+
 <style type="text/css">
 .table .progress {
 margin-bottom: 0px;
@@ -43,9 +47,18 @@ margin-bottom: 0px;
     color: #73879C;
   }
 
-  .sombra{
+a:visited {
+    color: #26B99A;
+}
+
+/* mouse over link */
+a:hover {
+    color: #26B99A;
+}
+
+  /*.sombra{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
+  }*/
 </style>
         <div class="right_col" role="main">
           <div class="">
@@ -71,7 +84,7 @@ margin-bottom: 0px;
                 <span class="count_bottom">Total gestion: <i class="red">{{$año_actual}} </i></span>
               </div>
             </div>
-
+{{-- 
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12 sombra">
                   <div class="x_title">
@@ -88,50 +101,74 @@ margin-bottom: 0px;
                     <div id="graph_bar_resumen" style="width:100%; height:300px;"></div>
                   </div>
               </div>
-            </div>
-
-            {{-- <div class="row">
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <span>POR MES COTIZACIONES</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="graph_bar_cotizaciones" style="width:110%; height:250px;"></div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <span>POR MES TEST DRIVE</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="graph_bar_test" style="width:110%; height:250px;"></div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <span>POR MES RESERVAS</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="graph_bar_reservas" style="width:110%; height:250px;"></div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <span>POR MES FACTURAS</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="graph_bar_facturas" style="width:110%; height:250px;"></div>
-                  </div>
-              </div>
             </div> --}}
 
-            <div class="ln_solid"></div>
+<div class="ln_solid"></div>
 
             <div class="row sombra">
+              <div class="col-md-12 col-sm-12 col-xs-12 ">
+                  <div class="x_title">
+                    <h2> COTIZACIONES POR MES </h2>
+                      <span class="pull-right">
+                      <a href="javascript:;" class="area" ><i class="fa fa-area-chart"></i></a>
+                      <a href="javascript:;" class="bar"><i class="fa fa-bar-chart"></i></a>
+                      <a href="javascript:;" class="line"><i class="fa fa-line-chart"></i></a>
+                      </span>
+                      <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content " >
+                    <div id="container" align="center" style=" display: inline-block; color: #fff;"></div>
+                    <div  id="chart"></div>
+                    <div  id="chart-bar"></div>
+                    <div  id="chart-line"></div>
+                  </div>
+              </div>
+            </div>
+          
+<div class="ln_solid"></div>
+
+            <div class="row sombra">
+              <div class="col-md-3 col-sm-3 col-xs-6 ">
+                  <div class="x_title">
+                    <span>COTIZACIONES POR MARCA</span>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="chart_cotiza"></div>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6 ">
+                  <div class="x_title">
+                    <span>TESTS POR MARCA</span>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="chart_test"></div>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6 ">
+                  <div class="x_title">
+                    <span>RESERVAS POR MARCA</span>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="chart_reservas"></div>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-6 ">
+                  <div class="x_title">
+                    <span>FACTURAS POR MARCA</span>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="chart_facturas"></div>
+                  </div>
+              </div>
+            </div>
+          
+<div class="ln_solid"></div>
+
+             <div class="row sombra">
               <div class="col-md-3 col-sm-3 col-xs-6">
                   <div class="x_title">
                     <span>POR REGIONAL COTIZACIONES</span>
@@ -169,188 +206,17 @@ margin-bottom: 0px;
                   </div>
               </div>
             </div>
-
-            <div class="ln_solid"></div>
-
-            <div class="row sombra">
-              <div class="col-md-3 col-sm-3 col-xs-6 ">
-                  <div class="x_title">
-                    <span>POR MARCA COTIZACIONES</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <canvas id="polar-chart-cotiza" width="200" height="200"></canvas>
-                      <div class="col-xs-12 bg-white progress_summary">
-                        @for ($i = 0; $i < sizeof($cotizaciones_por_marca); $i++)
-                        <?php 
-                           $max = $cotizaciones_por_marca[0]['COTIZACIONES'];
-                           $val = intval(($cotizaciones_por_marca[$i]['COTIZACIONES'] *100) /$max);  
-                        ?>  
-                        <div class="row">
-                          <div class="col-xs-4">
-                            <span>{{$cotizaciones_por_marca[$i]['MARCA']}}</span>
-                          </div>
-                          <div class="col-xs-5">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar color-{{$i}}" role="progressbar" data-transitiongoal="{{$val}}"></div>
-                            </div>
-                          </div>
-                          <div class="col-xs-3 more_info">
-                            <span>{{$cotizaciones_por_marca[$i]['COTIZACIONES']}}</span>
-                          </div>
-                        </div>
-                        @endfor
-                      </div>
-                  </div>
-              </div>
-
-              <div class="col-md-3 col-sm-3 col-xs-6 ">
-                  <div class="x_title">
-                    <span>POR MARCA TEST DRIVE</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <canvas id="polar-chart-test" width="200" height="200"></canvas>
-                   <div class="col-xs-12 bg-white progress_summary">
-                        @for ($i = 0; $i < sizeof($cotizaciones_por_marca); $i++)
-                        <?php 
-                           $max = $cotizaciones_por_marca[0]['COTIZACIONES'];
-                           $val = intval(($cotizaciones_por_marca[$i]['COTIZACIONES'] *100) /$max);  
-                        ?>  
-                        <div class="row">
-                          <div class="col-xs-4">
-                            <span>{{$cotizaciones_por_marca[$i]['MARCA']}}</span>
-                          </div>
-                          <div class="col-xs-5">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar color-{{$i}}" role="progressbar" data-transitiongoal="{{$val}}"></div>
-                            </div>
-                          </div>
-                          <div class="col-xs-3 more_info">
-                            <span>{{$cotizaciones_por_marca[$i]['COTIZACIONES']}}</span>
-                          </div>
-                        </div>
-                        @endfor
-                      </div>
-                  </div>
-              </div>
-
-              <div class="col-md-3 col-sm-3 col-xs-6 ">
-                  <div class="x_title">
-                    <span>POR MARCA RESERVAS</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <canvas id="polar-chart-reserva" width="200" height="200"></canvas>
-                    {{-- <canvas id="bar-chart-horizontal-reserva" width="200" height="200"></canvas> --}}
-                    <div class="col-xs-12 bg-white progress_summary">
-                        @for ($i = 0; $i < sizeof($reservas_por_marca); $i++)
-                        <?php 
-                           $max = $reservas_por_marca[0]['RESERVADOS'];
-                           $val = intval(($reservas_por_marca[$i]['RESERVADOS'] *100) /$max);  
-                        ?>  
-                        <div class="row">
-                          <div class="col-xs-4">
-                            <span>{{$reservas_por_marca[$i]['MARCA']}}</span>
-                          </div>
-                          <div class="col-xs-5">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar color-{{$i}}" role="progressbar" data-transitiongoal="{{$val}}"></div>
-                            </div>
-                          </div>
-                          <div class="col-xs-3 more_info">
-                            <span>{{$reservas_por_marca[$i]['RESERVADOS']}}</span>
-                          </div>
-                        </div>
-                        @endfor
-                      </div>
-                  </div>
-              </div>
-
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <span>POR MARCA FACTURAS</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <canvas id="polar-chart-factura" width="200" height="200"></canvas>
-                    {{-- <canvas id="bar-chart-horizontal-facturas" width="200" height="200"></canvas> --}}
-                    <div class="col-xs-12 bg-white progress_summary">
-                        @for ($i = 0; $i < sizeof($facturas_por_marca); $i++)
-                        <?php 
-                           $max = $facturas_por_marca[0]['FACTURADOS'];
-                           $val = intval(($facturas_por_marca[$i]['FACTURADOS'] *100) /$max);  
-                        ?>  
-                        <div class="row">
-                          <div class="col-xs-4">
-                            <span>{{$facturas_por_marca[$i]['MARCA']}}</span>
-                          </div>
-                          <div class="col-xs-5">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar color-{{$i}}" role="progressbar" data-transitiongoal="{{$val}}"></div>
-                            </div>
-                          </div>
-                          <div class="col-xs-3 more_info">
-                            <span>{{$facturas_por_marca[$i]['FACTURADOS']}}</span>
-                          </div>
-                        </div>
-                        @endfor
-                      </div>
-                  </div>
-              </div>
-            </div>
-
-{{--             <div class="ln_solid"></div>
-
-            <div class="row">
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <span>POR MARCA COTIZACIONES</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <span>POR MARCA TEST DRIVE</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <span>POR MARCA RESERVAS</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <span>POR MARCA FACTURAS</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    
-                  </div>
-              </div>
-            </div> --}}
-
-
-
             <br/>
           </div>
         </div>
-        
-
+      
 @endsection
 
 @section('scripts')
+
+    <!-- Load d3.js and c3.js -->
+    <script src="{{asset('bower_components/d3/d3.min.js')}}"></script>
+    <script src="{{asset('bower_components/c3/c3.min.js')}}"></script>
     <!-- Chart.js -->
     <script src="{{asset('bower_components/gentelella/vendors/Chart.js/dist/Chart.min.js')}}"></script>
     <!-- jQuery Sparklines -->
@@ -381,7 +247,112 @@ margin-bottom: 0px;
     <script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 
 <script type="text/javascript">
+$(document).ready(function($) {
 
+var grupo =['YAMAHA','HINO','LEXUS','KUBOTA','DAIHATSU','VOLVO'];
+var b_colores = {TOYOTA: '#26B99A', YAMAHA: '#ACADAC', HINO: '#3498DB', LEXUS: '#34495E', KUBOTA: '#145d66',
+            DAIHATSU: '#4b3a52', VOLVO: '#8e5ea2',} ;
+
+var barras_cotiza = [];
+var datos_cotiza_marca  = <?php echo json_encode($cotizaciones_por_marca); ?>;
+for (var i = 0; i < datos_cotiza_marca.length; i++) {
+  var data_temp = [];
+  data_temp.push(datos_cotiza_marca[i].MARCA.trim()) ;
+  data_temp.push(datos_cotiza_marca[i].COTIZACIONES) ;
+  barras_cotiza.push(data_temp);
+}
+var chart = c3.generate({
+    bindto: '#chart_cotiza',
+    data: {
+      columns: barras_cotiza,
+        type: 'bar',
+        colors: b_colores,
+        groups: [grupo]
+    },
+    axis: {
+        x: {
+            type: 'category',
+            categories: ['cotizaciones']
+        }
+    }
+});
+
+
+var barras_test = [];
+var datos_test_marca  = <?php echo json_encode($cotizaciones_por_marca); ?>;
+for (var i = 0; i < datos_test_marca.length; i++) {
+  var data_temp = [];
+  data_temp.push(datos_test_marca[i].MARCA.trim()) ;
+  data_temp.push(Math.round(datos_test_marca[i].COTIZACIONES*0.30)) ;
+  barras_test.push(data_temp);
+}
+
+var chart = c3.generate({
+    bindto: '#chart_test',
+    data: {
+      columns: barras_test,
+        type: 'bar',
+        colors: b_colores,
+        groups: [grupo]
+    },
+    axis: {
+        x: {
+            type: 'category',
+            categories: ['Test']
+        }
+    }
+});
+
+
+var barras_reservas = [];
+var datos_reservas_marca  = <?php echo json_encode($reservas_por_marca); ?>;
+for (var i = 0; i < datos_reservas_marca.length; i++) {
+  var data_temp = [];
+  data_temp.push(datos_reservas_marca[i].MARCA.trim()) ;
+  data_temp.push(datos_reservas_marca[i].RESERVADOS) ;
+  barras_reservas.push(data_temp);
+}
+
+var chart = c3.generate({
+    bindto: '#chart_reservas',
+    data: {
+      columns: barras_reservas,
+        type: 'bar',
+        colors: b_colores,
+        groups: [grupo]
+    },
+    axis: {
+        x: {
+            type: 'category',
+            categories: ['reservas']
+        }
+    }
+});
+
+var barras_facturas = [];
+var datos_facturas_marca  = <?php echo json_encode($facturas_por_marca); ?>;
+for (var i = 0; i < datos_facturas_marca.length; i++) {
+  var data_temp = [];
+  data_temp.push(datos_facturas_marca[i].MARCA.trim()) ;
+  data_temp.push(datos_facturas_marca[i].FACTURADOS) ;
+  barras_facturas.push(data_temp);
+}
+
+var chart = c3.generate({
+    bindto: '#chart_facturas',
+    data: {
+      columns: barras_facturas,
+        type: 'bar',
+        colors: b_colores,
+        groups: [grupo]
+    },
+    axis: {
+        x: {
+            type: 'category',
+            categories: ['Facturas']
+        }
+    }
+});
 
 function nombreMes(mes) {
   if(mes == 1){ return 'ENERO';}
@@ -398,196 +369,181 @@ function nombreMes(mes) {
   if(mes == 12){ return 'DICIEMBRE';}
 }
 
+
 //======================     RESUMEN   =====================================
 //========================================================================
+
+
+
+
+
 var data=[];
+var max =0;
 var dato_cotizaciones  = <?php echo json_encode($cotizaciones); ?>;
 var dato_test  = <?php echo json_encode($cotizaciones); ?>;
 var dato_reservas  = <?php echo json_encode($reservas); ?>;
 var dato_facturas  = <?php echo json_encode($facturas); ?>;
 
+if(dato_cotizaciones.length>=dato_reservas.length) {max = dato_cotizaciones.length;} 
+else {max = dato_cotizaciones.length;}
 
-for (var i = 0; i < dato_cotizaciones.length; i++) {
-  var oData = {
-    'meses':'',
-    'cotiza':dato_cotizaciones[i].COTIZACIONES,
-    'test':Math.round(dato_test[i].COTIZACIONES *0.30),
-    'res':dato_reservas[i].RESERVADOS,
-    'fact':dato_facturas[i].FACTURADOS
-  };
+var colores = {COTIZACIONES: '#26B99A', TEST: '#167d8a', RESERVAS: '#08636e', FACTURAS: '#044484'};
 
-oData.meses = nombreMes(dato_cotizaciones[i].MES);
-data.push(oData);
+var data_temp_cotiza = []; var data_temp_test = []; var data_temp_reservas = []; var data_temp_facturas = [];
+
+data_temp_cotiza[0] = 'COTIZACIONES';
+data_temp_test[0] = 'TEST';
+data_temp_reservas[0] = 'RESERVAS';
+data_temp_facturas[0] = 'FACTURAS';
+
+for (var i = 0; i < max; i++) 
+{
+  data_temp_cotiza[i+1]= dato_cotizaciones[i]? dato_cotizaciones[i].COTIZACIONES :0;
+  data_temp_test[i+1]= dato_test[i]? Math.round(dato_test[i].COTIZACIONES *0.30) :0;
+  data_temp_reservas[i+1]= dato_reservas[i]? dato_reservas[i].RESERVADOS :0;
+  data_temp_facturas[i+1]= dato_facturas[i]? dato_facturas[i].FACTURADOS:0;
+}
+data.push(data_temp_cotiza,data_temp_test,data_temp_reservas,data_temp_facturas);
+
+grafico('area-spline',data,colores);
+
+
+$(".area").click(function() {
+      grafico('area-spline',data,colores);
+});
+
+$(".bar").click(function() {
+      grafico('bar',data,colores);
+});
+
+$(".line").click(function() {
+      grafico('line',data,colores);
+});
+
+function grafico (tipo ,data,colores){
+    var chart2 = c3.generate({
+      bindto: '#chart-bar',
+      data: {
+        columns: data,
+          type: tipo,
+          colors: colores
+      },
+      axis: {
+          x: {
+              type: 'category',
+              tick: {
+                  rotate: 90,
+                  multiline: false
+              },
+              categories: ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE']
+          }
+      } 
+  });
 }
 
 
-Morris.Bar({
-  element: 'graph_bar_resumen',
-  data:data,
-  xkey: 'meses',
-  ykeys: ['cotiza','test','res','fact'],
-  labels: ['Cotizaciones','Test','Reservas','Facturas'],
-  barRatio:5,
-  barColors: ['#069f7f', '#34495E', '#4b3a52', '#3498DB'],
-  xLabelAngle: 55,
-  fillOpacity: 0.6,
-      hideHover: 'auto',
-      behaveLikeLine: true,
 
-  resize: true,
-    redraw: true
-});
+// var chart = c3.generate({
+//     bindto: '#chart',
+//     data: {
+//       columns: data,
+//         type: 'area-spline',
+//         colors: colores
+//     },
+//     axis: {
+//         x: {
+//             type: 'category',
+//             tick: {
+//                 rotate: 90,
+//                 multiline: false
+//             },
+//             categories: ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE']
+//         }
+//     } 
+
+// });
 
 
 
-//=======================================================================
+// var chart3 = c3.generate({
+//     bindto: '#chart-line',
+//     data: {
+//       columns: data,
+//         type: 'line',
+//         colors: colores
+//     },
+//     axis: {
+//         x: {
+//             type: 'category',
+//             tick: {
+//                 rotate: 90,
+//                 multiline: false
+//             },
+//             categories: ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE']
+//         }
+//     } 
+
+// });
+
+// d3.select('#container').insert('div', '.chart').attr('class', 'legend').selectAll('span')
+//     .data(['COTIZACIONES', 'TEST', 'RESERVAS','FACTURAS'])
+//   .enter().append('span')
+//     .attr('data-id', function (id) { return id; })
+//     .html(function (id) { return id; })
+//     .each(function (id) {
+//         d3.select(this).style('background-color', chart.color(id));
+//     })
+//     .on('mouseover', function (id) {
+//         chart.focus(id);
+//     })
+//     .on('mouseout', function (id) {
+//         chart.revert();
+//     })
+//     .on('click', function (id) {
+//         chart.toggle(id);
+//     });
+
+
+//======================     RESUMEN   =====================================
 //========================================================================
-
-
-//======================   BARRAS      =====================================
-//========================================================================
- //================ BARRA COTIZACIONES ===============================
+// var data=[];
 // var dato_cotizaciones  = <?php echo json_encode($cotizaciones); ?>;
-// var len_cotizaciones = dato_cotizaciones.length;
-// var data_cotizaciones=[];
+// var dato_test  = <?php echo json_encode($cotizaciones); ?>;
+// var dato_reservas  = <?php echo json_encode($reservas); ?>;
+// var dato_facturas  = <?php echo json_encode($facturas); ?>;
 
-// for (var i = 0; i < len_cotizaciones; i++) {
+// for (var i = 0; i < dato_cotizaciones.length; i++) {
 //   var oData = {
 //     'meses':'',
-//     'cotiza':dato_cotizaciones[i].COTIZACIONES
+//     'cotiza':dato_cotizaciones[i]? dato_cotizaciones[i].COTIZACIONES :0,
+//     'test':dato_test[i]? Math.round(dato_test[i].COTIZACIONES *0.30) :0,
+//     'res':dato_reservas[i]? dato_reservas[i].RESERVADOS :0 ,
+//     'fact':dato_facturas[i]? dato_facturas[i].FACTURADOS:0
 //   };
 
 // oData.meses = nombreMes(dato_cotizaciones[i].MES);
-// data_cotizaciones.push(oData);
+// data.push(oData);
+
 // }
 
 // Morris.Bar({
-//   element: 'graph_bar_cotizaciones',
-//   data:data_cotizaciones,
+//   element: 'graph_bar_resumen',
+//   data:data,
 //   xkey: 'meses',
-//   ykeys: ['cotiza'],
-//   labels: ['Cotizaciones'],
-//   barRatio: 0.4,
-//   barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
-//   xLabelAngle: 90,
-//   hideHover: 'auto',
-//   resize: true
-// });
+//   ykeys: ['cotiza','test','res','fact'],
+//   labels: ['Cotizaciones','Test','Reservas','Facturas'],
+//   barRatio:5,
+//   barColors: ['#069f7f', '#34495E', '#4b3a52', '#3498DB'],
+//   xLabelAngle: 55,
+//   fillOpacity: 0.6,
+//       hideHover: 'auto',
+//       behaveLikeLine: true,
 
-// //====================================================================
-//  //================ BARRA TEST ===============================
-// var dato_test  = <?php echo json_encode($cotizaciones); ?>;
-// var len_test = dato_test.length;
-// var data_test=[];
-
-// for (var i = 0; i < len_test; i++) {
-//   var oData = {
-//     'meses':'',
-//     'cotiza':Math.round(dato_test[i].COTIZACIONES *0.30)
-//   };
-
-// oData.meses = nombreMes(dato_test[i].MES);
-// data_test.push(oData);
-// }
-
-// Morris.Bar({
-//   element: 'graph_bar_test',
-//   data:data_test,
-//   xkey: 'meses',
-//   ykeys: ['cotiza'],
-//   labels: ['Test'],
-//   barRatio: 0.4,
-//   barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
-//   xLabelAngle: 90,
-//   hideHover: 'auto',
-//   resize: true
+//   resize: true,
+//     redraw: true
 // });
 
 
-// // Morris.Bar({
-// //           element: 'graph_bar_test',
-// //           data: [
-          
-// //           {device: 'ENERO', Tests: 0},
-// //           {device: 'FEBRERO', Tests: 0},
-// //           {device: 'MARZO', Tests: 0},
-// //           {device: 'ABRIL', Tests: 0},
-// //           {device: 'MAYO', Tests: 0},
-// //           {device: 'JUNIO', Tests: 0},
-// //           {device: 'JULIO', Tests: 0},
-// //           {device: 'AGOSTO', Tests: 0},
-// //           {device: 'SEPTIEMBRE', Tests: 0},
-// //           {device: 'OCTUBRE', Tests: 0},
-// //           {device: 'NOVIEMBE', Tests: 0},
-// //           {device: 'DICIEMBRE', Tests: 0}
-// //           ],
-// //           xkey: 'device',
-// //           ykeys: ['Tests'],
-// //           labels: ['Tests'],
-// //           barRatio: 0.4,
-// //           barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
-// //           xLabelAngle: 90,
-// //           hideHover: 'auto',
-// //           resize: true
-// //         });
-// //========================================================================
-
-//  //================ BARRA RESERVAS ===============================
-// var dato_reservas  = <?php echo json_encode($reservas); ?>;
-// var len_reservas = dato_reservas.length;
-// var data_reservas=[];
-
-// for (var i = 0; i < len_reservas; i++) {
-//   var oData = {
-//     'meses':'',
-//     'res':dato_reservas[i].RESERVADOS
-//   };
-
-// oData.meses = nombreMes(dato_reservas[i].MES);
-// data_reservas.push(oData);
-// }
-
-// Morris.Bar({
-//   element: 'graph_bar_reservas',
-//   data:data_reservas,
-//   xkey: 'meses',
-//   ykeys: ['res'],
-//   labels: ['Reservas'],
-//   barRatio: 0.4,
-//   barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
-//   xLabelAngle: 90,
-//   hideHover: 'auto',
-//   resize: true
-// });
-// //========================================================================
-
-//  //================ BARRA FACTURAS ===============================
-// var dato_facturas  = <?php echo json_encode($facturas); ?>;
-// var len_facturas = dato_facturas.length;
-// var data_facturas=[];
-
-// for (var i = 0; i < len_facturas; i++) {
-//   var oData = {
-//     'meses':'',
-//     'res':dato_facturas[i].FACTURADOS
-//   };
-
-// oData.meses = nombreMes(dato_facturas[i].MES);
-// data_facturas.push(oData);
-// }
-
-// Morris.Bar({
-//   element: 'graph_bar_facturas',
-//   data:data_facturas,
-//   xkey: 'meses',
-//   ykeys: ['res'],
-//   labels: ['Facturas'],
-//   barRatio: 0.4,
-//   barColors: ['#069f7f', '#34495E', '#ACADAC', '#3498DB'],
-//   xLabelAngle: 90,
-//   hideHover: 'auto',
-//   resize: true
-// });
 //========================================================================
 //========================================================================
 
@@ -672,325 +628,7 @@ Morris.Donut({
 ///////////////////////////////////////////////////////////////
 
 
-// //====================  BARRAS HORISONTALES  ================================
-// //========================================================================
-// //===================== BARRA H COTIZA ================================
-// var label_cotiza = [];
-// var data_cotiza = [];
-
-// var datos_cotiza_marca  = <?php echo json_encode($cotizaciones_por_marca); ?>;
-
-// for (var i = 0; i < datos_cotiza_marca.length; i++) {
-//    label_cotiza[i]=datos_cotiza_marca[i].MARCA.trim();
-//    data_cotiza[i]=datos_cotiza_marca[i].COTIZACIONES;
-// }
-
-// new Chart(document.getElementById("bar-chart-horizontal-cotiza"), {
-//     type: 'horizontalBar',
-//     data: {
-//       labels: label_cotiza,
-//       datasets: [
-//         {
-//           label: "Cotizaciones: ",
-//           backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
-//           data: data_cotiza
-//         }
-//       ]
-//     },
-//     options: {
-//       legend: { display: false },
-//       title: {
-//         display: false
-//       }
-//     }
-// });
-// //========================================================================
-
-// //===================== BARRA H RESERVAS ================================
-// var label_reserva = [];
-// var data_reserva = [];
-
-// var datos_reserva_marca  = <?php echo json_encode($reservas_por_marca); ?>;
-
-// for (var i = 0; i < datos_reserva_marca.length; i++) {
-//    label_reserva[i]=datos_reserva_marca[i].MARCA.trim();
-//    data_reserva[i]=datos_reserva_marca[i].RESERVADOS;
-// }
-
-// new Chart(document.getElementById("bar-chart-horizontal-reserva"), {
-//     type: 'horizontalBar',
-//     data: {
-//       labels: label_reserva,
-//       datasets: [
-//         {
-//           label: "Cotizaciones: ",
-//           backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
-//           data: data_reserva
-//         }
-//       ]
-//     },
-//     options: {
-//       legend: { display: false },
-//       title: {
-//         display: false
-//       }
-//     }
-// });
-// //========================================================================
-
-// //===================== BARRA H FACTURAS ================================
-// var label_facturas = [];
-// var data_facturas = [];
-
-// var datos_facturas_marca  = <?php echo json_encode($facturas_por_marca); ?>;
-
-// for (var i = 0; i < datos_facturas_marca.length; i++) {
-//    label_facturas[i]=datos_facturas_marca[i].MARCA.trim();
-//    data_facturas[i]=datos_facturas_marca[i].FACTURADOS;
-// }
-
-// new Chart(document.getElementById("bar-chart-horizontal-facturas"), {
-//     type: 'horizontalBar',
-//     data: {
-//       labels: label_facturas,
-//       datasets: [
-//         {
-//           label: "Cotizaciones: ",
-//           backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
-//           data: data_facturas
-//         }
-//       ]
-//     },
-//     options: {
-//       legend: { display: false },
-//       title: {
-//         display: false
-//       }
-//     }
-// });
-// //========================================================================
-
-
-
-//====================  pie   =======================================
-//=====================================================================
-//===================== pie  COTIZA ================================
-
-var label_cotiza = [];
-var data_cotiza = [];
-
-var datos_cotiza_marca  = <?php echo json_encode($cotizaciones_por_marca); ?>;
-
-for (var i = 0; i < datos_cotiza_marca.length; i++) {
-   label_cotiza[i]=datos_cotiza_marca[i].MARCA.trim();
-   data_cotiza[i]=datos_cotiza_marca[i].COTIZACIONES;
-}
-
-new Chart(document.getElementById("polar-chart-cotiza"), {
-    type: 'pie',
-    data: {
-      labels: label_cotiza,
-      datasets: [
-        {
-          label: "Cotizaciones: ",
-          backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
-          data: data_cotiza
-        }
-      ]
-    },
-   options: {
-      title: {
-        display: true
-      }
-    }
 });
-//========================================================================
-
-//===================== pie  TEST ================================
-
-var labeltest = [];
-var datatest = [];
-
-var datostest_marca  = <?php echo json_encode($cotizaciones_por_marca); ?>;
-
-for (var i = 0; i < datostest_marca.length; i++) {
-   labeltest[i]=datostest_marca[i].MARCA.trim();
-   datatest[i]=Math.round(datostest_marca[i].COTIZACIONES*0.30);
-}
-
-new Chart(document.getElementById("polar-chart-test"), {
-    type: 'pie',
-    data: {
-      labels: labeltest,
-      datasets: [
-        {
-          label: "Test: ",
-          backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
-          data: datatest
-        }
-      ]
-    },
-   options: {
-      title: {
-        display: true
-      }
-    }
-});
-//========================================================================
-
-//===================== pie RESERVAS ================================
-var label_reserva = [];
-var data_reserva = [];
-
-var datos_reserva_marca  = <?php echo json_encode($reservas_por_marca); ?>;
-
-for (var i = 0; i < datos_reserva_marca.length; i++) {
-   label_reserva[i]=datos_reserva_marca[i].MARCA.trim();
-   data_reserva[i]=datos_reserva_marca[i].RESERVADOS;
-}
-
-new Chart(document.getElementById("polar-chart-reserva"), {
-    type: 'pie',
-    data: {
-      labels: label_reserva,
-      datasets: [
-        {
-          label: "Cotizaciones: ",
-          backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
-          data: data_reserva
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true
-      }
-    }
-});
-//========================================================================
-
-//===================== pie FACTURAS ================================
-var label_facturas = [];
-var data_facturas = [];
-
-var datos_facturas_marca  = <?php echo json_encode($facturas_por_marca); ?>;
-
-for (var i = 0; i < datos_facturas_marca.length; i++) {
-   label_facturas[i]=datos_facturas_marca[i].MARCA.trim();
-   data_facturas[i]=datos_facturas_marca[i].FACTURADOS;
-}
-
-new Chart(document.getElementById("polar-chart-factura"), {
-    type: 'pie',
-    data: {
-      labels: label_facturas,
-      datasets: [
-        {
-          label: "Cotizaciones: ",
-          backgroundColor:  ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
-          data: data_facturas
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true
-      }
-    }
-});
-//========================================================================
-
-
-
-
-
-/////////////////////////////////////////////////////////////////
-
-// var values_marcas_fact = [0, 0, 0, 0, 0, 0];
-// var values_data_fact = [0, 0, 0, 0, 0, 0];
-
-// var marcas_fact  = <?php echo json_encode($facturas_por_marca); ?>;
-// var len_marcas_fact = marcas_fact.length;
-
-// for (var i = 0; i < len_marcas_fact; i++) {
-//    values_marcas_fact[i]=marcas_fact[i].MARCA.trim();
-//    values_data_fact[i]=marcas_fact[i].FACTURADOS;
-// }
-
-
-// new Chart(document.getElementById("doughnut-chart-facturas"), {
-//     type: 'doughnut',
-//     data: {
-//       labels: values_marcas_fact,
-//       datasets: [
-//         {
-          
-//           backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8fc4c7", "#dcd895"],
-
-//           data: values_data_fact
-//         }
-//       ]
-//     },
-//     options: {
-//       legend: false, 
-//       resposive:true,
-//       title: {
-//         display: false,
-//       }
-//     }
-// });
-
-
-///////////////////////////////////////////////////////////////
-
-// var values_reservas = [0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0];
-
-// var dato_reservas  = <?php echo json_encode($reservas); ?>;
-// var len_reservas = dato_reservas.length;
-
-// for (var i = 0; i < len_reservas; i++) {
-//    values_reservas[i]=dato_reservas[i].RESERVADOS;
-// }
-
-// $('.txt_reservas').text('POR MES');
-  
-// $(".sparkline_reservas").sparkline(values_reservas, {
-//         type: 'bar',
-        
-//         height: '35',
-//         barWidth: 15,
-//         colorMap: {
-//           '0': '#ff000c'  
-//         },
-//         barSpacing: 2,
-//         barColor: '#26B99A',
-//         chartRangeMin: 12,
-//       });
-
-// $('.sparkline_reservas').bind('sparklineRegionChange', function(ev) {
-//     var sparkline = ev.sparklines[0];
-//         var region = sparkline.getCurrentRegionFields();
-//         var value = region.y;
-//         //console.log(region);
-//         if(region[0].offset == 0){mes='ENERO';}
-//         if(region[0].offset == 1){mes='FEBRERO';}
-//         if(region[0].offset == 2){mes='MARZO';}
-//         if(region[0].offset == 3){mes='ABRIL';}
-//         if(region[0].offset == 4){mes='MAYO';}
-//         if(region[0].offset == 5){mes='JUNIO';}
-//         if(region[0].offset == 6){mes='JULIO';}
-//         if(region[0].offset == 7){mes='AGOSTO';}
-//         if(region[0].offset == 8){mes='SEPTIEMBRE';}
-//         if(region[0].offset == 9){mes='OCTUBRE';}
-//         if(region[0].offset == 10){mes='NOVIEMBE';}
-//         if(region[0].offset == 11){mes='DICIEMBRE';}
-
-//     $('.txt_reservas').text(mes + " : "+region[0].value);
-// }).bind('mouseleave', function() {
-//     $('.txt_reservas').text('POR MES');
-// });
-
-
 
 </script>
 

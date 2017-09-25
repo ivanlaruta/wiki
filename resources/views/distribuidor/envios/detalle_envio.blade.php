@@ -166,12 +166,12 @@
                         @foreach($unidades as $uni)
                         <tr> 
                           <td>{{ $uni -> ITEM }}</td>
-                          <td>{{ $uni -> vehiculo -> MARCA  }}</td>
-                          <td>{{ $uni -> vehiculo -> COD_MODELO }} -- {{ $uni -> vehiculo -> MODELO  }}</td>
-                          <td>{{ $uni -> vehiculo -> COD_MASTER }} -- {{ $uni -> vehiculo -> MASTER  }}</td>
-                          <td>{{ $uni -> vehiculo -> ANIO_MOD }}</td>
-                          <td>{{ $uni -> vehiculo -> COLOR_EXTERNO  }}</td>
-                          <td>{{ $uni -> vehiculo -> COLOR_INTERNO  }}</td>
+                          <td>{{ $uni -> vehiculo22 -> MARCA  }}</td>
+                          <td>{{ $uni -> vehiculo22 -> COD_MODELO }} -- {{ $uni -> vehiculo22 -> MODELO  }}</td>
+                          <td>{{ $uni -> vehiculo22 -> COD_MASTER }} -- {{ $uni -> vehiculo22 -> MASTER  }}</td>
+                          <td>{{ $uni -> vehiculo22 -> ANIO_MOD }}</td>
+                          <td>{{ $uni -> vehiculo22 -> COLOR_EXTERNO  }}</td>
+                          <td>{{ $uni -> vehiculo22 -> COLOR_INTERNO  }}</td>
                           <td>{{ $uni -> chassis }}</td>
                           <td>
                             @if($uni -> salida_cb == 1) 
