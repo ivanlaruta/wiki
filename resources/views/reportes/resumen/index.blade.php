@@ -56,10 +56,18 @@ a:hover {
     color: #26B99A;
 }
 
-  /*.sombra{
-    background: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }*/
+.tabs-right > li > a.peque {
+    border-radius: 0 4px 4px 0;
+    height: 24px;
+    padding: 4px;
+    text-align: right;
+    font-size: 12px;
+}
+
+.c3-region.regionX {
+  fill: #069f7f;
+}
+
 </style>
         <div class="right_col" role="main">
           <div class="">
@@ -85,35 +93,16 @@ a:hover {
                 <span class="count_bottom">Total gestion: <i class="red">{{$año_actual}} </i></span>
               </div>
             </div>
-          {{-- 
+            
             <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12 sombra">
-                  <div class="x_title">
-                    <span>RESUMEN {{$año_actual}} / COTIZACIONES, TEST, RESERAS, FACTURAS</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div class="row" align="center">
-                      <i class="fa fa-square" style="color:  #069f7f;"></i> COTIZACIONES
-                      &nbsp &nbsp<i class="fa fa-square" style="color:  #34495E;"></i> TEST 
-                      &nbsp &nbsp<i class="fa fa-square" style="color:  #4b3a52;"></i> RESERVAS 
-                      &nbsp &nbsp<i class="fa fa-square" style="color:  #3498DB;"></i> FACTURAS
-                    </div>
-                    <div id="graph_bar_resumen" style="width:100%; height:300px;"></div>
-                  </div>
-              </div>
-            </div> 
-            --}}
-
-            <div class="row sombra">
-              <div class="col-md-12 col-sm-12 col-xs-12 ">
+              <div class="col-md-6 col-sm-6 col-xs-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2> PROCECESO MENSUAL <small>2017</small></h2>
+                    <h2> PROCECESO MENSUAL <small>{{$año_actual}}</small></h2>
                       <span class="pull-right">
                       <a href="javascript:;" class="area" ><i class="fa fa-area-chart"></i></a>
-                      <a href="javascript:;" class="bar"><i class="fa fa-bar-chart"></i></a>
                       <a href="javascript:;" class="line"><i class="fa fa-line-chart"></i></a>
+                      <a href="javascript:;" class="bar"><i class="fa fa-bar-chart"></i></a>
                       </span>
                       <div class="clearfix"></div>
                   </div>
@@ -125,15 +114,29 @@ a:hover {
                   </div>
                 </div>
               </div>
-            </div>
-
-<div class="row">
-  
-
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><i class="fa fa-bar-chart"></i> PROCESOS POR MARCA <small>2017</small></h2>
+                    <h2><i class="fa fa-line-chart"></i> FACTURADO POR MES<small>{{$año_actual}}</small></h2>
+                      <span class="pull-right">
+                      <a href="javascript:;" class="area_bs" ><i class="fa fa-area-chart"></i></a>
+                      <a href="javascript:;" class="line_bs"><i class="fa fa-line-chart"></i></a>
+                      <a href="javascript:;" class="bar_bs"><i class="fa fa-bar-chart"></i></a>
+                      </span>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div id="chart_facturado"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2><i class="fa fa-bar-chart"></i> PROCESOS POR MARCA <small>{{$año_actual}}</small></h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -180,7 +183,7 @@ a:hover {
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><i class="fa fa-pie-chart"></i> PROCESOS POR REGIONAL <small>2017</small></h2>
+                    <h2><i class="fa fa-pie-chart"></i> PROCESOS POR REGIONAL <small>{{$año_actual}}</small></h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -221,90 +224,61 @@ a:hover {
 
                 </div>
               </div>
-</div>
-{{-- 
-            <div class="row sombra">
-              <div class="col-md-3 col-sm-3 col-xs-6 ">
-                  <div class="x_title">
-                    <span>COTIZACIONES POR MARCA</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="chart_cotiza"></div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6 ">
-                  <div class="x_title">
-                    <span>TESTS POR MARCA</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="chart_test"></div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6 ">
-                  <div class="x_title">
-                    <span>RESERVAS POR MARCA</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="chart_reservas"></div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6 ">
-                  <div class="x_title">
-                    <span>FACTURAS POR MARCA</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="chart_facturas"></div>
-                  </div>
-              </div>
-            </div> --}}
-          
-<div class="ln_solid"></div>
+            </div>
 
-{{--              <div class="row sombra">
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <span>POR REGIONAL COTIZACIONES</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="graph_donut_cotiza" style="width:100%; height:200px;"></div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <span>POR REGIONAL TEST DRIVE</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="graph_donut_test" style="width:100%; height:200px;"></div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <span>POR REGIONAL RESERVAS</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="graph_donut_reservas" style="width:100%; height:200px;"></div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                  <div class="x_title">
-                    <span>POR REGIONAL FACTURAS</span>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="graph_donut_facturas" style="width:100%; height:200px;"></div>
-                  </div>
-              </div>
-            </div> --}}
-            <br/>
+<div class="row">{{-- 
+  <div class="col-md-6 col-sm-6 col-xs-12">
+  </div>
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+          <h2><i class="fa fa-tachometer"></i> METAS POR MES <small>{{$año_actual}}</small></h2>
+          <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <div class="col-xs-9">
+          <div class="tab-content">
+            <div class="tab-pane active" id="taco">
+              <div id="tacometro"></div>
+            </div>
           </div>
         </div>
+        <div class="col-xs-3">
+          <ul class="nav nav-tabs tabs-right">
+            @if($mes>=12)<li @if($mes ==12) class="active" @endif><a href="#taco" data-toggle="tab" class="peque">Diciembre</a></li>@endif
+            @if($mes>=11)<li @if($mes ==11) class="active" @endif><a href="#taco" data-toggle="tab" class="peque">Noviembre</a></li>@endif
+            @if($mes>=10)<li @if($mes ==10) class="active" @endif><a href="#taco" data-toggle="tab" class="peque">Octubre</a></li>@endif
+            @if($mes>=9)<li @if($mes ==9) class="active" @endif><a href="#taco" data-toggle="tab" class="peque">Septiembre</a></li>@endif
+            @if($mes>=8)<li @if($mes ==8) class="active" @endif><a href="#taco" data-toggle="tab" class="peque">Agosto</a></li>@endif
+            @if($mes>=7)<li @if($mes ==7) class="active" @endif><a href="#taco" data-toggle="tab" class="peque">Julio</a></li>@endif
+            @if($mes>=6)<li @if($mes ==6) class="active" @endif><a href="#taco" data-toggle="tab" class="peque">Junio</a></li>@endif
+            @if($mes>=5)<li @if($mes ==5) class="active" @endif><a href="#taco" data-toggle="tab" class="peque">Mayo</a></li>@endif
+            @if($mes>=4)<li @if($mes ==4) class="active" @endif><a href="#taco" data-toggle="tab" class="peque">Abril</a></li>@endif
+            @if($mes>=3)<li @if($mes ==3) class="active" @endif><a href="#taco" data-toggle="tab" class="peque">Marzo</a></li>@endif
+            @if($mes>=2)<li @if($mes ==2) class="active" @endif><a href="#taco" data-toggle="tab" class="peque">Febrero</a></li>@endif
+            @if($mes>=1)<li @if($mes ==1) class="active" @endif><a href="#taco" data-toggle="tab" class="peque">Enero</a></li>@endif
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+ --}}</div>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2><i class="fa fa-line-chart"></i> FLUJO DIARIO<small>{{$año_actual}}</small></h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <div id="chart_diario"></div>
+      </div>
+    </div>
+  </div>
+</div>
+            
+    </div>
+  </div>
       
 @endsection
 
@@ -342,8 +316,28 @@ a:hover {
     <script src="{{asset('bower_components/gentelella/vendors/moment/min/moment.min.js')}}"></script>
     <script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 
+
 <script type="text/javascript">
 $(document).ready(function($) {
+
+
+
+  var chart = c3.generate({
+    bindto: '#tacometro',
+    data: {
+        columns: [
+            ['data',4]
+        ],
+        type: 'gauge'
+        
+    },
+   
+    color: {
+        pattern: ['#069f7f']
+    }
+});
+
+
 
 var grupo =['YAMAHA','HINO','LEXUS','KUBOTA','DAIHATSU','VOLVO'];
 var b_colores = {TOYOTA: '#26B99A', YAMAHA: '#ACADAC', HINO: '#3498DB', LEXUS: '#34495E', KUBOTA: '#145d66', DAIHATSU: '#4b3a52', VOLVO: '#8e5ea2',} ;
@@ -473,6 +467,10 @@ function grafico (tipo ,data,colores){
               categories: ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE']
           }
       }
+
+    // title: {
+    //   text: 'CANTIDAD DE PROCESOS POR MES'
+    // }
   });
 }
 
@@ -550,191 +548,184 @@ grafico_donas('#donut_reservas',donas_reserva,'Reservas',colores_dona);
 grafico_donas('#donut_facturas',donas_factura,'Facturas',colores_dona);
 
 
+
+///////////////////////////////////////////////////////////////////////////////////
+
+var data_facturado=[];
+var dato_facturado = <?php echo json_encode($facturado_mes); ?>;
+
+var data_temp_facturado = [];
+data_temp_facturado[0] = 'FACTURADO (Bs)';
+for (var i = 0; i < dato_facturado.length; i++) 
+{
+  data_temp_facturado[i+1]= dato_facturado[i].FACTUTADO;
+}
+
+data_facturado.push(data_temp_facturado);
+
+grafico_facturado('area',data_facturado);
+
+$(".area_bs").click(function() {
+      grafico_facturado('area',data_facturado);
+});
+
+$(".bar_bs").click(function() {
+      grafico_facturado('bar',data_facturado);
+});
+
+$(".line_bs").click(function() {
+      grafico_facturado('line',data_facturado);
+});
+
+
+
+function grafico_facturado (tipo,data){
+    var categories= ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'];
+    var chart2 = c3.generate({
+      bindto: '#chart_facturado',
+      data: {
+        columns: data,
+          type: tipo
+      },
+      color: {
+        pattern: ['#26B99A']
+      },
+      axis: {
+          x: {
+              type: 'category',
+              tick: {
+                  rotate: 90,
+                  multiline: false
+              },
+              categories:categories
+          },
+          y : {
+            tick: {
+                format: function (d) { return "Bs " + d; }
+            }
+          }
+      },
+      legend: {
+        show: false
+      },
+      tooltip: {
+        format: {
+            title: function (d) { return  categories[d]; },
+            value: function (value, ratio, id) {
+                var format = id === 'FACTURADO (Bs)' ? d3.format(',') : d3.format('');
+                return format(value);
+            }
+        }
+    },
+    title: {
+      text: 'MONTOS FACTURADOS POR MES (Bs)'
+    }
+  });
+}
+
+//=====================================================================================
+
+
+var data_diario=[];
+var dato_diario_fac = <?php echo json_encode($fac_diarias); ?>;
+var dato_diario_res = <?php echo json_encode($res_diarias); ?>;
+var dato_diario_cot = <?php echo json_encode($cot_diarias); ?>;
+
+var data_temp_diario_fac = [];
+var data_temp_diario_res = [];
+var data_temp_diario_cot = [];
+
+var date = [];
+var date1 = [];
+var nom_dias = [];
+
+data_temp_diario_fac[0] = 'FACTURADOS';
+data_temp_diario_res[0] = 'RESERVAS';
+data_temp_diario_cot[0] = 'COTIZADOS';
+
+date[0] = 'fechas';
+
+for (var i = 0; i < dato_diario_fac.length; i++) 
+{
+  data_temp_diario_fac[i+1]= dato_diario_fac[i].facturas;
+  data_temp_diario_res[i+1]= dato_diario_res[i].reservas;
+  data_temp_diario_cot[i+1]= dato_diario_cot[i].cotizaciones;
+
+  date[i+1]=dato_diario_fac[i].fecha;
+  date1[i]=dato_diario_fac[i].fecha;
+  nom_dias[i]=dato_diario_fac[i].nom_dia;
+}
+
+data_diario.push(date,data_temp_diario_cot,data_temp_diario_res,data_temp_diario_fac);
+
+grafico_diario(data_diario,date1,nom_dias);
+
+function grafico_diario (data,dates,nomdias){
+  
+    var chart2 = c3.generate({
+      bindto: '#chart_diario',
+      data: {
+        x: 'fechas',
+        columns: data,
+          type: 'area'
+          
+      },
+
+      color: {
+        pattern: ['#7db6d1','#c98849','#872fa8']
+      },
+      axis: {
+         x: {
+                type: 'timeseries',
+
+                tick: {
+                  format: function (x) {
+                    if (x.getDate() === 1) {
+                      return x.toLocaleDateString();
+                    }
+                  },
+                  //count : 365,
+                  //rotate : 31,
+                  format: '%b '
+                }
+            }
+      },
+
+      regions: [
+          {start: '2017-01-01', end: '2017-01-31', class: 'regionX'},
+          {start: '2017-03-01', end: '2017-03-31', class: 'regionX'},
+          {start: '2017-05-01', end: '2017-05-31', class: 'regionX'},
+          {start: '2017-07-01', end: '2017-07-31', class: 'regionX'},
+          {start: '2017-09-01', end: '2017-09-31', class: 'regionX'},
+          {start: '2017-11-01', end: '2017-11-31', class: 'regionX'}
+      ],
+      
+       subchart: {
+          show: true
+      },
+      point: {
+        show: false
+    },
+    // tooltip: {
+    //     format: {
+    //         title: function (d) { return  d; },
+    //     }
+    // },
+    tooltip: {
+        format: {
+            title: function (d) {
+                var format = d3.time.format('%a %e-%m-%Y');
+                return format(d)
+            }
+        }
+    },
+    zoom: {
+        enabled: true
+    }
+  });
+}
+
 //****************************************************
-
-// var chart = c3.generate({
-//     bindto: '#chart',
-//     data: {
-//       columns: data,
-//         type: 'area-spline',
-//         colors: colores
-//     },
-//     axis: {
-//         x: {
-//             type: 'category',
-//             tick: {
-//                 rotate: 90,
-//                 multiline: false
-//             },
-//             categories: ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE']
-//         }
-//     } 
-
-// });
-
-
-
-// var chart3 = c3.generate({
-//     bindto: '#chart-line',
-//     data: {
-//       columns: data,
-//         type: 'line',
-//         colors: colores
-//     },
-//     axis: {
-//         x: {
-//             type: 'category',
-//             tick: {
-//                 rotate: 90,
-//                 multiline: false
-//             },
-//             categories: ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE']
-//         }
-//     } 
-
-// });
-
-// d3.select('#container').insert('div', '.chart').attr('class', 'legend').selectAll('span')
-//     .data(['COTIZACIONES', 'TEST', 'RESERVAS','FACTURAS'])
-//   .enter().append('span')
-//     .attr('data-id', function (id) { return id; })
-//     .html(function (id) { return id; })
-//     .each(function (id) {
-//         d3.select(this).style('background-color', chart.color(id));
-//     })
-//     .on('mouseover', function (id) {
-//         chart.focus(id);
-//     })
-//     .on('mouseout', function (id) {
-//         chart.revert();
-//     })
-//     .on('click', function (id) {
-//         chart.toggle(id);
-//     });
-
-
-//======================     RESUMEN   =====================================
-//========================================================================
-// var data=[];
-// var dato_cotizaciones  = <?php echo json_encode($cotizaciones); ?>;
-// var dato_test  = <?php echo json_encode($cotizaciones); ?>;
-// var dato_reservas  = <?php echo json_encode($reservas); ?>;
-// var dato_facturas  = <?php echo json_encode($facturas); ?>;
-
-// for (var i = 0; i < dato_cotizaciones.length; i++) {
-//   var oData = {
-//     'meses':'',
-//     'cotiza':dato_cotizaciones[i]? dato_cotizaciones[i].COTIZACIONES :0,
-//     'test':dato_test[i]? Math.round(dato_test[i].COTIZACIONES *0.30) :0,
-//     'res':dato_reservas[i]? dato_reservas[i].RESERVADOS :0 ,
-//     'fact':dato_facturas[i]? dato_facturas[i].FACTURADOS:0
-//   };
-
-// oData.meses = nombreMes(dato_cotizaciones[i].MES);
-// data.push(oData);
-
-// }
-
-// Morris.Bar({
-//   element: 'graph_bar_resumen',
-//   data:data,
-//   xkey: 'meses',
-//   ykeys: ['cotiza','test','res','fact'],
-//   labels: ['Cotizaciones','Test','Reservas','Facturas'],
-//   barRatio:5,
-//   barColors: ['#069f7f', '#34495E', '#4b3a52', '#3498DB'],
-//   xLabelAngle: 55,
-//   fillOpacity: 0.6,
-//       hideHover: 'auto',
-//       behaveLikeLine: true,
-
-//   resize: true,
-//     redraw: true
-// });
-
-
-//========================================================================
-//========================================================================
-
-
-//======================   DONAS      =====================================
-//========================================================================
-//===================== DONA COTIZACIONES ================================
-
-// var dato_cot_reg  = <?php echo json_encode($cotizaciones_por_reg); ?>;
-// var data_cot_reg=[];
-// for (var i = 0; i < dato_cot_reg.length; i++) 
-// {
-//   var oData = {'label':dato_cot_reg[i].REGIONAL, 'value':dato_cot_reg[i].COTIZACIONES };
-//   data_cot_reg.push(oData);
-// }
-
-// Morris.Donut({
-//           element: 'graph_donut_cotiza',
-//           data: data_cot_reg,
-//           colors: ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
-          
-//           resize: true
-//         });
-//========================================================================
-
-//===================== DONA TEST ================================
-
-// var dato_test_reg  = <?php echo json_encode($cotizaciones_por_reg); ?>;
-// var data_test_reg=[];
-// for (var i = 0; i < dato_test_reg.length; i++) 
-// {
-//   var oData = {'label':dato_test_reg[i].REGIONAL, 'value':Math.round(dato_test_reg[i].COTIZACIONES*0.30) };
-//   data_test_reg.push(oData);
-// }
-
-// Morris.Donut({
-//           element: 'graph_donut_test',
-//           data: data_test_reg,
-//           colors: ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
-          
-//           resize: true
-//         });
-//========================================================================
-
-//===================== DONA RESERVAS ================================
-
-// var dato_res_reg  = <?php echo json_encode($reservas_por_reg); ?>;
-// var data_res_reg=[];
-// for (var i = 0; i < dato_res_reg.length; i++) 
-// {
-//   var oData = {'label':dato_res_reg[i].REGIONAL, 'value':dato_res_reg[i].RESERVADOS };
-//   data_res_reg.push(oData);
-// }
-
-// Morris.Donut({
-//           element: 'graph_donut_reservas',
-//           data: data_res_reg,
-//           colors: ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
-          
-//           resize: true
-//         });
-//========================================================================
-
-//===================== DONA FACTURAS ================================
-
-// var dato_fac_reg  = <?php echo json_encode($facturas_por_reg); ?>;
-// var data_fac_reg=[];
-// for (var i = 0; i < dato_fac_reg.length; i++) 
-// {
-//   var oData = {'label':dato_fac_reg[i].REG_ASIGNADA, 'value':dato_fac_reg[i].FACTURADOS };
-//   data_fac_reg.push(oData);
-// }
-
-// Morris.Donut({
-//           element: 'graph_donut_facturas',
-//           data: data_fac_reg,
-//           colors: ['#26B99A', '#3498DB' ,'#34495E', '#ACADAC', '#145d66', '#4b3a52', '#455c73'],
-          
-//           resize: true
-//         });
-//========================================================================
-///////////////////////////////////////////////////////////////
 
 
 });

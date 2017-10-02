@@ -16,6 +16,11 @@ class UsadosController extends Controller
         return view('usados.reporte.index');
     }
 
+     public function index_admin()
+    {
+        return view('usados.administracion.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,6 +29,11 @@ class UsadosController extends Controller
     public function create()
     {
         return view('usados.reporte.detalle');
+    }
+
+     public function modal_nuevo(Request $request)
+    {
+        return view('usados.administracion.modal_nuevo');
     }
 
     /**

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Cotizacion;
 use App\Reserva;
 use App\Factura;
+use App\Calendario;
 use Carbon\Carbon;
 use DB;
 class ResumenController extends Controller
@@ -19,6 +20,7 @@ class ResumenController extends Controller
             $hoy_aux = Carbon::now('America/La_Paz')->format('d/m/Y');// la base exige este formato.. SQL SERVER :(
             $hoy = Carbon::now('America/La_Paz')->toDateString(); // hoy
             $año_actual = Carbon::now('America/La_Paz') -> year; //año actual.
+            $mes = Carbon::now('America/La_Paz') -> month;
             //============================= =======================
             $total_cotizaciones =Cotizacion::whereBetween('FECHA_COTIZACION',[$inicio_año,$hoy])
             ->count();
@@ -74,7 +76,36 @@ class ResumenController extends Controller
             ->orderBy('FACTURADOS', 'desc')
             ->get()->toArray();   
             //============================= =======================
-            // dd($facturas);
+
+            $facturado_mes = Factura::select( DB::raw("month(FECHA_FACTURA) as MES , SUM (PRECIO_VENTA) as FACTUTADO"))
+            ->where('FECHA_FACTURA','>',$inicio_año)
+            ->groupBy(DB::raw('month(FECHA_FACTURA)'))
+            ->orderBy(DB::raw('month(FECHA_FACTURA)'))
+            ->get()->toArray();
+
+            //=====================  DIA ======================================
+
+            $fac_diarias = Calendario::select('fecha', DB::raw("COUNT(v_facturados.CHASIS) as facturas"))
+            ->leftJoin('v_facturados', 'v_facturados.FECHA_FACTURA', '=', 'calendario.fecha')
+            ->groupBy('fecha')
+            ->orderBy('fecha')
+            ->get()->toArray();
+            
+            $res_diarias = Calendario::select('fecha', DB::raw("COUNT(v_reservados.CHASIS) as reservas"))
+            ->leftJoin('v_reservados', 'v_reservados.FECHA_RESERVA', '=', 'calendario.fecha')
+            ->groupBy('fecha')
+            ->orderBy('fecha')
+            ->get()->toArray();
+
+            $cot_diarias = Calendario::select('fecha', DB::raw("COUNT(v_cotizaciones.CHASIS) as cotizaciones"))
+            ->leftJoin('v_cotizaciones', 'v_cotizaciones.FECHA_COTIZACION', '=', 'calendario.fecha')
+            ->groupBy('fecha')
+            ->orderBy('fecha')
+            ->get()->toArray();
+
+    
+             // dd($cot_diarias);
+
             return view('reportes.resumen.index')      
             ->with('cotizaciones',$cotizaciones)
             ->with('total_cotizaciones',$total_cotizaciones)          
@@ -88,8 +119,13 @@ class ResumenController extends Controller
             ->with('total_facturas',$total_facturas)
             ->with('facturas_por_marca',$facturas_por_marca)
             ->with('facturas_por_reg',$facturas_por_reg)
+            ->with('facturado_mes',$facturado_mes)
+            ->with('fac_diarias',$fac_diarias)
+            ->with('res_diarias',$res_diarias)
+            ->with('cot_diarias',$cot_diarias)
             
             ->with('año_actual',$año_actual)
+            ->with('mes',$mes)
             ->with('hoy',$hoy)
             ;
     }

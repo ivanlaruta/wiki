@@ -420,9 +420,18 @@ Route::group(['prefix'=>'notas','middleware'=>'auth'],function(){
 });
 
 
-
 Route::group(['prefix'=>'usados','middleware'=>'auth'],function(){
 	
+	route::get('usados/modal_nuevo',[
+		'uses' =>'UsadosController@modal_nuevo',
+		'as'   =>	'usados.modal_nuevo'
+	]);
+
+	route::get('usados/admin',[
+		'uses' =>'UsadosController@index_admin',
+		'as'   =>	'usados.admin'
+	]);
+
 	route::resource('usados','UsadosController');
 
 });
