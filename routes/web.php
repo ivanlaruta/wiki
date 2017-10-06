@@ -23,8 +23,7 @@ Route::get('/inicio', function () {
 
 Route::get('/test', function () {
     return view('pruebas');
-});
-
+})->name('test');
 
 Auth::routes();
 
