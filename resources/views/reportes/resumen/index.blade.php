@@ -585,7 +585,9 @@ function grafico_facturado (tipo,data){
       bindto: '#chart_facturado',
       data: {
         columns: data,
-          type: tipo
+          type: tipo,
+          onclick: function(e) { console.log(e); }
+          
       },
       color: {
         pattern: ['#26B99A']
@@ -664,6 +666,9 @@ function grafico_diario (data,dates,nomdias){
   
     var chart2 = c3.generate({
       bindto: '#chart_diario',
+      size: {
+        height: 400
+      },
       data: {
         x: 'fechas',
         columns: data,
@@ -703,9 +708,9 @@ function grafico_diario (data,dates,nomdias){
        subchart: {
           show: true
       },
-      point: {
-        show: false
-    },
+    //   point: {
+    //     show: false
+    // },
     // tooltip: {
     //     format: {
     //         title: function (d) { return  d; },

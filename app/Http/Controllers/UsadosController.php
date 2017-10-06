@@ -35,6 +35,26 @@ class UsadosController extends Controller
     {
         return view('usados.administracion.modal_nuevo');
     }
+     public function modal_nuevo_marca(Request $request)
+    {
+        return view('usados.administracion.modal_nuevo_marca');
+    }
+     public function modal_nuevo_modelo(Request $request)
+    {
+        return view('usados.administracion.modal_nuevo_modelo');
+    }
+     public function modal_nuevo_master(Request $request)
+    {
+        return view('usados.administracion.modal_nuevo_master');
+    }
+     public function modal_nuevo_color(Request $request)
+    {
+        return view('usados.administracion.modal_nuevo_color');
+    }
+     public function modal_nuevo_parametrica(Request $request)
+    {
+        return view('usados.administracion.modal_nuevo_parametrica');
+    }
 
     /**
      * Store a newly created resource in storage.

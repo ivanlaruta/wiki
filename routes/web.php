@@ -427,6 +427,31 @@ Route::group(['prefix'=>'usados','middleware'=>'auth'],function(){
 		'as'   =>	'usados.modal_nuevo'
 	]);
 
+	route::get('usados/modal_nuevo_marca',[
+		'uses' =>'UsadosController@modal_nuevo_marca',
+		'as'   =>	'usados.modal_nuevo_marca'
+	]);
+
+	route::get('usados/modal_nuevo_modelo',[
+		'uses' =>'UsadosController@modal_nuevo_modelo',
+		'as'   =>	'usados.modal_nuevo_modelo'
+	]);
+
+	route::get('usados/modal_nuevo_master',[
+		'uses' =>'UsadosController@modal_nuevo_master',
+		'as'   =>	'usados.modal_nuevo_master'
+	]);
+
+	route::get('usados/modal_nuevo_color',[
+		'uses' =>'UsadosController@modal_nuevo_color',
+		'as'   =>	'usados.modal_nuevo_color'
+	]);
+
+	route::get('usados/modal_nuevo_parametrica',[
+		'uses' =>'UsadosController@modal_nuevo_parametrica',
+		'as'   =>	'usados.modal_nuevo_parametrica'
+	]);
+
 	route::get('usados/admin',[
 		'uses' =>'UsadosController@index_admin',
 		'as'   =>	'usados.admin'

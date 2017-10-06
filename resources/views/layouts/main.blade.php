@@ -203,6 +203,11 @@
         <!-- Autosize -->
         <script src="{{asset('bower_components/gentelella/vendors/autosize/dist/autosize.min.js')}}"></script>
 
+
+    <!-- validator -->
+    <script src="{{asset('bower_components/gentelella/vendors/validator/validator.js')}}"></script>
+
+    
         <!-- ECharts -->
         <script src="{{asset('bower_components/gentelella/vendors/echarts/dist/echarts.min.js')}}"></script>
         <script src="{{asset('bower_components/gentelella/vendors/echarts/map/js/world.js')}}"></script>
