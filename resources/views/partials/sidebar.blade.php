@@ -116,11 +116,15 @@
                     </ul>
                   </li>
 
-                 {{--  <li><a><i class="fa fa-cogs"></i> test <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-cogs"></i> Trafico de clientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                     
-                    
-                      <li><a href="{{ route('test')}}">develop no found</a></li>
+                      <li><a href="{{ route('trafico.index')}}">Formulario</a></li>
+                    </ul>
+                  </li>
+
+                  {{-- <li><a><i class="fa fa-cogs"></i> test <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{ route('test')}}">Conexion ODOO</a></li>
                     </ul>
                   </li> --}}
                   {{-- <li><a><i class="fa fa-bar-chart-o"></i> Solicitudes Pendientes <span class="fa fa-chevron-down"></span></a>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransportadorasTable extends Migration
+class CreateTrfMotivos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateTransportadorasTable extends Migration
      */
     public function up()
     {
-        Schema::create('transportadoras', function (Blueprint $table) {
+        Schema::create('trf_motivos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre')->nullable();
-            $table->string('descripcion')->nullable();
-            $table->string('telefono',15)->nullable();
-            $table->string('creado_por')->nullable()->unsigned();
+            $table->string('descripcion');
+            $table->string('observaciones')->nullable();
+            $table->string('estado')->nullable();
+
+            $table->string('created_by')->nullable()->unsigned();
+            $table->string('updated_by')->nullable()->unsigned();
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateTransportadorasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transportadoras');
+        Schema::dropIfExists('trf_motivos');
     }
 }

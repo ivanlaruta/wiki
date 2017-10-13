@@ -459,3 +459,12 @@ Route::group(['prefix'=>'usados','middleware'=>'auth'],function(){
 	route::resource('usados','UsadosController');
 
 });
+
+
+Route::group(['prefix'=>'odoo','middleware'=>'auth'],function(){
+	route::resource('odoo','OdooController');
+});
+
+Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
+	route::resource('trafico','TraficoController');
+});
