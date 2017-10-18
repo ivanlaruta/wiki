@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTrfEjecutivos extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,21 @@ class CreateTrfEjecutivos extends Migration
      */
     public function up()
     {
-        Schema::create('trf_ejecutivos', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ci');
+            $table->string('usuario')->unique();
+            $table->string('password');
+            $table->string('email');
             $table->string('nombre');
             $table->string('paterno')->nullable();
             $table->string('materno')->nullable();
             $table->string('telefono')->nullable();
-            $table->string('correo')->nullable();
-            $table->string('cargo')->nullable();
-            $table->string('id_sucursal');
-            $table->string('estado')->nullable();
-
-            $table->string('created_by')->nullable()->unsigned();
-            $table->string('updated_by')->nullable()->unsigned();
+            $table->string('id_ubicacion')->nullable()->unsigned();
+            $table->enum('rol',['1','0'])->default('1');
+            $table->enum('estado',['1','0'])->default('1');
+            $table->date('fecha_salida')->nullable();
+            $table->rememberToken();
             $table->timestamps();
-
-            // $table->foreign('id_sucursal')->references('id')->on('trf_sucursales')->onDelete('cascade');
         });
     }
 
@@ -40,6 +38,6 @@ class CreateTrfEjecutivos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trf_ejecutivos');
+        Schema::dropIfExists('users');
     }
 }

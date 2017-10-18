@@ -1,5 +1,11 @@
 
 <div class="top_nav">
+<style type="text/css">
+  
+  
+
+
+</style>
           <div class="nav_menu">
             <nav>
               <div class="nav toggle">
@@ -40,9 +46,10 @@
                         </ul>
                     </li>
                     <li role="presentation" class="dropdown">
-                      <a  class="info-number" >
+                      <a  class="info-number" style="  pointer-events: none; " >
                         <i class="fa fa-map-marker"></i>
-                        {{ Auth::user()->id_ubicacion}}
+                        {{Auth::user()->id_ubicacion}} - {{Auth::user()->sucursal2->nom_sucursal}} 
+
                       </a>
                       
                     </li>

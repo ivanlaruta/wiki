@@ -3,29 +3,44 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\AsignacionStock;
+
+use App\User;
+use App\Trf_Sucursal;
+use App\Trf_Parametrica;
+
+use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Auth;
-class AsignacionStocksController extends Controller
+
+class AdministracionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index_sucursales()
     {
+        $detalle =Trf_Sucursal::select(DB::raw('ROW_NUMBER() OVER(ORDER BY id DESC) AS ITEM'),'*')->get(); 
+        // dd($detalle);
+        return view('administracion.sucursales.index')->with('detalle',$detalle) ;
+    }
 
+    public function index_users()
+    {
+        $detalle =User::all();
+        return view('administracion.users.index')->with('detalle',$detalle) ;
+    }
 
-        $v = DB::table('asignacion_stocks as s')
-        ->select('s.id_stock','ma.MARCA','s.cod_modelo','s.cod_master','s.regional','s.stock_min','s.stock_asignado','m.MODELO')
-        ->Join ('v_modelos as m' ,'s.cod_modelo','=','m.cod_modelo')
-         ->Join ('v_marcas as ma' ,'ma.cod_marca','=','m.cod_marca')    
-         ->orderBy('id_stock','ASC')->paginate(10);
-        
-        return view('distribuidor.admin.stock')
-            ->with('v',$v)
-        ;
+    public function index_parametrica()
+    {
+        $detalle =Trf_Parametrica::all();
+        return view('administracion.parametricas.index')->with('detalle',$detalle) ;
+    }
+
+     public function index()
+    {
+        //
     }
 
     /**

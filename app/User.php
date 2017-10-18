@@ -14,16 +14,25 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = "users";
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','id_ubicacion'
     ];
+     
+    
+    public function sucursal()
+    {
+        return $this->belongsTo('App\Trf_Sucursal','id_ubicacion');
+    }
+ public function sucursal2()
+    {
+        return $this->belongsTo(Trf_Sucursal::class,'id_ubicacion');
+    }
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    
+
     protected $hidden = [
         'password', 'remember_token',
     ];
+
 }

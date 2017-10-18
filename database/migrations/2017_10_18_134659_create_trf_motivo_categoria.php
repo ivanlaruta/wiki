@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTrfCategoriaSucursal extends Migration
+class CreateTrfMotivoCategoria extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateTrfCategoriaSucursal extends Migration
      */
     public function up()
     {
-        Schema::create('trf_categoria_sucursal', function (Blueprint $table) {
+        Schema::create('trf_motivo_categoria', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_categoria');
-            $table->integer('id_sucursal');
-            $table->string('descripcion');
+            $table->string('id_categoria');
+            $table->string('id_motivo');
+            $table->string('descripcion')->nullable();
             $table->string('estado')->nullable();
 
             $table->string('created_by')->nullable()->unsigned();
             $table->string('updated_by')->nullable()->unsigned();
             $table->timestamps();
-
         });
     }
 
@@ -34,6 +33,6 @@ class CreateTrfCategoriaSucursal extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trf_categoria_sucursal');
+        Schema::dropIfExists('trf_motivo_categoria');
     }
 }

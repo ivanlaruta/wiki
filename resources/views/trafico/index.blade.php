@@ -19,27 +19,26 @@
             <div class="clearfix"></div>
 
             <div class="row">
+
               <!-- form input knob -->
               <div class="ccol-md-3 col-sm-3 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Cabecera de formulario</h2>
+                    <h2>Inicio</h2>
                       <div class="clearfix" ></div>
                   </div>
                   <div class="x_content">
                     <div class="col-md-12">
                       <div class="row">
-                        <p><strong>Tipo</strong></p>
+                        <p><strong>Tipo de cliente</strong></p>
                           <div class="">
                             <input type="radio" name="tipo" value="Nuevo" class="radio_nuevo"> Nuevo<br>
                             <input type="radio" name="tipo" value="Antiguo" class="radio_antiguo"> Antiguo<br>
                           </div>
                       </div>
                       <hr>
-                      
                       <div class="row">
                         <p><strong>Motivo de visita</strong></p>
-
                         <select class="select_motivos">
                           <option value="0">Seleccione un motivo</option>
                           <option value="VEHICULOS">VEHICULOS</option>
@@ -52,13 +51,17 @@
                           <option value="8">MAQUINARIA PESADA</option>
                           <option value="9">LLANTAS</option>
                           <option value="9">MAQUINARIA GRICOLA</option>
-                        </select> 
-                        
+                        </select>
                       </div>
+                      <hr>
                     </div>
-
+                    <div class="row" align="center">
+                      <input type="submit" value="FINALIZAR" class="btn btn-success btn-block">
+                    </div>
                   </div>
                 </div>
+
+                
               </div>
            
               <div class="col-md-9 col-sm-9 col-xs-12 panel_cliente">
@@ -68,6 +71,9 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+
+                                          
+
                                      
                       <div class="row">
                         <div class="nuevo">
@@ -224,9 +230,7 @@
               </div>
           </div>
 
-          <div class="row" align="center">
-            <input type="submit" value="FINALIZAR" class="btn btn-success ">
-          </div>
+          
         </div>
       </div>
 

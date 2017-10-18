@@ -61,6 +61,8 @@
                   
                     </ul>
                   </li> --}}
+              @if(Auth::user()->rol<>'trafico')
+
                   <li><a><i class="fa fa-car"></i> Stock <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       
@@ -107,18 +109,22 @@
                             <li><a href="#">Reposicion Extraordinaria</a></li>
                     </ul>
                   </li>
-                  
+               @endif    
                   <li><a><i class="fa fa-cogs"></i> Administracion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Usuarios</a></li>
+                      <li><a href="{{ route('administracion.index_sucursales')}}">Sucursales</a></li>
+                      <li><a href="{{ route('administracion.index_users')}}">Usuarios</a></li>
+                      <li><a href="{{ route('administracion.index_parametrica')}}">Parametrizacion</a></li>
                     
-                      <li><a href="{{ route('stocks.index')}}">Asignacion de Stock a regionales</a></li>
+                      {{-- <li><a href="{{ route('stocks.index')}}">Asignacion de Stock a regionales</a></li> --}}
                     </ul>
                   </li>
+             
 
-                  <li><a><i class="fa fa-cogs"></i> Trafico de clientes <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-users"></i> Trafico de clientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('trafico.index')}}">Formulario</a></li>
+                      <li><a href="{{ route('trafico.admin_index')}}">Administracion</a></li>
                     </ul>
                   </li>
 

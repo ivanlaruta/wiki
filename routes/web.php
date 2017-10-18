@@ -461,10 +461,64 @@ Route::group(['prefix'=>'usados','middleware'=>'auth'],function(){
 });
 
 
+
+Route::group(['prefix'=>'administracion','middleware'=>'auth'],function(){
+	
+	route::get('administracion/index_sucursales',[
+		'uses' =>'AdministracionController@index_sucursales',
+		'as'   =>	'administracion.index_sucursales'
+	]);
+
+	route::get('administracion/index_users',[
+		'uses' =>'AdministracionController@index_users',
+		'as'   =>	'administracion.index_users'
+	]);
+
+	route::get('administracion/index_parametrica',[
+		'uses' =>'AdministracionController@index_parametrica',
+		'as'   =>	'administracion.index_parametrica'
+	]);
+
+	route::resource('administracion','AdministracionController');
+
+});
+
+
 Route::group(['prefix'=>'odoo','middleware'=>'auth'],function(){
 	route::resource('odoo','OdooController');
 });
 
 Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
+	
+	route::get('trafico/admin_index',[
+		'uses' =>'TraficoController@admin_index',
+		'as'   =>	'trafico.admin_index'
+	]);
+
+	route::get('trafico/modal_add_encuestas',[
+		'uses' =>'TraficoController@modal_add_encuestas',
+		'as'   =>	'trafico.modal_add_encuestas'
+	]);
+
+	route::get('trafico/modal_add_motivo_encuesta',[
+		'uses' =>'TraficoController@modal_add_motivo_encuesta',
+		'as'   =>	'trafico.modal_add_motivo_encuesta'
+	]);
+
+	route::get('trafico/add_encuestas',[
+		'uses' =>'TraficoController@add_encuestas',
+		'as'   =>	'trafico.add_encuestas'
+	]);
+
+	route::get('trafico/add_motivo_encuesta',[
+		'uses' =>'TraficoController@add_motivo_encuesta',
+		'as'   =>	'trafico.add_motivo_encuesta'
+	]);
+
+	route::get('trafico/add_encuestas',[
+		'uses' =>'TraficoController@add_encuestas',
+		'as'   =>	'trafico.add_encuestas'
+	]);
+
 	route::resource('trafico','TraficoController');
 });

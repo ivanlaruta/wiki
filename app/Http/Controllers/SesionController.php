@@ -33,6 +33,10 @@ class SesionController extends Controller
         {
             return redirect()->route('envios.index');
         }
+        if (Auth::user()->rol == 'trafico')
+        {
+            return redirect()->route('trafico.index');
+        }
 
     }
 }

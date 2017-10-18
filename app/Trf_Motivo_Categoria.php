@@ -4,15 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Trf_Ejecutivo_Motivo extends Model
+class Trf_Motivo_Categoria extends Model
 {
-    protected $table = "trf_ejecutivo_motivo";
+    protected $table = "trf_motivo_categoria";
      protected $dateFormat = 'Ymd H:i:s';
     public $timestamps = true;
 
-    public function ejecutivo()
+
+    // protected $fillable =['id','id_encuesta','id_motivo'];
+
+    public function categoria()
     {
-        return $this->belongsTo('App\Trf_Ejecutivo','id_ejecutivo');
+        return $this->belongsTo('App\Trf_Categoria','id_categoria');
     }
     public function motivo()
     {

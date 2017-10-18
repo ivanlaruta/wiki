@@ -10,7 +10,7 @@ use App\Master;
 use App\V_histo_ubica;
 use Carbon\Carbon;
 use DB;
-
+use Illuminate\Support\Facades\Auth;
 class AlertaVehiculosController extends Controller
 {
     /**

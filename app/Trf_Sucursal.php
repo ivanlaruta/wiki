@@ -7,17 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Trf_Sucursal extends Model
 {
     protected $table = "trf_sucursales";
+    public $incrementing=false;
+     protected $dateFormat = 'Ymd H:i:s';
     public $timestamps = true;
 
-    public function categorias_sucursales()
-    {
-        return $this->hasMany('App\Trf_Categoria_Sucursal');
-    }
 
-    public function motivos_sucursales()
-    {
-        return $this->hasMany('App\Trf_Motivo_Sucursal');
-    }
+    protected $fillable =['id','nom_sucursal'];
+
+   
 
     public function visitas()
     {
@@ -27,5 +24,13 @@ class Trf_Sucursal extends Model
     public function ejecutivos()
     {
         return $this->hasMany('App\Trf_Ejecutivo');
+    }
+    public function users()
+    {
+        return $this->hasMany('App\User','id');
+    }
+    public function encuestas()
+    {
+        return $this->hasMany('App\Trf_Encuesta','id');
     }
 }
