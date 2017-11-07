@@ -8,9 +8,7 @@
               <div class="title_left">
                 <h3>ESTADO DE SOLICITUDES / <small>Lista de Solicitudes</small></h3>
               </div>
-
-              
-            </div>
+            </div> 
 
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">

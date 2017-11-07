@@ -35,6 +35,7 @@
                      <th>TABLA</th>
                      <th>CODIGO</th>
                      <th>DESCRIPCION</th>
+                     <th>OPCIONES</th>
                     </tr>
                   </tfoot>
                   <tbody>

@@ -1,4 +1,4 @@
-        <div class="col-md-3 left_col menu_fixed ">
+        <div class="col-md-3 left_col  ">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
             <a class="site_title" href="{{ url('/home') }}">
@@ -15,7 +15,7 @@
                   </li> --}}
                   
                   {{-- <li><a  href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"><i class="glyphicon glyphicon-fire"></i> Cotizaciones</a></li>  --}}
-
+    @if(Auth::user()->rol<>'100')
                   <li><a  href="{{ route('resumen.index')}}"><i class="fa fa-bar-chart"></i>   Inicio</a></li>
 
                   
@@ -37,7 +37,7 @@
                     </ul>
                   </li>
                   --}}
-
+ 
                   <li><a><i class="fa fa-puzzle-piece"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a  href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Cotizaciones</a></li> 
@@ -61,7 +61,7 @@
                   
                     </ul>
                   </li> --}}
-              @if(Auth::user()->rol<>'trafico')
+              @if(Auth::user()->rol<>'101')
 
                   <li><a><i class="fa fa-car"></i> Stock <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -109,7 +109,8 @@
                             <li><a href="#">Reposicion Extraordinaria</a></li>
                     </ul>
                   </li>
-               @endif    
+               @endif
+
                   <li><a><i class="fa fa-cogs"></i> Administracion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('administracion.index_sucursales')}}">Sucursales</a></li>
@@ -120,11 +121,11 @@
                     </ul>
                   </li>
              
-
+ @endif
                   <li><a><i class="fa fa-users"></i> Trafico de clientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('trafico.index')}}">Formulario</a></li>
-                      <li><a href="{{ route('trafico.admin_index')}}">Administracion</a></li>
+                      <li><a href="{{ route('trafico.formulario')}}">Formulario</a></li>
+                       @if(Auth::user()->rol=='101' || Auth::user()->rol=='1')<li><a href="{{ route('trafico.admin_index')}}">Administracion</a></li>@endif
                     </ul>
                   </li>
 

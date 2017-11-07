@@ -26,6 +26,7 @@
                       <ul class="nav nav-tabs tabs-left">
                         <li class="active"><a href="#encuesta" data-toggle="tab">Encuestas</a></li>
                         <li><a href="#motivos_encuesta" data-toggle="tab">Motivos-Encuesta</a></li>
+                        <li><a href="#sucursales_encuesta" data-toggle="tab">Sucursales-Encuesta</a></li>
                         <li><a href="#motivos" data-toggle="tab">Motivos</a></li>
                         <li><a href="#categorias" data-toggle="tab">Categorias</a></li>
                         <li><a href="#modelos" data-toggle="tab">Modelos</a></li>
@@ -35,48 +36,42 @@
                     </div>
 
                     <div class="col-xs-10" style="background: white;">
-                      <!-- Tab panes -->
                       <div class="tab-content">
-
                         <div class="tab-pane active" id="encuesta">
-                        <div class="row">
-                          <div class="col-md-10">
-                            <p class="lead">Lista de encuestas .</p>
+                          <div class="row">
+                            <div class="col-md-10">
+                              <p class="lead">Lista de encuestas .</p>
+                            </div>
+                            <div class="col-md-2 pull-right">
+                              <a  href="#" class="btn btn-success btn-sm btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva encuesta" ><i class="fa fa-plus"></i> Nuevo</a>
+                            </div>
                           </div>
-                          <div class="col-md-2 pull-right">
-
-                                <a  href="#" class="btn btn-success btn-sm btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva encuesta" ><i class="fa fa-plus"></i> Nuevo</a>
-
-                          </div>
-                        </div>
-                        <div class="table-responsive">
+                          <div class="table-responsive">
                             <table id="datatable_encuestas" class="table table-striped jambo_table bulk_action">
                               <thead>
                                 <tr>
                                   <th>ID</th>
-                                  <th>UBICACION</th>
                                   <th>DESCRIPCION</th>
                                   <th>OBSERVACIONES</th>
-                                  <th>Operaciones</th>
+                                  <th style="text-align: right;">Operaciones</th>
                                 </tr>
                               </thead>
                               <tbody>
                                @foreach($encuestas as $det)
                                 <tr>
                                    <td>{{$det->id}}</td>
-                                   <td>{{$det->id_sucursal}} - {{$det->sucursal->nom_sucursal}}</td> 
                                    <td>{{$det->descripcion}}</td>
                                    <td>{{$det->observaciones}}</td> 
-                                   <td>
+                                   <td align="right">
                                    <div class="btn-group" role="group" >
-                                      <a href="#" class="btn btn-info btn-xs">
-                                        <span class="fa fa-eye"></span> 
+                                      <a href="#" class="ver_encuesta" data-toggle="tooltip" data-placement="bottom" title="Ver" id_encuesta='{{$det->id}}'>
+                                        <span class="fa fa-eye fa-lg"></span> 
                                       </a>
-                                      <a href="#" class="btn btn-warning btn-xs">
-                                        <span class="fa fa-edit"></span> 
-                                      </a>
-                                      <a href="#" class="btn btn-danger btn-xs">
-                                        <span class="fa fa-trash"></span> 
+                                     {{--  <a href="#" class=" green" data-toggle="tooltip" data-placement="bottom" title="Editar">
+                                        <span class="fa fa-edit fa-lg"></span> 
+                                      </a> --}}
+                                      <a href="{{ route('trafico.delete_encuesta').'?id_encuesta='.$det->id}}" class="red" data-toggle="tooltip" data-placement="bottom" title="Eliminar" onclick ="return confirm('Al eliminar esta encuesta tambien se eliminaran la relacion con motivos y sucursales. ¿Desea continuar?')">
+                                        <span class="fa fa-trash fa-lg"></span> 
                                       </a>
                                     </div>
                                   </td>        
@@ -86,14 +81,18 @@
                             </table>
                           </div>
                           <div class="modal fade modal_add_encuestas" id="Modal_nuevo" role="dialog" >
-                            <div class="modal-dialog ">
+                            <div class="modal-dialog modal-lg">
                               <div class="modal-content contenido_add_encuestas">
                               </div>
                             </div>
                           </div>
+                          <div class="modal fade modal_ver_encuestas" id="Modal_ver" role="dialog" >
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content contenido_ver_encuestas">
+                              </div>
+                            </div>
+                          </div>
                         </div>
-
-
                         <div class="tab-pane" id="motivos_encuesta">
                         <div class="row">
                           <div class="col-md-10">
@@ -107,30 +106,30 @@
                             <table id="datatable_motivos" class="table table-striped jambo_table bulk_action">
                               <thead>
                                 <tr>
-                                  <th>ID</th>
+                                 {{--  <th>ID</th> --}}
                                   <th>ENCUESTA</th>
                                   <th>MOTIVO</th>
-                                  <th>DESCRIPCION</th>
-                                  <th>Operaciones</th>
+                                  {{-- <th>DESCRIPCION</th> --}}
+                                  <th style="text-align: right;">Operaciones</th>
                                 </tr>
                               </thead>
                               <tbody>
                                @foreach($motivos_encuesta as $det)
                                 <tr>
-                                   <td>{{$det->id}}</td>
+                                   {{-- <td>{{$det->id}}</td> --}}
                                    <td>{{$det->id_encuesta}} - {{$det->encuesta->descripcion}}</td>
                                    <td>{{$det->id_motivo}} - {{$det->motivo->descripcion}}</td>
-                                   <td>{{$det->descripcion}}</td>
-                                   <td>
+                                   {{-- <td>{{$det->descripcion}}</td> --}}
+                                   <td align="right">
                                    <div class="btn-group" role="group" >
-                                      <a href="#" class="btn btn-info btn-xs">
-                                        <span class="fa fa-eye"></span> 
+                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
+                                        <span class="fa fa-eye fa-lg"></span> 
                                       </a>
-                                      <a href="#" class="btn btn-warning btn-xs">
-                                        <span class="fa fa-edit"></span> 
+                                      <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
+                                        <span class="fa fa-edit fa-lg"></span> 
                                       </a>
-                                      <a href="#" class="btn btn-danger btn-xs">
-                                        <span class="fa fa-trash"></span> 
+                                      <a href="#" class="{{-- btn btn-danger btn-xs --}} red" data-toggle="tooltip" data-placement="bottom" title="Eliminar">
+                                        <span class="fa fa-trash fa-lg"></span> 
                                       </a>
                                     </div>
                                   </td>        
@@ -142,6 +141,57 @@
                           <div class="modal fade modal_add_motivo_encuesta" id="Modal_nuevo" role="dialog" >
                             <div class="modal-dialog modal-lg">
                               <div class="modal-content contenido_add_motivo_encuesta">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="tab-pane" id="sucursales_encuesta">
+                        <div class="row">
+                          <div class="col-md-10">
+                            <p class="lead">Asignacion de sucursales a encuestas.</p>
+                          </div>
+                          <div class="col-md-2 pull-right">
+                            <a  href="#" class="btn btn-success btn-sm btn_nuevo_add_suc_encuesta" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva asignacion" ><i class="fa fa-plus"></i> Nuevo</a>
+                          </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="datatable_motivos" class="table table-striped jambo_table bulk_action">
+                              <thead>
+                                <tr>
+                                  {{-- <th>ID</th> --}}
+                                  <th>ENCUESTA</th>
+                                  <th>SUCURSAL</th>
+                                  <th style="text-align: right;">Operaciones</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                               @foreach($sucursales_encuesta as $det)
+                                <tr>
+                                   {{-- <td>{{$det->id}}</td> --}}
+                                   <td>{{$det->id_encuesta}} - {{$det->encuesta->descripcion}}</td>
+                                   <td>{{$det->id_sucursal}} - {{$det->sucursal->nom_sucursal}}</td>
+                                   <td align="right">
+                                   <div class="btn-group" role="group" >
+                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
+                                        <span class="fa fa-eye fa-lg"></span> 
+                                      </a>
+                                      <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
+                                        <span class="fa fa-edit fa-lg"></span> 
+                                      </a>
+                                      <a href="#" class="{{-- btn btn-danger btn-xs --}} red" data-toggle="tooltip" data-placement="bottom" title="Eliminar">
+                                        <span class="fa fa-trash fa-lg"></span> 
+                                      </a>
+                                    </div>
+                                  </td>        
+                                </tr>
+                                @endforeach
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="modal fade modal_add_sucursal_encuesta" id="Modal_nuevo" role="dialog" >
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content contenido_add_sucursal_encuesta">
                               </div>
                             </div>
                           </div>
@@ -162,7 +212,7 @@
                                 <tr>
                                   <th>ID</th>
                                   <th>DESCRIPCION</th>
-                                  <th>Operaciones</th>
+                                  <th style="text-align: right;">Operaciones</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -170,16 +220,16 @@
                                 <tr>
                                    <td>{{$det->id}}</td>
                                    <td>{{$det->descripcion}}</td>
-                                   <td>
+                                   <td align="right">
                                    <div class="btn-group" role="group" >
-                                      <a href="#" class="btn btn-info btn-xs">
-                                        <span class="fa fa-eye"></span> 
+                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
+                                        <span class="fa fa-eye fa-lg"></span> 
                                       </a>
-                                      <a href="#" class="btn btn-warning btn-xs">
-                                        <span class="fa fa-edit"></span> 
+                                      <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
+                                        <span class="fa fa-edit fa-lg"></span> 
                                       </a>
-                                      <a href="#" class="btn btn-danger btn-xs">
-                                        <span class="fa fa-trash"></span> 
+                                      <a href="#" class="{{-- btn btn-danger btn-xs --}} red" data-toggle="tooltip" data-placement="bottom" title="Eliminar">
+                                        <span class="fa fa-trash fa-lg"></span> 
                                       </a>
                                     </div>
                                   </td>        
@@ -212,7 +262,7 @@
                                 <tr>
                                   <th>ID</th>
                                   <th>DESCRIPCION</th>
-                                  <th>Operaciones</th>
+                                  <th style="text-align: right;">Operaciones</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -220,16 +270,16 @@
                                 <tr>
                                    <td>{{$det->id}}</td>
                                    <td>{{$det->descripcion}}</td>
-                                   <td>
+                                   <td align="right">
                                    <div class="btn-group" role="group" >
-                                      <a href="#" class="btn btn-info btn-xs">
-                                        <span class="fa fa-eye"></span> 
+                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
+                                        <span class="fa fa-eye fa-lg"></span> 
                                       </a>
-                                      <a href="#" class="btn btn-warning btn-xs">
-                                        <span class="fa fa-edit"></span> 
+                                      <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
+                                        <span class="fa fa-edit fa-lg"></span> 
                                       </a>
-                                      <a href="#" class="btn btn-danger btn-xs">
-                                        <span class="fa fa-trash"></span> 
+                                      <a href="#" class="{{-- btn btn-danger btn-xs --}} red" data-toggle="tooltip" data-placement="bottom" title="Eliminar">
+                                        <span class="fa fa-trash fa-lg"></span> 
                                       </a>
                                     </div>
                                   </td>        
@@ -260,28 +310,28 @@
                             <table id="datatable_modelos" class="table table-striped jambo_table bulk_action">
                               <thead>
                                 <tr>
-                                  <th>ID</th>
+                                  {{-- <th>ID</th> --}}
+                                  <th>DESCRIPCION MODELO</th>
                                   <th>CATEGORIA</th>
-                                  <th>DESCRIPCION</th>
-                                  <th>Operaciones</th>
+                                  <th style="text-align: right;">Operaciones</th>
                                 </tr>
                               </thead>
                               <tbody>
                                @foreach($modelos as $mod)
                                 <tr>
-                                   <td>{{$mod->id}}</td>
-                                   <td>{{$mod->id_categoria}} - {{$mod->categoria->descripcion}}  </td>
+                                   {{-- <td>{{$mod->id}}</td> --}}
                                    <td>{{$mod->descripcion}}</td>
-                                   <td>
+                                   <td>{{$mod->categoria->descripcion}}  </td>
+                                   <td align="right">
                                    <div class="btn-group" role="group" >
-                                      <a href="#" class="btn btn-info btn-xs">
-                                        <span class="fa fa-eye"></span> 
+                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
+                                        <span class="fa fa-eye fa-lg"></span> 
                                       </a>
-                                      <a href="#" class="btn btn-warning btn-xs">
-                                        <span class="fa fa-edit"></span> 
+                                      <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
+                                        <span class="fa fa-edit fa-lg"></span> 
                                       </a>
-                                      <a href="#" class="btn btn-danger btn-xs">
-                                        <span class="fa fa-trash"></span> 
+                                      <a href="#" class="{{-- btn btn-danger btn-xs --}} red" data-toggle="tooltip" data-placement="bottom" title="Eliminar">
+                                        <span class="fa fa-trash fa-lg"></span> 
                                       </a>
                                     </div>
                                   </td>        
@@ -313,29 +363,30 @@
                             <table id="datatable_motivos_categoria" class="table table-striped jambo_table bulk_action">
                               <thead>
                                 <tr>
-                                  <th>ID</th>
+                                  {{-- <th>ID</th> --}}
                                   <th>MOTIVO</th>
                                   <th>CATEGORIA</th>
                                   <th>DESCRIPCION</th>
+                                  <th style="text-align: right;">Operaciones</th>
                                 </tr>
                               </thead>
                               <tbody>
                                @foreach($motivos_categoria as $det)
                                 <tr>
-                                   <td>{{$det->id}}</td>
-                                   <td>{{$det->id_motivo}}</td>
-                                   <td>{{$det->id_categoria}} </td>
+                                   {{-- <td>{{$det->id}}</td> --}}
+                                   <td>{{$det->categoria->descripcion}}</td>
+                                   <td>{{$det->motivo->descripcion}} </td>
                                    <td>{{$det->descripcion}}</td>
-                                   <td>
+                                   <td align="right">
                                    <div class="btn-group" role="group" >
-                                      <a href="#" class="btn btn-info btn-xs">
-                                        <span class="fa fa-eye"></span> 
+                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
+                                        <span class="fa fa-eye fa-lg"></span> 
                                       </a>
-                                      <a href="#" class="btn btn-warning btn-xs">
-                                        <span class="fa fa-edit"></span> 
+                                      <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
+                                        <span class="fa fa-edit fa-lg"></span> 
                                       </a>
-                                      <a href="#" class="btn btn-danger btn-xs">
-                                        <span class="fa fa-trash"></span> 
+                                      <a href="#" class="{{-- btn btn-danger btn-xs --}} red" data-toggle="tooltip" data-placement="bottom" title="Eliminar">
+                                        <span class="fa fa-trash fa-lg"></span> 
                                       </a>
                                     </div>
                                   </td>        
@@ -351,7 +402,6 @@
                             </div>
                           </div>
                         </div>
-
 
                         <div class="tab-pane" id="parametricas">
                         <div class="row">
@@ -366,30 +416,30 @@
                             <table id="datatable_parametricas" class="table table-striped jambo_table bulk_action">
                               <thead>
                                 <tr>
-                                  <th>ID</th>
+                                  {{-- <th>ID</th> --}}
                                   <th>TABLA</th>
                                   <th>CODIGO</th>
                                   <th>DESCRIPCION</th>
-                                  <th>Operaciones</th>
+                                  <th style="text-align: right;">Operaciones</th>
                                 </tr>
                               </thead>
                               <tbody>
                                @foreach($parametricas as $det)
                                 <tr>
-                                   <td>{{$det->id}}</td>
+                                   {{-- <td>{{$det->id}}</td> --}}
                                    <td>{{$det->tabla}} </td>
                                    <td>{{$det->codigo}}</td>
                                    <td>{{$det->descripcion}}</td>
-                                   <td>
+                                   <td align="right">
                                    <div class="btn-group" role="group" >
-                                      <a href="#" class="btn btn-info btn-xs">
-                                        <span class="fa fa-eye"></span> 
+                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
+                                        <span class="fa fa-eye fa-lg"></span> 
                                       </a>
-                                      <a href="#" class="btn btn-warning btn-xs">
-                                        <span class="fa fa-edit"></span> 
+                                      <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
+                                        <span class="fa fa-edit fa-lg"></span> 
                                       </a>
-                                      <a href="#" class="btn btn-danger btn-xs">
-                                        <span class="fa fa-trash"></span> 
+                                      <a href="#" class="{{-- btn btn-danger btn-xs --}} red" data-toggle="tooltip" data-placement="bottom" title="Eliminar">
+                                        <span class="fa fa-trash fa-lg"></span> 
                                       </a>
                                     </div>
                                   </td>        
@@ -405,11 +455,6 @@
                             </div>
                           </div>
                         </div>
-
-
-
-
-
                       </div>
                     </div>
                   <div class="clearfix"></div>
@@ -522,6 +567,63 @@
   }
 
 
+var btnVer = $(".ver_encuesta");
+btnVer.on("click",function(){
+  // alert($(this).attr('id'));
+  frm_ver_encuesta($(this));
+});
+
+var modalVer=$(".modal_ver_encuestas");
+var modalContentVer = $(".contenido_ver_encuestas");
+
+var frm_ver_encuesta = function(objeto){ 
+  $.ajax({
+    type: "GET",
+    cache: false,
+    dataType: "html",
+    url: "{{ route('trafico.ver_encuestas')}}",
+    data: {
+      id_encuesta: objeto.attr("id_encuesta")
+    },
+    success: function(dataResult)
+    {
+      console.log(dataResult);
+      modalContentVer.empty().html(dataResult);                        
+      modalVer.modal('show');
+
+      NProgress.done();
+    },
+    error: function(jqXHR, exception)
+    {
+      var msg = '';
+      if (jqXHR.status === 0) {
+          msg = 'Not connect.\n Verify Network.';
+      } else if (jqXHR.status == 404) {
+          msg = 'Requested page not found. [404]';
+      } else if (jqXHR.status == 500) {
+          msg = 'Internal Server Error [500].';
+      } else if (exception === 'parsererror') {
+          msg = 'Requested JSON parse failed.';
+      } else if (exception === 'timeout') {
+          msg = 'Time out error.';
+      } else if (exception === 'abort') {
+          msg = 'Ajax request aborted.';
+      } else {
+          msg = 'Uncaught Error.\n' + jqXHR.responseText;
+      }
+
+      alert(msg);
+      NProgress.done();
+    }
+  });
+}
+
+
+
+
+
+
+
   var esp = {
               
                 "sProcessing":     "Procesando...",
@@ -547,13 +649,6 @@
                     "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                 },
           };
-
-    // $('#datatable_encuestas').DataTable( { "language": esp } );
-    // $('#datatable_motivos').DataTable( { "language": esp } );
-    // $('#datatable_categorias').DataTable( { "language": esp } );
-    // $('#datatable_modelos').DataTable( { "language": esp } );
-    // $('#datatable_parametrica').DataTable( { "language": esp } );
-
 } );
 
 </script>

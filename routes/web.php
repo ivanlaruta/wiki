@@ -479,6 +479,17 @@ Route::group(['prefix'=>'administracion','middleware'=>'auth'],function(){
 		'as'   =>	'administracion.index_parametrica'
 	]);
 
+	route::get('administracion/modal_users',[
+		'uses' =>'AdministracionController@modal_users',
+		'as'   =>	'administracion.modal_users'
+	]);
+
+	route::get('administracion/add_users',[
+		'uses' =>'AdministracionController@add_users',
+		'as'   =>	'administracion.add_users'
+	]);
+
+	
 	route::resource('administracion','AdministracionController');
 
 });
@@ -518,6 +529,26 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 	route::get('trafico/add_encuestas',[
 		'uses' =>'TraficoController@add_encuestas',
 		'as'   =>	'trafico.add_encuestas'
+	]);
+
+	route::get('trafico/ver_encuestas',[
+		'uses' =>'TraficoController@ver_encuestas',
+		'as'   =>	'trafico.ver_encuestas'
+	]);
+
+	route::get('trafico/formulario',[
+		'uses' =>'TraficoController@formulario',
+		'as'   =>	'trafico.formulario'
+	]);
+
+	route::get('trafico/delete_encuesta',[
+		'uses' =>'TraficoController@delete_encuesta',
+		'as'   =>	'trafico.delete_encuesta'
+	]);
+
+	route::get('trafico/add_visita',[
+		'uses' =>'TraficoController@add_visita',
+		'as'   =>	'trafico.add_visita'
 	]);
 
 	route::resource('trafico','TraficoController');

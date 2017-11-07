@@ -15,10 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $table = "users";
-    protected $fillable = [
-        'name', 'email', 'password','id_ubicacion'
-    ];
-     
+    protected $fillable = ['usuario','password','email','nombre','paterno','materno','telefono','id_ubicacion','rol','estado'];     
     
     public function sucursal()
     {

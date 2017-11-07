@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Trf_Sucursal;
 use App\Trf_Parametrica;
-
+// use App\Trf_Sucursal;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +43,55 @@ class AdministracionController extends Controller
         //
     }
 
+    public function modal_users(Request $request)
+    {
+        if($request->tipo=="nuevo")
+        {
+            $sucursales=Trf_Sucursal::all();
+            $roles=Trf_Parametrica::where('tabla','rol')->orderBy('codigo')->get();
+            return view('administracion.users.modal')
+              ->with('sucursales',$sucursales) 
+              ->with('request',$request) 
+              ->with('roles',$roles) ;
+        }
+        else
+        {
+            if($request->tipo=="editar")
+            {
+                $usuario=User::find($request->id_usuario);
+                $sucursales=Trf_Sucursal::all();
+                $roles=Trf_Parametrica::where('tabla','rol')->orderBy('codigo')->get();
+                return view('administracion.users.modal')
+                  ->with('sucursales',$sucursales) 
+                  ->with('request',$request) 
+                  ->with('usuario',$usuario) 
+                  ->with('roles',$roles);
+            }
+        }
+    }
+
+    public function add_users(Request $request)
+    {
+        if($request->tipo=="nuevo")
+        {
+            $user = new User($request->all());
+            $user->password = bcrypt($request->password);
+            $user->save();
+            return redirect()->route('administracion.index_users')->with('mensaje',"Creado exitosamente."); 
+        }
+        else
+        {
+            if($request->tipo=="editar")
+            {
+                $user=User::find($request->id_usuario);
+                $user->fill($request->all());
+                // $user->password = bcrypt($request->password);
+                $user->save();
+                return redirect()->route('administracion.index_users')->with('mensaje',"Editado exitosamente."); 
+            }
+
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *

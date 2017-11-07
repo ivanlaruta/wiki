@@ -120,7 +120,37 @@ class UsersTableSeeder extends Seeder
             'nombre'=> 'trafico',
             'paterno'=> 'prueba',
             'id_ubicacion' =>'131C',
-            'rol'=>'trafico',
+            'rol'=>'101',
+            ]);
+
+        DB::table('users')->insert([
+            'usuario' => 'equipetrol',
+            'password' => bcrypt('12345'),
+            'email'=> 'trafico@toyosa.com',
+            'nombre'=> 'usuario',
+            'paterno'=> 'equipetrol',
+            'id_ubicacion' =>'141E',
+            'rol'=>'100',
+            ]);
+
+        DB::table('users')->insert([
+            'usuario' => 'trespasos',
+            'password' => bcrypt('12345'),
+            'email'=> 'trafico@toyosa.com',
+            'nombre'=> 'usuario',
+            'paterno'=> 'tres pasos al frente',
+            'id_ubicacion' =>'143',
+            'rol'=>'100',
+            ]);
+
+        DB::table('users')->insert([
+            'usuario' => 'papapaulo',
+            'password' => bcrypt('12345'),
+            'email'=> 'trafico@toyosa.com',
+            'nombre'=> 'usuario',
+            'paterno'=> 'papa paulo',
+            'id_ubicacion' =>'121PP',
+            'rol'=>'100',
             ]);
     }
 }

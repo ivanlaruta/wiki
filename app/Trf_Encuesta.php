@@ -11,14 +11,15 @@ class Trf_Encuesta extends Model
     public $timestamps = true;
 
 
-    protected $fillable =['id','descripcion','id_sucrsal'];
+    protected $fillable =['id','descripcion'];
 
-    public function sucursal()
-    {
-        return $this->belongsTo('App\Trf_Sucursal','id_sucursal');
-    }
-    public function visitas()
+    
+    public function motivos_encuesta()
     {
         return $this->hasMany('App\Trf_Motivo_Encuesta');
+    }  
+    public function sucursales_encuesta()
+    {
+        return $this->hasMany('App\Trf_Sucursal_Encuesta');
     }    
 }

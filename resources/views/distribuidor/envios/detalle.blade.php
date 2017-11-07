@@ -8,10 +8,8 @@
             <div class="page-title">
               <div class="title_left">
                 <h2>
-               
                     <a href="{{ route('envios.index')}}">SOLICITUDES  / </a>
                     <small>SOLICITUD {{$env->id_solicitud}} </small>
-
                 </h2>
               </div>
 
@@ -20,20 +18,18 @@
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="...">
                     <span class="input-group-btn">
-                              <button class="btn btn-default" type="button">Buscar</button>
-                          </span>
+                      <button class="btn btn-default" type="button">Buscar</button>
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
             
             <div class="row">
-
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel ">
                   <div class="x_title">
                     <h2>
-                    
                     Datos generales de solicitud
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
