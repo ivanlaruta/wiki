@@ -11,7 +11,9 @@ use App\Trf_Parametrica;
 use App\Trf_Motivo_Categoria;
 use App\Trf_Motivo_Encuesta;
 use App\Trf_Sucursal_Encuesta;
+use App\Trf_Visita_Modelo;
 use App\Trf_Sucursal;
+use App\Trf_Visita;
 use App\Vendedores;
 use App\Trf_Cliente;
 use Carbon\Carbon;
@@ -20,11 +22,6 @@ use Illuminate\Support\Facades\Auth;
 
 class TraficoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function formulario()
     {
 
@@ -52,25 +49,10 @@ class TraficoController extends Controller
         }
         else 
         {
-            
-            
             return view('trafico.formulario')
             ->with('encuesta',$encuesta)
             ;
-        }
-        
-        // dd($vendedores);
-        // dd($suc);
-        // dd($id_suc);
-        // dd($encuesta);
-        // dd($id_encuesta);
-        // dd($motivos);
-        // dd($clientes);
-        // dd($edades);
-        // dd($motivo_Categoria);
-        // dd($modelos);
-        // dd($vendedores);
-        
+        }        
     }
 
     public function ver_encuestas(Request $request)
@@ -126,9 +108,7 @@ class TraficoController extends Controller
 
         $encuesta->delete();
         
-        return redirect()->route('trafico.admin_index')->with('mensaje',"Eliminado exitosamente."); 
-        
-
+        return redirect()->route('trafico.admin_index')->with('mensaje',"Eliminado exitosamente.");
     }
 
     public function modal_add_motivo_encuesta()
@@ -205,14 +185,116 @@ class TraficoController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function add_visita(Request $request)
     {
-        dd($request->all());
+        $hoy = Carbon::now('America/La_Paz')->format('Ymd');
+        // dd($request->all());
+
+        if($request->tipo_cliente=='Antiguo')
+        {
+            $nuevo_visita = new Trf_Visita();
+            $nuevo_visita -> tipo_cliente = $request->tipo_cliente;
+            $nuevo_visita -> id_cliente = $request->id_cliente;
+            $nuevo_visita -> id_sucursal = $request->id_sucursal;
+            $nuevo_visita -> id_motivo = $request->id_motivo;
+            $nuevo_visita -> id_ejecutivo = $request->id_ejecutivo;
+            $nuevo_visita -> fecha = $hoy;
+            $nuevo_visita -> created_by = $suc=Auth::user()->usuario;
+            $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;
+            $nuevo_visita -> save();
+
+            if($request->id_motivo=='1' || $request->id_motivo=='2')
+            {
+                for ($i=0; $i < sizeof($request->modelos); $i++) 
+                {
+                    $nuevo_visita_modelo = new Trf_Visita_Modelo();
+                    $nuevo_visita_modelo -> id_visita = $nuevo_visita ->id;
+                    $nuevo_visita_modelo -> id_modelo = $request->modelos[$i];
+                    if($request->modelos[$i]=='33' || $request->modelos[$i]=='38')
+                    {
+                        $nuevo_visita_modelo -> descripcion = strtoupper($request->txt_otros_8).strtoupper($request->txt_otros_9);
+                    }
+                    $nuevo_visita_modelo ->save();
+                }
+            }
+            return redirect()->route('trafico.lista_visitas')->with('mensaje',"Creado exitosamente."); 
+        }
+        else
+        {
+            if($request->tipo_cliente=='Nuevo')
+            {
+                $nuevo_cliente = new Trf_Cliente();
+                $nuevo_cliente -> ci = $request->ci;
+                $nuevo_cliente -> nombre = strtoupper($request->nombre);
+                $nuevo_cliente -> paterno = strtoupper($request->paterno);
+                $nuevo_cliente -> materno = strtoupper($request->materno);
+                $nuevo_cliente -> genero = $request->genero;
+                $nuevo_cliente -> rango_edad = $request->rango_edad;
+                $nuevo_cliente -> telefono = $request->telefono;
+                $nuevo_cliente -> created_by = $suc=Auth::user()->usuario;
+                $nuevo_cliente -> updated_by = $suc=Auth::user()->usuario;
+                $nuevo_cliente -> save();
+
+                $nuevo_visita = new Trf_Visita();
+                $nuevo_visita -> tipo_cliente = $request->tipo_cliente;
+                $nuevo_visita -> id_cliente = $nuevo_cliente->id;
+                $nuevo_visita -> id_sucursal = $request->id_sucursal;
+                $nuevo_visita -> id_motivo = $request->id_motivo;
+                $nuevo_visita -> id_ejecutivo = $request->id_ejecutivo;
+                $nuevo_visita -> fecha = $hoy;
+                $nuevo_visita -> created_by = $suc=Auth::user()->usuario;
+                $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;
+                $nuevo_visita -> save();
+
+                if($request->id_motivo=='1' || $request->id_motivo=='2')
+                {
+                    for ($i=0; $i < sizeof($request->modelos); $i++) 
+                    {
+                        $nuevo_visita_modelo = new Trf_Visita_Modelo();
+                        $nuevo_visita_modelo -> id_visita = $nuevo_visita ->id;
+                        $nuevo_visita_modelo -> id_modelo = $request->modelos[$i];
+                        if($request->modelos[$i]=='33' || $request->modelos[$i]=='38')
+                        {
+                            $nuevo_visita_modelo -> descripcion = strtoupper($request->txt_otros_8).strtoupper($request->txt_otros_9);
+                        }
+                        $nuevo_visita_modelo ->save();
+                    }
+                }
+                return redirect()->route('trafico.lista_visitas')->with('mensaje',"Creado exitosamente."); 
+            }
+            else
+            {
+                $new_visita = new Trf_Visita();
+                $new_visita -> id_sucursal = $request->id_sucursal;
+                $new_visita -> id_motivo = $request->id_motivo;
+                $new_visita -> id_ejecutivo = $request->id_ejecutivo;
+                $new_visita -> fecha = $hoy;
+                $new_visita -> created_by = $suc=Auth::user()->usuario;
+                $new_visita -> updated_by = $suc=Auth::user()->usuario;
+                $new_visita -> save();
+
+                return redirect()->route('trafico.lista_visitas')->with('mensaje',"Creado exitosamente.");
+            }
+        }
+    }
+
+    public function lista_visitas()
+    {
+         $visitas = Trf_Visita::all();
+         // dd($visitas);
+        return view('trafico.lista_visitas')
+        ->with('visitas',$visitas);
+    }
+
+    public function detalle_visita(Request $request)
+    {
+
+        $detalle_visita = Trf_Visita_Modelo::where('id_visita',$request->id_visita)->get();
+        $id_vis=$request->id_visita;
+        return view('trafico.modal_detalle_visita')
+        ->with('detalle_visita',$detalle_visita)
+        ->with('id_vis',$id_vis);
     }
 
     public function create()
@@ -220,57 +302,26 @@ class TraficoController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

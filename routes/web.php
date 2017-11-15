@@ -461,7 +461,6 @@ Route::group(['prefix'=>'usados','middleware'=>'auth'],function(){
 });
 
 
-
 Route::group(['prefix'=>'administracion','middleware'=>'auth'],function(){
 	
 	route::get('administracion/index_sucursales',[
@@ -488,7 +487,6 @@ Route::group(['prefix'=>'administracion','middleware'=>'auth'],function(){
 		'uses' =>'AdministracionController@add_users',
 		'as'   =>	'administracion.add_users'
 	]);
-
 	
 	route::resource('administracion','AdministracionController');
 
@@ -501,6 +499,11 @@ Route::group(['prefix'=>'odoo','middleware'=>'auth'],function(){
 
 Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 	
+	route::get('trafico/lista_visitas',[
+		'uses' =>'TraficoController@lista_visitas',
+		'as'   =>	'trafico.lista_visitas'
+	]);
+
 	route::get('trafico/admin_index',[
 		'uses' =>'TraficoController@admin_index',
 		'as'   =>	'trafico.admin_index'
@@ -549,6 +552,11 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 	route::get('trafico/add_visita',[
 		'uses' =>'TraficoController@add_visita',
 		'as'   =>	'trafico.add_visita'
+	]);
+
+	route::get('trafico/detalle_visita',[
+		'uses' =>'TraficoController@detalle_visita',
+		'as'   =>	'trafico.detalle_visita'
 	]);
 
 	route::resource('trafico','TraficoController');

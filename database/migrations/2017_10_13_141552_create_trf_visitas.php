@@ -15,12 +15,12 @@ class CreateTrfVisitas extends Migration
     {
         Schema::create('trf_visitas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo_cliente');
+            $table->string('tipo_cliente')->nullable();
             $table->string('id_sucursal');
-            $table->integer('id_cliente');
+            $table->integer('id_cliente')->nullable();
             $table->integer('id_motivo');
-            $table->integer('id_ejecutivo');
-            $table->string('observaciones');
+            $table->integer('id_ejecutivo')->nullable();
+            $table->string('observaciones')->nullable();
             $table->date('fecha');
             $table->string('estado')->nullable();
 

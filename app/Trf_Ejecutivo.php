@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trf_Ejecutivo extends Model
 {
-    protected $table = "trf_ejecutivos";
-    protected $dateFormat = 'Ymd H:i:s';
-    public $timestamps = true;
+    protected $table = "v_vendedores";
+    protected $primaryKey ='cod_vendedor';
+    // protected $dateFormat = 'Ymd H:i:s';
+    // public $timestamps = true;
 
     public function visitas()
     {
@@ -20,9 +21,9 @@ class Trf_Ejecutivo extends Model
         return $this->hasMany('App\Trf_Ejecutivo_Motivo');
     }
 
-    public function sucursal()
-    {
-        return $this->belongsTo('App\Trf_Sucursal','id_sucursal');
-    }
+    // public function sucursal()
+    // {
+    //     return $this->belongsTo('App\Trf_Sucursal','id_sucursal');
+    // }
 
 }

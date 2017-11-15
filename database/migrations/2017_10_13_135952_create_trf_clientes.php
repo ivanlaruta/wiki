@@ -15,7 +15,7 @@ class CreateTrfClientes extends Migration
     {
         Schema::create('trf_clientes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ci');
+            $table->string('ci')->nullable();
             $table->string('nombre');
             $table->string('paterno')->nullable();
             $table->string('materno')->nullable();

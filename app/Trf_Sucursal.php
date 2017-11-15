@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trf_Sucursal extends Model
 {
-    protected $table = "trf_sucursales";
+    protected $table = "v_ubicaciones";
     public $incrementing=false;
-     protected $dateFormat = 'Ymd H:i:s';
-    public $timestamps = true;
+    //  protected $dateFormat = 'Ymd H:i:s';
+    // public $timestamps = true;
 
 
     protected $fillable =['id','nom_sucursal'];

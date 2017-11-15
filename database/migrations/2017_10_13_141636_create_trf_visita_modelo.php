@@ -17,7 +17,7 @@ class CreateTrfVisitaModelo extends Migration
             $table->increments('id');
             $table->integer('id_visita');
             $table->integer('id_modelo');
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();
             $table->string('estado')->nullable();
 
             $table->string('created_by')->nullable()->unsigned();

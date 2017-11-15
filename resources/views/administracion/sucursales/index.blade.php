@@ -8,17 +8,14 @@
         <div class="title_left">
           <h3>Sucursales</h3>
         </div>
-        <div class="pull-right" >
-          <a  href="#" class="btn btn-success btn_nuevo " data-toggle="tooltip" data-placement="bottom" title="Agregar nueva sucursal" ><i class="fa fa-plus"></i> Nuevo</a>
-        </div>
+        
          <div class="title_right"></div>
       </div>
       <div class="clearfix"></div>
         
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_content animated fadeIn">
-              {{-- <p class="text-muted font-13 m-b-30"></p> --}}
-              <div class="table-responsive" {{-- style="max-height: 450px; width: 100%; margin: 0; overflow-y: auto; --}}">
+            <div class="x_content animated fadeIn"> 
+              <div class="table-responsive" >
                 <table class="table table-striped jambo_table bulk_action" id="datatable1">
                   <thead>
                     <tr>
@@ -26,9 +23,6 @@
                      <th>ID</th>
                      <th>NOMBRE</th>
                      <th>REGIONAL</th>
-                     <th>OPCIONES</th>
-
-                     
                     </tr>
                   </thead>
                   <tfoot>
@@ -37,10 +31,8 @@
                      <th>ID</th>
                      <th>NOMBRE</th>
                      <th>REGIONAL</th>
-                     
                     </tr>
                   </tfoot>
-                  
                   <tbody>
                   @foreach($detalle as $det)
                     <tr>
@@ -48,17 +40,6 @@
                      <td>{{$det->id}}</td>
                      <td>{{$det->nom_sucursal}}</td>
                      <td>{{$det->regional}}</td> 
-                     <td>
-                       <div class="btn-group" role="group" >
-                          
-                          <a href="#" class="btn btn-warning btn-xs">
-                            <span class="fa fa-edit"></span> 
-                          </a>
-                          <a href="#" class="btn btn-danger btn-xs">
-                            <span class="fa fa-trash"></span> 
-                          </a>
-                        </div>
-                      </td>        
                     </tr>
                     @endforeach
                   </tbody>
@@ -66,10 +47,6 @@
               </div>
             </div>
             </div>
-           
-         
-       
-
     </div>
   </div>       
 
