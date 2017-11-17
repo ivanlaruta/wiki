@@ -1,7 +1,7 @@
-      {!! Form::open(array('route' => ['trafico.add_motivo_encuesta'], 'method' => 'get' , 'id'=>'loginForm', 'class'=>'form-horizontal form-label-left')) !!}
+      {!! Form::open(array('route' => ['trafico.add_suc_encuesta'], 'method' => 'get' , 'id'=>'loginForm', 'class'=>'form-horizontal form-label-left')) !!}
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Nueva relacion Motivo - Encuesta</h4>
+          <h4 class="modal-title">Nueva relacion Sucursal - Encuesta</h4>
         </div>
         <div class="modal-body">
           <p>Porfavor complete la informacion del formulario.</p>
@@ -24,14 +24,14 @@
             </div>
 
             <div class="form-group">
-              <label class="control-label col-md-4 col-sm-4 col-xs-12">MOTIVO 
+              <label class="control-label col-md-4 col-sm-4 col-xs-12">SUCURSAL 
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
 
-                <select class="form-control select2" data-width="100%" name="MOTIVO" id="MOTIVO" required >
-                <option value="">Selecione un motivo</option>
-                  @foreach($motivos as $det)
-                    <option value="{{$det->id}}">{{$det->id}} - {{$det->descripcion}}</option>
+                <select class="form-control select2" data-width="100%" name="SUC" id="SUC" required >
+                <option value="">Selecione una sucursal</option>
+                  @foreach($sucursales as $det)
+                    <option value="{{$det->id}}">{{$det->id}} - {{$det->nom_sucursal}}</option>
                   @endforeach
                 </select>
 

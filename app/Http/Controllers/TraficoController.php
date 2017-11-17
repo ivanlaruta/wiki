@@ -77,7 +77,7 @@ class TraficoController extends Controller
     public function modal_add_encuestas()
     {
         // dd(Auth::user()->sucursal2->nom_sucursal);
-        $sucursales =Trf_Sucursal::whereNotIn('id', DB::table('trf_sucursal_encuesta')->pluck('id'))
+        $sucursales =Trf_Sucursal::whereNotIn('id', DB::table('trf_sucursal_encuesta')->pluck('id_sucursal'))
         ->orderBy('id','ASC')
         ->get();
 
@@ -107,10 +107,25 @@ class TraficoController extends Controller
         }
 
         $encuesta->delete();
-        
         return redirect()->route('trafico.admin_index')->with('mensaje',"Eliminado exitosamente.");
     }
 
+    public function delete_motivo_encuesta(Request $request)
+    {
+        $id=$request->id;
+        $motivos_encuesta=Trf_Motivo_Encuesta::find($id);
+        $motivos_encuesta->delete();
+        return redirect()->route('trafico.admin_index')->with('mensaje',"Eliminado exitosamente.");
+    }
+    
+    public function delete_suc_encuesta(Request $request)
+    {
+        $id=$request->id;
+        $sucursal_encuesta=Trf_Sucursal_Encuesta::find($id);
+        $sucursal_encuesta->delete();
+        return redirect()->route('trafico.admin_index')->with('mensaje',"Eliminado exitosamente.");
+    }
+    
     public function modal_add_motivo_encuesta()
     {
         // dd(Auth::user()->sucursal2->nom_sucursal);
@@ -122,11 +137,23 @@ class TraficoController extends Controller
         ;
     }
 
+    public function modal_add_suc_encuesta()
+    {
+        $encuestas =Trf_Encuesta::orderBy('id','ASC')->get();
+        $sucursales =Trf_Sucursal::whereNotIn('id', DB::table('trf_sucursal_encuesta')->pluck('id_sucursal'))
+        ->orderBy('id','ASC')
+        ->get();
+        return view('trafico.administracion.modal_add_suc_encuesta')
+        ->with('encuestas',$encuestas) 
+        ->with('sucursales',$sucursales) 
+        ;
+    }
+
     public function add_encuestas(Request $request)
     {
         // dd($request->all());
         $nueva_encuesta = new Trf_Encuesta();
-        $nueva_encuesta -> descripcion = $request->DESCRIPCION;
+        $nueva_encuesta -> descripcion = strtoupper($request->DESCRIPCION);
         $nueva_encuesta -> observaciones = $request->OBSERVACIONES;
         $nueva_encuesta ->save();
 
@@ -156,6 +183,18 @@ class TraficoController extends Controller
         $nuevo_motivo_encuesta -> id_motivo = $request->MOTIVO;
         $nuevo_motivo_encuesta -> descripcion = $request->DESCRIPCION;
         $nuevo_motivo_encuesta ->save();
+
+        return redirect()->route('trafico.admin_index')->with('mensaje',"Creado exitosamente."); 
+    }
+    
+
+    public function add_suc_encuesta(Request $request)
+    {
+        $nuevo_suc_encuesta = new Trf_Sucursal_Encuesta();
+        $nuevo_suc_encuesta -> id_encuesta = $request->ENCUESTA;
+        $nuevo_suc_encuesta -> id_sucursal = $request->SUC;
+        $nuevo_suc_encuesta -> descripcion = $request->DESCRIPCION;
+        $nuevo_suc_encuesta ->save();
 
         return redirect()->route('trafico.admin_index')->with('mensaje',"Creado exitosamente."); 
     }
@@ -218,7 +257,7 @@ class TraficoController extends Controller
                     $nuevo_visita_modelo ->save();
                 }
             }
-            return redirect()->route('trafico.lista_visitas')->with('mensaje',"Creado exitosamente."); 
+            return redirect()->route('trafico.formulario')->with('mensaje',"Creado exitosamente."); 
         }
         else
         {
@@ -261,7 +300,7 @@ class TraficoController extends Controller
                         $nuevo_visita_modelo ->save();
                     }
                 }
-                return redirect()->route('trafico.lista_visitas')->with('mensaje',"Creado exitosamente."); 
+                return redirect()->route('trafico.formulario')->with('mensaje',"Creado exitosamente."); 
             }
             else
             {
@@ -274,22 +313,20 @@ class TraficoController extends Controller
                 $new_visita -> updated_by = $suc=Auth::user()->usuario;
                 $new_visita -> save();
 
-                return redirect()->route('trafico.lista_visitas')->with('mensaje',"Creado exitosamente.");
+                return redirect()->route('trafico.formulario')->with('mensaje',"Creado exitosamente.");
             }
         }
     }
 
     public function lista_visitas()
     {
-         $visitas = Trf_Visita::all();
-         // dd($visitas);
+        $visitas = Trf_Visita::all();    // dd($visitas);
         return view('trafico.lista_visitas')
         ->with('visitas',$visitas);
     }
 
     public function detalle_visita(Request $request)
     {
-
         $detalle_visita = Trf_Visita_Modelo::where('id_visita',$request->id_visita)->get();
         $id_vis=$request->id_visita;
         return view('trafico.modal_detalle_visita')

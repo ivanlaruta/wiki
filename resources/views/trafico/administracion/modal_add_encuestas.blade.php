@@ -160,13 +160,23 @@ var oSettings; //global variable to hold reference to dataTables settings
     oTable=$('#datatable2').DataTable( {
         "language": esp ,
         "lengthMenu": [[8,15, 25, 50, 100, -1], [8,15, 25, 50, 100, "TODO"]],
+        // "retrieve": true
     }); //store reference of your table in oTable
     oSettings = oTable.settings(); //store its settings in oSettings
 
 $("#show_all_records").on('click',function(){
+  
+   paso(3);
+   $('.bs-filters').val('');
+   $('.input-sm').val('');
+   $('input[type=search]').val('');
+
+
    oSettings[0]._iDisplayLength = oSettings[0].fnRecordsTotal();
    //set display length of dataTables settings to the total records available
-   oTable.draw();  //draw the table
+   
+   oTable.search(' ').draw();  //draw the table
+
 });
 
 
@@ -233,7 +243,6 @@ function paso (step){
       $(".generales").hide();
       $(".motivos").hide();
       $(".sucursales").show();
-
       $(".paso1").removeClass( "done" ).addClass( "disabled" );
       $(".paso2").removeClass( "done" ).addClass( "disabled" );
       $(".paso3").removeClass( "disabled" ).addClass( "done" );

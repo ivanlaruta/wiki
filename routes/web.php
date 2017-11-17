@@ -519,6 +519,11 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.modal_add_motivo_encuesta'
 	]);
 
+	route::get('trafico/modal_add_suc_encuesta',[
+		'uses' =>'TraficoController@modal_add_suc_encuesta',
+		'as'   =>	'trafico.modal_add_suc_encuesta'
+	]);
+
 	route::get('trafico/add_encuestas',[
 		'uses' =>'TraficoController@add_encuestas',
 		'as'   =>	'trafico.add_encuestas'
@@ -527,6 +532,11 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 	route::get('trafico/add_motivo_encuesta',[
 		'uses' =>'TraficoController@add_motivo_encuesta',
 		'as'   =>	'trafico.add_motivo_encuesta'
+	]);
+
+	route::get('trafico/add_suc_encuesta',[
+		'uses' =>'TraficoController@add_suc_encuesta',
+		'as'   =>	'trafico.add_suc_encuesta'
 	]);
 
 	route::get('trafico/add_encuestas',[
@@ -547,6 +557,16 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 	route::get('trafico/delete_encuesta',[
 		'uses' =>'TraficoController@delete_encuesta',
 		'as'   =>	'trafico.delete_encuesta'
+	]);
+
+	route::get('trafico/delete_motivo_encuesta',[
+		'uses' =>'TraficoController@delete_motivo_encuesta',
+		'as'   =>	'trafico.delete_motivo_encuesta'
+	]);
+
+	route::get('trafico/delete_suc_encuesta',[
+		'uses' =>'TraficoController@delete_suc_encuesta',
+		'as'   =>	'trafico.delete_suc_encuesta'
 	]);
 
 	route::get('trafico/add_visita',[

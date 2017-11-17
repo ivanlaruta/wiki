@@ -17,7 +17,7 @@
                 <tr>
                   <th>CATEGORIA</th>
                   <th>MODELO</th>
-                  <th>OBSERVACION</th>
+                  <th>DESCRIPCION</th>
                 </tr>
               </thead>
               <tbody>

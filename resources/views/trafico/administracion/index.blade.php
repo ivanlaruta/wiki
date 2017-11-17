@@ -122,13 +122,7 @@
                                    {{-- <td>{{$det->descripcion}}</td> --}}
                                    <td align="right">
                                    <div class="btn-group" role="group" >
-                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
-                                        <span class="fa fa-eye fa-lg"></span> 
-                                      </a>
-                                      <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
-                                        <span class="fa fa-edit fa-lg"></span> 
-                                      </a>
-                                      <a href="#" class="{{-- btn btn-danger btn-xs --}} red" data-toggle="tooltip" data-placement="bottom" title="Eliminar">
+                                      <a href="{{ route('trafico.delete_motivo_encuesta').'?id='.$det->id}}" class="red" data-toggle="tooltip" data-placement="bottom" title="Eliminar" onclick ="return confirm('¿Esta seguro que desea continuar?')">
                                         <span class="fa fa-trash fa-lg"></span> 
                                       </a>
                                     </div>
@@ -173,13 +167,8 @@
                                    <td>{{$det->id_sucursal}} - {{$det->sucursal->nom_sucursal}}</td>
                                    <td align="right">
                                    <div class="btn-group" role="group" >
-                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
-                                        <span class="fa fa-eye fa-lg"></span> 
-                                      </a>
-                                      <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
-                                        <span class="fa fa-edit fa-lg"></span> 
-                                      </a>
-                                      <a href="#" class="{{-- btn btn-danger btn-xs --}} red" data-toggle="tooltip" data-placement="bottom" title="Eliminar">
+                                      
+                                      <a href="{{ route('trafico.delete_suc_encuesta').'?id='.$det->id}}" class="red" data-toggle="tooltip" data-placement="bottom" title="Eliminar" onclick ="return confirm('¿Esta seguro que desea continuar?')">
                                         <span class="fa fa-trash fa-lg"></span> 
                                       </a>
                                     </div>
@@ -189,9 +178,9 @@
                               </tbody>
                             </table>
                           </div>
-                          <div class="modal fade modal_add_sucursal_encuesta" id="Modal_nuevo" role="dialog" >
+                          <div class="modal fade modal_add_suc_encuesta" id="modal_add_suc_encuesta" role="dialog" >
                             <div class="modal-dialog modal-lg">
-                              <div class="modal-content contenido_add_sucursal_encuesta">
+                              <div class="modal-content contenido_add_suc_encuesta">
                               </div>
                             </div>
                           </div>
@@ -222,9 +211,7 @@
                                    <td>{{$det->descripcion}}</td>
                                    <td align="right">
                                    <div class="btn-group" role="group" >
-                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
-                                        <span class="fa fa-eye fa-lg"></span> 
-                                      </a>
+                                      
                                       <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
                                         <span class="fa fa-edit fa-lg"></span> 
                                       </a>
@@ -245,7 +232,6 @@
                             </div>
                           </div>
                         </div>
-
 
                         <div class="tab-pane" id="categorias">
                         <div class="row">
@@ -272,9 +258,7 @@
                                    <td>{{$det->descripcion}}</td>
                                    <td align="right">
                                    <div class="btn-group" role="group" >
-                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
-                                        <span class="fa fa-eye fa-lg"></span> 
-                                      </a>
+                                      
                                       <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
                                         <span class="fa fa-edit fa-lg"></span> 
                                       </a>
@@ -324,9 +308,7 @@
                                    <td>{{$mod->categoria->descripcion}}  </td>
                                    <td align="right">
                                    <div class="btn-group" role="group" >
-                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
-                                        <span class="fa fa-eye fa-lg"></span> 
-                                      </a>
+                                      
                                       <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
                                         <span class="fa fa-edit fa-lg"></span> 
                                       </a>
@@ -379,12 +361,7 @@
                                    <td>{{$det->descripcion}}</td>
                                    <td align="right">
                                    <div class="btn-group" role="group" >
-                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
-                                        <span class="fa fa-eye fa-lg"></span> 
-                                      </a>
-                                      <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
-                                        <span class="fa fa-edit fa-lg"></span> 
-                                      </a>
+                                      
                                       <a href="#" class="{{-- btn btn-danger btn-xs --}} red" data-toggle="tooltip" data-placement="bottom" title="Eliminar">
                                         <span class="fa fa-trash fa-lg"></span> 
                                       </a>
@@ -408,9 +385,9 @@
                           <div class="col-md-10">
                             <p class="lead">Lista de parametricas .</p>
                           </div>
-                          <div class="col-md-2 pull-right">
+                          {{-- <div class="col-md-2 pull-right">
                                 <a  href="#" class="btn btn-success btn-sm btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva categoria" ><i class="fa fa-plus"></i> Nuevo</a>
-                          </div>
+                          </div> --}}
                         </div>
                         <div class="table-responsive">
                             <table id="datatable_parametricas" class="table table-striped jambo_table bulk_action">
@@ -420,7 +397,7 @@
                                   <th>TABLA</th>
                                   <th>CODIGO</th>
                                   <th>DESCRIPCION</th>
-                                  <th style="text-align: right;">Operaciones</th>
+                                  {{-- <th style="text-align: right;">Operaciones</th> --}}
                                 </tr>
                               </thead>
                               <tbody>
@@ -430,19 +407,9 @@
                                    <td>{{$det->tabla}} </td>
                                    <td>{{$det->codigo}}</td>
                                    <td>{{$det->descripcion}}</td>
-                                   <td align="right">
-                                   <div class="btn-group" role="group" >
-                                      <a href="#" {{-- class="btn btn-info btn-xs" --}} data-toggle="tooltip" data-placement="bottom" title="Ver">
-                                        <span class="fa fa-eye fa-lg"></span> 
-                                      </a>
-                                      <a href="#" class="{{-- btn btn-warning btn-xs --}} green" data-toggle="tooltip" data-placement="bottom" title="Editar">
-                                        <span class="fa fa-edit fa-lg"></span> 
-                                      </a>
-                                      <a href="#" class="{{-- btn btn-danger btn-xs --}} red" data-toggle="tooltip" data-placement="bottom" title="Eliminar">
-                                        <span class="fa fa-trash fa-lg"></span> 
-                                      </a>
-                                    </div>
-                                  </td>        
+                                   {{-- <td align="right">
+                                   
+                                  </td>    --}}     
                                 </tr>
                                 @endforeach
                               </tbody>
@@ -468,10 +435,85 @@
 
 @section('scripts')
 
+<div class="modal fade modal_add_sucursal_encuesta" id="modal_add_sucursal_encuesta" role="dialog" >
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content contenido_add_sucursal_encuesta">
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
-  
  $(document).ready(function() {
+
+
+  $(".btn_nuevo_add_suc_encuesta").on("click",function(){    frm_nuevo_add_suc_encuesta($(this));  });
+  var modal_add_suc_encuesta=$(".modal_add_suc_encuesta");
+  var modalContent_add_suc_encuesta = $(".contenido_add_suc_encuesta");
+
+  var frm_nuevo_add_suc_encuesta = function(objeto){
+    $.ajax({
+      type: "GET",
+      cache: false,
+      dataType: "html",
+      url: "{{ route('trafico.modal_add_suc_encuesta')}}",
+      success: function(dataResult)
+      {
+        console.log(dataResult);
+        modalContent_add_suc_encuesta.empty().html(dataResult);                        
+        modal_add_suc_encuesta.modal('show');
+        NProgress.done();
+      }
+    });
+  }
+
+
+  var btn_nuevo_add_motivo_encuesta = $(".btn_nuevo_add_motivo_encuesta");
+  btn_nuevo_add_motivo_encuesta.on("click",function(){
+    frm_nuevo_add_motivo_encuesta($(this));
+  });
+
+  var modalContent_add_motivo_encuesta = $(".contenido_add_motivo_encuesta");
+  var modal_add_motivo_encuesta=$(".modal_add_motivo_encuesta");
+
+  var frm_nuevo_add_motivo_encuesta = function(objeto){
+    $.ajax({
+      type: "GET",
+      cache: false,
+      dataType: "html",
+      url: "{{ route('trafico.modal_add_motivo_encuesta')}}",
+     
+      success: function(dataResult)
+      {
+        console.log(dataResult);
+        modalContent_add_motivo_encuesta.empty().html(dataResult);                        
+        modal_add_motivo_encuesta.modal('show');
+        NProgress.done();
+      },
+      error: function(jqXHR, exception)
+      {
+        var msg = '';
+        if (jqXHR.status === 0) {
+            msg = 'Not connect.\n Verify Network.';
+        } else if (jqXHR.status == 404) {
+            msg = 'Requested page not found. [404]';
+        } else if (jqXHR.status == 500) {
+            msg = 'Internal Server Error [500].';
+        } else if (exception === 'parsererror') {
+            msg = 'Requested JSON parse failed.';
+        } else if (exception === 'timeout') {
+            msg = 'Time out error.';
+        } else if (exception === 'abort') {
+            msg = 'Ajax request aborted.';
+        } else {
+            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+        }
+        alert(msg);
+        NProgress.done();
+      }
+    });
+  }
+
+
 
   var btn_nuevo = $(".btn_nuevo");
   btn_nuevo.on("click",function(){
@@ -519,52 +561,6 @@
     });
   }
 
-
-    var btn_nuevo_add_motivo_encuesta = $(".btn_nuevo_add_motivo_encuesta");
-  btn_nuevo_add_motivo_encuesta.on("click",function(){
-    frm_nuevo_add_motivo_encuesta($(this));
-  });
-
-  var modalContent_add_motivo_encuesta = $(".contenido_add_motivo_encuesta");
-  var modal_add_motivo_encuesta=$(".modal_add_motivo_encuesta");
-
-  var frm_nuevo_add_motivo_encuesta = function(objeto){
-    $.ajax({
-      type: "GET",
-      cache: false,
-      dataType: "html",
-      url: "{{ route('trafico.modal_add_motivo_encuesta')}}",
-     
-      success: function(dataResult)
-      {
-        console.log(dataResult);
-        modalContent_add_motivo_encuesta.empty().html(dataResult);                        
-        modal_add_motivo_encuesta.modal('show');
-        NProgress.done();
-      },
-      error: function(jqXHR, exception)
-      {
-        var msg = '';
-        if (jqXHR.status === 0) {
-            msg = 'Not connect.\n Verify Network.';
-        } else if (jqXHR.status == 404) {
-            msg = 'Requested page not found. [404]';
-        } else if (jqXHR.status == 500) {
-            msg = 'Internal Server Error [500].';
-        } else if (exception === 'parsererror') {
-            msg = 'Requested JSON parse failed.';
-        } else if (exception === 'timeout') {
-            msg = 'Time out error.';
-        } else if (exception === 'abort') {
-            msg = 'Ajax request aborted.';
-        } else {
-            msg = 'Uncaught Error.\n' + jqXHR.responseText;
-        }
-        alert(msg);
-        NProgress.done();
-      }
-    });
-  }
 
 
 var btnVer = $(".ver_encuesta");
