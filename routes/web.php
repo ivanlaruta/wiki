@@ -579,5 +579,10 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.detalle_visita'
 	]);
 
+	route::get('trafico/reporte',[
+		'uses' =>'TraficoController@reporte',
+		'as'   =>	'trafico.reporte'
+	]);
+
 	route::resource('trafico','TraficoController');
 });

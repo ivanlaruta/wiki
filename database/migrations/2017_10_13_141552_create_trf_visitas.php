@@ -21,7 +21,7 @@ class CreateTrfVisitas extends Migration
             $table->integer('id_motivo');
             $table->integer('id_ejecutivo')->nullable();
             $table->string('observaciones')->nullable();
-            $table->date('fecha');
+            $table->dateTime('fecha');
             $table->string('estado')->nullable();
 
             $table->string('created_by')->nullable()->unsigned();

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Trf_Visita extends Model
 {
     protected $table = "trf_visitas";
-     protected $dateFormat = 'Ymd H:i:s';
+    protected $dateFormat = 'Ymd H:i:s';
     public $timestamps = true;
 
     public function ejecutivo()

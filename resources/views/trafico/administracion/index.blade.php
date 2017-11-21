@@ -408,8 +408,7 @@
                                    <td>{{$det->codigo}}</td>
                                    <td>{{$det->descripcion}}</td>
                                    {{-- <td align="right">
-                                   
-                                  </td>    --}}     
+                                   </td>    --}}     
                                 </tr>
                                 @endforeach
                               </tbody>

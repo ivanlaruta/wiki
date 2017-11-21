@@ -23,6 +23,8 @@
             <div class="clearfix" ></div>
           </div>
           <div class="x_content">
+            <div class="table-responsive">
+              
             <table id="datatable_motivos" class="table table-striped jambo_table bulk_action">
               <thead>
                 <tr>
@@ -69,6 +71,7 @@
                 @endforeach
               </tbody>
             </table>
+            </div>
             <div class="modal fade modal_detalle" id="modal_detalle" role="dialog" >
               <div class="modal-dialog modal-lg">
                 <div class="modal-content contenido_modal_detalle">
