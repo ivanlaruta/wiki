@@ -333,7 +333,6 @@ class TraficoController extends Controller
         ->with('detalle_visita',$detalle_visita)
         ->with('id_vis',$id_vis);
     }
-
         // $consolidado =DB::select( DB::raw("
         // SELECT vi.id_sucursal,ub.nom_sucursal,count(vi.id) as totales,
         // (select count(ve.id) from trf_visitas ve where ve.id_motivo='1' and ve.id_sucursal=vi.id_sucursal) as vehiculos,
@@ -345,116 +344,70 @@ class TraficoController extends Controller
         // (select count(se.id) from trf_visitas se where se.id_motivo='5' and se.id_sucursal=vi.id_sucursal) as servicios
         // FROM trf_visitas vi, v_ubicaciones ub
         // where ub.id=vi.id_sucursal
-        // GROUP BY vi.id_sucursal,ub.nom_sucursal
-        //  "));
-        
+        // GROUP BY vi.id_sucursal,ub.
+        //  "));nom_sucursal
+
     public function reporte(Request $request)
     {
+        // if(is_null($request->mes)){$mes = descricpion_mes(Carbon::now('America/La_Paz') -> month);}
+        // else {$mes=$request->mes;}
 
-        if(is_null($request->mes)) { 
-            $mes = Carbon::now('America/La_Paz') -> month; 
-            $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
-            $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
-        } 
+        // if(is_null($request->f_ini) && is_null($request->f_fin)) {
+        //     $fecha_inicio=fecha_inicio($mes);
+        //     $fecha_final=fecha_inicio($mes);}
+        // else {
+        //     $fecha_inicio = $request->f_ini;
+        //     $fecha_final = $request->f_fin;}
+
+
+        $mes = Carbon::now('America/La_Paz') -> month; 
+        $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y H:m:s');
+        $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y H:m:s');
+        $desc_mes = 'NOVIEMBRE';
+
+
+        if(is_null($request->pantalla))
+        {
+            $total_visitas=Trf_Visita::count();
+            $total_nuevos=Trf_Visita::where('tipo_cliente','Nuevo')->count();
+            $total_antiguo=Trf_Visita::where('tipo_cliente','Antiguo')->count();
+            $total_otros=Trf_Visita::where('tipo_cliente',null)->count();
+            $total_modelos=Trf_Visita_Modelo::count();
+            $consolidado =DB::select( DB::raw("
+            select xx.regional,SUM(xx.totales) as totales ,SUM(xx.vehiculos) as vehiculos,SUM(xx.yamaha) as yamaha,SUM(xx.maquinaria) as maquinaria,SUM(xx.tramites) as tramites,SUM(xx.repuestos) as repuestos,SUM(xx.licitaciones) as licitaciones,SUM(xx.servicios) as servicios
+            from(
+            SELECT vi.id_sucursal,ub.nom_sucursal,ub.regional,count(vi.id) as totales,
+            (select count(ve.id) from trf_visitas ve where ve.id_motivo='1' and ve.id_sucursal=vi.id_sucursal) as vehiculos,
+            (select count(ya.id) from trf_visitas ya where ya.id_motivo='2' and ya.id_sucursal=vi.id_sucursal) as yamaha,
+            (select count(mq.id) from trf_visitas mq where (mq.id_motivo='7' or mq.id_motivo='8' or mq.id_motivo='10') and mq.id_sucursal=vi.id_sucursal) as maquinaria,
+            (select count(tr.id) from trf_visitas tr where tr.id_motivo='3' and tr.id_sucursal=vi.id_sucursal) as tramites,
+            (select count(re.id) from trf_visitas re where (re.id_motivo='4' or re.id_motivo='9' ) and re.id_sucursal=vi.id_sucursal) as repuestos,
+            (select count(li.id) from trf_visitas li where li.id_motivo='6' and li.id_sucursal=vi.id_sucursal) as licitaciones,
+            (select count(se.id) from trf_visitas se where se.id_motivo='5' and se.id_sucursal=vi.id_sucursal) as servicios
+            FROM trf_visitas vi, v_ubicaciones ub
+            where ub.id=vi.id_sucursal
+            AND vi.fecha BETWEEN '".$fecha_inicio."' and '".$fecha_final."'
+            GROUP BY vi.id_sucursal,ub.nom_sucursal,ub.regional) as xx GROUP BY xx.regional
+            "));
+            return view('trafico.reportes.index')
+            ->with('total_visitas',$total_visitas)
+            ->with('total_nuevos',$total_nuevos)
+            ->with('total_antiguo',$total_antiguo)
+            ->with('total_otros',$total_otros)
+            ->with('total_modelos',$total_modelos)
+            ->with('consolidado',$consolidado)
+            ->with('request',$request)
+            ->with('desc_mes',$desc_mes)
+            ;
+        }
         else
-        {   $mes=$request->mes;}
+        {
+            if($request->pantalla=='detalle_por_regional')
+            {
 
-        if ($mes == 1) { 
-            $desc_mes='ENERO';
-            $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
-            $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
-             }
-        if ($mes == 2) { 
-            $desc_mes='FEBRERO';
-            $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
-            $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
-             }
-        if ($mes == 3) { 
-            $desc_mes='MARZO';
-            $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
-            $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
-             }
-        if ($mes == 4) { 
-            $desc_mes='ABRIL';
-            $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
-            $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
-             }
-        if ($mes == 5) { 
-            $desc_mes='MAYO';
-            $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
-            $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
-             }
-        if ($mes == 6) { 
-            $desc_mes='JUNIO';
-            $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
-            $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
-             }
-        if ($mes == 7) { 
-            $desc_mes='JULIO';
-            $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
-            $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
-             }
-        if ($mes == 8) { 
-            $desc_mes='AGOSTO';
-            $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
-            $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
-             }
-        if ($mes == 9) { 
-            $desc_mes='SEPTIEMBRE';
-            $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
-            $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
-             }
-        if ($mes == 10){ 
-            $desc_mes=' OCTUBRE';
-            $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
-            $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
-             }
-        if ($mes == 11) { 
-            $desc_mes='NOVIEMBRE';
-            $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
-            $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
-             }
-        if ($mes == 12) { 
-            $desc_mes='DICIEMBRE';
-            $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
-            $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
-             }
+            }
 
-
-        
-        $total_visitas=Trf_Visita::count();
-        $total_nuevos=Trf_Visita::where('tipo_cliente','Nuevo')->count();
-        $total_antiguo=Trf_Visita::where('tipo_cliente','Antiguo')->count();
-        $total_otros=Trf_Visita::where('tipo_cliente',null)->count();
-        $total_modelos=Trf_Visita_Modelo::count();
-
-        $consolidado =DB::select( DB::raw("
-        select xx.regional,SUM(xx.totales) as totales ,SUM(xx.vehiculos) as vehiculos,SUM(xx.yamaha) as yamaha,SUM(xx.maquinaria) as maquinaria,SUM(xx.tramites) as tramites,SUM(xx.repuestos) as repuestos,SUM(xx.licitaciones) as licitaciones,SUM(xx.servicios) as servicios
-        from(
-        SELECT vi.id_sucursal,ub.nom_sucursal,ub.regional,count(vi.id) as totales,
-        (select count(ve.id) from trf_visitas ve where ve.id_motivo='1' and ve.id_sucursal=vi.id_sucursal) as vehiculos,
-        (select count(ya.id) from trf_visitas ya where ya.id_motivo='2' and ya.id_sucursal=vi.id_sucursal) as yamaha,
-        (select count(mq.id) from trf_visitas mq where (mq.id_motivo='7' or mq.id_motivo='8' or mq.id_motivo='10') and mq.id_sucursal=vi.id_sucursal) as maquinaria,
-        (select count(tr.id) from trf_visitas tr where tr.id_motivo='3' and tr.id_sucursal=vi.id_sucursal) as tramites,
-        (select count(re.id) from trf_visitas re where (re.id_motivo='4' or re.id_motivo='9' ) and re.id_sucursal=vi.id_sucursal) as repuestos,
-        (select count(li.id) from trf_visitas li where li.id_motivo='6' and li.id_sucursal=vi.id_sucursal) as licitaciones,
-        (select count(se.id) from trf_visitas se where se.id_motivo='5' and se.id_sucursal=vi.id_sucursal) as servicios
-        FROM trf_visitas vi, v_ubicaciones ub
-        where ub.id=vi.id_sucursal
-        AND vi.fecha BETWEEN '".$fecha_inicio."' and '".$fecha_final."'
-        GROUP BY vi.id_sucursal,ub.nom_sucursal,ub.regional) as xx GROUP BY xx.regional
-        "));
-        // dd($consolidado);
-        return view('trafico.reportes.index')
-        ->with('total_visitas',$total_visitas)
-        ->with('total_nuevos',$total_nuevos)
-        ->with('total_antiguo',$total_antiguo)
-        ->with('total_otros',$total_otros)
-        ->with('total_modelos',$total_modelos)
-        ->with('consolidado',$consolidado)
-        ->with('request',$request)
-        ->with('desc_mes',$desc_mes)
-        ;
+        }
     }
 
     public function create()
@@ -486,4 +439,78 @@ class TraficoController extends Controller
     {
         //
     }
+
+    // public function fecha_inicio($mes)
+    // {
+
+    //         if(is_null($request->mes)) { 
+    //             $mes = Carbon::now('America/La_Paz') -> month; 
+    //             $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y H:m:s');
+    //             $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y H:m:s');
+    //         } 
+    //         else
+    //         {   $mes=$request->mes;}
+
+    //         if ($mes == 1) {
+    //             $desc_mes='ENERO';
+    //             $ =Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
+    //             $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
+    //              }
+    //         if ($mes == 2) { 
+    //             $desc_mes='FEBRERO';
+    //             $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
+    //             $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
+    //              }
+    //         if ($mes == 3) { 
+    //             $desc_mes='MARZO';
+    //             $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
+    //             $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
+    //              }
+    //         if ($mes == 4) { 
+    //             $desc_mes='ABRIL';
+    //             $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
+    //             $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
+    //              }
+    //         if ($mes == 5) { 
+    //             $desc_mes='MAYO';
+    //             $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
+    //             $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
+    //              }
+    //         if ($mes == 6) { 
+    //             $desc_mes='JUNIO';
+    //             $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
+    //             $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
+    //              }
+    //         if ($mes == 7) { 
+    //             $desc_mes='JULIO';
+    //             $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
+    //             $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
+    //              }
+    //         if ($mes == 8) { 
+    //             $desc_mes='AGOSTO';
+    //             $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
+    //             $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
+    //              }
+    //         if ($mes == 9) { 
+    //             $desc_mes='SEPTIEMBRE';
+    //             $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
+    //             $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
+    //              }
+    //         if ($mes == 10){ 
+    //             $desc_mes=' OCTUBRE';
+    //             $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
+    //             $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
+    //              }
+    //         if ($mes == 11) { 
+    //             $desc_mes='NOVIEMBRE';
+    //             $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y H:m:s');
+    //             $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y H:m:s');
+    //              }
+    //         if ($mes == 12) { 
+    //             $desc_mes='DICIEMBRE';
+    //             $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');
+    //             $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y');
+    //              }
+
+    // }
 }
