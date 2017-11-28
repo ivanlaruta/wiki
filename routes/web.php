@@ -554,6 +554,11 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.formulario'
 	]);
 
+	route::get('trafico/formulario2',[
+		'uses' =>'TraficoController@formulario2',
+		'as'   =>	'trafico.formulario2'
+	]);
+
 	route::get('trafico/delete_encuesta',[
 		'uses' =>'TraficoController@delete_encuesta',
 		'as'   =>	'trafico.delete_encuesta'
@@ -582,6 +587,11 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 	route::get('trafico/reporte',[
 		'uses' =>'TraficoController@reporte',
 		'as'   =>	'trafico.reporte'
+	]);
+
+	route::get('trafico/reporte2',[
+		'uses' =>'TraficoController@reporte2',
+		'as'   =>	'trafico.reporte2'
 	]);
 
 	route::resource('trafico','TraficoController');

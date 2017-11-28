@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Trf_Encuesta;
 use App\Trf_Motivo;
@@ -24,7 +23,6 @@ class TraficoController extends Controller
 {
     public function formulario()
     {
-
         $suc=Auth::user()->sucursal2->nom_sucursal;
         $id_suc=Auth::user()->sucursal2->id;
         $encuesta=Trf_Encuesta::whereIn('id', DB::table('trf_sucursal_encuesta')->where('id_sucursal',$id_suc)->pluck('id_encuesta'))->first();
@@ -39,6 +37,38 @@ class TraficoController extends Controller
             $vendedores=Vendedores::where('cod_ubicacion',$id_suc)->orderBy('nom_vendedor')->get();
             
             return view('trafico.formulario')
+            ->with('encuesta',$encuesta)
+            ->with('motivos',$motivos)
+            ->with('clientes',$clientes)
+            ->with('edades',$edades)
+            ->with('motivo_Categoria',$motivo_Categoria)
+            ->with('modelos',$modelos)
+            ->with('vendedores',$vendedores);
+        }
+        else 
+        {
+            return view('trafico.formulario')
+            ->with('encuesta',$encuesta)
+            ;
+        }        
+    }
+
+    public function formulario2()
+    {
+        $suc=Auth::user()->sucursal2->nom_sucursal;
+        $id_suc=Auth::user()->sucursal2->id;
+        $encuesta=Trf_Encuesta::whereIn('id', DB::table('trf_sucursal_encuesta')->where('id_sucursal',$id_suc)->pluck('id_encuesta'))->first();
+        if(sizeof($encuesta)>0)
+        {
+            $id_encuesta=$encuesta->id;
+            $motivos =Trf_Motivo_Encuesta::where('id_encuesta',$id_encuesta)->orderBy('id','ASC')->get();
+            $clientes = Trf_Cliente::all();
+            $edades = Trf_Parametrica::where('tabla','rango_edades')->get();
+            $motivo_Categoria=Trf_Motivo_Categoria::all();
+            $modelos=Trf_Modelo::all();
+            $vendedores=Vendedores::where('cod_ubicacion',$id_suc)->orderBy('nom_vendedor')->get();
+            
+            return view('trafico.formulario2')
             ->with('encuesta',$encuesta)
             ->with('motivos',$motivos)
             ->with('clientes',$clientes)
@@ -395,6 +425,131 @@ class TraficoController extends Controller
             ->with('total_antiguo',$total_antiguo)
             ->with('total_otros',$total_otros)
             ->with('total_modelos',$total_modelos)
+            ->with('consolidado',$consolidado)
+            ->with('request',$request)
+            ->with('desc_mes',$desc_mes)
+            ;
+        }
+        else
+        {
+            if($request->pantalla=='detalle_por_regional')
+            {
+
+            }
+
+        }
+    }
+
+    public function reporte2(Request $request)
+    {
+        // if(is_null($request->mes)){$mes = descricpion_mes(Carbon::now('America/La_Paz') -> month);}
+        // else {$mes=$request->mes;}
+
+        // if(is_null($request->f_ini) && is_null($request->f_fin)) {
+        //     $fecha_inicio=fecha_inicio($mes);
+        //     $fecha_final=fecha_inicio($mes);}
+        // else {
+        //     $fecha_inicio = $request->f_ini;
+        //     $fecha_final = $request->f_fin;}
+
+        $mes = Carbon::now('America/La_Paz') -> month; 
+        $fecha_inicio=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y H:m:s');
+        $fecha_final = Carbon::now('America/La_Paz')->format('d/m/Y H:m:s');
+        $desc_mes = 'NOVIEMBRE';
+
+        if(is_null($request->pantalla))
+        {
+            $total_vehiculos=Trf_Visita::where('id_motivo','1')->count();
+            $total_motos=Trf_Visita::where('id_motivo','2')->count();
+            $total_tramites=Trf_Visita::where('id_motivo','3')->count();
+            $total_repuestos=Trf_Visita::where('id_motivo','4')->count();
+            $total_servicios=Trf_Visita::where('id_motivo','5')->count();
+            $total_licitaciones=Trf_Visita::where('id_motivo','6')->count();
+            $total_montacargas=Trf_Visita::where('id_motivo','7')->count();
+            $total_pesada=Trf_Visita::where('id_motivo','8')->count();
+            $total_llantas=Trf_Visita::where('id_motivo','9')->count();
+            $total_agricola=Trf_Visita::where('id_motivo','10')->count();
+
+
+            $total_visitas=Trf_Visita::count();
+            $total_nuevos=Trf_Visita::where('tipo_cliente','Nuevo')->count();
+            $total_antiguo=Trf_Visita::where('tipo_cliente','Antiguo')->count();
+            $total_otros=Trf_Visita::where('tipo_cliente',null)->count();
+            
+            $toyota =Trf_Visita_Modelo::
+            join('trf_modelos','trf_modelos.id','=','trf_visita_modelo.id_modelo')
+            ->where('trf_modelos.observaciones','=','TOYOTA')
+            ->count();
+
+            $yamaha =Trf_Visita_Modelo::
+            join('trf_modelos','trf_modelos.id','=','trf_visita_modelo.id_modelo')
+            ->where('trf_modelos.observaciones','=','YAMAHA')
+            ->count();
+
+            $lexus =Trf_Visita_Modelo::
+            join('trf_modelos','trf_modelos.id','=','trf_visita_modelo.id_modelo')
+            ->where('trf_modelos.observaciones','=','LEXUS')
+            ->count();
+           
+            $hino =Trf_Visita_Modelo::
+            join('trf_modelos','trf_modelos.id','=','trf_visita_modelo.id_modelo')
+            ->where('trf_modelos.observaciones','=','HINO')
+            ->count();
+
+            $otros_mod =Trf_Visita_Modelo::
+            join('trf_modelos','trf_modelos.id','=','trf_visita_modelo.id_modelo')
+            ->where('trf_modelos.observaciones','=','OTROS')
+            ->count();
+           
+                            
+
+
+
+            $totales=array(
+                'vehiculos' => $total_vehiculos,
+                'motos' => $total_motos,
+                'tramites' => $total_tramites,
+                'repuestos' => $total_repuestos,
+                'servicios' => $total_servicios,
+                'licitaciones' => $total_licitaciones,
+                'montacargas' => $total_montacargas,
+                'pesada' => $total_pesada,
+                'llantas' => $total_llantas,
+                'agricola' => $total_agricola,
+                'total' => $total_visitas,
+                'nuevos' => $total_nuevos,
+                'antiguos' => $total_antiguo,
+                'otros' => $total_otros,
+                'toyota' => $toyota,
+                'yamaha' => $yamaha,
+                'lexus' => $lexus,
+                'hino' => $hino,
+                'otros_mod' => $otros_mod,
+                );
+
+            // dd($totales['vehiculos']);           
+
+            $consolidado =DB::select( DB::raw("
+            select xx.regional,SUM(xx.totales) as totales , SUM(xx.vehiculos) as vehiculos, SUM(xx.yamaha) as yamaha, SUM(xx.tramites) as tramites, SUM(xx.repuestos) as repuestos, SUM(xx.servicios) as servicios, SUM(xx.licitaciones) as licitaciones, SUM(xx.montacargas) as montacargas, SUM(xx.pesada) as pesada, SUM(xx.llantas) as llantas, SUM(xx.agricola) as agricola
+            from(
+            SELECT vi.id_sucursal,ub.nom_sucursal,ub.regional,count(vi.id) as totales,
+            (select count(ve.id) from trf_visitas ve where ve.id_motivo='1' and ve.id_sucursal=vi.id_sucursal) as vehiculos,
+            (select count(ya.id) from trf_visitas ya where ya.id_motivo='2' and ya.id_sucursal=vi.id_sucursal) as yamaha,
+            (select count(tr.id) from trf_visitas tr where tr.id_motivo='3' and tr.id_sucursal=vi.id_sucursal) as tramites,
+            (select count(re.id) from trf_visitas re where re.id_motivo='4' and re.id_sucursal=vi.id_sucursal) as repuestos,
+            (select count(se.id) from trf_visitas se where se.id_motivo='5' and se.id_sucursal=vi.id_sucursal) as servicios,
+            (select count(li.id) from trf_visitas li where li.id_motivo='6' and li.id_sucursal=vi.id_sucursal) as licitaciones,
+            (select count(mo.id) from trf_visitas mo where mo.id_motivo='7' and mo.id_sucursal=vi.id_sucursal) as montacargas,
+            (select count(pe.id) from trf_visitas pe where pe.id_motivo='8' and pe.id_sucursal=vi.id_sucursal) as pesada,
+            (select count(ll.id) from trf_visitas ll where ll.id_motivo='9' and ll.id_sucursal=vi.id_sucursal) as llantas,
+            (select count(ag.id) from trf_visitas ag where ag.id_motivo='10' and ag.id_sucursal=vi.id_sucursal) as agricola
+            FROM trf_visitas vi, v_ubicaciones ub
+            where ub.id=vi.id_sucursal
+            AND vi.fecha BETWEEN '".$fecha_inicio."' and '".$fecha_final."'
+            GROUP BY vi.id_sucursal,ub.nom_sucursal,ub.regional) as xx GROUP BY xx.regional
+            "));
+            return view('trafico.reportes.index2')
+            ->with('totales',$totales)
             ->with('consolidado',$consolidado)
             ->with('request',$request)
             ->with('desc_mes',$desc_mes)

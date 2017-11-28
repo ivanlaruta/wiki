@@ -98,7 +98,7 @@ a:hover {
               <div class="col-md-6 col-sm-6 col-xs-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2> PROCECESO MENSUAL <small>{{$año_actual}}</small></h2>
+                    <h2> PROCESO MENSUAL <small>{{$año_actual}}</small></h2>
                       <span class="pull-right">
                       <a href="javascript:;" class="area" ><i class="fa fa-area-chart"></i></a>
                       <a href="javascript:;" class="line"><i class="fa fa-line-chart"></i></a>

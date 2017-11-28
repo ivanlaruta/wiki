@@ -297,6 +297,7 @@
                                   {{-- <th>ID</th> --}}
                                   <th>DESCRIPCION MODELO</th>
                                   <th>CATEGORIA</th>
+                                  <th>MARCA</th>
                                   <th style="text-align: right;">Operaciones</th>
                                 </tr>
                               </thead>
@@ -306,6 +307,7 @@
                                    {{-- <td>{{$mod->id}}</td> --}}
                                    <td>{{$mod->descripcion}}</td>
                                    <td>{{$mod->categoria->descripcion}}  </td>
+                                   <td>{{$mod->observaciones}}  </td>
                                    <td align="right">
                                    <div class="btn-group" role="group" >
                                       
