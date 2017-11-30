@@ -17,15 +17,9 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('usuario')->unique();
             $table->string('password');
-            $table->string('email');
-            $table->string('nombre');
-            $table->string('paterno')->nullable();
-            $table->string('materno')->nullable();
-            $table->string('telefono')->nullable();
-            $table->string('id_ubicacion')->nullable()->unsigned();
-            $table->enum('rol',['1','0'])->default('1');
+            $table->integer('permiso')->nullable()->unsigned();
+            $table->integer('persona')->nullable()->unsigned();
             $table->enum('estado',['1','0'])->default('1');
-            $table->date('fecha_salida')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sqlsrv'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
 
     /*
@@ -57,11 +57,11 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', '192.168.10.9'),
             'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'stock'),
+            'database' => env('DB_DATABASE', 'saavedra'),
             'username' => env('DB_USERNAME', 'postgres'),
-            'password' => env('DB_PASSWORD', 'root'),
+            'password' => env('DB_PASSWORD', 'iCore2015Bolivia'),
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
