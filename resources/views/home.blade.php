@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    aqui va la pagina de regionales!
+                    Prueba 1!
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@
                     <li class="">
                       <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                        <i class="glyphicon glyphicon-user"></i>
-                            {{ Auth::user()->nombre }} {{ Auth::user()->paterno }} <span class="caret"></span>
+                            {{ Auth::user()->user }}<span class="caret"></span>
                       </a>
 
                         <ul class="dropdown-menu" role="menu">
@@ -45,14 +45,7 @@
                            
                         </ul>
                     </li>
-                    <li role="presentation" class="dropdown">
-                      <a  class="info-number" style="  pointer-events: none; " >
-                        <i class="fa fa-map-marker"></i>
-                        {{Auth::user()->id_ubicacion}} - {{Auth::user()->sucursal2->nom_sucursal}} 
-
-                      </a>
-                      
-                    </li>
+                  
                 @endif
               </ul>              
             </nav>

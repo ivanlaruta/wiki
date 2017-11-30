@@ -46,6 +46,50 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')}}"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js')}}/1.3.0/respond.min.js')}}"></script>
     <![endif]-->
+
+
+    <style>
+.button2 {
+  border-radius: 3px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 15px;
+  width: 130px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 0px;
+}
+
+.button2 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button2 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button2:hover span {
+  padding-right: 25px;
+}
+
+.button2:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+
+
 </head>
 <!-- Alternate Body Classes: .modern and .vintage -->
 
@@ -56,14 +100,14 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button2 type="button2" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
+                </button2>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                    <img src="{{asset('vitality/assets/img/logo.png')}}" class="img-responsive" alt="">
+                    {{-- <img src="{{asset('vitality/assets/img/logo.png')}}" class="img-responsive" alt=""> --}}
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -72,18 +116,18 @@
                     <li class="hidden">
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
-                    <li>
+                   {{--  <li>
                         <a class="page-scroll" href="#about">ACERCA DEL SISTEMA</a>
-                    </li>
-                    <li>
+                    </li> --}}
+                    {{-- <li>
                         <a class="page-scroll" href="#process">CONTENIDO</a>
-                    </li>
+                    </li> --}}
                     
                     <li>
                          @if (Auth::check())
                         <a class="page-scroll" href="{{ url('/home') }}">INICIO</a>
                     @else
-                    <a class="page-scroll" href="{{ url('/login') }}">INGRESAR</a>
+                    <a class="page-scroll" href="{{ url('/login') }}"><button class="button2"><span>INGRESAR </span></button></a>
                         
                     @endif
 
@@ -99,29 +143,21 @@
         <!-- /.container -->
     </nav>
     <header style="background-image: url('{{asset('vitality/assets/img/bg-header.jpg')}}');">
-        <div class="intro-content">
-            <img src="{{asset('vitality/assets/img/profile.png')}}" class="img-responsive img-centered" alt="">
-            <div class="brand-name">TOYOSA</div>
-            <hr class="colored">
-            <div class="brand-name-subtext">SOLICITUDES - ENVIOS, STOCK - VENTAS </div>
+        <div class="intro-content"  style="width: 100%;">
+            {{-- <img src="{{asset('vitality/assets/img/profile.png')}}" class="img-responsive img-centered" alt=""> --}}
+            <div class="brand-name">GRUPO SAAVEDRA</div>
+            {{-- <div class="" style="width: 100%; font-size: 81px;line-height: 64px; font-weight: 800px;">GRUPO SAAVEDRA</div> --}}
+            <hr class="colored" style="max-width: 50%;">
+            {{-- <div class="brand-name-subtext"><button class="button"><span>MONITOREO GERENCIAL </span></button> </div> --}}
+             {{-- <a href="#portfolioModal1" data-toggle="modal" class="btn btn-outline-light">MONITOREO GERENCIAL </a> --}}
+             <button type="submit" class="btn btn-outline-dark ">MONITOREO GERENCIAL</button>
         </div>
         <div class="scroll-down">
-            <a class="btn page-scroll" href="#about"><i class="fa fa-angle-down fa-fw"></i></a>
+            {{-- <a class="btn page-scroll" href="#about"><i class="fa fa-angle-down fa-fw"></i></a> --}}
         </div>
     </header>
-     {{-- <header class="video">
-        <div class="overlay"></div>
-        <div class="intro-content">
-            <img src="{{asset('vitality/assets/img/profile.png')}}" class="img-responsive img-centered" alt="">
-            <div class="brand-name">TOYOSA</div>
-            <hr class="colored">
-            <div class="brand-name-subtext">SOLICITUDES - ENVIOS, STOCK - VENTAS</div>
-        </div>
-        <div class="scroll-down page-scroll">
-            <a class="btn page-scroll" href="#about"><i class="fa fa-angle-down"></i></a>
-        </div>
-    </header> --}}
-    <section id="about">
+     
+    {{-- <section id="about">
         <div class="container-fluid">
             <div class="row text-center">
                 <div class="col-lg-12 wow fadeIn">
@@ -273,7 +309,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --}}
       
    
     <!-- Core Scripts -->

@@ -1031,8 +1031,8 @@ footer.footer .copyright p.small {
   outline: none;
 }
 .btn-outline-dark {
-  color: #222222;
-  border: 1px solid #222222;
+  color: #f4511e;
+  border: 2px solid #f4511e;
   background: transparent;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
@@ -1041,16 +1041,17 @@ footer.footer .copyright p.small {
 .btn-outline-dark:hover,
 .btn-outline-dark:focus {
   color: white;
-  background: #ef4035;
-  border-color: #ef4035;
+  background: #f4511e;
+  border-color: #f4511e;
   outline: none;
 }
 .btn {
+  font-size: 18px;
   border-radius: 0;
-  padding: 12px 18px;
+  padding: 10px 100px;
   text-transform: uppercase;
-  font-weight: 900;
-  letter-spacing: 1px;
+  font-weight: 400;
+  letter-spacing: 10px;
 }
 .btn:focus,
 .btn:active,
