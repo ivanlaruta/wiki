@@ -15,17 +15,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $table = "users";
-    protected $fillable = ['usuario','password','email','nombre','paterno','materno','telefono','id_ubicacion','rol','estado'];     
+    protected $fillable = ['usuario','password','estado'];     
     
-    public function sucursal()
-    {
-        return $this->belongsTo('App\Trf_Sucursal','id_ubicacion');
-    }
- public function sucursal2()
-    {
-        return $this->belongsTo(Trf_Sucursal::class,'id_ubicacion');
-    }
-
+    
     
 
     protected $hidden = [

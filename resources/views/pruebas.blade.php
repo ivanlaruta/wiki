@@ -12,7 +12,7 @@
   <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>Empresas <small>Vista general</small></h3>
+        <h3>Empresas <small>Vista General</small></h3>
       </div>
     </div>
     
@@ -38,7 +38,7 @@
                   <div class="x_content">
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                       <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-car"></i> Vehiculos</a>
+                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-car"></i> Automotriz</a>
                         </li>
                         <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-bank"></i> Inmobiliaria</a>
                         </li>
@@ -68,7 +68,7 @@
                           - EDWIN SANTOS SAAVEDRA TOLEDO<br>
                           - ERIKA MENDIZABAL DE SAAVEDRA<br>
                           - SERGIO RODRIGO SAAVEDRA MENDIZABAL<br><br>
-                          <strong>Gerente general</strong><br>
+                          <strong>Gerente General</strong><br>
                           - ERICK MICHEL SAAVEDRA MENDIZABAL<br><br>
                           </div>
                         </div>
@@ -89,12 +89,12 @@
                             <small><strong>NIT:</strong> 1008467028</small><br>
                             <small><strong>MATRICULA:</strong> 13534<br></small><br>
                             <strong>Objetivo</strong><br>
-                            - Comercio general, Importaciones , Exportaciones y representaciones.<br><br>
+                            - Comercio General, Importaciones , Exportaciones y representaciones.<br><br>
                             <strong>Accionistas:</strong><br>
                             - EDWIN SANTOS SAAVEDRA TOLEDO<br>
                             - ERIKA MENDIZABAL DE SAAVEDRA<br>
                             - SERGIO RODRIGO SAAVEDRA MENDIZABAL<br><br>
-                            <strong>Gerente general</strong><br>
+                            <strong>Gerente General</strong><br>
                             -  <br><br>
                             </div>
                           </div>
@@ -120,7 +120,7 @@
                             - EDWIN SANTOS SAAVEDRA TOLEDO<br>
                             - SERGIO RODRIGO SAAVEDRA<br>
                             - ERICK MICHEL SAAVEDRA<br><br>
-                            <strong>Gerente general</strong><br>
+                            <strong>Gerente General</strong><br>
                             -   GERARDO ROJAS SILVA<br><br>
                             </div>
                           </div>
@@ -145,7 +145,7 @@
                             <strong>Accionistas:</strong><br>
                             - EDWIN SANTOS SAAVEDRA TOLEDO  <br>
                             - ERIKA MENDIZABAL DE SAAVEDRA  <br><br>
-                            <strong>Gerente general</strong><br>
+                            <strong>Gerente General</strong><br>
                             -   <br><br>
                             </div>
                           </div>
@@ -161,16 +161,16 @@
                               <div class="clearfix"></div>
                             </div>
                             <div class="x_content" style="display: none;">
-                            <i class="fa fa-bank"></i> <small> Sociedad Comercial. Sociedad Anónima.</small>
+                            <i class="fa fa-bank"></i> <small> Sociedad Comercial. Sociedad Anónima.</small><br>
+                            <i class="fa fa-map-marker"></i> <small> Iquique, Chile.</small><br>
                             <small><strong>NIT:</strong> --</small><br>
                             <small><strong>MATRICULA:</strong> --<br></small><br>
                             <strong>Objetivo</strong><br>
                             - Importaciones y exportaciones.<br><br>
-                            <i class="fa fa-map-marker"></i> <small> Iquique, Chile.</small><br><br>
                             <strong>Accionistas:</strong><br>
                             - EDWIN SANTOS SAAVEDRA TOLEDO<br>
                             - SERGIO RODRIGO SAAVEDRA<br><br>
-                            <strong>Gerente general</strong><br>
+                            <strong>Gerente General</strong><br>
                             -  ZOCIMO FARIAS<br><br>
                             </div>
                           </div>
@@ -186,16 +186,16 @@
                               <div class="clearfix"></div>
                             </div>
                             <div class="x_content" style="display: none;">
-                            <i class="fa fa-bank"></i> <small> Sociedad Comercial. Sociedad Anónima.</small>
+                            <i class="fa fa-bank"></i> <small> Sociedad Comercial. Sociedad Anónima.</small><br>
+                            <i class="fa fa-map-marker"></i> <small> Iquique, Chile.</small><br>
                             <small><strong>NIT:</strong> --</small><br>
                             <small><strong>MATRICULA:</strong> --<br></small><br>
                             <strong>Objetivo</strong><br>
                             - Importaciones y exportaciones.<br><br>
-                            <i class="fa fa-map-marker"></i> <small> Iquique, Chile.</small><br><br>
                             <strong>Accionistas:</strong><br>
                             - EDWIN SANTOS SAAVEDRA TOLEDO<br>
                             - ERIKA MENDIZABAL GONZALES<br><br>
-                            <strong>Gerente general</strong><br>
+                            <strong>Gerente General</strong><br>
                             -  ZOCIMO FARIAS<br><br>
                             </div>
                           </div>
@@ -220,16 +220,16 @@
                               <div class="x_content" style="display: none;">
                               <i class="fa fa-bank"></i> <small> Sociedad Comercial. Sociedad Anónima.</small><br>
                               <i class="fa fa-map-marker"></i> <small>  Cochabamba, Bolivia.</small><br><br>
-                              <strong>Accionistas:</strong>
                               <small><strong>NIT:</strong> 141483027</small><br>
                               <small><strong>MATRICULA:</strong> 43825<br></small><br>
                               <strong>Objetivo</strong><br>
                               - Construccion, inmobiliaria.<br><br>
+                              <strong>Accionistas:</strong><br>
                               - EDWIN SANTOS SAAVEDRA TOLEDO<br>
                               - EDWARD DANILO SAAVEDRA MENDIZABAL<br>
                               - WILMA DEL ROSARIO SAAVEDRA TOLEDO<br>
                               - ESTEBAN SANTOS SAAVEDRA NUMBELA<br><br>
-                              <strong>Gerente general</strong><br>
+                              <strong>Gerente General</strong><br>
                               -  <br><br>
                               </div>
                             </div>
@@ -255,7 +255,7 @@
                               - EDWIN SANTOS SAAVEDRA TOLEDO<br>
                               - ERIKA MENDIZABAL DE SAAVEDRA<br>
                               - DIEGO SAAVEDRA MENDIZABAL<br><br>
-                              <strong>Gerente general</strong><br>
+                              <strong>Gerente General</strong><br>
                               -  RODRIGO GUTIERREZ<br><br>
                               </div>
                             </div>
@@ -281,7 +281,7 @@
                               - JORGE ALEJANDRO NUMBELA SAAVEDRA<br>
                               - ELIZABETH JANNONE DE SAUCEDO<br>
                               - JAIME GERARDO ROJAS SILVA<br><br>
-                              <strong>Gerente general</strong><br>
+                              <strong>Gerente General</strong><br>
                               -   <br><br>
                               </div>
                             </div>
@@ -306,7 +306,7 @@
                               <strong>Accionistas:</strong><br>
                               - EDWIN SANTOS SAAVEDRA TOLEDO    <br>
                               - HALMAR ERNESTO TEJERINA ENDARA    <br><br>
-                              <strong>Gerente general</strong><br>
+                              <strong>Gerente General</strong><br>
                               - JAVIER VÍA  <br><br>
                               </div>
                             </div>
@@ -332,7 +332,7 @@
                               - EDWIN SANTOS SAAVEDRA TOLEDO<br>
                               - ELIZABETH JANNONE DE SAUCEDO<br>
                               - ERICK MICHEL SAAVEDRA<br><br>
-                              <strong>Gerente general</strong><br>
+                              <strong>Gerente General</strong><br>
                               -   <br><br>
                               </div>
                             </div>
@@ -357,7 +357,7 @@
                               <strong>Accionistas:</strong><br>
                               - PABLO LUIS GONZALO SOTO QUIROGA    <br>
                               - SERGIO AROON ASSEFF TALAVERA    <br><br>
-                              <strong>Gerente general</strong><br>
+                              <strong>Gerente General</strong><br>
                               -   <br><br>
                               </div>
                             </div>
@@ -383,7 +383,7 @@
                               - TELSIS TRADING GROUP LLC     <br>
                               - CAPITAL REGIONAL DE CENTROAMERICA    <br>
                               - EDWIN SANTOS SAAVEDRA TOLEDO   <br><br>
-                              <strong>Gerente general</strong><br>
+                              <strong>Gerente General</strong><br>
                               -   <br><br>
                               </div>
                             </div>
@@ -413,7 +413,7 @@
                               - CONCORDIA S.A. EMPRESA CONSTRUCTORA (Edwin Santos Saavedra)<br>
                               - GIORGIO DARIO BENUCCI <br>
                               - BLANCA AZUCENA PAREDES  VEGA  <br><br>
-                              <strong>Gerente general</strong><br>
+                              <strong>Gerente General</strong><br>
                               -  VLADIMIR GUTIERREZ ALDANA. <br><br>
                               </div>
                             </div>
@@ -503,7 +503,7 @@
                     </ul>
                   </td>
                   <td class="project_progress"><p>---</p></td>
-                  <td><a><small> Comercio general, Importaciones , Exportaciones y representaciones.</small></a></td>
+                  <td><a><small> Comercio General, Importaciones , Exportaciones y representaciones.</small></a></td>
                   <td><a> 1008467028 </a></td>
                   <td><a> 13534 </a></td>
                 </tr>
