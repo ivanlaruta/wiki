@@ -7,12 +7,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <link href="{{asset('hielo/assets/css/main.css')}}" rel="stylesheet" type="text/css">
+         <link href="{{asset('bower_components/animate.css/animate.min.css')}}" rel="stylesheet">
     </head>
     <body>
 
             <header id="header" class="alt">
                 <div class="logo"><a href="#">Sistema <span>de TOYOSA SA</span></a></div>
-                <a  href="{{ url('/login') }}">INGRESAR </a>
+                <a class="animated infinite pulse" href="{{ url('/login') }}">INGRESAR </a>
             </header>
 
       
