@@ -27,4 +27,19 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/inicial', 'SesionController@index');
+Route::get('/inicial', 'SesionController@index')->name('inicial');
+
+
+
+Route::group(['prefix'=>'empresas','middleware'=>'auth'],function(){
+	
+
+
+	// route::get('administracion/add_users',[
+	// 	'uses' =>'AdministracionController@add_users',
+	// 	'as'   =>	'administracion.add_users'
+	// ]);
+	
+	route::resource('empresas','EmpresasController');
+
+});

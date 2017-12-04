@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateAccionitasEmpresasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('empresas_accionistas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('usuario')->unique();
-            $table->string('password');
-            $table->integer('permiso')->nullable()->unsigned();
-            $table->integer('persona')->nullable()->unsigned();
+            $table->integer('id_empresa');
+            $table->integer('id_accionista')->nullable();
+            $table->string('tipo',50)->nullable();
+            $table->integer('porcentaje')->nullable();
+            $table->string('observaciones',50)->nullable();
             $table->enum('estado',['1','0'])->default('1');
-
             $table->string('created_by')->nullable()->unsigned();
             $table->string('updated_by')->nullable()->unsigned();
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -35,6 +34,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('empresas_accionistas');
     }
 }

@@ -13,17 +13,21 @@
 
             <header id="header" class="alt">
                 <div class="logo"><a href="#">Sistema <span>de TOYOSA SA</span></a></div>
-                <a class="animated infinite pulse" href="{{ url('/login') }}">INGRESAR </a>
+                @if (Auth::check())
+                    <a class="animated infinite pulse" href="{{ url('/inicial') }}">INGRESAR </a>
+                @else
+                    <a class="animated infinite pulse" href="{{ url('/login') }}">INGRESAR </a>
+                @endif
+                    
             </header>
 
-      
             <section class="banner full">
                 <article>
                     <img src="{{asset('hielo/images/slide01.jpg')}}" alt="" />
                     <div class="inner">
                         <header>
                             <p> Monitoreo gerenecial sociedades SAAVEDRA</p>
-                            <h2>GRUPO SAAVEDRA</h2>
+                            <h2 style="opacity: 0.58;">GRUPO SAAVEDRA</h2>
                         </header>
                     </div>
                 </article>
@@ -32,7 +36,7 @@
                     <div class="inner">
                         <header>
                             <p> Organizacion inmobiliaria</p>
-                            <h2>GRUPO SAAVEDRA</h2>
+                            <h2 style="opacity: 0.58;">GRUPO SAAVEDRA</h2>
                         </header>
                     </div>
                 </article>
@@ -41,7 +45,7 @@
                     <div class="inner">
                         <header>
                             <p> Organizacion Automotriz</p>
-                            <h2>GRUPO SAAVEDRA</h2>
+                            <h2 style="opacity: 0.58;">GRUPO SAAVEDRA</h2>
                         </header>
                     </div>
                 </article>
@@ -49,8 +53,8 @@
                     <img src="{{asset('hielo/images/slide04.jpg')}}"  alt="" />
                     <div class="inner">
                         <header>
-                            <p> Inidcadores finacieros</p>
-                            <h2>GRUPO SAAVEDRA</h2>
+                            <p> Indicadores finacieros</p>
+                            <h2 style="opacity: 0.58;">GRUPO SAAVEDRA</h2>
                         </header>
                     </div>
                 </article>
@@ -59,7 +63,7 @@
                     <div class="inner">
                         <header>
                             <p> Gestion</p>
-                            <h2>GRUPO SAAVEDRA</h2>
+                            <h2 style="opacity: 0.58;">GRUPO SAAVEDRA</h2>
                         </header>
                     </div>
                 </article>

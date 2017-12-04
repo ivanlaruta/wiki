@@ -19,7 +19,7 @@
                     <li class="">
                       <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                        <i class="glyphicon glyphicon-user"></i>
-                            {{ Auth::user()->user }}<span class="caret"></span>
+                            {{ Auth::user()->usuario }}<span class="caret"></span>
                       </a>
 
                         <ul class="dropdown-menu" role="menu">

@@ -16,8 +16,8 @@
 
                   <li><a><i class="fa fa-bar-chart"></i> REPORTES <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ url('/test') }}">Sociedades</a></li>
-                      <li><a href="#">Finanzas  <span class="fa fa-chevron-down"></span></a>
+                      <li><a href="{{ route('empresas.index') }}">Sociedades</a></li>
+                      <li><a>Finanzas  <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu" style="display: block;">
                           <li class="sub_menu"><a href="#">Estados financieros</a>
                           </li>
@@ -31,7 +31,7 @@
                           </li>
                         </ul>
                       </li>
-                      <li><a href="#">Comercial  <span class="fa fa-chevron-down"></span></a>
+                      <li><a >Comercial  <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu" style="display: block;">
                           <li class="sub_menu"><a href="#">Ventas</a>
                           </li>
@@ -41,7 +41,7 @@
                           </li>
                         </ul>
                       </li>
-                      <li><a href="#">Inmobiliario  <span class="fa fa-chevron-down"></span></a>
+                      <li><a>Inmobiliario  <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu" style="display: block;">
                           <li class="sub_menu"><a href="#">Inmob. Proyectos</a>
                           </li>

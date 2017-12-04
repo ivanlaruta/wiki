@@ -68,6 +68,8 @@
 
         <!-- animate.css -->
         <link href="{{asset('bower_components/animate.css/animate.min.css')}}" rel="stylesheet">
+
+         @yield('style')
     </head>
 
     <body class="nav-md ">
@@ -96,7 +98,6 @@
 
 
                 <!-- /page content -->
-
 
 
                 <!-- footer content -->
