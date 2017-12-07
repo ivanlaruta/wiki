@@ -12,7 +12,7 @@
     <body>
 
             <header id="header" class="alt">
-                <div class="logo"><a href="#">Sistema <span>de SIGC</span></a></div>
+                <div class="logo"><a href="#">Sistema SIGC</a></div>
                 @if (Auth::check())
                     <a href="#menu" class="animated infinite pulse" >INICIO </a>
                 @else

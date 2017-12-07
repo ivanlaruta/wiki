@@ -54,7 +54,7 @@
                 <br />
 
                 <div>
-                <h1><i class="fa fa-cog fa-spin"></i> SISTEMA DE INFORMACIÓN CORPORATIVA</h1>
+                <h1><i class="fa fa-cog fa-spin"></i> Sistema información corporativa</h1>
                 
                   <p>©2017 Todos los derechos reservados SIGC. </p>
                 </div>
