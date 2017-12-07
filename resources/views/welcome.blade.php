@@ -14,12 +14,30 @@
             <header id="header" class="alt">
                 <div class="logo"><a href="#">Sistema <span>de TOYOSA SA</span></a></div>
                 @if (Auth::check())
-                    <a class="animated infinite pulse" href="{{ url('/inicial') }}">INGRESAR </a>
+                    <a href="#menu" class="animated infinite pulse" >INICIO </a>
                 @else
                     <a class="animated infinite pulse" href="{{ url('/login') }}">INGRESAR </a>
                 @endif
                     
             </header>
+
+            <nav id="menu">
+                <ul class="links">
+                    @if (Auth::check())<li><a style="color: #fff;">sesion : {{ strtoupper(Auth::user()->usuario) }}</a></li>@endif
+                    <li><a href="{{ url('/inicial') }}">Pagina inicio</a></li>
+                    <li>
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                         Cerrar 
+                    </a>
+                  
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li> 
+                </ul>
+            </nav>
 
             <section class="banner full">
                 <article>

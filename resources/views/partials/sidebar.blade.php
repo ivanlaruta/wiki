@@ -3,7 +3,7 @@
             <div class="navbar nav_title" style="border: 0;">
             <a class="site_title" href="{{ url('/home') }}">
                 &nbsp<i class=" fa fa-bank "></i>
-                <span>G. SAAVEDRA </span>
+                <span> SIGC </span>
             </a>                            
         </div>
 

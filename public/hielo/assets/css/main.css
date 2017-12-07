@@ -3104,6 +3104,7 @@
 			background-attachment: fixed;
 			background-position: center;
 			position: relative;
+			height: 422px;
 		}
 
 			.wrapper.style3 input, .wrapper.style3 select, .wrapper.style3 textarea {
@@ -3327,6 +3328,7 @@
 
 			.wrapper.style3 .inner {
 				position: relative;
+				 padding: 70px 0;
 				z-index: 2;
 			}
 
