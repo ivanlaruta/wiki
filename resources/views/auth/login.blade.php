@@ -54,9 +54,9 @@
                 <br />
 
                 <div>
-                <h1><i class="fa fa-cog fa-spin"></i> VENTAS E INVENTARIOS</h1>
+                <h1><i class="fa fa-cog fa-spin"></i> SISTEMA DE INFORMACIÓN CORPORATIVA</h1>
                 
-                  <p>©2017 Todos los derechos reservados.TOYOSA S.A. </p>
+                  <p>©2017 Todos los derechos reservados SIGC. </p>
                 </div>
               </div>
             </form>     
