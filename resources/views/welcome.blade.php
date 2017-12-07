@@ -45,7 +45,7 @@
                     <div class="inner">
                         <header>
                             <p> Monitoreo gerenecial sociedades SAAVEDRA</p>
-                            <h1 style="opacity: 0.58; font-size: 50px; ">SISTEMA DE INFORMACIÓN CORPORATIVA</h1>
+                            <h2 style="opacity: 0.58; font-size: 3.8rem;">SISTEMA DE INFORMACIÓN CORPORATIVA</h2>
                         </header>
                     </div>
                 </article>
@@ -54,7 +54,7 @@
                     <div class="inner">
                         <header>
                             <p> Organizacion inmobiliaria</p>
-                            <h1 style="opacity: 0.58; font-size: 50px; ">SISTEMA DE INFORMACIÓN CORPORATIVA</h1>
+                            <h2 style="opacity: 0.58; font-size: 3.8rem;">SISTEMA DE INFORMACIÓN CORPORATIVA</h2>
                         </header>
                     </div>
                 </article>
@@ -63,7 +63,7 @@
                     <div class="inner">
                         <header>
                             <p> Organizacion Automotriz</p>
-                            <h1 style="opacity: 0.58; font-size: 50px;  ">SISTEMA DE INFORMACIÓN CORPORATIVA</h1>
+                            <h2 style="opacity: 0.58; font-size: 3.8rem;">SISTEMA DE INFORMACIÓN CORPORATIVA</h2>
                         </header>
                     </div>
                 </article>
@@ -72,7 +72,7 @@
                     <div class="inner">
                         <header>
                             <p> Indicadores finacieros</p>
-                            <h1 style="opacity: 0.58; font-size: 50px; ">SISTEMA DE INFORMACIÓN CORPORATIVA</h1>
+                            <h2 style="opacity: 0.58; font-size: 3.8rem;">SISTEMA DE INFORMACIÓN CORPORATIVA</h2>
                         </header>
                     </div>
                 </article>
@@ -81,7 +81,7 @@
                     <div class="inner">
                         <header>
                             <p> Gestion</p>
-                            <h1 style="opacity: 0.58; font-size: 50px; ">SISTEMA DE INFORMACIÓN CORPORATIVA</h1>
+                            <h2 style="opacity: 0.58; font-size: 3.8rem;">SISTEMA DE INFORMACIÓN CORPORATIVA</h2>
                         </header>
                     </div>
                 </article>
