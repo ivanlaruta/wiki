@@ -33,12 +33,26 @@ Route::get('/inicial', 'SesionController@index')->name('inicial');
 
 Route::group(['prefix'=>'empresas','middleware'=>'auth'],function(){
 	
+	route::get('sociedades',[
+		'uses' =>'EmpresasController@sociedadesIndex',
+		'as'   =>	'empresas.sociedades'
+	]);
 
+	route::get('agenda',[
+		'uses' =>'EmpresasController@agendaIndex',
+		'as'   =>	'empresas.agenda'
+	]);
 
-	// route::get('administracion/add_users',[
-	// 	'uses' =>'AdministracionController@add_users',
-	// 	'as'   =>	'administracion.add_users'
-	// ]);
+	route::get('agenda/modalNuevo',[
+		'uses' =>'EmpresasController@agendaModalNuevo',
+		'as'   =>	'empresas.agendaModalNuevo'
+	]);
+
+	route::get('agenda/detalle',[
+		'uses' =>'EmpresasController@agendaDetalle',
+		'as'   =>	'empresas.agendaDetalle'
+	]);
+
 	
 	route::resource('empresas','EmpresasController');
 

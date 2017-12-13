@@ -28,8 +28,8 @@
           <div class="x_title">
             <h2>Sociedades</h2>
             <ul class="nav navbar-right panel_toolbox">
-              <li><a class="ver_bloques"><i class="fa fa-th-large ico_bloques" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver agrupado"></i></a></li>
               <li><a class="ver_lista"><i class="fa fa-list ico_lista" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver en lista"></i></a></li>
+              <li><a class="ver_bloques"><i class="fa fa-th-large ico_bloques" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver agrupado"></i></a></li>
             </ul>
             <div class="clearfix"></div>
           </div>
@@ -166,8 +166,6 @@
 
             <div class="lista">
               <p>Lista resumen conformacion de sociedades.</p>
-
-              <!-- start project list -->
               <table class="table table-striped Empresas">
                 <thead>
                   <tr>
@@ -178,7 +176,6 @@
                     <th style="width: 18%">Objeto</th>
                     <th  style="width: 1%">NIT</th>
                     <th  style="width: 1%">Matricula</th>
-                    
                   </tr>
                 </thead>
                 <tbody>
@@ -212,6 +209,7 @@
                 </tbody>
               </table>
             </div>
+            
           </div>
         </div>
       </div>
@@ -223,24 +221,32 @@
 @section('scripts')
 
 <script>
-  $('.lista').hide();
-  $(".ico_bloques").addClass('icono_select');
-  $('.bloques').addClass('animated fadeIn');
-  $('.lista').addClass('animated fadeIn');
-  $(".ver_lista").click(function() {
-      $('.lista').show();
-      $('.bloques').hide();
-      $(".ico_lista").addClass("icono_select");
-      $(".ico_bloques").removeClass("icono_select");
 
+  ver_lista();
+
+  $(".ver_lista").click(function() {
+     ver_lista();
   });
 
   $(".ver_bloques").click(function() {
-      $('.lista').hide();
-      $('.bloques').show();
-      $(".ico_lista").removeClass("icono_select");
-      $(".ico_bloques").addClass("icono_select");
+    ver_bloques();
   });
+  
+  function ver_lista()
+  {
+    $('.lista').show();
+    $('.bloques').hide();
+    $(".ico_lista").addClass("icono_select");
+    $(".ico_bloques").removeClass("icono_select");
+  };
+
+  function ver_bloques()
+  {
+    $('.lista').hide();
+    $('.bloques').show();
+    $(".ico_lista").removeClass("icono_select");
+    $(".ico_bloques").addClass("icono_select");
+  };
 
 </script> 
 @endsection

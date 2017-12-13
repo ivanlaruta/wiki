@@ -16,15 +16,29 @@ class EmpresasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function sociedadesIndex()
     {
         $empresas =Empresa::all(); 
         $accionistas_emp =Accionista_Empresa::all(); 
-
-        return view('interfaces.empresas.index')
+        return view('interfaces.empresas.sociedades.index')
         ->with('empresas',$empresas)
         ->with('accionistas_emp',$accionistas_emp)
         ;
+    }
+
+    public function agendaIndex()
+    {
+        return view('interfaces.empresas.agendaCritica.index');
+    }
+
+    public function agendaModalNuevo()
+    {
+        return view('interfaces.empresas.agendaCritica.modalNuevo');
+    }
+
+    public function agendaDetalle()
+    {
+        return view('interfaces.empresas.agendaCritica.detalle');
     }
 
     /**

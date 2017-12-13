@@ -12,22 +12,26 @@
               <div class="menu_section">
                 <ul class="nav side-menu">
                  
-               
-
-                  <li><a><i class="fa fa-bar-chart"></i> REPORTES <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-users"></i> Informacion Corporativa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('empresas.index') }}">Sociedades</a></li>
+                      <li><a href="{{ route('empresas.agenda') }}">Agenda critica</a></li>
+                      <li><a href="{{ route('empresas.sociedades') }}">Sociedades</a></li>
+                     </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-bar-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
                       <li><a>Finanzas  <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu" style="display: block;">
                           <li class="sub_menu"><a href="#">Estados financieros</a>
                           </li>
-                          <li><a href="#">Flujo financiero</a>
+                          <li><a>Flujo financiero</a>
                           </li>
-                          <li><a href="#">Deuda</a>
+                          <li><a>Deuda</a>
                           </li>
-                          <li><a href="#">Cuentas por cobrar</a>
+                          <li><a>Cuentas por cobrar</a>
                           </li>
-                          <li><a href="#">Otras Obligaciones</a>
+                          <li><a>Otras Obligaciones</a>
                           </li>
                         </ul>
                       </li>
@@ -35,9 +39,9 @@
                         <ul class="nav child_menu" style="display: block;">
                           <li class="sub_menu"><a href="#">Ventas</a>
                           </li>
-                          <li><a href="#">Stock</a>
+                          <li><a>Stock</a>
                           </li>
-                          <li><a href="#">Inteligencia comercial</a>
+                          <li><a>Inteligencia comercial</a>
                           </li>
                         </ul>
                       </li>
@@ -45,15 +49,15 @@
                         <ul class="nav child_menu" style="display: block;">
                           <li class="sub_menu"><a href="#">Inmob. Proyectos</a>
                           </li>
-                          <li><a href="#">Inmob. Comercial</a>
+                          <li><a>Inmob. Comercial</a>
                           </li>
                         </ul>
                       </li>
-                      <li><a href="#">RRHH </a></li>
-                      <li><a href="#">Legal  </a></li>
-                      <li><a href="#">Sistemas  </a></li>
-                      <li><a href="#">Marketing  </a></li>
-                      <li><a href="#">Auditoria  </a></li>
+                      <li><a>RRHH </a></li>
+                      <li><a>Legal  </a></li>
+                      <li><a>Sistemas  </a></li>
+                      <li><a>Marketing  </a></li>
+                      <li><a>Auditoria  </a></li>
                     </ul>
                   </li>
                 </ul>
