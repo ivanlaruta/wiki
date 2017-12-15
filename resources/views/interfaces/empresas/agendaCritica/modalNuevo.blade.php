@@ -82,6 +82,12 @@
           </select>
         </div>
       </div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="form-group">
+          <label>Contingencia:</label>
+          <input type="text" class="form-control" id="contingencia" name="contingencia" required="required" autofocus="" placeholder="contingencia">
+        </div>
+      </div>
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
           <label>Propuesta/ Comentario:</label>

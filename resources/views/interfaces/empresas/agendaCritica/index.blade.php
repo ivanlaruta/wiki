@@ -55,6 +55,7 @@
                   <th style="width: 10%">Responasbles</th>
                   <th style="width: 1%">Plazo</th>
                   <th style="width: 12%">Estado</th>
+                  <th style="width: 12%">Contingencia</th>
                   <th style="width: 5%; text-align: right;">#Opciones</th>
                 </tr>
               </thead>
@@ -93,6 +94,9 @@
                     </div>
                     <small>100% (TERMINADO)</small><br />
                     <small>Ultima actividad: 9/12/2017</small>
+                  </td>
+                  <td>
+                    <small>detalle contingencia</small>
                   </td>
                   <td class=" pull-right">
                     <div class="btn-group">
@@ -142,6 +146,9 @@
                     <small>57% (EN PROCESO)</small><br />
                     <small>Ultima actividad: 11/12/2017</small>
                   </td>
+                  <td>
+                    <small>detalle contingencia</small>
+                  </td>
                   <td class=" pull-right">
                     <div class="btn-group">
                       <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abrir" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i></a>
@@ -187,6 +194,9 @@
                     </div>
                     <small>0% (SIN PROCESO)</small><br />
                     <small>Ultima actividad: sin actividad</small>
+                  </td>
+                  <td>
+                    <small>detalle contingencia</small>
                   </td>
                   <td class=" pull-right">
                     <div class="btn-group">

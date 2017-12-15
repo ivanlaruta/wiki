@@ -59,7 +59,8 @@
                               <p class="month">Dic</p>
                             </div>
                             <div class="message_wrapper">
-                              <h4 class="heading">Actividad2</h4>
+                              <h4 class="heading">Actividad 2 <a class="pull-right"><i class="fa fa-pencil"></i></a></h4>
+                              45% de avance
                               <blockquote class="message">Detalle y descripcion de la actividad numero 2, notas y observaciones y otros datos que correspondan a la actividad</blockquote>
                               <br />
                               <p class="url">
@@ -76,7 +77,8 @@
                               <p class="month">Dic</p>
                             </div>
                             <div class="message_wrapper">
-                              <h4 class="heading">Actividad 1</h4>
+                              <h4 class="heading">Actividad 1  <a class="pull-right"><i class="fa fa-pencil"></i></a></h4>
+                              65% de avance
                               <blockquote class="message">Detalle y descripcion de la actividad numero 1, notas y observaciones y otros datos que correspondan a la actividad</blockquote>
                               <br />
                               <p class="url">
@@ -100,7 +102,7 @@
                           <div class="clearfix"></div>
                         </div>
                         <div class="panel-body">
-                          <h3 class="green"><i class="fa fa-paint-brush"></i> </h3>
+                          {{-- <h3 class="green"><i class="fa fa-paint-brush"></i> </h3> --}}
 
                           <p>Aqui se mostrara la porpuesta, comentario u observacion que se ingresa al momento de creacion de la actividad.</p>
                           <br />
@@ -131,7 +133,8 @@
                             </li>
                             <li><a href=""><i class="fa fa-mail-forward"></i> <strong>Estado:</strong> Finalizado </a>
                             </li>
-
+                            <li><a href=""><i class="fa fa-mail-forward"></i> <strong>Contingecia:</strong> detalle contingencia </a>
+                            </li>
                           </ul>
                           <br />
 
@@ -169,6 +172,14 @@
                                   <div class="form-group">
                                     <label>Descripcion:</label>
                                     <textarea class="form-control" rows="2" ></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-horizontal form-label-left">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                  <div class="form-group">
+                                    <label>Progreso:</label>
+                                    <input type="number" min="1" max="100" class="form-control col-md-4 col-xs-12" id="preogreso" name="preogreso" required="required">
                                   </div>
                                 </div>
                               </div>
