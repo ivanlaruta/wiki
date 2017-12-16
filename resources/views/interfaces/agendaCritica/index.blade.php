@@ -85,13 +85,13 @@
                   </td>
                   <td>
                   @if ($det->lista_responsables->count() > 0)
-                    @foreach ($det->lista_responsables as $responsable)
                     <ul class="list-inline">
+                    @foreach ($det->lista_responsables as $responsable)
                       <li style="padding-left: 0px; padding-right: 0px;">
                         <a href="#"><img src="{{URL::asset('/bower_components/gentelella/production/images/user.png')}}" class="avatar" alt="Avatar" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{$responsable->responsable->persona->nombre}} {{$responsable->responsable->persona->paterno}}"></a>
                       </li>
-                    </ul>
                     @endforeach
+                    </ul>
                   @endif
 
                     
@@ -116,11 +116,11 @@
                     <small>Ultima actividad: {{$det->fecha_creacion}}</small>
                   </td>
                   <td align="right">
-                    <small>{{$det->contingencia}}</small>
+                    {{$det->contingencia}}
                   </td>
                   <td class=" pull-right">
                     <div class="btn-group">
-                      <a href="{{ route('agenda.detalle') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abrir" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i></a>
+                      <a href="{{ route('agenda.detalle').'?id='.$det->id}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abrir" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i></a>
                       <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i></a>
                       <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
                     </div>

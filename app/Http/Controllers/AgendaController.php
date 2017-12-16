@@ -48,9 +48,12 @@ class AgendaController extends Controller
         ;
     }
 
-    public function detalle()
+    public function detalle(Request $request)
     {
-        return view('interfaces.agendaCritica.detalle');
+        $agenda=Agenda_Critica::find($request->id);
+        return view('interfaces.agendaCritica.detalle')
+        ->with('agenda',$agenda)
+        ;
     }
 
 

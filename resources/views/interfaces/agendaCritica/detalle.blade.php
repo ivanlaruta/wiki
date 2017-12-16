@@ -8,7 +8,7 @@
   <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Detalle Actividad <small> DETALLE</small></h3>
+                <h3><a href="{{ route('agenda.index') }}">Detalle Actividad </a><small> DETALLE</small></h3>
               </div>
             </div>
             
@@ -18,7 +18,7 @@
               <div class="col-md-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>PAGO AFP</h2>
+                    <h2>{{$agenda->tema}}</h2>
                     <div class="clearfix"></div>
                   </div>
 
@@ -29,17 +29,17 @@
                       <ul class="stats-overview">
                         <li>
                           <span class="name"> Plazo </span><br>
-                          <span class="value text-success"> 13/12/2017 </span>
+                          <span class="value text-success"> {{$agenda->plazo}} </span>
                          
                         </li>
                         <li>
                           <span class="name"> Criticidad </span><br>
-                          <span class="value text-success"> Bajo </span>
+                          <span class="value text-success"> {{$agenda->param_criticidad->nombre_corto}} </span>
                           
                         </li>
                         <li>
                           <span class="name"> Progreso </span><br>
-                          <span class="value text-success">100%</span>
+                          <span class="value text-success">{{$agenda->progreso}}%</span>
                         </li>
                        
                         </li>
@@ -50,8 +50,7 @@
                         <h4>Actividades</h4>
                         <a data-toggle="modal" href="#myModal" class="btn btn-success btn-round pull-right "><i class="fa fa-plus"></i></a>
                         <hr>
-                        <!-- end of user messages -->
-                        <ul class="messages">
+                        <ul class="messages">{{-- 
                           <li>
                             <img src="{{URL::asset('/bower_components/gentelella/production/images/user.png')}}" class="avatar" alt="Avatar">
                             <div class="message_date">
@@ -87,8 +86,7 @@
                               </p>
                             </div>
                           </li>
-                        </ul>
-                        <!-- end of user messages -->
+                         --}}</ul>
                       </div>
                     </div>
 
@@ -104,36 +102,51 @@
                         <div class="panel-body">
                           {{-- <h3 class="green"><i class="fa fa-paint-brush"></i> </h3> --}}
 
-                          <p>Aqui se mostrara la porpuesta, comentario u observacion que se ingresa al momento de creacion de la actividad.</p>
+                          <p>{{$agenda->propuesta_comentario}}</p>
                           <br />
 
                           <div class="project_detail">
                             <p class="title">Creado por:</p>
-                            <p>Administrador</p>
+                            <p>{{$agenda->created_by}}</p>
                             <p class="title">Fecha creacion:</p>
-                            <p>8/12/2017</p>
+                            <p>{{$agenda->fecha_creacion}}</p>
                             <p class="title">Areas:</p>
-                            <span class="label label-default">ADM</span>
-                            <span class="label label-default">LEGAL</span>
+                            @if ($agenda->lista_areas->count() > 0)
+                              @foreach ($agenda->lista_areas as $area)
+                                <span class="label label-default">{{$area->param_area->nombre}}</span>
+                              @endforeach
+                            @endif
                               <p> </p>
                             <p class="title">Empresas:</p>
-                            <span class="label label-primary">CONSARQ</span>
+                            @if ($agenda->lista_empresas->count() > 0)
+                              @foreach ($agenda->lista_empresas as $empresa)
+                                <span class="label label-primary">{{$empresa->empresa->nombre_corto}} &nbsp;</span>
+                              @endforeach
+                            @endif
                             <p> </p>
                             <p class="title">Responsables:</p>
-                            <p><a href="#"><img src="{{URL::asset('/bower_components/gentelella/production/images/user.png')}}" class="avatar" alt="Avatar" data-toggle="tooltip" data-placement="top" title="" data-original-title="Alejandro Ballon"></a></p>
+                            @if ($agenda->lista_responsables->count() > 0)
+                              <ul class="list-inline">
+                              @foreach ($agenda->lista_responsables as $responsable)
+                                <li style="padding-left: 0px; padding-right: 0px;">
+                                  <a href="#"><img src="{{URL::asset('/bower_components/gentelella/production/images/user.png')}}" class="avatar" alt="Avatar" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{$responsable->responsable->persona->nombre}} {{$responsable->responsable->persona->paterno}}"></a>
+                                </li>
+                              @endforeach
+                              </ul>
+                            @endif
 
                           </div>
                           <br />
                           <br />
                           <h5>Datos de actividad</h5>
                           <ul class="list-unstyled project_files">
-                            <li><a href=""><i class="fa fa-clock-o"></i> <strong>Plazo:</strong> 13/12/2017</a>
+                            <li><a href=""><i class="fa fa-clock-o"></i> <strong>Plazo:</strong> {{$agenda->plazo}}</a>
                             </li>
-                            <li><a href=""><i class="fa fa-warning"></i> <strong>Criticidad:</strong> Bajo</a>
+                            <li><a href=""><i class="fa fa-warning"></i> <strong>Criticidad:</strong> {{$agenda->param_criticidad->nombre_corto}}</a>
                             </li>
-                            <li><a href=""><i class="fa fa-mail-forward"></i> <strong>Estado:</strong> Finalizado </a>
+                            <li><a href=""><i class="fa fa-mail-forward"></i> <strong>Estado:</strong> {{$agenda->param_estado->nombre}} </a>
                             </li>
-                            <li><a href=""><i class="fa fa-mail-forward"></i> <strong>Contingecia:</strong> detalle contingencia </a>
+                            <li><a href=""><i class="fa fa-mail-forward"></i> <strong>Contingecia:</strong>  {{$agenda->contingencia}}</a>
                             </li>
                           </ul>
                           <br />
