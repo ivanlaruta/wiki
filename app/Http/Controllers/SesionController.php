@@ -10,6 +10,6 @@ class SesionController extends Controller
 {
     public function index(Request $request)
     {   
-            return redirect()->route('empresas.agenda');
+            return redirect()->route('agenda.index');
     }
 }
