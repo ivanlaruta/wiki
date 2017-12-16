@@ -14,7 +14,7 @@
                  
                   <li><a><i class="fa fa-users"></i> Informacion Corporativa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('empresas.agenda') }}">Agenda critica</a></li>
+                      <li><a href="{{ route('agenda.index') }}">Agenda critica</a></li>
                       <li><a href="{{ route('empresas.sociedades') }}">Sociedades</a></li>
                      </ul>
                   </li>

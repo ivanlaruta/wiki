@@ -155,8 +155,54 @@ class PersonasTableSeeder extends Seeder
 		'paterno'=>'GUTIERREZ',
 		'genero'=>'M',
 		]);
+
+
 		DB::table('personas')->insert([
 		'id'=>'23',
+		'nombre'=>'BERNARDO',
+		'paterno'=>'AKIME',
+		'genero'=>'M',
+		]);
+		DB::table('personas')->insert([
+		'id'=>'24',
+		'nombre'=>'CARLOS',
+		'paterno'=>'SOLIZ',
+		'genero'=>'M',
+		]);
+		DB::table('personas')->insert([
+		'id'=>'25',
+		'nombre'=>'ALEJANDRO',
+		'paterno'=>'BALLON',
+		'genero'=>'M',
+		]);
+		DB::table('personas')->insert([
+		'id'=>'26',
+		'nombre'=>'MIROSLAVA',
+		'paterno'=>'RALJEVIC',
+		'genero'=>'M',
+		]);
+		DB::table('personas')->insert([
+		'id'=>'27',
+		'nombre'=>'MARCELO',
+		'paterno'=>'TERAN',
+		'genero'=>'M',
+		]);
+		DB::table('personas')->insert([
+		'id'=>'28',
+		'nombre'=>'IULIIA',
+		'paterno'=>'BULAT',
+		'genero'=>'F',
+		]);
+		DB::table('personas')->insert([
+		'id'=>'29',
+		'nombre'=>'SERGIO',
+		'paterno'=>'JIMENEZ',
+		'genero'=>'M',
+		]);
+
+
+		DB::table('personas')->insert([
+		'id'=>'1000',
 		'nombre'=>'desconocido',
 		'paterno'=>'desconocido',
 		'genero'=>'M',

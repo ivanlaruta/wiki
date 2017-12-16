@@ -15,6 +15,7 @@ class EmpresasTableSeeder extends Seeder
         		
 		DB::table('empresas')->insert([
 			'nombre' => 'TOYOSA S.A. ',
+			'nombre_corto' => 'TOYOSA',
 			'nit' => '1030029024',
 			'matricula' => '13129',
 			'gerente' => '8',
@@ -26,6 +27,7 @@ class EmpresasTableSeeder extends Seeder
 
 		DB::table('empresas')->insert([
 			'nombre' => 'TOYOTA BOLIVIA S.A. ',
+			'nombre_corto' => 'TOYOTA',
 			'nit' => '1008467028',
 			'matricula' => '13534',
 			'gerente' => '1',
@@ -37,6 +39,7 @@ class EmpresasTableSeeder extends Seeder
 
 		DB::table('empresas')->insert([
 			'nombre' => 'CONSARQ S.A. ',
+			'nombre_corto' => 'CONSARQ',
 			'nit' => '141483027',
 			'matricula' => '43825',
 			'gerente' => '1',
@@ -48,6 +51,7 @@ class EmpresasTableSeeder extends Seeder
 
 		DB::table('empresas')->insert([
 			'nombre' => 'OCORO S.A.',
+			'nombre_corto' => 'OCORO',
 			'nit' => '0',
 			'matricula' => '0',
 			'gerente' => '1',
@@ -59,6 +63,7 @@ class EmpresasTableSeeder extends Seeder
 
 		DB::table('empresas')->insert([
 			'nombre' => 'TERSA S.A.',
+			'nombre_corto' => 'TERSA',
 			'nit' => '136463026',
 			'matricula' => '118342',
 			'gerente' => '18',
@@ -70,6 +75,7 @@ class EmpresasTableSeeder extends Seeder
 
 		DB::table('empresas')->insert([
 			'nombre' => 'ATLANTIDA S.A.',
+			'nombre_corto' => 'ATLANTIDA',
 			'nit' => '0',
 			'matricula' => '0',
 			'gerente' => '19',
@@ -81,6 +87,7 @@ class EmpresasTableSeeder extends Seeder
 
 		DB::table('empresas')->insert([
 			'nombre' => 'INTERMEX S.A.',
+			'nombre_corto' => 'INTERMEX',
 			'nit' => '0',
 			'matricula' => '0',
 			'gerente' => '19',
@@ -92,6 +99,7 @@ class EmpresasTableSeeder extends Seeder
 
 		DB::table('empresas')->insert([
 			'nombre' => 'CROWN LTDA. ',
+			'nombre_corto' => 'CROWN',
 			'nit' => '1023113020',
 			'matricula' => '7169',
 			'gerente' => '20',
@@ -103,6 +111,7 @@ class EmpresasTableSeeder extends Seeder
 
 		DB::table('empresas')->insert([
 			'nombre' => 'TOCARS BROKERS S.R.L.',
+			'nombre_corto' => 'TOCARS',
 			'nit' => '0',
 			'matricula' => '0',
 			'gerente' => '1',
@@ -114,6 +123,7 @@ class EmpresasTableSeeder extends Seeder
 
 		DB::table('empresas')->insert([
 			'nombre' => 'CASA IDEAL S.R.L.',
+			'nombre_corto' => 'CASA IDEAL',
 			'nit' => '0',
 			'matricula' => '0',
 			'gerente' => '21',
@@ -125,6 +135,7 @@ class EmpresasTableSeeder extends Seeder
 
 		DB::table('empresas')->insert([
 			'nombre' => 'CENTROS COMERCIALES DE BOLIVIA S.R.L.',
+			'nombre_corto' => 'CENTROS COMERCIALES DE BOLIVIA',
 			'nit' => '0',
 			'matricula' => '0',
 			'gerente' => '1',
@@ -136,6 +147,7 @@ class EmpresasTableSeeder extends Seeder
 
 		DB::table('empresas')->insert([
 			'nombre' => 'WORLD TRADE CENTER BOLIVIA',
+			'nombre_corto' => 'WORLD TRADE CENTER',
 			'nit' => '344116022',
 			'matricula' => '373697',
 			'gerente' => '22',
@@ -147,6 +159,7 @@ class EmpresasTableSeeder extends Seeder
 
 		DB::table('empresas')->insert([
 			'nombre' => 'RAINBOW CONSTRUCTIONS SRL',
+			'nombre_corto' => 'RAINBOW',
 			'nit' => '318526023',
 			'matricula' => '353564',
 			'gerente' => '1',
@@ -158,6 +171,7 @@ class EmpresasTableSeeder extends Seeder
 
 		DB::table('empresas')->insert([
 			'nombre' => 'INMOBILIARIA CASA DE CAMPO S.A.',
+			'nombre_corto' => 'CASA DE CAMPO',
 			'nit' => '124759026',
 			'matricula' => '13459',
 			'gerente' => '1',

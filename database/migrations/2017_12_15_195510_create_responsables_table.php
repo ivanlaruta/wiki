@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParametricaTable extends Migration
+class CreateResponsablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateParametricaTable extends Migration
      */
     public function up()
     {
-        Schema::create('parametricas', function (Blueprint $table) {
+        Schema::create('responsables', function (Blueprint $table) 
+        {
             $table->increments('id');
-            $table->string('tabla');
-            $table->string('codigo');
-            $table->string('nombre')->nullable();
-            $table->string('nombre_corto')->nullable();
-            $table->string('descripcion')->nullable();
-            $table->integer('valor_numerico')->nullable();
-            $table->string('observaciones')->nullable();
-            $table->string('estado')->nullable();
+            $table->integer('id_persona');
+            $table->integer('id_area');
+            $table->string('cargo',100)->nullable();
+            $table->string('observaciones',120)->nullable();
+            $table->enum('estado',['1','0'])->default('1');
 
             $table->string('created_by')->nullable()->unsigned();
             $table->string('updated_by')->nullable()->unsigned();
@@ -37,6 +35,6 @@ class CreateParametricaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parametricas');
+        Schema::dropIfExists('responsables');
     }
 }

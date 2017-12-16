@@ -37,23 +37,33 @@ Route::group(['prefix'=>'empresas','middleware'=>'auth'],function(){
 		'uses' =>'EmpresasController@sociedadesIndex',
 		'as'   =>	'empresas.sociedades'
 	]);
+	
+	route::resource('empresas','EmpresasController');
 
+});
+
+Route::group(['prefix'=>'agenda','middleware'=>'auth'],function(){
+	
 	route::get('agenda',[
-		'uses' =>'EmpresasController@agendaIndex',
-		'as'   =>	'empresas.agenda'
+		'uses' =>'AgendaController@index',
+		'as'   =>	'agenda.index'
 	]);
 
 	route::get('agenda/modalNuevo',[
-		'uses' =>'EmpresasController@agendaModalNuevo',
-		'as'   =>	'empresas.agendaModalNuevo'
+		'uses' =>'AgendaController@modalNuevo',
+		'as'   =>	'agenda.modalNuevo'
 	]);
 
 	route::get('agenda/detalle',[
-		'uses' =>'EmpresasController@agendaDetalle',
-		'as'   =>	'empresas.agendaDetalle'
+		'uses' =>'AgendaController@detalle',
+		'as'   =>	'agenda.detalle'
 	]);
 
-	
-	route::resource('empresas','EmpresasController');
+	route::get('agenda/add',[
+		'uses' =>'AgendaController@add',
+		'as'   =>	'agenda.add'
+	]);
+
+	route::resource('empresas','AgendaController');
 
 });

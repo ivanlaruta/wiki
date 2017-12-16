@@ -26,20 +26,7 @@ class EmpresasController extends Controller
         ;
     }
 
-    public function agendaIndex()
-    {
-        return view('interfaces.empresas.agendaCritica.index');
-    }
-
-    public function agendaModalNuevo()
-    {
-        return view('interfaces.empresas.agendaCritica.modalNuevo');
-    }
-
-    public function agendaDetalle()
-    {
-        return view('interfaces.empresas.agendaCritica.detalle');
-    }
+    
 
     /**
      * Show the form for creating a new resource.

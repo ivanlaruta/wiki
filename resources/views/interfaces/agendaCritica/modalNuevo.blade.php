@@ -1,4 +1,4 @@
-{!! Form::open(array('class'=>'form-horizontal form-label-left')) !!}
+{!! Form::open(array('route' => ['agenda.add'], 'method' => 'get' , 'id'=>'loginForm','class'=>'form-horizontal form-label-left')) !!}
 
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -10,45 +10,38 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
           <label>Tema:</label>
-          <input type="text" class="form-control" id="tema" name="tema" required="required" autofocus="" placeholder="Tema">
+          <input type="text" class="form-control" id="tema" name="tema" required="required" autofocus="" placeholder="Tema" style="text-transform:uppercase;">
         </div>
       </div>
     </div>
     <div class="form-horizontal form-label-left">
       <div class="col-md-4 col-sm-4 col-xs-12">
         <div class="form-group">
-          <label>Area:</label>
+          <label>Area(s):</label>
           <select class="form-control selectArea" name="area[]" multiple="multiple" id="area" data-width="100%">
-            <option value="a"> RRHH</option>
-            <option value="a"> ADM</option>
-            <option value="a"> LEGAL</option>
-            <option value="a"> SISTEMAS</option>
-            <option value="a"> MARKETING</option>
-            <option value="a"> FINAZAS</option>
+          @foreach($areas as $det)
+            <option value={{$det->id}}> {{$det->nombre}}</option>
+          @endforeach
           </select>
         </div>
       </div>
       <div class="col-md-4 col-sm-4 col-xs-12">
         <div class="form-group">
-          <label>Empresas:</label>
+          <label>Empresa(s):</label>
           <select class="form-control selectEmpresa" name="empresa[]" multiple="multiple" id="empresa" data-width="100%">
-            <option value="a"> TOYOTA</option>
-            <option value="a"> TOYOSA</option>
-            <option value="a"> CROWN</option>
-            <option value="a"> CONSARQ</option>
+          @foreach($empresas as $det)
+            <option value={{$det->id}}> {{$det->nombre_corto}}</option>
+          @endforeach
           </select>
         </div>
       </div>
       <div class="col-md-4 col-sm-4 col-xs-12">
         <div class="form-group">
-          <label>Responsable:</label>
+          <label>Responsable(s):</label>
           <select class="form-control selectResponsable" name="responsable[]" multiple="multiple" id="responsable" data-width="100%">
-            <option value="a"> Bernardo Akamine</option>
-            <option value="a"> Carlos Soliz</option>
-            <option value="a"> Alejandro Ballon</option>
-            <option value="a"> Miroslava Raljevic</option>
-            <option value="a"> Marcelo Teran</option>
-            <option value="a"> Iuliia Bulat</option>
+          @foreach($responsables as $det)
+            <option value={{$det->id}}> {{$det->persona->nombre}} {{$det->persona->paterno}}</option>
+          @endforeach
           </select>
         </div>
       </div>
@@ -56,7 +49,7 @@
         <div class="form-group">
           <label>Plazo:</label>
             <div class="col-md-12">
-              <input type="text" name = "f_env" class="form-control has-feedback-left" id="f_env" aria-describedby="inputSuccess2Status2">
+              <input type="text" name = "plazo" class="form-control has-feedback-left" id="plazo" aria-describedby="inputSuccess2Status2">
               <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
               <span id="inputSuccess2Status2" class="sr-only">(success)</span>
             </div>
@@ -66,9 +59,9 @@
         <div class="form-group">
           <label>Criticidad:</label>
           <select class="form-control select2" name="criticidad" id="criticidad" data-width="100%">
-            <option value="a"> Poco Critico</option>
-            <option value="a"> Medianamente Critico</option>
-            <option value="a"> Muy Critico</option>
+          @foreach($criticidad as $det)
+            <option value={{$det->id}}> {{$det->nombre}}</option>
+          @endforeach
           </select>
         </div>
       </div>
@@ -76,25 +69,24 @@
         <div class="form-group">
           <label>Estado:</label>
           <select class="form-control select2" name="estado" id="estado" data-width="100%">
-            <option value="a"> Sin realizar</option>
-            <option value="a"> En proceso</option>
-            <option value="a"> Finalizado</option>
+          @foreach($estado as $det)
+            <option value={{$det->id}}> {{$det->nombre}}</option>
+          @endforeach
           </select>
         </div>
       </div>
       <div class="col-md-4 col-sm-4 col-xs-12">
         <div class="form-group">
-          <label>Contingencia:</label>
-          <input type="text" class="form-control" id="contingencia" name="contingencia" required="required" autofocus="" placeholder="contingencia">
+          <label>Contingencia (Bs):</label>
+          <input type="text" class="form-control" id="contingencia" name="contingencia" required="required">
         </div>
       </div>
-      <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-8 col-sm-8 col-xs-12">
         <div class="form-group">
           <label>Propuesta/ Comentario:</label>
-          <textarea class="form-control" rows="2" ></textarea>
+          <textarea class="form-control" rows="2" id="comentario" name="comentario" required="required"></textarea>
         </div>
       </div>
-
     </div>
 </div>
 </div>
@@ -114,7 +106,7 @@
 
 
 
-var eta = $("#f_env");
+var eta = $("#plazo");
   eta.daterangepicker({
     singleDatePicker:true,
     minDate: moment(),
