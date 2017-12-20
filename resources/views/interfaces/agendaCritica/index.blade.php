@@ -55,8 +55,8 @@
                   <th style="width: 15%">Responasbles</th>
                   <th style="width: 1%">Criticidad</th>
                   <th style="width: 1%">Plazo</th>
-                  <th style="width: 12%">Estado</th>
-                  <th style="width: 1%"><small>CONTINGENCIA(Bs)</small></th>
+                  <th style="width: 18%">Estado</th>
+                  {{-- <th style="text-align: right; width: 1%;"><small>CONTINGENCIA (Bs)</small></th> --}}
                   <th style="width: 5%; text-align: right;">#Opciones</th>
                 </tr>
               </thead>
@@ -100,9 +100,9 @@
                   </td>
                   <td>
                     <span 
-                    @if($det->param_criticidad->id =='8') class="label label-success" @endif
-                    @if($det->param_criticidad->id =='9') class="label label-warning" @endif
-                    @if($det->param_criticidad->id =='10') class="label label-danger" @endif
+                    @if($det->param_criticidad->codigo =='1') class="label label-success" @endif
+                    @if($det->param_criticidad->codigo =='2') class="label label-warning" @endif
+                    @if($det->param_criticidad->codigo =='3') class="label label-danger" @endif
                     >
                     {{$det->param_criticidad->nombre_corto}}
                     </span>
@@ -111,15 +111,23 @@
                     <a>{{date("d/m/Y ", strtotime($det->plazo))}}</a>
                   </td>
                   <td class="project_progress">
-                    <div class="progress progress_sm">
-                      <div class="progress-bar progress-bar-success" role="progressbar" data-transitiongoal="{{$det->progreso}}"></div>
+                    <div class="progress progress_sm bg-white">
+                      <div  role="progressbar" 
+                        @if($det->param_estado->codigo == 3) class="progress-bar progress-bar-success" data-transitiongoal="{{$det->progreso}}" @endif
+                        @if($det->param_estado->codigo == 2) class="progress-bar progress-bar-warning" data-transitiongoal="{{$det->progreso}}" @endif
+                        @if($det->param_estado->codigo == 1) class="progress-bar progress-bar-danger" data-transitiongoal="{{$det->progreso + 5 }}" @endif
+                        >
+                      </div>
                     </div>
-                    <small>{{$det->progreso}} % ({{$det->param_estado->nombre}})</small><br />
-                    <small>Ultima actividad: {{date("d/m/Y", strtotime($det->created_at))}}</small>
+                    <small>{{$det->progreso}} % Completo</small><br />
+                    <small
+                    @if($det->param_estado->codigo == 1) class = "text-danger" @endif
+                    @if($det->param_estado->codigo == 2) class = "text-warning" @endif
+                    @if($det->param_estado->codigo == 3) class = "green" @endif
+                    >{{$det->param_estado->nombre}}</small><br />
+                    <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Ultima modificacion"><i class="fa fa-clock-o"></i> <small>{{date("d/m/Y", strtotime($det->created_at))}}</small></a>
                   </td>
-                  <td align="right">
-                    {{$det->contingencia}}
-                  </td>
+                  {{-- <td align="right"> {{$det->contingencia}} </td> --}}
                   <td class=" pull-right">
                     <div class="btn-group">
                       <a href="{{ route('agenda.detalle',$det->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abrir" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i></a>

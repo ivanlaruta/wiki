@@ -22,7 +22,10 @@
 
             <div class="row">
               <div class="col-md-12">
+
                 <div class="x_panel">
+                  
+
                   <div class="x_title">
                     <h2>{{$agenda->tema}}</h2>
                     <div class="clearfix"></div>
@@ -45,19 +48,20 @@
                         </li>
                         <li>
                           <span class="name"> Progreso </span><br>
-                          <span class="value text-success">{{$agenda->progreso}}%</span>
+                          <span @if($agenda->progreso == '100') class="value text-success animated pulse infinite" @else class="value text-warning" @endif>{{$agenda->progreso}}%</span>
                         </li>
-                       
-                        </li>
+
                       </ul>
                       <br />
 
                       <div>
                         <h4>Actividades</h4>
-                        @if($agenda->progreso <100)
-                        <a data-toggle="modal" href="#myModal" class="btn btn-success btn-round pull-right "><i class="fa fa-plus"></i>
-                        @else
-                        <a class="btn btn-success btn-round pull-right " data-toggle="tooltip" data-placement="top" title="" data-original-title="Ya tiene 100 % de progreso, no se puede crear mas actividades"><i class="fa fa-plus"></i>
+                        @if($agenda->param_estado->codigo < 3 )
+                          @if($agenda->progreso <100)
+                          <a data-toggle="modal" href="#myModal" class="btn btn-success btn-round pull-right "><i class="fa fa-plus"></i>
+                          @else
+                          <a class="btn btn-success btn-round pull-right info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ya tiene 100 % de progreso, no se puede crear mas actividades "><i class="fa fa-plus"></i>
+                          @endif
                         @endif
                         </a>
                         <hr>
@@ -149,15 +153,37 @@
                           <br />
 
                           <div class="text-center mtop20">
-                            @if($agenda->progreso <100 || $agenda->estado == 13)
-                              <a  class="btn btn-sm btn-warning btn-block" data-toggle="tooltip" data-placement="top" title="" data-original-title="Debe tener 100 % de progreso para cerrar esta actividad">Finalizar</a>
+                          @if($agenda->param_estado->codigo < 3 )
+                            @if($agenda->progreso <100)
+                              <a class="btn btn-sm btn-warning btn-block des" data-toggle="tooltip" data-placement="top" title="" data-original-title="Debe tener 100 % de progreso para cerrar esta actividad">Finalizar</a>
                             @else
-                              <a href="{{ route('agenda.finalizarAgenda',$agenda->id)}}" class="btn btn-sm btn-warning btn-block">Finalizar</a>
+                              {{-- <a href="{{ route('agenda.finalizarAgenda',$agenda->id)}}" class="btn btn-sm btn-success btn-block ">Si</a> --}}
+                             <a data-toggle="modal" href="#myModal2" class="btn btn-sm btn-warning btn-block">Finalizar</a>
                             @endif
+                          @endif
                           </div>
                         </div>
                       </section>
+  
 
+                      <!-- Modal -->
+                      <div class="modal fade" id="myModal2" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                           
+                            <div class="modal-body">
+                              <p> Esta opcion cerrara el tema. No se podra realizar ediciones, agregar, quitar actividades y el estado cambiara a finalizado.</p>
+                              <p> ¿Desea continuar?</p>
+                            </div>
+                            <div align="center">
+                              <a href="{{ route('agenda.finalizarAgenda',$agenda->id)}}" class="btn btn-danger">Si</a>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <!-- end project-detail sidebar -->
 
@@ -214,6 +240,17 @@
                   </div>
                 </div>
               </div>
+
+              @if($agenda->param_estado->codigo == 3 )
+              <div class="pricing ui-ribbon-container">
+                <div class="ui-ribbon-wrapper" style="width: 100px;">
+                  <div class="ui-ribbon" style="background-color:#059e7d; font-size: 11px; width: 150px;">
+                    FINALIZADO!
+                  </div>
+                </div>
+              </div>
+              @endif
+
             </div>
           </div>
 </div>
@@ -224,6 +261,24 @@
 
 @section('scripts')
 <script>
-  
+  $(".des").on("click",function(){
+    
+   init_PNotify();
+
+   function init_PNotify() {
+            new PNotify({title: "Error al finalizar",type: "error",text: 'Debe completar el 100 % de progreso para finalizar el tema' ,styling: 'bootstrap3',});
+        }; 
+  });
+
+   $(".info").on("click",function(){
+
+   init_PNotify();
+
+   function init_PNotify() {
+            new PNotify({title: "No se pudo completar",type: "error",text: 'Ya tiene 100% de progreso, no puede agregar mas actividades' ,styling: 'bootstrap3',});
+        }; 
+  });
+
+   
 </script> 
 @endsection

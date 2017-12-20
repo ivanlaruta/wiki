@@ -52,6 +52,7 @@ class AgendaController extends Controller
     public function detalle($id)
     {
         $agenda=Agenda_Critica::find($id);
+                
         return view('interfaces.agendaCritica.detalle')
         ->with('agenda',$agenda)
         ;
@@ -145,11 +146,6 @@ class AgendaController extends Controller
         {
             $agenda -> estado = 12;
         }
-        else
-        {
-            $agenda -> estado = 13;
-        }
-
         $agenda -> save();
 
         return redirect()->route('agenda.detalle', ['id' =>$request->id_agenda])->with('mensaje',"Acitividad creada exitosamente."); 
