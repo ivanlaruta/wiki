@@ -1,6 +1,12 @@
 @extends('layouts.main')
 
 @section('style')
+  <style type="text/css">
+    .sombra {
+      padding: 10px;
+      box-shadow: 3px 6px 10px #7777;
+    }
+  </style>
 @endsection
 
 @section('content')
@@ -29,7 +35,7 @@
                       <ul class="stats-overview">
                         <li>
                           <span class="name"> Plazo </span><br>
-                          <span class="value text-success"> {{$agenda->plazo}} </span>
+                          <span class="value text-success"> {{date("d/m/Y", strtotime($agenda->plazo))}} </span>
                          
                         </li>
                         <li>
@@ -48,45 +54,36 @@
 
                       <div>
                         <h4>Actividades</h4>
-                        <a data-toggle="modal" href="#myModal" class="btn btn-success btn-round pull-right "><i class="fa fa-plus"></i></a>
+                        @if($agenda->progreso <100)
+                        <a data-toggle="modal" href="#myModal" class="btn btn-success btn-round pull-right "><i class="fa fa-plus"></i>
+                        @else
+                        <a class="btn btn-success btn-round pull-right " data-toggle="tooltip" data-placement="top" title="" data-original-title="Ya tiene 100 % de progreso, no se puede crear mas actividades"><i class="fa fa-plus"></i>
+                        @endif
+                        </a>
                         <hr>
-                        <ul class="messages">{{-- 
-                          <li>
-                            <img src="{{URL::asset('/bower_components/gentelella/production/images/user.png')}}" class="avatar" alt="Avatar">
-                            <div class="message_date">
-                              <h3 class="date text-info">9</h3>
-                              <p class="month">Dic</p>
-                            </div>
-                            <div class="message_wrapper">
-                              <h4 class="heading">Actividad 2 <a class="pull-right"><i class="fa fa-pencil"></i></a></h4>
-                              45% de avance
-                              <blockquote class="message">Detalle y descripcion de la actividad numero 2, notas y observaciones y otros datos que correspondan a la actividad</blockquote>
-                              <br />
-                              <p class="url">
-                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                <a href="#"><i class="fa fa-user"></i> Alejandro Ballon</a>
-                              </p>
-                            </div>
-                          </li>
-                          
-                          <li>
-                            <img src="{{URL::asset('/bower_components/gentelella/production/images/user.png')}}" class="avatar" alt="Avatar">
-                            <div class="message_date">
-                              <h3 class="date text-info">8</h3>
-                              <p class="month">Dic</p>
-                            </div>
-                            <div class="message_wrapper">
-                              <h4 class="heading">Actividad 1  <a class="pull-right"><i class="fa fa-pencil"></i></a></h4>
-                              65% de avance
-                              <blockquote class="message">Detalle y descripcion de la actividad numero 1, notas y observaciones y otros datos que correspondan a la actividad</blockquote>
-                              <br />
-                              <p class="url">
-                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                <a href="#"><i class="fa fa-user"></i> Alejandro Ballon </a>
-                              </p>
-                            </div>
-                          </li>
-                         --}}</ul>
+                        <ul class="messages">
+                        @if ($agenda->lista_actividades->count() > 0)
+                          @foreach ($agenda->lista_actividades as $actividad)
+                            <li>
+                              <img src="{{URL::asset('/bower_components/gentelella/production/images/user.png')}}" class="avatar" alt="Avatar">
+                            
+                              <div class="message_wrapper sombra">
+                                <h4 class="heading">{{$actividad->titulo}} <a class="pull-right"><i class="fa fa-pencil"></i></a></h4>
+                                {{$actividad->progreso}}% de avance
+                                <blockquote class="message">{{$actividad->descripcion}}</blockquote>
+                                <br />
+                                <p class="url">
+                                  <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                  <a href="#"><i class="fa fa-user"></i> {{$actividad->usuario->usuario}}</a>
+                                  <a class="pull-right"><i class="fa fa-clock-o"></i> {{date("d/m/Y H:i", strtotime($actividad->created_at))}}</a>
+                                    
+                                </p>
+                              </div>
+                            </li>
+                            
+                          @endforeach
+                        @endif
+                        </ul>
                       </div>
                     </div>
 
@@ -107,9 +104,9 @@
 
                           <div class="project_detail">
                             <p class="title">Creado por:</p>
-                            <p>{{$agenda->created_by}}</p>
+                            <p>{{$agenda->usuario->usuario}}</p>
                             <p class="title">Fecha creacion:</p>
-                            <p>{{$agenda->fecha_creacion}}</p>
+                            <p>{{date("d/m/Y h:i", strtotime($agenda->created_at))}}</p>
                             <p class="title">Areas:</p>
                             @if ($agenda->lista_areas->count() > 0)
                               @foreach ($agenda->lista_areas as $area)
@@ -140,22 +137,25 @@
                           <br />
                           <h5>Datos de actividad</h5>
                           <ul class="list-unstyled project_files">
-                            <li><a href=""><i class="fa fa-clock-o"></i> <strong>Plazo:</strong> {{$agenda->plazo}}</a>
+                            <li><a><i class="fa fa-clock-o"></i> <strong>Plazo:</strong> {{date("d/m/Y ", strtotime($agenda->plazo))}}</a>
                             </li>
-                            <li><a href=""><i class="fa fa-warning"></i> <strong>Criticidad:</strong> {{$agenda->param_criticidad->nombre_corto}}</a>
+                            <li><a><i class="fa fa-warning"></i> <strong>Criticidad:</strong> {{$agenda->param_criticidad->nombre_corto}}</a>
                             </li>
-                            <li><a href=""><i class="fa fa-mail-forward"></i> <strong>Estado:</strong> {{$agenda->param_estado->nombre}} </a>
+                            <li><a><i class="fa fa-mail-forward"></i> <strong>Estado:</strong> {{$agenda->param_estado->nombre}} </a>
                             </li>
-                            <li><a href=""><i class="fa fa-mail-forward"></i> <strong>Contingecia:</strong>  {{$agenda->contingencia}}</a>
+                            <li><a><i class="fa fa-mail-forward"></i> <strong>Contingecia:</strong>  {{$agenda->contingencia}}</a>
                             </li>
                           </ul>
                           <br />
 
                           <div class="text-center mtop20">
-                            <a href="#" class="btn btn-sm btn-warning btn-block">Finalizar</a>
+                            @if($agenda->progreso <100 || $agenda->estado == 13)
+                              <a  class="btn btn-sm btn-warning btn-block" data-toggle="tooltip" data-placement="top" title="" data-original-title="Debe tener 100 % de progreso para cerrar esta actividad">Finalizar</a>
+                            @else
+                              <a href="{{ route('agenda.finalizarAgenda',$agenda->id)}}" class="btn btn-sm btn-warning btn-block">Finalizar</a>
+                            @endif
                           </div>
                         </div>
-
                       </section>
 
                     </div>
@@ -163,7 +163,8 @@
 
                     <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="myModal">
                     <div class="modal-dialog">
-                      {!! Form::open(array('class'=>'form-horizontal form-label-left')) !!}
+                      {!! Form::open(array('route' => ['agenda.actividadAdd'], 'method' => 'get' , 'id'=>'activityForm','class'=>'form-horizontal form-label-left')) !!}
+                      <input type="hidden" id="id_agenda" name="id_agenda" value="{{$agenda->id}}">
                       <div class="modal-content">
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
@@ -176,7 +177,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                   <div class="form-group">
                                     <label>Titulo:</label>
-                                    <input type="text" class="form-control" id="tema" name="tema" required="required" autofocus="">
+                                    <input type="text" class="form-control" id="titulo" name="titulo" required="required" autofocus="">
                                   </div>
                                 </div>
                               </div>
@@ -184,7 +185,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                   <div class="form-group">
                                     <label>Descripcion:</label>
-                                    <textarea class="form-control" rows="2" ></textarea>
+                                    <textarea class="form-control" id="descripcion" name="descripcion" required="required" rows="2" ></textarea>
                                   </div>
                                 </div>
                               </div>
@@ -192,7 +193,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                   <div class="form-group">
                                     <label>Progreso:</label>
-                                    <input type="number" min="1" max="100" class="form-control col-md-4 col-xs-12" id="preogreso" name="preogreso" required="required">
+                                    <input type="number" min="1" max="{{100-$agenda->progreso}}" class="form-control col-md-4 col-xs-12" id="progreso" name="progreso" required="required">
                                   </div>
                                 </div>
                               </div>
@@ -200,7 +201,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                          <button type="button" class="btn btn-success">Guardar</button>
+                          <input type="submit" class="btn btn-success guardar show_all_records" id="show_all_records" value="Guardar">
                         </div>
                       </div>
                       {!! Form::close()!!}

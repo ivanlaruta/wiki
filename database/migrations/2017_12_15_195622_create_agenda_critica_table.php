@@ -18,7 +18,7 @@ class CreateAgendaCriticaTable extends Migration
             $table->increments('id');
             $table->string('tema');
             $table->string('propuesta_comentario')->nullable();
-            $table->date('fecha_creacion');
+            
             $table->date('plazo');
             $table->string('criticidad',20)->nullable();
             $table->integer('progreso')->nullable();

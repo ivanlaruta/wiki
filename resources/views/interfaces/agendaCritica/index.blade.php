@@ -67,7 +67,9 @@
                   <td>
                     <a><strong>{{$det->tema}}</strong></a>
                     <br />
-                    <small>Creado el {{$det->fecha_creacion}}</small>
+                    <i class="fa fa-clock-o"></i><small> Creado el {{date("d/m/Y", strtotime($det->created_at))}}</small>
+                    <br />
+                    <i class="fa fa-user"></i><small> Por {{$det->usuario->usuario}}</small>
                   </td>
                   <td>
                     @if ($det->lista_areas->count() > 0)
@@ -106,21 +108,21 @@
                     </span>
                   </td>
                   <td>
-                    <a>{{$det->plazo}}</a>
+                    <a>{{date("d/m/Y ", strtotime($det->plazo))}}</a>
                   </td>
                   <td class="project_progress">
                     <div class="progress progress_sm">
                       <div class="progress-bar progress-bar-success" role="progressbar" data-transitiongoal="{{$det->progreso}}"></div>
                     </div>
                     <small>{{$det->progreso}} % ({{$det->param_estado->nombre}})</small><br />
-                    <small>Ultima actividad: {{$det->fecha_creacion}}</small>
+                    <small>Ultima actividad: {{date("d/m/Y", strtotime($det->created_at))}}</small>
                   </td>
                   <td align="right">
                     {{$det->contingencia}}
                   </td>
                   <td class=" pull-right">
                     <div class="btn-group">
-                      <a href="{{ route('agenda.detalle').'?id='.$det->id}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abrir" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i></a>
+                      <a href="{{ route('agenda.detalle',$det->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abrir" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i></a>
                       <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i></a>
                       <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
                     </div>
