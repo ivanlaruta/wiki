@@ -88,8 +88,8 @@
                             <!-- Logo -->
                              <a href="#inicio">Inicio</a> | 
                              <a href="#manuales">Manuales</a> |
-                             <a href="#contacto">Contaco</a> |
-                             <a href="#ingresa">Ingresar</a> 
+                             <a href="#ingresa">Administracion</a>  |
+                             <a href="#contacto">Contacto</a> 
                             <!-- End Logo -->
                         </div>
                         <div class="s-header__navbar-row-col">
@@ -774,9 +774,10 @@
         <div class="js__parallax-window" style="background: url('megakit/HTML/img/1920x1080/15.jpg') 50% 0 no-repeat fixed;" id="ingresa">
             <div class="container g-text-center--xs g-padding-y-80--xs g-padding-y-125--sm">
                 <div class="g-margin-b-80--xs">
-                    <h2 class="g-font-size-40--xs g-font-size-50--sm g-font-size-60--md g-color--white">Quieres subir mas manuales ?</h2>
+                    <h2 class="g-font-size-40--xs g-font-size-50--sm g-font-size-60--md g-color--white">Administracion de manuales </h2>
+                    <h4 style="color: #fff;">Quieres subir mas manuales ?</h4>
                 </div>
-                <a href="http://keenthemes.com/" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50">Ingresar</a>
+                <a href="#" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50">Ingresar</a>
             </div>
         </div>
         <!-- End Parallax -->
@@ -858,7 +859,7 @@
                         </a>
                     </div>
                     <div class="col-xs-6 g-text-right--xs">
-                        <p class="g-font-size-14--xs g-margin-b-0--xs g-color--white-opacity-light"><a href="http://keenthemes.com/preview/Megakit/">TOYOSA</a> Manuales para: <a href="http://odoo.toyosa.com/web">Odoo</a></p>
+                        <p class="g-font-size-14--xs g-margin-b-0--xs g-color--white-opacity-light"><a href="http://toyosa.com">TOYOSA</a> Manuales para: <a href="http://odoo.toyosa.com/web">Odoo</a></p>
                     </div>
                 </div>
             </div>
