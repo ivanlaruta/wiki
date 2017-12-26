@@ -207,20 +207,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4 g-margin-b-60--xs g-margin-b-0--md">
-                    <div class="clearfix">
-                        <div class="g-media g-width-30--xs">
-                            <div class="wow fadeInDown" data-wow-duration=".3" data-wow-delay=".2s">
-                                <i class="g-font-size-28--xs g-color--primary ti-settings"></i>
-                            </div>
-                        </div>
-                        <div class="g-media__body g-padding-x-20--xs">
-                            <h3 class="g-font-size-18--xs">Toyo compras</h3>
-                            <p class="g-margin-b-0--xs">Manuales de funcionamiento para toyocompras.</p>
-                            <a href="#">Proximamente</a>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-sm-4">
                     <div class="clearfix">
                         <div class="g-media g-width-30--xs">
@@ -229,12 +215,27 @@
                             </div>
                         </div>
                         <div class="g-media__body g-padding-x-20--xs">
-                            <h3 class="g-font-size-18--xs">Codigo de barras</h3>
+                            <h3 class="g-font-size-18--xs"><a href="#cod_barras">Codigo de barras</a></h3>
                             <p class="g-margin-b-0--xs">Manules de funcinamiento para codigo de barras.</p>
+                            <a href="#cod_barras">Ver Manuales</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 g-margin-b-60--xs g-margin-b-0--md">
+                    <div class="clearfix">
+                        <div class="g-media g-width-30--xs">
+                            <div class="wow fadeInDown" data-wow-duration=".3" data-wow-delay=".2s">
+                                <i class="g-font-size-28--xs g-color--primary ti-settings"></i>
+                            </div>
+                        </div>
+                        <div class="g-media__body g-padding-x-20--xs">
+                            <h3 class="g-font-size-18--xs"><a href="#">Toyo compras</a></h3>
+                            <p class="g-margin-b-0--xs">Manuales de funcionamiento para toyocompras.</p>
                             <a href="#">Proximamente</a>
                         </div>
                     </div>
                 </div>
+               
             </div>
             <!-- // end row  -->
             
@@ -267,27 +268,27 @@
                                         <div class="g-color--white-opacity">
                                             <ul class="a">
                                                 <li>
-                                                    <a href="manuales/general/GUIA_Circuito de autorización.docx" download="GUIA_Circuito de autorización.docx">
+                                                    <a href="manuales/odoo/general/GUIA_Circuito de autorización.docx" download="GUIA_Circuito de autorización.docx">
                                                         Circuito de autorización
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/general/GUIA_Interfaz de usuario.docx" download="GUIA_Interfaz de usuario.docx">
+                                                    <a href="manuales/odoo/general/GUIA_Interfaz de usuario.docx" download="GUIA_Interfaz de usuario.docx">
                                                         Interfaz de usuario
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/general/GUIA_Mensajería interna.docx" download="GUIA_Mensajería interna.docx">
+                                                    <a href="manuales/odoo/general/GUIA_Mensajería interna.docx" download="GUIA_Mensajería interna.docx">
                                                         Mensajería interna
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/general/GUIA_Motor de búsqueda.docx" download="GUIA_Motor de búsqueda.docx">
+                                                    <a href="manuales/odoo/general/GUIA_Motor de búsqueda.docx" download="GUIA_Motor de búsqueda.docx">
                                                         Motor de búsqueda
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/general/GUIA_Reportes General.docx" download="GUIA_Reportes General.docx">
+                                                    <a href="manuales/odoo/general/GUIA_Reportes General.docx" download="GUIA_Reportes General.docx">
                                                         Reportes General
                                                     </a>
                                                 </li>
@@ -309,37 +310,37 @@
                                         <div class="g-color--white-opacity">
                                             <ul class="a">
                                                 <li>
-                                                    <a href="manuales/comercial/GUIA_Actualización de precios_C.docx" download="GUIA_Actualización de precios_C.docx">
+                                                    <a href="manuales/odoo/comercial/GUIA_Actualización de precios_C.docx" download="GUIA_Actualización de precios_C.docx">
                                                         Actualización de precios
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/comercial/GUIA_Albarán importaciones Automotriz_C.docx" download="GUIA_Albarán importaciones Automotriz_C.docx">
+                                                    <a href="manuales/odoo/comercial/GUIA_Albarán importaciones Automotriz_C.docx" download="GUIA_Albarán importaciones Automotriz_C.docx">
                                                         Albarán importaciones Automotriz
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/comercial/GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx" download="GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx">
+                                                    <a href="manuales/odoo/comercial/GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx" download="GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx">
                                                         Albarán importaciones Neumatico repuesto Volvo
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/comercial/GUIA_Importación automotriz_C.docx" download="GUIA_Importación automotriz_C.docx">
+                                                    <a href="manuales/odoo/comercial/GUIA_Importación automotriz_C.docx" download="GUIA_Importación automotriz_C.docx">
                                                         Importación automotriz
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/comercial/GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx" download="GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx">
+                                                    <a href="manuales/odoo/comercial/GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx" download="GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx">
                                                         Orden de importación(Neumáticos Repuestos Volvo)
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/comercial/GUIA_Productos_C.docx" download="GUIA_Productos_C.docx">
+                                                    <a href="manuales/odoo/comercial/GUIA_Productos_C.docx" download="GUIA_Productos_C.docx">
                                                         Productos
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/comercial/GUIA_TarifasLista de precios_C.docx" download="GUIA_TarifasLista de precios_C.docx">
+                                                    <a href="manuales/odoo/comercial/GUIA_TarifasLista de precios_C.docx" download="GUIA_TarifasLista de precios_C.docx">
                                                         TarifasLista de precios
                                                     </a>
                                                 </li>
@@ -362,97 +363,97 @@
                                         <div class="g-color--white-opacity">
                                             <ul class="a">
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Asientos contables.pdf" download="GUIA_Asientos contables.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Asientos contables.pdf" download="GUIA_Asientos contables.pdf">
                                                         Asientos contables
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Bancos.pdf" download="GUIA_Bancos.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Bancos.pdf" download="GUIA_Bancos.pdf">
                                                         Bancos
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Cheques de Banco.pdf" download="GUIA_Cheques de Banco.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Cheques de Banco.pdf" download="GUIA_Cheques de Banco.pdf">
                                                         Cheques de Banco
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Clientes.pdf" download="GUIA_Clientes.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Clientes.pdf" download="GUIA_Clientes.pdf">
                                                         Clientes
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Cobros por adelantado.pdf" download="GUIA_Cobros por adelantado.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Cobros por adelantado.pdf" download="GUIA_Cobros por adelantado.pdf">
                                                         Cobros por adelantado
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Cuentas Analíticas.pdf" download="GUIA_Cuentas Analíticas.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Cuentas Analíticas.pdf" download="GUIA_Cuentas Analíticas.pdf">
                                                         Cuentas Analíticas
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Cuentas Bancarias.pdf" download="GUIA_Cuentas Bancarias.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Cuentas Bancarias.pdf" download="GUIA_Cuentas Bancarias.pdf">
                                                         Cuentas Bancarias
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Dosificacion.pdf" download="GUIA_Dosificacion.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Dosificacion.pdf" download="GUIA_Dosificacion.pdf">
                                                         Dosificacion
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Factura de importación_C.pdf" download="GUIA_Factura de importación_C.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Factura de importación_C.pdf" download="GUIA_Factura de importación_C.pdf">
                                                         Factura de importación
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Factura de proveedor_C.pdf" download="GUIA_Factura de proveedor_C.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Factura de proveedor_C.pdf" download="GUIA_Factura de proveedor_C.pdf">
                                                         Factura de proveedor
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Factura DUI_C.pdf" download="GUIA_Factura DUI_C.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Factura DUI_C.pdf" download="GUIA_Factura DUI_C.pdf">
                                                         Factura DUI
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Libro mayor.pdf" download="GUIA_Libro mayor.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Libro mayor.pdf" download="GUIA_Libro mayor.pdf">
                                                         Libro mayor
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Movimientos de Tesorería.pdf" download="GUIA_Movimientos de Tesorería.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Movimientos de Tesorería.pdf" download="GUIA_Movimientos de Tesorería.pdf">
                                                         Movimientos de Tesorería
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Nota de Crédito.pdf" download="GUIA_Nota de Crédito.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Nota de Crédito.pdf" download="GUIA_Nota de Crédito.pdf">
                                                         Nota de Crédito
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Pagos Compras.pdf" download="GUIA_Pagos Compras.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Pagos Compras.pdf" download="GUIA_Pagos Compras.pdf">
                                                         Pagos Compras
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Presupuestos.pdf" download="GUIA_Presupuestos.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Presupuestos.pdf" download="GUIA_Presupuestos.pdf">
                                                         Presupuestos
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Rendición de Gastos.pdf" download="GUIA_Rendición de Gastos.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Rendición de Gastos.pdf" download="GUIA_Rendición de Gastos.pdf">
                                                         Rendición de Gastos
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Solicitud de cobro.pdf" download="GUIA_Solicitud de cobro.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Solicitud de cobro.pdf" download="GUIA_Solicitud de cobro.pdf">
                                                         Solicitud de cobro
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/contafin/GUIA_Solicitud de pago.pdf" download="GUIA_Solicitud de pago.pdf">
+                                                    <a href="manuales/odoo/contafin/GUIA_Solicitud de pago.pdf" download="GUIA_Solicitud de pago.pdf">
                                                         Solicitud de pago
                                                     </a>
                                                 </li>
@@ -480,137 +481,137 @@
                                         <div class="g-color--white-opacity">
                                             <ul class="a">
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Ajustes de Inventario.docx" download="GUIA_Ajustes de Inventario.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Ajustes de Inventario.docx" download="GUIA_Ajustes de Inventario.docx">
                                                         Ajustes de Inventario
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Albaran de recepciones_C.docx" download="GUIA_Albaran de recepciones_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Albaran de recepciones_C.docx" download="GUIA_Albaran de recepciones_C.docx">
                                                         Albaran de recepciones
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Albaran de salida_C.docx" download="GUIA_Albaran de salida_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Albaran de salida_C.docx" download="GUIA_Albaran de salida_C.docx">
                                                         Albaran de salida
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Albarán importaciones Automotriz_C.docx" download="GUIA_Albarán importaciones Automotriz_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Albarán importaciones Automotriz_C.docx" download="GUIA_Albarán importaciones Automotriz_C.docx">
                                                         Albarán importaciones Automotriz
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx" download="GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx" download="GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx">
                                                         Albarán importaciones Neumatico repuesto Volvo_C
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Carpeta de importación_C.docx" download="GUIA_Carpeta de importación_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Carpeta de importación_C.docx" download="GUIA_Carpeta de importación_C.docx">
                                                         Carpeta de importación
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Coste en destino.docx" download="GUIA_Coste en destino.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Coste en destino.docx" download="GUIA_Coste en destino.docx">
                                                         Coste en destino
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Cuadro Prioridades Nacionalización.docx" download="GUIA_Cuadro Prioridades Nacionalización.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Cuadro Prioridades Nacionalización.docx" download="GUIA_Cuadro Prioridades Nacionalización.docx">
                                                         Cuadro Prioridades Nacionalización
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Envio de Stock.docx" download="GUIA_Envio de Stock.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Envio de Stock.docx" download="GUIA_Envio de Stock.docx">
                                                         Envio de Stock
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Factura de importación_C.docx" download="GUIA_Factura de importación_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Factura de importación_C.docx" download="GUIA_Factura de importación_C.docx">
                                                         Factura de importación
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Factura de proveedor_C.docx" download="GUIA_Factura de proveedor_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Factura de proveedor_C.docx" download="GUIA_Factura de proveedor_C.docx">
                                                         Factura de proveedor
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Factura DUI_C.docx" download="GUIA_Factura DUI_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Factura DUI_C.docx" download="GUIA_Factura DUI_C.docx">
                                                         Factura DUI
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Importación automotriz_C.docx" download="GUIA_Importación automotriz_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Importación automotriz_C.docx" download="GUIA_Importación automotriz_C.docx">
                                                         Importación automotriz
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Interfaz de usuario.docx" download="GUIA_Interfaz de usuario.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Interfaz de usuario.docx" download="GUIA_Interfaz de usuario.docx">
                                                         Interfaz de usuario
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Mensajería interna.docx" download="GUIA_Mensajería interna.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Mensajería interna.docx" download="GUIA_Mensajería interna.docx">
                                                         Mensajería interna
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Motor de búsqueda.docx" download="GUIA_Motor de búsqueda.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Motor de búsqueda.docx" download="GUIA_Motor de búsqueda.docx">
                                                         Motor de búsqueda
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx" download="GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx" download="GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx">
                                                         Orden de importación(Neumáticos Repuestos Volvo)
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Pedidos de compra.docx" download="GUIA_Pedidos de compra.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Pedidos de compra.docx" download="GUIA_Pedidos de compra.docx">
                                                         Pedidos de compra
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Proveedores_C.docx" download="GUIA_Proveedores_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Proveedores_C.docx" download="GUIA_Proveedores_C.docx">
                                                         Proveedores
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Reportes General.docx" download="GUIA_Reportes General.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Reportes General.docx" download="GUIA_Reportes General.docx">
                                                         Reportes General
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Reversión albarán de importación.docx" download="GUIA_Reversión albarán de importación.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Reversión albarán de importación.docx" download="GUIA_Reversión albarán de importación.docx">
                                                         Reversión albarán de importación
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Reversión Coste en Destino.docx" download="GUIA_Reversión Coste en Destino.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Reversión Coste en Destino.docx" download="GUIA_Reversión Coste en Destino.docx">
                                                         Reversión Coste en Destino
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Reversión factura de importación.docx" download="GUIA_Reversión factura de importación.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Reversión factura de importación.docx" download="GUIA_Reversión factura de importación.docx">
                                                         Reversión factura de importación
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Reversiones de importación.docx" download="GUIA_Reversiones de importación.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Reversiones de importación.docx" download="GUIA_Reversiones de importación.docx">
                                                         Reversiones de importación
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Solicitud de Stock.docx" download="GUIA_Solicitud de Stock.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Solicitud de Stock.docx" download="GUIA_Solicitud de Stock.docx">
                                                         Solicitud de Stock
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Tablero inventario.docx" download="GUIA_Tablero inventario.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Tablero inventario.docx" download="GUIA_Tablero inventario.docx">
                                                         Tablero inventario
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Transferencia interna_C.docx" download="GUIA_Transferencia interna_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Transferencia interna_C.docx" download="GUIA_Transferencia interna_C.docx">
                                                         Transferencia interna
                                                     </a>
                                                 </li>
@@ -631,87 +632,87 @@
                                         <div class="g-color--white-opacity">
                                             <ul class="a">
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Clientes.docx" download="GUIA_Clientes.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Clientes.docx" download="GUIA_Clientes.docx">
                                                         Clientes
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Cotización.docx" download="GUIA_Cotización.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Cotización.docx" download="GUIA_Cotización.docx">
                                                         Cotización
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Dato maestro de serie.docx" download="GUIA_Dato maestro de serie.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Dato maestro de serie.docx" download="GUIA_Dato maestro de serie.docx">
                                                         Dato maestro de serie
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Entrega de venta.docx" download="GUIA_Entrega de venta.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Entrega de venta.docx" download="GUIA_Entrega de venta.docx">
                                                         Entrega de venta
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Factura de venta.docx" download="GUIA_Factura de venta.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Factura de venta.docx" download="GUIA_Factura de venta.docx">
                                                         Factura de venta
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Iniciativa.docx" download="GUIA_Iniciativa.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Iniciativa.docx" download="GUIA_Iniciativa.docx">
                                                         Iniciativa
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Oportunidades.docx" download="GUIA_Oportunidades.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Oportunidades.docx" download="GUIA_Oportunidades.docx">
                                                         Oportunidades
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Pedido de venta.docx" download="GUIA_Pedido de venta.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Pedido de venta.docx" download="GUIA_Pedido de venta.docx">
                                                         Pedido de venta
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Reversiones Ventas.docx" download="GUIA_Reversiones Ventas.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Reversiones Ventas.docx" download="GUIA_Reversiones Ventas.docx">
                                                         Reversiones Ventas
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Solicitud de cobro.docx" download="GUIA_Solicitud de cobro.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Solicitud de cobro.docx" download="GUIA_Solicitud de cobro.docx">
                                                         Solicitud de cobro
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Tipos de venta Motocicletas.docx" download="GUIA_Tipos de venta Motocicletas.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Tipos de venta Motocicletas.docx" download="GUIA_Tipos de venta Motocicletas.docx">
                                                         Tipos de venta Motocicletas
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Tipos de venta Neumaticos.docx" download="GUIA_Tipos de venta Neumaticos.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Tipos de venta Neumaticos.docx" download="GUIA_Tipos de venta Neumaticos.docx">
                                                         Tipos de venta Neumaticos
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Tipos de venta Repuestos.docx" download="GUIA_Tipos de venta Repuestos.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Tipos de venta Repuestos.docx" download="GUIA_Tipos de venta Repuestos.docx">
                                                         Tipos de venta Repuestos
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Tipos de venta Vehiculos.docx" download="GUIA_Tipos de venta Vehiculos.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Tipos de venta Vehiculos.docx" download="GUIA_Tipos de venta Vehiculos.docx">
                                                         Tipos de venta Vehiculos
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Tipos de venta.docx" download="GUIA_Tipos de venta.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Tipos de venta.docx" download="GUIA_Tipos de venta.docx">
                                                         Tipos de venta
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Tráfico de clientes.docx" download="GUIA_Tráfico de clientes.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Tráfico de clientes.docx" download="GUIA_Tráfico de clientes.docx">
                                                         Tráfico de clientes
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/ventas/GUIA_Tramite de placas.docx" download="GUIA_Tramite de placas.docx">
+                                                    <a href="manuales/odoo/ventas/GUIA_Tramite de placas.docx" download="GUIA_Tramite de placas.docx">
                                                         Tramite de placasTramite de placas
                                                     </a>
                                                 </li>
@@ -732,28 +733,115 @@
                                         <div class="g-color--white-opacity">
                                             <ul class="a">
                                                 <li>
-                                                    <a href="manuales/talleres/GUIA_Cotización Vehículos.pdf" download="GUIA_Cotización Vehículos.pdf">
+                                                    <a href="manuales/odoo/talleres/GUIA_Cotización Vehículos.pdf" download="GUIA_Cotización Vehículos.pdf">
                                                         Cotización Vehículos
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/talleres/GUIA_Dato maestro de Vehiculo.pdf" download="GUIA_Dato maestro de Vehiculo.pdf">
+                                                    <a href="manuales/odoo/talleres/GUIA_Dato maestro de Vehiculo.pdf" download="GUIA_Dato maestro de Vehiculo.pdf">
                                                         Dato maestro de Vehiculo
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/talleres/GUIA_Entrega de venta (1).pdf" download="GUIA_Entrega de venta (1).pdf">
+                                                    <a href="manuales/odoo/talleres/GUIA_Entrega de venta (1).pdf" download="GUIA_Entrega de venta (1).pdf">
                                                         Entrega de venta
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/talleres/GUIA_Orden de Trabajo (1).pdf" download="GUIA_Orden de Trabajo (1).pdf">
+                                                    <a href="manuales/odoo/talleres/GUIA_Orden de Trabajo (1).pdf" download="GUIA_Orden de Trabajo (1).pdf">
                                                         Orden de Trabajo
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/talleres/GUIA_Reversión OT.pdf" download="GUIA_Reversión OT.pdf">
+                                                    <a href="manuales/odoo/talleres/GUIA_Reversión OT.pdf" download="GUIA_Reversión OT.pdf">
                                                         Reversión OT
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="cod_barras" class="s-faq g-bg-color--primary" style="background-color: #34aec8  !important;">
+
+            <div class="container g-padding-y-125--xs">
+                <div class="row">
+                    <div class="g-text-center--xs g-margin-b-100--xs">
+                    <h2 class="g-font-size-32--xs g-font-size-36--md" style="color: #fff9f9;">Manuales Codigo de Barras</h2>
+                    <p class="g-font-size-20--xs g-font-size-20--md" style="color: #fff9f9;">seleccione una categoria.</p>
+                
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="cbp cbp-l-grid-faq js__grid-faq">
+                            
+                            <div class="cbp-item community">
+                                <div class="cbp-caption">
+                                    <div class="s-faq-grid__divider cbp-caption-defaultWrap">
+                                        <svg width="19" height="19" viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="#fff" d="M1062 150q-317 121-556 362.5t-358 560.5q-20-89-20-176 0-208 102.5-384.5t278.5-279 384-102.5q82 0 169 19zm269 119q93 65 164 155-389 113-674.5 400.5t-396.5 676.5q-93-72-155-162 112-386 395-671t667-399zm-733 1334q115-356 379.5-622t619.5-384q40 92 54 195-292 120-516 345t-343 518q-103-14-194-52zm1066 58q-193-50-367-115-135 84-290 107 109-205 274-370.5t369-275.5q-21 152-101 284 65 175 115 370z"/>
+                                        </svg>
+                                        <h3 class="s-faq-grid__title">Funcionalidad Andorid</h3>
+                                    </div>
+                                    <div class="cbp-caption-activeWrap">
+                                        <div class="g-color--white-opacity">
+                                            <ul class="a">
+                                                <li>
+                                                    <a href="manuales/codigo_barras/MANUAL_CODIGO_DE_BARRAS_ANDROID_INTEGRACION_ODOO.pdf" download="MANUAL_CODIGO_DE_BARRAS_ANDROID_INTEGRACION_ODOO.pdf">
+                                                        MANUAL CODIGO DE BARRAS ANDROID INTEGRACION ODOO
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cbp-item buying">
+                                <div class="cbp-caption">
+                                    <div class="s-faq-grid__divider cbp-caption-defaultWrap">
+                                        <svg width="19" height="19" viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="#fff" d="M1088 1256v240q0 16-12 28t-28 12h-240q-16 0-28-12t-12-28v-240q0-16 12-28t28-12h240q16 0 28 12t12 28zm316-600q0 54-15.5 101t-35 76.5-55 59.5-57.5 43.5-61 35.5q-41 23-68.5 65t-27.5 67q0 17-12 32.5t-28 15.5h-240q-15 0-25.5-18.5t-10.5-37.5v-45q0-83 65-156.5t143-108.5q59-27 84-56t25-76q0-42-46.5-74t-107.5-32q-65 0-108 29-35 25-107 115-13 16-31 16-12 0-25-8l-164-125q-13-10-15.5-25t5.5-28q160-266 464-266 80 0 161 31t146 83 106 127.5 41 158.5z"/>
+                                        </svg>
+                                        <h4 class="s-faq-grid__title">Funcionalidad Tablet</h4>
+                                    </div>
+                                    <div class="cbp-caption-activeWrap">
+                                        <div class="g-color--white-opacity">
+                                            <ul class="a">
+                                                <li>
+                                                    <a href="manuales/codigo_barras/MANUAL_CODIGO_DE_BARRAS_TABLET_INTEGRACION_ODOO.pdf" download="MANUAL_CODIGO_DE_BARRAS_TABLET_INTEGRACION_ODOO.pdf">
+                                                        MANUAL CODIGO DE BARRAS TABLET INTEGRACION ODOO
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="cbp cbp-l-grid-faq js__grid-faq">
+                            <div class="cbp-item account">
+                                <div class="cbp-caption">
+                                    <div class="s-faq-grid__divider cbp-caption-defaultWrap">
+                                        <svg width="19" height="19" viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="#fff" d="M1376 768q40 0 68 28t28 68v576q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-576q0-40 28-68t68-28h32v-320q0-185 131.5-316.5t316.5-131.5 316.5 131.5 131.5 316.5q0 26-19 45t-45 19h-64q-26 0-45-19t-19-45q0-106-75-181t-181-75-181 75-75 181v320h736z"/>
+                                        </svg>
+                                        <h4 class="s-faq-grid__title">Funcionalidad Web</h4>
+                                    </div>
+                                    <div class="cbp-caption-activeWrap">
+                                        <div class="g-color--white-opacity">
+                                            <ul class="a">
+                                                <li>
+                                                    <a href="manuales/codigo_barras/MANUAL_CODIGO_DE_BARRAS_WEB_OPERADOR_INTEGRACION_ODOO.pdf" download="MANUAL_CODIGO_DE_BARRAS_WEB_OPERADOR_INTEGRACION_ODOO.pdf">
+                                                        MANUAL CODIGO DE BARRAS WEB OPERADOR INTEGRACION ODOO
                                                     </a>
                                                 </li>
                                             </ul>
