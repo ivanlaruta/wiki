@@ -319,7 +319,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/comercial/GUIA_Albarán importaciones Neumatico%2Frepuesto%2FVolvo_C.docx" download="GUIA_Albarán importaciones Neumatico%2Frepuesto%2FVolvo_C.docx">
+                                                    <a href="manuales/comercial/GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx" download="GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx">
                                                         Albarán importaciones Neumatico repuesto Volvo
                                                     </a>
                                                 </li>
@@ -329,7 +329,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/comercial/GUIA_Orden de importación(Neumáticos%2FRepuestos%2FVolvo)_C.docx" download="GUIA_Orden de importación(Neumáticos%2FRepuestos%2FVolvo)_C.docx">
+                                                    <a href="manuales/comercial/GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx" download="GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx">
                                                         Orden de importación(Neumáticos Repuestos Volvo)
                                                     </a>
                                                 </li>
@@ -500,7 +500,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Albarán importaciones Neumatico%2Frepuesto%2FVolvo_C.docx" download="GUIA_Albarán importaciones Neumatico%2Frepuesto%2FVolvo_C.docx">
+                                                    <a href="manuales/importaciones/GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx" download="GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx">
                                                         Albarán importaciones Neumatico repuesto Volvo_C
                                                     </a>
                                                 </li>
@@ -560,7 +560,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/importaciones/GUIA_Orden de importación(Neumáticos%2FRepuestos%2FVolvo)_C.docx" download="GUIA_Orden de importación(Neumáticos%2FRepuestos%2FVolvo)_C.docx">
+                                                    <a href="manuales/importaciones/GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx" download="GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx">
                                                         Orden de importación(Neumáticos Repuestos Volvo)
                                                     </a>
                                                 </li>
