@@ -190,7 +190,7 @@
         <div id="manuales" class="container g-padding-y-80--xs g-padding-y-125--sm" style="">
             <div class="g-text-center--xs g-margin-b-100--xs">
                 <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">BIENVENIDOS A MANUALES TOYOSA</p>
-                <h2 class="g-font-size-32--xs g-font-size-36--md">Contamos con un repositorio para el funcionamiento de nuestros sistemas.</h2>
+                <h2 class="g-font-size-32--xs g-font-size-36--md">Contamos con un repositorio de manuales para el funcionamiento de nuestros sistemas.</h2>
             </div>
             <div class="row g-margin-b-60--xs g-margin-b-70--md">
                 <div class="col-sm-4 g-margin-b-60--xs g-margin-b-0--md">
