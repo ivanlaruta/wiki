@@ -89,7 +89,7 @@
                              <a href="#inicio">Inicio</a> | 
                              <a href="#manuales">Manuales</a> |
                              <a href="#ingresa">Administracion</a>  |
-                             <a href="#contacto">Contacto</a> 
+                             {{-- <a href="#contacto">Contacto</a>  --}}
                             <!-- End Logo -->
                         </div>
                         <div class="s-header__navbar-row-col">
@@ -187,10 +187,10 @@
         <!-- Features -->
         
 
-        <div id="manuales" class="container g-padding-y-80--xs g-padding-y-125--sm">
+        <div id="manuales" class="container g-padding-y-80--xs g-padding-y-125--sm" style="">
             <div class="g-text-center--xs g-margin-b-100--xs">
                 <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">BIENVENIDOS A MANUALES TOYOSA</p>
-                <h2 class="g-font-size-32--xs g-font-size-36--md">Contamos con un repositorio para el funcionamiento de todos nuestros sistemas.</h2>
+                <h2 class="g-font-size-32--xs g-font-size-36--md">Contamos con un repositorio para el funcionamiento de nuestros sistemas.</h2>
             </div>
             <div class="row g-margin-b-60--xs g-margin-b-70--md">
                 <div class="col-sm-4 g-margin-b-60--xs g-margin-b-0--md">
@@ -244,7 +244,7 @@
 
 
 
-        <div id="odoo" class="s-faq g-bg-color--primary" style="background-color: #897cb7 !important;">
+        <div id="odoo" class="s-faq g-bg-color--primary" style="background-color: #897cb7 !important; ">
 
             <div class="container g-padding-y-125--xs">
                 <div class="row">
@@ -770,7 +770,7 @@
 
 
 
-        <div id="cod_barras" class="s-faq g-bg-color--primary" style="background-color: #34aec8  !important;">
+        <div id="cod_barras" class="s-faq g-bg-color--primary" style="background-color: #34aec8  !important; ">
 
             <div class="container g-padding-y-125--xs">
                 <div class="row">
@@ -786,7 +786,7 @@
                                 <div class="cbp-caption">
                                     <div class="s-faq-grid__divider cbp-caption-defaultWrap">
                                         <svg width="19" height="19" viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill="#fff" d="M1062 150q-317 121-556 362.5t-358 560.5q-20-89-20-176 0-208 102.5-384.5t278.5-279 384-102.5q82 0 169 19zm269 119q93 65 164 155-389 113-674.5 400.5t-396.5 676.5q-93-72-155-162 112-386 395-671t667-399zm-733 1334q115-356 379.5-622t619.5-384q40 92 54 195-292 120-516 345t-343 518q-103-14-194-52zm1066 58q-193-50-367-115-135 84-290 107 109-205 274-370.5t369-275.5q-21 152-101 284 65 175 115 370z"/>
+                                            <path fill="#fff" d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5-103 385.5-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103zm128 1247v-190q0-14-9-23.5t-22-9.5h-192q-13 0-23 10t-10 23v190q0 13 10 23t23 10h192q13 0 22-9.5t9-23.5zm-2-344l18-621q0-12-10-18-10-8-24-8h-220q-14 0-24 8-10 6-10 18l17 621q0 10 10 17.5t24 7.5h185q14 0 23.5-7.5t10.5-17.5z"></path>
                                         </svg>
                                         <h3 class="s-faq-grid__title">Funcionalidad Andorid</h3>
                                     </div>
@@ -807,7 +807,7 @@
                                 <div class="cbp-caption">
                                     <div class="s-faq-grid__divider cbp-caption-defaultWrap">
                                         <svg width="19" height="19" viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill="#fff" d="M1088 1256v240q0 16-12 28t-28 12h-240q-16 0-28-12t-12-28v-240q0-16 12-28t28-12h240q16 0 28 12t12 28zm316-600q0 54-15.5 101t-35 76.5-55 59.5-57.5 43.5-61 35.5q-41 23-68.5 65t-27.5 67q0 17-12 32.5t-28 15.5h-240q-15 0-25.5-18.5t-10.5-37.5v-45q0-83 65-156.5t143-108.5q59-27 84-56t25-76q0-42-46.5-74t-107.5-32q-65 0-108 29-35 25-107 115-13 16-31 16-12 0-25-8l-164-125q-13-10-15.5-25t5.5-28q160-266 464-266 80 0 161 31t146 83 106 127.5 41 158.5z"/>
+                                            <<path fill="#fff" d="M1408 256h-1024v1242l423-406 89-85 89 85 423 406v-1242zm12-128q23 0 44 9 33 13 52.5 41t19.5 62v1289q0 34-19.5 62t-52.5 41q-19 8-44 8-48 0-83-32l-441-424-441 424q-36 33-83 33-23 0-44-9-33-13-52.5-41t-19.5-62v-1289q0-34 19.5-62t52.5-41q21-9 44-9h1048z"></path>
                                         </svg>
                                         <h4 class="s-faq-grid__title">Funcionalidad Tablet</h4>
                                     </div>
@@ -832,7 +832,7 @@
                                 <div class="cbp-caption">
                                     <div class="s-faq-grid__divider cbp-caption-defaultWrap">
                                         <svg width="19" height="19" viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill="#fff" d="M1376 768q40 0 68 28t28 68v576q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-576q0-40 28-68t68-28h32v-320q0-185 131.5-316.5t316.5-131.5 316.5 131.5 131.5 316.5q0 26-19 45t-45 19h-64q-26 0-45-19t-19-45q0-106-75-181t-181-75-181 75-75 181v320h736z"/>
+                                            <path fill="#fff" d="M1062 150q-317 121-556 362.5t-358 560.5q-20-89-20-176 0-208 102.5-384.5t278.5-279 384-102.5q82 0 169 19zm269 119q93 65 164 155-389 113-674.5 400.5t-396.5 676.5q-93-72-155-162 112-386 395-671t667-399zm-733 1334q115-356 379.5-622t619.5-384q40 92 54 195-292 120-516 345t-343 518q-103-14-194-52zm1066 58q-193-50-367-115-135 84-290 107 109-205 274-370.5t369-275.5q-21 152-101 284 65 175 115 370z"/>
                                         </svg>
                                         <h4 class="s-faq-grid__title">Funcionalidad Web</h4>
                                     </div>
@@ -859,7 +859,7 @@
         <!-- End Features -->
 
         <!-- Parallax -->
-        <div class="js__parallax-window" style="background: url('megakit/HTML/img/1920x1080/15.jpg') 50% 0 no-repeat fixed;" id="ingresa">
+        <div class="js__parallax-window" style="background: url('megakit/HTML/img/1920x1080/15.jpg') 100% 0 no-repeat fixed; " id="ingresa" >
             <div class="container g-text-center--xs g-padding-y-80--xs g-padding-y-125--sm">
                 <div class="g-margin-b-80--xs">
                     <h2 class="g-font-size-40--xs g-font-size-50--sm g-font-size-60--md g-color--white">Administracion de manuales </h2>
@@ -872,7 +872,7 @@
 
 
         <!-- Feedback Form -->
-        <div class="g-bg-color--sky-light" id="contacto">
+        {{-- <div class="g-bg-color--sky-light" id="contacto" style="">
             <div class="container g-padding-y-80--xs g-padding-y-125--sm">
                 <div class="g-text-center--xs g-margin-b-80--xs">
                     <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">Tienes preguntas?</p>
@@ -898,7 +898,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
         <!-- End Feedback Form -->
 
         <!-- Google Map -->
@@ -919,7 +919,7 @@
                                 <li><a class="g-font-size-15--xs g-color--white-opacity" href="#inicio">Inicio</a></li>
                                 <li><a class="g-font-size-15--xs g-color--white-opacity" href="#manuales">Manuales</a></li>
                                 <li><a class="g-font-size-15--xs g-color--white-opacity" href="#ingresa">Ingresa</a></li>
-                                <li><a class="g-font-size-15--xs g-color--white-opacity" href="#contacto">Contacto</a></li>
+                                {{-- <li><a class="g-font-size-15--xs g-color--white-opacity" href="#contacto">Contacto</a></li> --}}
                             </ul>
                         </div>
                        
@@ -954,7 +954,7 @@
             <!-- End Copyright -->
         </footer>
         <!--========== END FOOTER ==========-->
-<script src="{{asset('hielo/assets/js/jquery.js')}}"></script>
+
         <!-- Back To Top -->
         <a href="javascript:void(0);" class="s-back-to-top js__back-to-top"></a>
 
