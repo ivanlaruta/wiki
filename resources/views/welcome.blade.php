@@ -86,9 +86,9 @@
                         </div>
                         <div class="s-header__navbar-row-col" style="text-align: right;">
                             <!-- Logo -->
-                             <a href="#inicio">Inicio</a> | 
+                             {{-- <a href="#inicio">Inicio</a> | 
                              <a href="#manuales">Manuales</a> |
-                             <a href="#ingresa">Administracion</a>  |
+                             <a href="#ingresa">Administracion</a>  | --}}
                              {{-- <a href="#contacto">Contacto</a>  --}}
                             <!-- End Logo -->
                         </div>
@@ -116,6 +116,7 @@
                                                       
                         <ul class="list-unstyled s-header__nav-menu">
                             <li class="s-header__nav-menu-item"><a class="s-header__nav-menu-link s-header__nav-menu-link-divider" href="about.html">Ingresar</a></li>
+                            <li class="s-header__nav-menu-item"><a class="s-header__nav-menu-link s-header__nav-menu-link-divider" href="#manuales">Manuales</a></li>
                            
                            
                         </ul>
@@ -153,7 +154,7 @@
                 <div class="g-fullheight--xs g-bg-position--center swiper-slide" style="background: url('megakit/HTML/img/1920x1080/01.jpg');">
                     <div class="container g-text-center--xs g-ver-center--xs">
                         <div class="g-margin-b-30--xs">
-                            <h1 class="g-font-size-35--xs g-font-size-45--sm g-font-size-55--md g-color--white"> MANUALES TOYOSA <br> <small>Manuales de descarga directa</small></h1>
+                            <h1 class="g-font-size-35--xs g-font-size-45--sm g-font-size-55--md g-color--white"> GUIAS TOYOSA <br> <small>Guias de descarga directa</small></h1>
                         </div>
                        
                     </div>
@@ -176,9 +177,9 @@
             <a href="javascript:void(0);" class="s-swiper__arrow-v1--left s-icon s-icon--md s-icon--white-brd g-radius--circle ti-angle-left js__swiper-btn--prev"></a>
             <!-- End Arrows -->
             
-            <a href="#manuales" class="s-scroll-to-section-v1--bc g-margin-b-15--xs">
+            <a href="#manuales" class="s-scroll-to-section-v1--bc g-margin-b-15--xs animated pulse infinite">
                 <span class="g-font-size-18--xs g-color--white ti-angle-double-down"></span>
-                <p class="text-uppercase g-color--white g-letter-spacing--3 g-margin-b-0--xs">Manuales</p>
+                <p class="text-uppercase g-color--white g-letter-spacing--3 g-margin-b-0--xs"><strong>Manuales</strong></p>
             </a>
         </div>
         <!--========== END SWIPER SLIDER ==========-->
@@ -190,7 +191,7 @@
         <div id="manuales" class="container g-padding-y-80--xs g-padding-y-125--sm" style="">
             <div class="g-text-center--xs g-margin-b-100--xs">
                 <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">BIENVENIDOS A MANUALES TOYOSA</p>
-                <h2 class="g-font-size-32--xs g-font-size-36--md">Contamos con un repositorio de manuales para el funcionamiento de nuestros sistemas.</h2>
+                <h2 class="g-font-size-32--xs g-font-size-36--md">Contamos con un repositorio de manuales y guias para el funcionamiento de nuestros sistemas.</h2>
             </div>
             <div class="row g-margin-b-60--xs g-margin-b-70--md">
                 <div class="col-sm-4 g-margin-b-60--xs g-margin-b-0--md">
@@ -201,9 +202,9 @@
                             </div>
                         </div>
                         <div class="g-media__body g-padding-x-20--xs">
-                            <h3 class="g-font-size-18--xs"><a href="#odoo">Odoo</a></h3>
+                            <h3 class="g-font-size-18--xs"><a href="#odoo">Guias Odoo</a></h3>
                             <p class="g-margin-b-0--xs">Manuales guia para el funcionameinto del sistema Odoo de toyosa.</p>
-                            <a href="#odoo">Ver manuales</a>
+                            <a href="#odoo">Ver Guias</a>
                         </div>
                     </div>
                 </div>
@@ -215,7 +216,7 @@
                             </div>
                         </div>
                         <div class="g-media__body g-padding-x-20--xs">
-                            <h3 class="g-font-size-18--xs"><a href="#cod_barras">Codigo de barras</a></h3>
+                            <h3 class="g-font-size-18--xs"><a href="#cod_barras">Manuales Codigo de barras</a></h3>
                             <p class="g-margin-b-0--xs">Manules de funcinamiento para codigo de barras.</p>
                             <a href="#cod_barras">Ver Manuales</a>
                         </div>
@@ -249,7 +250,7 @@
             <div class="container g-padding-y-125--xs">
                 <div class="row">
                     <div class="g-text-center--xs g-margin-b-100--xs">
-                    <h2 class="g-font-size-32--xs g-font-size-36--md" style="color: #fff9f9;">Manuales Odoo</h2>
+                    <h2 class="g-font-size-32--xs g-font-size-36--md" style="color: #fff9f9;">Guias Odoo</h2>
                     <p class="g-font-size-20--xs g-font-size-20--md" style="color: #fff9f9;">seleccione una categoria.</p>
                 
                     </div>
@@ -268,27 +269,37 @@
                                         <div class="g-color--white-opacity">
                                             <ul class="a">
                                                 <li>
-                                                    <a href="manuales/odoo/general/GUIA_Circuito de autorización.docx" download="GUIA_Circuito de autorización.docx">
+                                                    <a href="manuales/odoo/general/GUIA_Circuito de autorización.pdf" download="GUIA_Circuito de autorización.pdf">
                                                         Circuito de autorización
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/general/GUIA_Interfaz de usuario.docx" download="GUIA_Interfaz de usuario.docx">
+                                                    <a href="manuales/odoo/general/GUIA_Compras e Importaciones_Recepcion de productos.pdf" download="GUIA_Compras e Importaciones_Recepcion de productos.pdf">
+                                                        Compras e Importaciones_Recepcion de productos
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/general/GUIA_Contactos.pdf" download="GUIA_Contactos.pdf">
+                                                        Contactos
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/general/GUIA_Interfaz de usuario.pdf" download="GUIA_Interfaz de usuario.pdf">
                                                         Interfaz de usuario
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/general/GUIA_Mensajería interna.docx" download="GUIA_Mensajería interna.docx">
+                                                    <a href="manuales/odoo/general/GUIA_Mensajería interna.pdf" download="GUIA_Mensajería interna.pdf">
                                                         Mensajería interna
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/general/GUIA_Motor de búsqueda.docx" download="GUIA_Motor de búsqueda.docx">
+                                                    <a href="manuales/odoo/general/GUIA_Motor de búsqueda.pdf" download="GUIA_Motor de búsqueda.pdf">
                                                         Motor de búsqueda
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/general/GUIA_Reportes General.docx" download="GUIA_Reportes General.docx">
+                                                    <a href="manuales/odoo/general/GUIA_Reportes General.pdf" download="GUIA_Reportes General.pdf">
                                                         Reportes General
                                                     </a>
                                                 </li>
@@ -310,7 +321,7 @@
                                         <div class="g-color--white-opacity">
                                             <ul class="a">
                                                 <li>
-                                                    <a href="manuales/odoo/comercial/GUIA_Actualización de precios_C.docx" download="GUIA_Actualización de precios_C.docx">
+                                                    <a href="manuales/odoo/comercial/GUIA_Actualización de precios_C.pdf" download="GUIA_Actualización de precios_C.pdf">
                                                         Actualización de precios
                                                     </a>
                                                 </li>
@@ -335,13 +346,13 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/comercial/GUIA_Productos_C.docx" download="GUIA_Productos_C.docx">
+                                                    <a href="manuales/odoo/comercial/GUIA_Productos_C.pdf" download="GUIA_Productos_C.pdf">
                                                         Productos
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/comercial/GUIA_TarifasLista de precios_C.docx" download="GUIA_TarifasLista de precios_C.docx">
-                                                        TarifasLista de precios
+                                                    <a href="manuales/odoo/comercial/GUIA_TarifasLista de precios_C.pdf" download="GUIA_TarifasLista de precios_C.pdf">
+                                                        Tarifas Lista de precios
                                                     </a>
                                                 </li>
                                                 
@@ -363,13 +374,38 @@
                                         <div class="g-color--white-opacity">
                                             <ul class="a">
                                                 <li>
+                                                    <a href="manuales/odoo/contafin/GUIA_Actualización UFV.pdf" download="GUIA_Actualización UFV.pdf">
+                                                        Actualización UFV
+                                                    </a>
+                                                </li>
+                                                <li>
                                                     <a href="manuales/odoo/contafin/GUIA_Asientos contables.pdf" download="GUIA_Asientos contables.pdf">
                                                         Asientos contables
                                                     </a>
                                                 </li>
                                                 <li>
+                                                    <a href="manuales/odoo/contafin/GUIA_Asignar Secuencia.pdf" download="GUIA_Asignar Secuencia.pdf">
+                                                        Asignar Secuencia
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/contafin/GUIA_Balance general.pdf" download="GUIA_Balance general.pdf">
+                                                        Balance general
+                                                    </a>
+                                                </li>
+                                                <li>
                                                     <a href="manuales/odoo/contafin/GUIA_Bancos.pdf" download="GUIA_Bancos.pdf">
                                                         Bancos
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/contafin/GUIA_Cartas de Credito.pdf" download="GUIA_Cartas de Credito.pdf">
+                                                        Cartas de Credito
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/contafin/GUIA_Casos de Rendición de Gastos.pdf" download="GUIA_Casos de Rendición de Gastos.pdf">
+                                                        Casos de Rendición de Gastos
                                                     </a>
                                                 </li>
                                                 <li>
@@ -385,6 +421,11 @@
                                                 <li>
                                                     <a href="manuales/odoo/contafin/GUIA_Cobros por adelantado.pdf" download="GUIA_Cobros por adelantado.pdf">
                                                         Cobros por adelantado
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/contafin/GUIA_Comprobante de Transferencia de Pago de USD a BOB.pdf" download="GUIA_Comprobante de Transferencia de Pago de USD a BOB.pdf">
+                                                        Comprobante de Transferencia de Pago de USD a BOB
                                                     </a>
                                                 </li>
                                                 <li>
@@ -433,6 +474,16 @@
                                                     </a>
                                                 </li>
                                                 <li>
+                                                    <a href="manuales/odoo/contafin/GUIA_Pagos (Compras).pdf" download="GUIA_Pagos (Compras).pdf">
+                                                        Pagos (Compras)
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/contafin/GUIA_Pagos (Sin solicitud).pdf" download="GUIA_Pagos (Sin solicitud).pdf">
+                                                        Pagos (Sin solicitud)
+                                                    </a>
+                                                </li>
+                                                <li>
                                                     <a href="manuales/odoo/contafin/GUIA_Pagos Compras.pdf" download="GUIA_Pagos Compras.pdf">
                                                         Pagos Compras
                                                     </a>
@@ -448,6 +499,16 @@
                                                     </a>
                                                 </li>
                                                 <li>
+                                                    <a href="manuales/odoo/contafin/GUIA_Reporte de cajero.pdf" download="GUIA_Reporte de cajero.pdf">
+                                                        Reporte de cajero
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/contafin/GUIA_Reporte de cajero.pdf" download="GUIA_Reporte de cajero.pdf">
+                                                        Reportes Cartera
+                                                    </a>
+                                                </li>
+                                                <li>
                                                     <a href="manuales/odoo/contafin/GUIA_Solicitud de cobro.pdf" download="GUIA_Solicitud de cobro.pdf">
                                                         Solicitud de cobro
                                                     </a>
@@ -455,6 +516,16 @@
                                                 <li>
                                                     <a href="manuales/odoo/contafin/GUIA_Solicitud de pago.pdf" download="GUIA_Solicitud de pago.pdf">
                                                         Solicitud de pago
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/contafin/GUIA_Tablero Contabilidad.pdf" download="GUIA_Tablero Contabilidad.pdf">
+                                                        Tablero Contabilidad
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/contafin/GUIA_Tipo de solicitud de pago.pdf" download="GUIA_Tipo de solicitud de pago.pdf">
+                                                        Tipo de solicitud de pago
                                                     </a>
                                                 </li>
                                             </ul>
@@ -481,38 +552,53 @@
                                         <div class="g-color--white-opacity">
                                             <ul class="a">
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Ajustes de Inventario.docx" download="GUIA_Ajustes de Inventario.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Ajustes de Inventario.pdf" download="GUIA_Ajustes de Inventario.pdf">
                                                         Ajustes de Inventario
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Albaran de recepciones_C.docx" download="GUIA_Albaran de recepciones_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Albaran de recepciones_C.pdf" download="GUIA_Albaran de recepciones_C.pdf">
                                                         Albaran de recepciones
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Albaran de salida_C.docx" download="GUIA_Albaran de salida_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Albaran de salida_C.pdf" download="GUIA_Albaran de salida_C.pdf">
                                                         Albaran de salida
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Albarán importaciones Automotriz_C.docx" download="GUIA_Albarán importaciones Automotriz_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Albarán importaciones Automotriz_C.pdf" download="GUIA_Albarán importaciones Automotriz_C.pdf">
                                                         Albarán importaciones Automotriz
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx" download="GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.pdf" download="GUIA_Albarán importaciones Neumatico_repuesto_Volvo_C.pdf">
                                                         Albarán importaciones Neumatico repuesto Volvo_C
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Carpeta de importación_C.docx" download="GUIA_Carpeta de importación_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Albaran.pdf" download="GUIA_Albaran.pdf">
+                                                        Albarán
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/importaciones/Caso_ Despachante de aduana.pdf" download="Caso_ Despachante de aduana.pdf">
+                                                        Caso Despachante de aduana
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/importaciones/GUIA_Carpeta de importación_C.pdf" download="GUIA_Carpeta de importación_C.pdf">
                                                         Carpeta de importación
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Coste en destino.docx" download="GUIA_Coste en destino.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Coste en destino.pdf" download="GUIA_Coste en destino.pdf">
                                                         Coste en destino
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/importaciones/GUIA_Cuadro Prioridades Liberación.pdf" download="GUIA_Cuadro Prioridades Liberación.pdf">
+                                                        Cuadro Prioridades Liberación
                                                     </a>
                                                 </li>
                                                 <li>
@@ -521,28 +607,38 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Envio de Stock.docx" download="GUIA_Envio de Stock.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Envio de Stock.pdf" download="GUIA_Envio de Stock.pdf">
                                                         Envio de Stock
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Factura de importación_C.docx" download="GUIA_Factura de importación_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Factura de importación_C.pdf" download="GUIA_Factura de importación_C.pdf">
                                                         Factura de importación
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Factura de proveedor_C.docx" download="GUIA_Factura de proveedor_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Factura de proveedor_C.pdf" download="GUIA_Factura de proveedor_C.pdf">
                                                         Factura de proveedor
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Factura DUI_C.docx" download="GUIA_Factura DUI_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Factura DUI_C.pdf" download="GUIA_Factura DUI_C.pdf">
                                                         Factura DUI
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Importación automotriz_C.docx" download="GUIA_Importación automotriz_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Flujo de compras.pdf" download="GUIA_Flujo de compras.pdf">
+                                                        Flujo de compras
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/importaciones/GUIA_Importación automotriz_C.pdf" download="GUIA_Importación automotriz_C.pdf">
                                                         Importación automotriz
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/importaciones/GUIA_Incidencias.pdf" download="GUIA_Incidencias.pdf">
+                                                        Incidencias
                                                     </a>
                                                 </li>
                                                 <li>
@@ -561,7 +657,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx" download="GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.pdf" download="GUIA_Orden de importación(Neumáticos_Repuestos_Volvo)_C.pdf">
                                                         Orden de importación(Neumáticos Repuestos Volvo)
                                                     </a>
                                                 </li>
@@ -571,7 +667,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Proveedores_C.docx" download="GUIA_Proveedores_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Proveedores_C.pdf" download="GUIA_Proveedores_C.pdf">
                                                         Proveedores
                                                     </a>
                                                 </li>
@@ -581,37 +677,47 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Reversión albarán de importación.docx" download="GUIA_Reversión albarán de importación.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Reversión albarán de importación.pdf" download="GUIA_Reversión albarán de importación.pdf">
                                                         Reversión albarán de importación
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Reversión Coste en Destino.docx" download="GUIA_Reversión Coste en Destino.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Reversión Coste en Destino.pdf" download="GUIA_Reversión Coste en Destino.pdf">
                                                         Reversión Coste en Destino
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Reversión factura de importación.docx" download="GUIA_Reversión factura de importación.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Reversión Dato maestro de serie_lote.pdf" download="GUIA_Reversión Dato maestro de serie_lote.pdf">
+                                                        Reversión Dato maestro de serie/lote
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/importaciones/GUIA_Reversión factura de importación.pdf" download="GUIA_Reversión factura de importación.pdf">
                                                         Reversión factura de importación
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Reversiones de importación.docx" download="GUIA_Reversiones de importación.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Reversiones de importación.pdf" download="GUIA_Reversiones de importación.pdf">
                                                         Reversiones de importación
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Solicitud de Stock.docx" download="GUIA_Solicitud de Stock.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Solicitud de Stock.pdf" download="GUIA_Solicitud de Stock.pdf">
                                                         Solicitud de Stock
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Tablero inventario.docx" download="GUIA_Tablero inventario.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Solicitud de presupuesto.pdf" download="GUIA_Solicitud de presupuesto.pdf">
+                                                        Solicitud de presupuesto
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/importaciones/GUIA_Tablero inventario.pdf" download="GUIA_Tablero inventario.pdf">
                                                         Tablero inventario
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/importaciones/GUIA_Transferencia interna_C.docx" download="GUIA_Transferencia interna_C.docx">
+                                                    <a href="manuales/odoo/importaciones/GUIA_Transferencia interna_C.pdf" download="GUIA_Transferencia interna_C.pdf">
                                                         Transferencia interna
                                                     </a>
                                                 </li>
