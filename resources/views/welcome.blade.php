@@ -849,13 +849,18 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/talleres/GUIA_Entrega de venta (1).pdf" download="GUIA_Entrega de venta (1).pdf">
+                                                    <a href="manuales/odoo/talleres/GUIA_Entrega de venta.pdf" download="GUIA_Entrega de venta.pdf">
                                                         Entrega de venta
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="manuales/odoo/talleres/GUIA_Orden de Trabajo (1).pdf" download="GUIA_Orden de Trabajo (1).pdf">
+                                                    <a href="manuales/odoo/talleres/GUIA_Orden de Trabajo.pdf" download="GUIA_Orden de Trabajo.pdf">
                                                         Orden de Trabajo
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/odoo/talleres/GUIA_Repuestos asociados.pdf" download="GUIA_Repuestos asociados.pdf">
+                                                        Repuestos asociados
                                                     </a>
                                                 </li>
                                                 <li>
