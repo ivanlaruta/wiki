@@ -222,20 +222,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4 g-margin-b-60--xs g-margin-b-0--md">
+                <div class="col-sm-4">
                     <div class="clearfix">
                         <div class="g-media g-width-30--xs">
-                            <div class="wow fadeInDown" data-wow-duration=".3" data-wow-delay=".2s">
-                                <i class="g-font-size-28--xs g-color--primary ti-settings"></i>
+                            <div class="wow fadeInDown" data-wow-duration=".3" data-wow-delay=".1s">
+                                <i class="g-font-size-28--xs g-color--primary ti-desktop"></i>
                             </div>
                         </div>
                         <div class="g-media__body g-padding-x-20--xs">
-                            <h3 class="g-font-size-18--xs"><a href="#">Toyo compras</a></h3>
-                            <p class="g-margin-b-0--xs">Manuales de funcionamiento para toyocompras.</p>
-                            <a href="#">Proximamente</a>
+                            <h3 class="g-font-size-18--xs"><a href="#cod_barras">Manuales Trafico de clientes</a></h3>
+                            <p class="g-margin-b-0--xs">Guias para el funcionamiento de trafico de clientes.</p>
+                            <a href="#traf_cli">Ver Manuales</a>
                         </div>
                     </div>
                 </div>
+                
                
             </div>
             <!-- // end row  -->
@@ -966,6 +967,57 @@
             </div>
         </div>
 
+
+
+        <div id="traf_cli" class="s-faq g-bg-color--primary" style="background-color: #b46f6f    !important; ">
+
+            <div class="container g-padding-y-125--xs">
+                <div class="row">
+                    <div class="g-text-center--xs g-margin-b-100--xs">
+                    <h2 class="g-font-size-32--xs g-font-size-36--md" style="color: #fff9f9;">Manuales Trafico de clientes</h2>
+                    <p class="g-font-size-20--xs g-font-size-20--md" style="color: #fff9f9;">seleccione una manual.</p>
+                
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="cbp cbp-l-grid-faq js__grid-faq">
+                            
+                            <div class="cbp-item community">
+                                <div class="cbp-caption">
+                                    <div class="s-faq-grid__divider cbp-caption-defaultWrap">
+                                        <svg width="19" height="19" viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="#fff" d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5-103 385.5-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103zm128 1247v-190q0-14-9-23.5t-22-9.5h-192q-13 0-23 10t-10 23v190q0 13 10 23t23 10h192q13 0 22-9.5t9-23.5zm-2-344l18-621q0-12-10-18-10-8-24-8h-220q-14 0-24 8-10 6-10 18l17 621q0 10 10 17.5t24 7.5h185q14 0 23.5-7.5t10.5-17.5z"></path>
+                                        </svg>
+                                        <h3 class="s-faq-grid__title">Funcionalidad General</h3>
+                                    </div>
+                                    <div class="cbp-caption-activeWrap">
+                                        <div class="g-color--white-opacity">
+                                            <ul class="a">
+                                                <li>
+                                                    <a href="manuales/trafico/SOP - Lista de visitas semanal.docx" download="SOP - Lista de visitas semanal.docx">
+                                                        SOP - LISTA DE VISITAS SEMANAL
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/trafico/SOP - Registro de Tráfico de clientes.docx" download="SOP - Registro de Tráfico de clientes.docx">
+                                                        SOP - REGISTRO DE TRÁFICO DE CLIENTES
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="manuales/trafico/SOP - Reporte Consolidado Tráfico de Clientes.docx" download="SOP - Reporte Consolidado Tráfico de Clientes.docx">
+                                                        SOP - REPORTE CONSOLIDADO TRÁFICO DE CLIENTES
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         
         <!-- End Features -->
 
@@ -974,9 +1026,9 @@
             <div class="container g-text-center--xs g-padding-y-80--xs g-padding-y-125--sm">
                 <div class="g-margin-b-80--xs">
                     <h2 class="g-font-size-40--xs g-font-size-50--sm g-font-size-60--md g-color--white">Administracion de manuales </h2>
-                    <h4 style="color: #fff;">Quieres subir mas manuales ?</h4>
+                    <h4 style="color: #fff;">Necesita mas manuales y/o guias ?</h4>
                 </div>
-                <a href="#" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50">Ingresar</a>
+                <a href="#" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50">Contactenos</a>
             </div>
         </div>
         <!-- End Parallax -->
