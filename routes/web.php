@@ -12,11 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('particles');
 });
 
 Route::get('/inicio', function () {
-    return view('welcome');
+    return view('particles');
 })->name('inicio');
 
 Route::get('/manuales', function () {
@@ -24,7 +24,7 @@ Route::get('/manuales', function () {
 })->name('manuales');
 
 Route::get('/test', function () {
-    return view('pruebas');
+    return view('welcome');
 })->name('test');
 
 Auth::routes();
